@@ -17,7 +17,7 @@ Meteor.startup(function () {
       Categories.insert({code: 'music-wind-othr', ancestors:['music', 'music-wind'], parent:'music-wind', name:'Autres'});
       
       Categories.insert({code: 'music-elec', ancestors:['music'], parent:'music', name:'Instrument électronique'});
-      Categories.insert({code: 'music-elec-synt', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Instrument électronique'});
+      Categories.insert({code: 'music-elec-synt', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Synthétiseurs'});
       Categories.insert({code: 'music-elec-drum', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Drum machine'});
       Categories.insert({code: 'music-elec-dj', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Dj'});
       Categories.insert({code: 'music-elec-othr', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Autres'});

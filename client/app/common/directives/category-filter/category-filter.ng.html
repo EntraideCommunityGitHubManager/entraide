@@ -10,11 +10,11 @@
 </div>
 <div class="category-input-separator">------</div>
 <div class="category-input-filter">
-    <input type="text" ngChange="categoryFilter(model.filterTerm)" ng-model="model.filterTerm" placeholder="Filtrer les catégories">
+    <input type="text" ng-change="categoryFilter(model.filterTerm)" ng-model="model.filterTerm" placeholder="Filtrer les catégories">
 </div>
 <div class="category-card-container">
     <div class="animate-repeat category-card category-{{cat.code}}"
-         ng-repeat="cat in model.categoriesDisplayed | filter:{ name: model.filterTerm } | orderBy: 'code' track by cat.code"
+         ng-repeat="cat in model.categoriesDisplayed | orderBy: 'code' track by cat.code"
          ng-click="addCategory(cat)"
          ng-style="getCategoryIconStyle(cat)"></div>
 </div>

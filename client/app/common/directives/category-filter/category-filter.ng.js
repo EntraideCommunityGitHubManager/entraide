@@ -27,7 +27,22 @@ angular.module('entraide').directive('categoryFilter', function() {
             };
 
             $scope.categoryFilter = function(filterTerm){
+                var result = [];
+                var ancestors = [];
+                var termFound = false;
+                var isRoot = false;
+                angular.forEach($scope.model.categories, function(cat){
+                    termFound = cat.name.toLowerCase().indexOf(filterTerm)> -1;
+                    isRoot = !(cat.code.indexOf('-')> -1);
+                    if(termFound && isRoot){
+                        ancestors.push(cat.code);
+                    }
+                    if(termFound || (!isRoot && _.contains(ancestors, cat.code.substring(0, cat.code.indexOf("-"))))){
+                        result.push(cat);
+                    }
+                });
 
+                $scope.model.categoriesDisplayed = _.difference(result, $scope.model.categoriesSelected);
             };
 
             $scope.getCategoryIconStyle = function(cat){
@@ -41,6 +56,7 @@ angular.module('entraide').directive('categoryFilter', function() {
             $scope.removeCategory = function(cat){
                 var index = indexOf($scope.model.categoriesSelected, cat, 'code');
                 $scope.model.categoriesDisplayed.push($scope.model.categoriesSelected.splice(index,1)[0]);
+                $scope.categoryFilter($scope.model.filterTerm);
             };
 
             function indexOf(arr, obj, prop){
