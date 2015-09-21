@@ -1,1 +1,6 @@
 /* CSS declarations go here */
+body{
+    padding-top: 100px;
+    margin-bottom: 1px;
+    background-color: rgba(43, 71, 84, 0.17);
+}

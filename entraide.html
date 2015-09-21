@@ -1,18 +1,168 @@
 <head>
-  <title>entraide</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>entraide</title>
+    <link rel="icon" href="/favicon.ico">
 </head>
 
+
 <body>
-  <h1>Welcome to Meteor!</h1>
-  {{> hello}}
-  <div class="main">
-    <div class="login1">{{> loginButtons}}</div>
-  </div>
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Entraide</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="twitter" href="https://twitter.com/" title="Twitter" target="_blank">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="facebook" href="https://www.facebook.com/" title="Facebook" target="_blank">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="google-plus" href="https://plus.google.com/" title="Google+" target="_blank">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li>
+
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="/home">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <div id="content">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <h1>Meteor.js and Twitter Bootstrap - The right way</h1>
+
+                        <p>Entraide 22., 2014</p>
+
+                        <h1>Welcome to Meteor!</h1>
+                        {{> hello}}
+                    </div>
+                    <div class="col-sm-2">
+                        <img title="Development" class="img-circle img-responsive ms-blog-post-image-small"
+                             src="http://www.manuel-schoebel.com/uploads/images/blog_tag_image_development.png">
+                    </div>
+                </div>
+                <div class="blog-text">
+                    <p>If you are building web applications today you need to make sure that they are displayed
+                        correctly not only in different browsers but also on different screen sizes. That is why we
+                        build our applications 'responsive' and that means that every component fits itself to thespace
+                        it has. Doing that with CSS is a big pain because it really is a quite complicated task.Good
+                        that we have Twitter Bootstrap which does exactly that. But the CSS framework gives us also
+                        really good start for a good-looking application. Just plain Bootstrap gives you an "okay"
+                        design right from the beginning, too. But Twitter Bootstrap is, like Meteor.js itself,
+                        structured very modular and you can customize it easily. That is what you ultimately want, a
+                        good responsive behavior for the layout but your individual look and design.</p>
+
+                    <h2 id="how-bootstrap-is-structured">How Bootstrap is structured</h2>
+
+                    <p>Twitter Bootstrap is just a bunch of modules and each module has one purpose. So let us have a look at the "less" version of Twitter Bootstrap to see what is inside:</p>
+
+                </div>
+                <div class="row">
+                    <div class="section-heading">
+                        <h3>Comments</h3>
+                    </div>
+                    <div class="col-sm-12">
+                        <div id="disqus_thread"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-lg-12 hidden-sm">
+                        <div class="well">
+                            <h4 style="display: inline-block;">Jobs: <img
+                                    style="display: inline-block; max-width: 135px; max-height: 150px;"
+                                    src="https://www.shop.co/static/images/logo-white-bg-mq.png"
+                                    class="img-responsive">
+                            </h4>
+
+                            <p> ShopCo is a 7-digit € Seed funded German tech startup with a disruptive business model.</p>
+
+                            <div class="clearfix"></div>
+                            <hr>
+                            <div class="text-center">
+                                <a href="/home" class="btn btn-block btn-success"><i class="fa fa-external-link-square"></i>Apply now!</a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="well">
+                            <h4>Book: Meteor In Action</h4>
+
+                            <div class="pull-left">
+                                <img style="max-height: 150px;" src="http://meteorinaction.com/img/cover-mia.jpg"
+                                     class="img-responsive">
+                            </div>
+                            <div class="pull-left" style="margin-left: 5px; max-width: 60%;">
+                                <p>
+                                    Meteor brings the fun back to developing web applications. Let us show you how
+                                    to
+                                    make the most of this amazing platform to impress users, reduce development
+                                    time,
+                                    and turn your ideas into code.
+                                </p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                            <div class="text-center">
+                                <a target="_blank"
+                                   href="http://manning.com/hochhaus/?a_aid=mscom&amp;a_bid=aeff5509"
+                                   class="btn btn-block btn-success"><i class="fa fa-external-link-square"></i> Get it now!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<footer class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p><a href="/about">About</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
 </body>
 
 
-
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+    <button>Click Me</button>
+    <p>You've pressed the button {{counter}} times.</p>
 </template>
