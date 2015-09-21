@@ -1,9 +1,9 @@
-if (Meteor.isClient) {
+Events = new Mongo.Collection("events");
 
-    angular.module('entraide', ['angular-meteor']);
+Meteor.startup(function () {
 
-    angular.module('entraide').controller('EventsListCtrl', function ($scope) {
-        $scope.events = [
+    if (Events.find().count() === 0) {
+        var events = [
             {
                 'name': 'Dubstep-Free Zone',
                 'description': 'Can we please just for an evening not listen to dubstep.'
@@ -17,5 +17,13 @@ if (Meteor.isClient) {
                 'description': 'Leisure suit required. And only fiercest manners.'
             }
         ];
+        for (var i = 0; i < events.length; i++)
+            Events.insert(events[i]);
+    }
+
+
+    Meteor.publish('events', function() {
+        return Events.find({});
     });
-}
+
+});
