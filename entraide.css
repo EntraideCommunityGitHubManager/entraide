@@ -8,3 +8,14 @@ body{
 .login{
     margin-bottom: 40px;
 }
+
+/* Connection Banner style */
+
+#connection-lost-banner + .navbar-fixed-top,
+#connection-try-reconnect + .navbar-fixed-top {
+    top: 41px;
+}
+.navbar-fixed-top + #connection-lost-banner,
+.navbar-fixed-top + #connection-try-reconnect {
+    top: 51px;
+}
