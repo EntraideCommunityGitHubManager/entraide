@@ -20,10 +20,52 @@ The files are loaded in an alphabetical order within a folder.
 
 
 # External libs :
-AngularJS           (1.4.6)     ---> meteor add angular
-Angular UI Router   (0.2.15)    ---> meteor add angularui:angular-ui-router
-Twitter Bootstrap   (3.3.5)     ---> meteor add twbs:bootstrap
-Font Awesome        (4.4.0)     ---> meteor add fortawesome:fontawesome
-Connection Banner   (0.4.3)     ---> meteor add natestrauser:connection-banner      Toast message to show and prevent lost connection with the server
-Blaze Template      (0.0.1)     ---> meteor add urigo:angular-blaze-template        Mixin Angular and Meteor template
 
+<p>AngularJS           (1.4.6)     ---> meteor add angular</p>
+<p>Angular UI Router   (0.2.15)    ---> meteor add angularui:angular-ui-router</p>
+<p>Twitter Bootstrap   (3.3.5)     ---> meteor add twbs:bootstrap</p>
+<p>Font Awesome        (4.4.0)     ---> meteor add fortawesome:fontawesome</p>
+<p>Connection Banner   (0.4.3)     ---> meteor add natestrauser:connection-banner      Toast message to show and prevent lost connection with the server</p>
+<p>Blaze Template      (0.0.1)     ---> meteor add urigo:angular-blaze-template        Mixin Angular and Meteor template</p>
+
+
+
+
+index.html
+<div> HEADER </div> 
+<div ui-view="main">
+<div> FOOTER </div> 
+
+main.ng.html
+<div> Main content :</div>
+<div ui-view="contentView1"></div>
+<div ui-view="contentView2"></div>
+
+
+
+
+	.state('main', {
+		url: "/",
+		views: {
+			"main": {
+				templateUrl: 'client/main.ng.html'
+			}
+		}
+	})
+	.state('main.events', {
+		url: "events",
+		views: {
+			'contentView1@main': {      // @state
+				template: '<div> Content View 1</div>',
+				controller: function($scope) {
+					console.log("contentView1 ctrl");
+				}
+			},
+			'contentView2@main': {      // @state
+				template: '<div> Content View 2</div>',
+				controller: function($scope) {
+					console.log("contentView2 ctrl");
+				}
+			}
+		}
+	})
