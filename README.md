@@ -46,7 +46,9 @@ Blaze Template      (0.0.1)  	---> meteor add urigo:angular-blaze-template
         <div ui-view></div> 
     </body>
 
-      angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function                 ($urlRouterProvider, $stateProvider, $locationProvider) {
+      angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function 
+      
+      ($urlRouterProvider, $stateProvider, $locationProvider) {
 
     $urlRouterProvider.when("",  "/app/main");
     $urlRouterProvider.when("/", "/app/main");
@@ -74,7 +76,7 @@ Blaze Template      (0.0.1)  	---> meteor add urigo:angular-blaze-template
         })
 		
         .state('app.main', {
-			url: '/main'
+			url: '/main',
             views: {
                 'header-view@app': {
                     template: '<div>Header view</div>',
