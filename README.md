@@ -31,17 +31,15 @@ The files are loaded in an alphabetical order within a folder.
 
 
 
-index.html
-<div> HEADER </div> 
-<div ui-view="main">
-<div> FOOTER </div> 
+	index.html
+	<div> HEADER </div> 
+	<div ui-view="main">
+	<div> FOOTER </div> 
 
-main.ng.html
-<div> Main content :</div>
-<div ui-view="contentView1"></div>
-<div ui-view="contentView2"></div>
-
-
+	main.ng.html
+	<div> Main content :</div>
+	<div ui-view="contentView1"></div>
+	<div ui-view="contentView2"></div>
 
 
 	.state('main', {
