@@ -1,10 +1,10 @@
 # Entraide Community Project
 
 Author : Entraide Community Manager
-
+**bold**
 # Developement base :
 <p>
-**bold****bold**
+
 **/client** : contains all js client (angular ctrl, service... / Meteor subscribed collections and objects)<br>
 **/server** : contains all js server (Meteor publish service, security ... layer)<br>
 **/lib**    : contains the js files loaded at last (app.ng.js).<br>
