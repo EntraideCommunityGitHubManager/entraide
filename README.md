@@ -157,7 +157,7 @@ Blaze Template      (0.0.1)  	---> meteor add urigo:angular-blaze-template
 		.state('app.main.profile', {
             url: '/profile',
 			abstract: true,
-            template: '<ui-view/>'
+            template: '<ui-view/>',
             controller: function(){
                 console.log("abstract main profile Ctrl");
             }
