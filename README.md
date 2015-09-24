@@ -153,7 +153,7 @@ Blaze Template      (0.0.1)  	---> meteor add urigo:angular-blaze-template
             url: '/detail/:eventId',
             templateUrl: 'client/events/detail/event-detail.ng.html',
             controller: 'EventDetailCtrl'
-        });
+        })
 		.state('app.main.profile', {
             url: '/profile',
 			abstract: true,
@@ -161,7 +161,7 @@ Blaze Template      (0.0.1)  	---> meteor add urigo:angular-blaze-template
             controller: function(){
                 console.log("abstract main profile Ctrl");
             }
-        });
+        })
 		.state('app.main.profile.edit', {
             url: '/edit/:userId',
             template: '<div>Profile edit</div>',
