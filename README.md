@@ -47,7 +47,6 @@ Blaze Template      (0.0.1)  	---> meteor add urigo:angular-blaze-template
     </body>
 
       angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function 
-      
       ($urlRouterProvider, $stateProvider, $locationProvider) {
 
     $urlRouterProvider.when("",  "/app/main");
@@ -101,13 +100,13 @@ Blaze Template      (0.0.1)  	---> meteor add urigo:angular-blaze-template
                     }
                 },
 				'content-view@app': {
-                    template: '<div ui-view"></div>'
+                    template: '<div ui-view"></div>',
                     controller: function($scope){
                         console.log("content-view Ctrl");
                     }
                 }
 				'footer-view@app': {
-                    template: '<div>Footer view</div>'
+                    template: '<div>Footer view</div>',
                     controller: function($scope){
                         console.log("footer-view Ctrl");
                     }
