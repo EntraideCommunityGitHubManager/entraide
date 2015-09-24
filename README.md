@@ -12,10 +12,10 @@ Author : Entraide Community Manager
 **.ng.js**   : angular js files must be named like this in order to avoid dependency problems on minification
 
 
-<pre><code>
+<em>
 Meteor load first the files in sub-directories then load parent files then load at last the files in lib folder. <br>
 The files are loaded in an alphabetical order within a folder.
-</pre></code>
+</em>
 
 
 ### External libs :
