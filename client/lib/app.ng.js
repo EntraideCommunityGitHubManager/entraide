@@ -14,9 +14,9 @@ angular.module('entraide').run(["$rootScope", "$location", function ($rootScope,
 
 angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
-    $urlRouterProvider.when("", "/app/main");
-    $urlRouterProvider.when("/", "/app/main");
-    $urlRouterProvider.otherwise("/app/main");
+    $urlRouterProvider.when("",  "/home");
+    $urlRouterProvider.when("/", "/home");
+    $urlRouterProvider.otherwise("/home");
 
     $stateProvider
         .state('home', {
@@ -26,7 +26,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         })
 
         .state('app', {
-            url: '/app',
             template: '<div ui-view="header-view"></div><div ui-view="notification-view"></div><div ui-view="side-left-view"></div><div ui-view="content-view"></div><div ui-view="footer-view"></div>',
             controller: function ($scope, $meteor) {
                 console.log("app Ctrl");
@@ -34,7 +33,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         })
 
         .state('app.main', {
-            url: '/main',
             views: {
                 'header-view@app': {
                     template: '<div>Header view</div>',
