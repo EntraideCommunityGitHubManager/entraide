@@ -19,15 +19,17 @@ The files are loaded in an alphabetical order within a folder.
 </p>
 
 
-# External libs :
-
+## External libs :
+<pre>
+<code>
 <p>AngularJS           (1.4.6)     ---> meteor add angular</p>
 <p>Angular UI Router   (0.2.15)    ---> meteor add angularui:angular-ui-router</p>
 <p>Twitter Bootstrap   (3.3.5)     ---> meteor add twbs:bootstrap</p>
 <p>Font Awesome        (4.4.0)     ---> meteor add fortawesome:fontawesome</p>
 <p>Connection Banner   (0.4.3)     ---> meteor add natestrauser:connection-banner      Toast message to show and prevent lost connection with the server</p>
 <p>Blaze Template      (0.0.1)     ---> meteor add urigo:angular-blaze-template        Mixin Angular and Meteor template</p>
-
+</code>
+</pre>
 
 
     index.html
