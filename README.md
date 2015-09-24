@@ -100,7 +100,7 @@ Blaze Template      (0.0.1)  	---> meteor add urigo:angular-blaze-template
                     }
                 },
 				'content-view@app': {
-                    template: '<div ui-view"></div>',
+                    template: '<div ui-view></div>',
                     controller: function($scope){
                         console.log("content-view Ctrl");
                     }
