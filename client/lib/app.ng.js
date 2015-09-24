@@ -69,18 +69,12 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.events', {
             url: '/events',
             abstract: true,
-            template: '<ui-view/>',
-            controller: function () {
-                console.log("abstract main events Ctrl");
-            }
+            template: '<ui-view/>'
         })
         .state('app.main.events.search', {
             url: '/search',
             abstract: true,
-            template: '<ui-view/>',
-            controller: function () {
-                console.log("abstract main events search Ctrl");
-            }
+            template: '<ui-view/>'
         })
         .state('app.main.events.search.byProfile', {
             url: '/byProfile',
