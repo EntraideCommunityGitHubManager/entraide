@@ -30,22 +30,16 @@ The files are loaded in an alphabetical order within a folder.
 
 
 
-angular.module('entraide', ['angular-meteor', 'ui.router']);
-
-
-angular.module('entraide').run(["$rootScope", "$location", function($rootScope, $state) {
-    $rootScope.$on("$stateChangeError", function(event, next, previous, error) {
-        if (error === "AUTH_REQUIRED") {
-            $state.go("/events");
-        } else if (error === "AUTH_REQUIRED"){
-
-        }
-    });
-}]);
-
-
         index.html
         <body ng-app="entraide"> 
+	<a ng-href="#/home">Home</a>
+	<a ng-href="#/app">App</a>
+	<a ng-href="#/app/main/">App main</a>
+	<a ng-href="#/app/main/events">App main events</a>
+	<a ng-href="#/app/main/events/search">App main events search</a>
+	<a ng-href="#/app/main/events/search/byProfile">App main events search byProfile</a>
+	<a ng-href="#/app/main/events/detail/1">App main events Detail</a>
+	<a ng-href="#/app/main/profile/edit/1">App main profile edit</a>
         	<div ui-view></div> 
         </body>
 
