@@ -8,7 +8,7 @@ Author : Entraide Community Manager
 **/server** : contains all js server (Meteor publish service, security ... layer)<br>
 **/lib**    : contains the js files loaded at last (app.ng.js).<br>
 
-**.ng.html** : angular html template that it will not be compiled by blaze <br>
+**.ng.html** : angular html template which will not be compiled by blaze <br>
 **.ng.js**   : angular js files must be named like this in order to avoid dependency problems on minification
 
 
