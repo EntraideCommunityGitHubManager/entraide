@@ -30,40 +30,153 @@ The files are loaded in an alphabetical order within a folder.
 
 
 
-
-	index.html
-	<div> HEADER </div> 
-	<div ui-view="main">
-	<div> FOOTER </div> 
-
-	main.ng.html
-	<div> Main content :</div>
-	<div ui-view="contentView1"></div>
-	<div ui-view="contentView2"></div>
+angular.module('entraide', ['angular-meteor', 'ui.router']);
 
 
-	.state('main', {
-		url: "/",
-		views: {
-			"main": {
-				templateUrl: 'client/main.ng.html'
-			}
-		}
-	})
-	.state('main.events', {
-		url: "events",
-		views: {
-			'contentView1@main': {      // @state
-				template: '<div> Content View 1</div>',
-				controller: function($scope) {
-					console.log("contentView1 ctrl");
-				}
+angular.module('entraide').run(["$rootScope", "$location", function($rootScope, $state) {
+    $rootScope.$on("$stateChangeError", function(event, next, previous, error) {
+        if (error === "AUTH_REQUIRED") {
+            $state.go("/events");
+        } else if (error === "AUTH_REQUIRED"){
+
+        }
+    });
+}]);
+
+
+        index.html
+        <body ng-app="entraide"> 
+        	<div ui-view></div> 
+        </body>
+
+      angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function                 ($urlRouterProvider, $stateProvider, $locationProvider) {
+
+    $urlRouterProvider.when("",  "/app/main");
+    $urlRouterProvider.when("/", "/app/main");
+    $urlRouterProvider.otherwise("/app/main");
+
+    $stateProvider
+        .state('home', {
+            url: '/home',
+            templateUrl: 'client/home/home.ng.html',
+            controller: 'HomeCtrl'
+        })
+		
+		.state('app', {
+            url: '/app',
+            template: '
+				<div ui-view="header-view"></div>
+				<div ui-view="notification-view"></div>
+				<div ui-view="side-left-view"></div>
+				<div ui-view="content-view"></div>
+				<div ui-view="footer-view"></div>
+			',
+            controller: function($scope, $meteor){
+                console.log("app Ctrl");
+            }
+        })
+		
+        .state('app.main', {
+			url: '/main'
+            views: {
+                'header-view@app': {
+                    template: '<div>Header view</div>',
+                    controller: function($scope){
+                        console.log("header-view Ctrl");
+                    }
+                },
+				'notification-view@app': {
+                    template: '<div>Notification view</div>',
+                    controller: function($scope){
+                        console.log("notification-view Ctrl");
+                    }
+                },
+				'side-left-view@app': {
+                    template: '
+						<div>Side Left view</div>
+						<div ui-view="side-content-view"></div>
+						<div ui-view="side-tabs-view"></div>
+					',
+                    controller: function($scope){
+                        console.log("side-left-view Ctrl");
+                    }
+                },
+				'content-view@app': {
+                    template: '<div ui-view"></div>'
+                    controller: function($scope){
+                        console.log("content-view Ctrl");
+                    }
+                }
+				'footer-view@app': {
+                    template: '<div>Footer view</div>'
+                    controller: function($scope){
+                        console.log("footer-view Ctrl");
+                    }
+                }
+            }
+        })
+        .state('app.main.events', {
+            url: '/events',
+            abstract: true,
+			template: '<ui-view/>'
+            controller: function(){
+                console.log("abstract main events Ctrl");
+            }
+        })
+		.state('app.main.events.search', {
+            url: '/search',
+            abstract: true,
+			template: '<ui-view/>'
+            controller: function(){
+                console.log("abstract main events search Ctrl");
+            }
+        })
+        .state('app.main.events.search.byProfile', {
+            url: '/byProfile',
+            views: {
+				'side-left-view@app.main': {
+                    views: {
+						'side-content-view': {
+							template: '<div> Events Search by profile</div>',		
+							controller: function($scope){
+								console.log("side-content-view Ctrl SearchByProfile");
+							}
+						}
+					}
+                },
+				'content-view@app.main': {
+                    template: '<div>Content view for search by profile</div>',
+                    controller: function($scope){
+                        console.log("content-view Ctrl SearchByProfile");
+                    }
+                }
+            }
+        })
+        .state('app.main.events.detail', {
+            url: '/detail/:eventId',
+            templateUrl: 'client/events/detail/event-detail.ng.html',
+            controller: 'EventDetailCtrl'
+        });
+		.state('app.main.profile', {
+            url: '/profile',
+			abstract: true,
+            template: '<ui-view/>'
+            controller: function(){
+                console.log("abstract main profile Ctrl");
+            }
+        });
+		.state('app.main.profile.edit', {
+            url: '/edit/:userId',
+            template: '<div>Profile edit</div>',
+            controller: function($scope){
+				console.log("Profile edit Ctrl");
 			},
-			'contentView2@main': {      // @state
-				template: '<div> Content View 2</div>',
-				controller: function($scope) {
-					console.log("contentView2 ctrl");
-				}
-			}
-		}
-	})
+            resolve: {
+                "currentUser": ["$meteor", function($meteor){
+                    return $meteor.requireUser();
+                }]
+            }
+        });
+
+
+}]);
