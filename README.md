@@ -30,8 +30,8 @@ The files are loaded in an alphabetical order within a folder.
 
 
 
-   index.html
-   <body ng-app="entraide"> 
+    index.html
+    <body ng-app="entraide"> 
         <a ng-href="#/home">Home</a>
         <a ng-href="#/app">App</a>
         <a ng-href="#/app/main/">App main</a>
@@ -172,5 +172,3 @@ The files are loaded in an alphabetical order within a folder.
             }
         });
 
-
-}]);
