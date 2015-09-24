@@ -13,7 +13,7 @@ Author : Entraide Community Manager
 
 
 <em>
-Meteor load first the files in sub-directories then load parent files then load at last the files in lib folder. <br>
+> Tips : Meteor load first the files in sub-directories then load parent files then load at last the files in lib folder. <br>
 The files are loaded in an alphabetical order within a folder.
 </em>
 
