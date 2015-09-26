@@ -35,31 +35,31 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main', {
             views: {
                 'header-view@app': {
-                    template: '<div>Header view</div>',
+                    templateUrl: 'client/app/header/header.ng.html',
                     controller: function ($scope) {
                         console.log("header-view Ctrl");
                     }
                 },
                 'notification-view@app': {
-                    template: '<div>Notification view</div>',
+                    templateUrl: 'client/app/notification/notification.ng.html',
                     controller: function ($scope) {
                         console.log("notification-view Ctrl");
                     }
                 },
                 'side-left-view@app': {
-                    template: '<div>Side Left view</div><div ui-view="side-content-view"></div><div ui-view="side-tabs-view"></div>',
+                    templateUrl: 'client/app/side/left/side-left.ng.html',
                     controller: function ($scope) {
                         console.log("side-left-view Ctrl");
                     }
                 },
                 'content-view@app': {
-                    template: '<div>Map view</div><div ui-view="map-view"></div>',
+                    templateUrl: 'client/app/content/content.ng.html',
                     controller: function ($scope) {
                         console.log("map-view Ctrl");
                     }
                 },
                 'footer-view@app': {
-                    template: '<div>Footer view</div>',
+                    templateUrl: 'client/app/footer/footer.ng.html',
                     controller: function ($scope) {
                         console.log("footer-view Ctrl");
                     }
@@ -93,12 +93,25 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 }
             }
         })
+        .state('app.main.events.search.myEvents', {
+            url: '/myEvents',
+            views: {
+                'side-content-view@app.main': {
+                    template: '<div> Inside side-content view </div>',
+                    controller: function ($scope) {
+                        console.log("side-content-view Ctrl : search by profile");
+                    }
+                }
+            }
+        })
         .state('app.main.events.detail', {
             url: '/detail/:eventId',
             views: {
                 'side-content-view@app.main': {
-                    templateUrl: 'client/events/detail/event-detail.ng.html',
-                    controller: 'EventDetailCtrl'
+                    template: '<div> Inside side-content view  - Event Detail</div>',
+                    controller: function ($scope) {
+                        console.log("side-content-view Ctrl : event detail");
+                    }
                 }
             }
 
@@ -106,18 +119,15 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.profile', {
             url: '/profile',
             abstract: true,
-            template: '<ui-view/>',
-            controller: function () {
-                console.log("abstract main profile Ctrl");
-            }
+            template: '<ui-view/>'
         })
         .state('app.main.profile.edit', {
             url: '/edit/:userId',
             views: {
                 'side-content-view@app.main': {
-                    templateUrl: 'client/events/detail/event-detail.ng.html',
+                    template: '<div> Inside side-content view - Profile edit </div>',
                     controller: function ($scope) {
-                        console.log("side-content-view Ctrl : profile edit");
+                        console.log("side-content-view Ctrl : search by profile");
                     },
                     resolve: {
                         "currentUser": ["$meteor", function ($meteor) {

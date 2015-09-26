@@ -19,3 +19,7 @@ body{
 .navbar-fixed-top + #connection-try-reconnect {
     top: 51px;
 }
+
+.entraide-footer {
+    background-color: #222;
+}
