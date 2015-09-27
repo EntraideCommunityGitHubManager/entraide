@@ -1,8 +1,13 @@
 /* CSS declarations go here */
+html {
+    height:96%;
+}
+
 body{
-    padding-top: 60px;
+    padding-top: 55px;
     margin-bottom: 1px;
     background-color: rgba(43, 71, 84, 0.17);
+    height:100%;
 }
 
 .login{
@@ -20,6 +25,41 @@ body{
     top: 51px;
 }
 
-.entraide-footer {
+.login-template {
+    float: right;
+    margin-right: 20px;
+}
+
+.main-view{
+    height: 97%;
+}
+
+.notification-view {
+    border: 1px black dashed;
+    height: 30px;
+}
+
+.side-left-view {
+    border: 1px black dashed;
+    height: 64%;
+    width: 250px;
+    position: fixed;
+    top: 100px;
+    left: 1px;
+    background-color: darkgray;
+    z-index: 1;
+}
+
+.map-view {
+    border: 1px black dashed;
+    height: 97%;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.footer-view {
     background-color: #222;
+    position: fixed;
+    bottom: 1px;
+    width: 100%;
 }

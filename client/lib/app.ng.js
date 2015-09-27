@@ -26,7 +26,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         })
 
         .state('app', {
-            template: '<div ui-view="header-view"></div><div ui-view="notification-view"></div><div ui-view="side-left-view"></div><div ui-view="content-view"></div><div ui-view="footer-view"></div>',
+            template: '<div class="header-view" ui-view="header-view"></div><div class="notification-view" ui-view="notification-view"></div><div class="side-left-view" ui-view="side-left-view"></div><div class="map-view" ui-view="map-view"></div><div class="footer-view" ui-view="footer-view"></div>',
             controller: function ($scope, $meteor) {
                 console.log("app Ctrl");
             }
@@ -36,33 +36,23 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             views: {
                 'header-view@app': {
                     templateUrl: 'client/app/header/header.ng.html',
-                    controller: function ($scope) {
-                        console.log("header-view Ctrl");
-                    }
+                    controller: 'HeaderCtrl'
                 },
                 'notification-view@app': {
                     templateUrl: 'client/app/notification/notification.ng.html',
-                    controller: function ($scope) {
-                        console.log("notification-view Ctrl");
-                    }
+                    controller: 'NotificationCtrl'
                 },
                 'side-left-view@app': {
                     templateUrl: 'client/app/side/left/side-left.ng.html',
-                    controller: function ($scope) {
-                        console.log("side-left-view Ctrl");
-                    }
+                    controller: 'SideLeftCtrl'
                 },
-                'content-view@app': {
-                    templateUrl: 'client/app/content/content.ng.html',
-                    controller: function ($scope) {
-                        console.log("map-view Ctrl");
-                    }
+                'map-view@app': {
+                    templateUrl: 'client/app/map/map.ng.html',
+                    controller: 'MapCtrl'
                 },
                 'footer-view@app': {
                     templateUrl: 'client/app/footer/footer.ng.html',
-                    controller: function ($scope) {
-                        console.log("footer-view Ctrl");
-                    }
+                    controller: 'FooterCtrl'
                 }
             }
         })
@@ -79,16 +69,22 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.events.search.byProfile', {
             url: '/byProfile',
             views: {
-                'map-view@app.main': {
-                    template: '<div> Inside map view </div>',
-                    controller: function ($scope) {
-                        console.log("map-view Ctrl");
+                'map-view@app': {
+                    templateUrl: 'client/app/map/map.ng.html',
+                    controller: 'MapCtrl',
+                    resolve: {
+                        "msg": ["$meteor", function ($meteor) {
+                            return $meteor.requireUser();
+                        }]
                     }
                 },
-                'side-content-view@app.main': {
-                    template: '<div> Inside side-content view </div>',
-                    controller: function ($scope) {
-                        console.log("side-content-view Ctrl : search by profile");
+                'side-left-view@app.main': {
+                    templateUrl: 'client/app/side/left/side-left.ng.html',
+                    controller: 'SideLeftCtrl',
+                    resolve: {
+                        "msg": ["$meteor", function ($meteor) {
+                            return $meteor.requireUser();
+                        }]
                     }
                 }
             }
@@ -96,22 +92,22 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.events.search.myEvents', {
             url: '/myEvents',
             views: {
-                'side-content-view@app.main': {
-                    template: '<div> Inside side-content view </div>',
-                    controller: function ($scope) {
-                        console.log("side-content-view Ctrl : search by profile");
-                    }
+                'map-view@app': {
+                    templateUrl: 'client/app/map/map.ng.html',
+                    controller: 'MapCtrl'
+                },
+                'side-left-view@app.main': {
+                    templateUrl: 'client/app/side/left/side-left.ng.html',
+                    controller: 'SideLeftCtrl'
                 }
             }
         })
         .state('app.main.events.detail', {
             url: '/detail/:eventId',
             views: {
-                'side-content-view@app.main': {
-                    template: '<div> Inside side-content view  - Event Detail</div>',
-                    controller: function ($scope) {
-                        console.log("side-content-view Ctrl : event detail");
-                    }
+                'side-left-view@app.main': {
+                    templateUrl: 'client/app/side/left/side-left.ng.html',
+                    controller: 'SideLeftCtrl'
                 }
             }
 
@@ -124,11 +120,9 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.profile.edit', {
             url: '/edit/:userId',
             views: {
-                'side-content-view@app.main': {
-                    template: '<div> Inside side-content view - Profile edit </div>',
-                    controller: function ($scope) {
-                        console.log("side-content-view Ctrl : search by profile");
-                    },
+                'side-left-view@app.main': {
+                    templateUrl: 'client/app/side/left/side-left.ng.html',
+                    controller: 'SideLeftCtrl',
                     resolve: {
                         "currentUser": ["$meteor", function ($meteor) {
                             return $meteor.requireUser();
