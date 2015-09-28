@@ -18,15 +18,18 @@ Meteor.startup(function () {
         var events = [
             {
                 'name': 'Dubstep-Free Zone',
-                'description': 'Can we please just for an evening not listen to dubstep.'
+                'description': 'Can we please just for an evening not listen to dubstep.',
+                'region': {'id':1}
             },
             {
                 'name': 'All dubstep all the time',
-                'description': 'Get it on!'
+                'description': 'Get it on!',
+                'region': {'id':1}
             },
             {
                 'name': 'Savage lounging',
-                'description': 'Leisure suit required. And only fiercest manners.'
+                'description': 'Leisure suit required. And only fiercest manners.',
+                'region': {'id':1}
             }
         ];
         for (var i = 0; i < events.length; i++)
