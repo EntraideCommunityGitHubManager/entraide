@@ -40,5 +40,19 @@ Meteor.startup(function () {
     Meteor.publish('events', function() {
         return Events.find({}, {fields: {name: 1, description: 1}});
     });
+    
+    Meteor.publish("my-events", function(){
+    	return Events.find({'owner.id' :  this.userId});
+    });
+    
+    Meteor.publish("search-events", function(param, options){
+    	options = options ? options : {sort: {name:-1}, limit:10};
+    	if(param && param.region){
+    		return Events.find({'region.id' : param.region.id}, options);
+    	} else {
+    		return Events.find({}, options);
+    	}
+    });
+
 
 });
