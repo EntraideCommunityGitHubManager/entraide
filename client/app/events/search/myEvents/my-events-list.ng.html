@@ -1,7 +1,9 @@
 <div>
+    My Events List
     <ul>
         <li ng-repeat="event in events">
-            <a ng-href="/events/detail/{{event._id}}">{{event.name}}</a>
+            <h2 id="how-bootstrap-is-structured">{{event.name}}</h2>
+            <a ng-href="#/events/detail/{{event._id}}">edit</a>
             <p>{{event.description}}</p>
             <p>{{event.owner}}</p>
             <button ng-click="remove(event)">X</button>

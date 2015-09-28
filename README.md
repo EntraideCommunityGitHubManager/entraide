@@ -37,47 +37,4 @@ Blaze Template      (0.0.1)  	---> meteor add urigo:angular-blaze-template
 https://github.com/Tallyb/ng-leaderboard-subs2
 http://jvectormap.com/maps/countries/france-regions-2016/
 http://www.daveweb.fr/blog/vos-cartes-de-france-cliquables-avec-jquery-vector-maps-et-jvector-map.html
-
-
-model/events.js   
-
-Events = new Mongo.Collection("events");
-
-
-
-server/events.js
-
-Meteor.publish("my-events", function(){
-	return Events.find({'owner.id' :  this.userId});
-});
-Meteor.publish("search-events", function(param, options){
-	options = options ? options : {sort: {name:-1}, limit:10};
-	if(param && param.region){
-		return Events.find({'region.id' : param.region.id}, options);
-	} else {
-		return Events.find({}, options);
-	}
-});
-
-
-
-
-client/events/my-events.ng.js
-
-$scope.loading = true;
-$scope.$meteorSubscribe('my-events').then(function(subscriptionHandler){
-	$scope.events = $meteor.collection(Events);
-	$scope.loading = false;
-});
-
-
-client/events/search-events.ng.js
-
-$scope.loading = true;
-$scope.$meteorSubscribe('search-events', {region:{id:1}} ).then(function(subscriptionHandler){
-	$scope.events = $meteor.collection(Events)
-	$scope.loading = false;
-});
-
-
 </pre></code>

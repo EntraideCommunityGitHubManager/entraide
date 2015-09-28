@@ -14,8 +14,6 @@ angular.module('entraide').run(["$rootScope", "$location", function ($rootScope,
 
 angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
-    MyEvents = new Mongo.Collection("myevents");
-
     $urlRouterProvider.when("",  "/home");
     $urlRouterProvider.when("/", "/home");
     $urlRouterProvider.otherwise("/home");
@@ -28,7 +26,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         })
 
         .state('app', {
-            template: '<div class="header-view" ui-view="header-view"></div><div class="notification-view" ui-view="notification-view"></div><div class="side-left-view" ui-view="side-left-view"></div><div class="map-view" ui-view="map-view"></div><div class="footer-view" ui-view="footer-view"></div>',
+            template: '<div class="header-view" ui-view="header-view"></div><div class="notification-view" ui-view="notification-view"></div><div class="map-view" ui-view="map-view"></div><div class="footer-view" ui-view="footer-view"></div>',
             controller: function ($scope, $meteor) {
                 console.log("app Ctrl");
             }
@@ -72,22 +70,12 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             url: '/byProfile',
             views: {
                 'map-view@app': {
-                    templateUrl: 'client/app/map/map.ng.html',
-                    controller: 'MapCtrl',
-                    resolve: {
-                        "msg": ["$meteor", function ($meteor) {
-                            return $meteor.requireUser();
-                        }]
-                    }
+                    templateUrl: 'client/app/events/search/byProfile/search-events-list.ng.html',
+                    controller: 'SearchEventsListCtrl'
                 },
                 'side-left-view@app.main': {
                     templateUrl: 'client/app/side/left/side-left.ng.html',
-                    controller: 'SideLeftCtrl',
-                    resolve: {
-                        "msg": ["$meteor", function ($meteor) {
-                            return $meteor.requireUser();
-                        }]
-                    }
+                    controller: 'SideLeftCtrl'
                 }
             }
         })
@@ -95,7 +83,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             url: '/myEvents',
             views: {
                 'map-view@app': {
-                    templateUrl: 'client/app/events/myEvents/my-events-list.ng.html',
+                    templateUrl: 'client/app/events/search/myEvents/my-events-list.ng.html',
                     controller: 'MyEventsListCtrl'
                 },
                 'side-left-view@app.main': {
@@ -107,6 +95,10 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.events.detail', {
             url: '/detail/:eventId',
             views: {
+                'map-view@app': {
+                    templateUrl: 'client/app/events/detail/event-detail.ng.html',
+                    controller: 'EventDetailCtrl'
+                },
                 'side-left-view@app.main': {
                     templateUrl: 'client/app/side/left/side-left.ng.html',
                     controller: 'SideLeftCtrl'

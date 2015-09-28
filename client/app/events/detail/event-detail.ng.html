@@ -1,17 +1,9 @@
 <div>
     <form>
         <label>Name</label>
-        <input ng-model="newEvent.name">
+        <input ng-model="event.name">
         <label>Description</label>
-        <input ng-model="newEvent.description">
-        <button ng-click="newEvent.owner={_id:$root.currentUser._id}; events.push(newEvent)">Add</button>
-        <button ng-click="removeAll()">Remove All</button>
+        <input ng-model="event.description">
+        <button ng-click="update(event)">Update</button>
     </form>
-    <ul>
-        <li ng-repeat="event in events">
-            <a href="/events/{{event._id}}">{{event.name}}</a>
-            <p>{{event.description}}</p>
-            <button ng-click="remove(event)">X</button>
-        </li>
-    </ul>
 </div>

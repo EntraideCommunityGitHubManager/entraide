@@ -4,13 +4,15 @@ Events.allow({
     insert: function (userId, event) {
         console.log(userId);
         console.log(event.owner._id);
-        return userId && event.owner._id === userId;
+        return userId && event.owner.id === userId;
     },
     update: function (userId, event, fields, modifier) {
-        return userId && event.owner._id === userId;
+        return userId && event.owner.id === userId;
     },
     remove: function (userId, event) {
-        return userId && event.owner._id === userId;
+        console.log(userId);
+        console.log(event.owner.id);
+        return userId && event.owner.id === userId;
     }
 });
 
@@ -21,44 +23,41 @@ Meteor.startup(function () {
             {
                 'name': 'Dubstep-Free Zone',
                 'description': 'Can we please just for an evening not listen to dubstep.',
-                'region': {'id':1}
+                'region': {'id':1},
+                'owner': {'id':'4dGszrrxzKnB47GCz'}
             },
             {
                 'name': 'All dubstep all the time',
                 'description': 'Get it on!',
-                'region': {'id':1}
+                'region': {'id':1},
+                'owner': {'id':'4dGszrrxzKnB47GCz'}
             },
             {
                 'name': 'Savage lounging',
                 'description': 'Leisure suit required. And only fiercest manners.',
-                'region': {'id':1}
+                'region': {'id':1},
+                'owner': {'id':'4dGszrrxzKnB47GCz'}
             }
         ];
         for (var i = 0; i < events.length; i++)
             Events.insert(events[i]);
     }
-
-
-    Meteor.publish('events', function() {
-        return Events.find({}, {fields: {name: 1, description: 1}});
-    });
     
     Meteor.publish("my-events", function(){
-    	return Events.find({'owner.id' :  this.userId});
+        console.log("my-events");
+        console.log(this.userId);
+    	return Events.find({'owner.id' :  this.userId}, {sort: {name:1}});
     });
     
     Meteor.publish("search-events", function(param, options){
-    	options = options ? options : {sort: {name:-1}, limit:10};
+        console.log("search-events");
+    	options = options ? options : {sort: {name:1}, limit:100};
     	if(param && param.region){
-    		return Events.find({'region.id' : param.region.id}, options);
+    		return Events.find({$and: [ { 'owner.id' : { $ne: this.userId } }, {'region.id' : param.region.id} ]}, options);
     	} else {
     		return Events.find({}, options);
     	}
     });
 
-
-    Meteor.publish('myevents', function() {
-        return Events.find({'owner._id': this.userId}, {fields: {name: 1, description: 1}});
-    });
 
 });
