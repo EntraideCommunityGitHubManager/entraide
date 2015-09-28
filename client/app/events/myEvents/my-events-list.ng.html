@@ -1,0 +1,11 @@
+<div>
+    <ul>
+        <li ng-repeat="event in events">
+            <a ng-href="/events/detail/{{event._id}}">{{event.name}}</a>
+            <p>{{event.description}}</p>
+            <p>{{event.owner}}</p>
+            <button ng-click="remove(event)">X</button>
+        </li>
+    </ul>
+</div>
+

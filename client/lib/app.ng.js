@@ -14,6 +14,8 @@ angular.module('entraide').run(["$rootScope", "$location", function ($rootScope,
 
 angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
+    MyEvents = new Mongo.Collection("myevents");
+
     $urlRouterProvider.when("",  "/home");
     $urlRouterProvider.when("/", "/home");
     $urlRouterProvider.otherwise("/home");
@@ -93,8 +95,8 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             url: '/myEvents',
             views: {
                 'map-view@app': {
-                    templateUrl: 'client/app/map/map.ng.html',
-                    controller: 'MapCtrl'
+                    templateUrl: 'client/app/events/myEvents/my-events-list.ng.html',
+                    controller: 'MyEventsListCtrl'
                 },
                 'side-left-view@app.main': {
                     templateUrl: 'client/app/side/left/side-left.ng.html',
@@ -105,6 +107,20 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.events.detail', {
             url: '/detail/:eventId',
             views: {
+                'side-left-view@app.main': {
+                    templateUrl: 'client/app/side/left/side-left.ng.html',
+                    controller: 'SideLeftCtrl'
+                }
+            }
+
+        })
+        .state('app.main.events.create', {
+            url: '/create',
+            views: {
+                'map-view@app': {
+                    templateUrl: 'client/app/events/create/event-create.ng.html',
+                    controller: 'EventCreateCtrl'
+                },
                 'side-left-view@app.main': {
                     templateUrl: 'client/app/side/left/side-left.ng.html',
                     controller: 'SideLeftCtrl'

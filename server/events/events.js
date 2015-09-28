@@ -2,13 +2,15 @@ Events = new Mongo.Collection("events");
 
 Events.allow({
     insert: function (userId, event) {
-        return userId && event.owner.id === userId;
+        console.log(userId);
+        console.log(event.owner._id);
+        return userId && event.owner._id === userId;
     },
-    update: function (userId, party, fields, modifier) {
-        return userId && event.owner.id === userId;
+    update: function (userId, event, fields, modifier) {
+        return userId && event.owner._id === userId;
     },
-    remove: function (userId, party) {
-        return userId && event.owner.id === userId;
+    remove: function (userId, event) {
+        return userId && event.owner._id === userId;
     }
 });
 
@@ -36,6 +38,10 @@ Meteor.startup(function () {
 
     Meteor.publish('events', function() {
         return Events.find({}, {fields: {name: 1, description: 1}});
+    });
+
+    Meteor.publish('myevents', function() {
+        return Events.find({'owner._id': this.userId}, {fields: {name: 1, description: 1}});
     });
 
 });
