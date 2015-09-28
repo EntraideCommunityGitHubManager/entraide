@@ -74,7 +74,7 @@ $scope.$meteorSubscribe('my-events').then(function(subscriptionHandler){
 client/events/search-events.ng.js
 
 $scope.loading = true;
-$scope.$meteorSubscribe('search-events', {region:{id:1}, {sort: {name:-1}, limit:10}} ).then(function(subscriptionHandler){
+$scope.$meteorSubscribe('search-events', {region:{id:1}} ).then(function(subscriptionHandler){
 	$scope.events = $meteor.collection(Events)
 	$scope.loading = false;
 });
