@@ -18,13 +18,17 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         subscribe : function(subscriptionId, options) {
             var deferred = $q.defer();
             var subscription = _.findWhere(this.subscriptions, {id:subscriptionId});
-            angular.forEach(subscription.unsubscribers,function(unsubscriptionId){this.stopHandle(_.findWhere(this.subscriptions, {id:unsubscriptionId}));});
-            if(!subscription.handle) {
-                this.startHandle(subscription).then(function(){
+            if(subscription){
+                angular.forEach(subscription.unsubscribers,function(unsubscriptionId){this.stopHandle(_.findWhere(this.subscriptions, {id:unsubscriptionId}));});
+                if(!subscription.handle) {
+                    this.startHandle(subscription).then(function(){
+                        deferred.resolve($meteor.collection(subscription.collection));
+                    });
+                } else {
                     deferred.resolve($meteor.collection(subscription.collection));
-                });
+                }
             } else {
-                deferred.resolve($meteor.collection(subscription.collection));
+                deferred.reject("Subcription " + subscriptionId +" does not exist");    
             }
             return deferred.promise;
         },
