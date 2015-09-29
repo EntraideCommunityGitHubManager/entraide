@@ -21,7 +21,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             if(subscription){
                 angular.forEach(subscription.unsubscribers,function(unsubscriptionId){this.stopHandle(_.findWhere(this.subscriptions, {id:unsubscriptionId}));});
                 if(!subscription.handle) {
-                    this.startHandle(subscription).then(function(handle){
+                    this.startHandle(subscription, options).then(function(handle){
                         deferred.resolve($meteor.collection(subscription.collection));
                     });
                 } else {
@@ -33,9 +33,9 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             return deferred.promise;
         },
 
-        startHandle: function(sub){
+        startHandle: function(sub, options){
             console.log("Try to subscribe to "+sub.id);
-            return $meteor.subscribe(sub.id).then(function(handle) {
+            return $meteor.subscribe(sub.id, options).then(function(handle) {
                 console.log("Success subscription : "+sub.id);
                 sub.handle = handle;
             });
