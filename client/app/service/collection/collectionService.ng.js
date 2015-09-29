@@ -4,25 +4,27 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         subscriptions : [{
                 name: "Search events by profile",
                 id: "search-events",
+                collection: Events,
                 unsubscribers: ['my-events'],
                 handle: null
             }, {
                 name: "My events",
                 id: "my-events",
+                collection: Events,
                 unsubscribers: ['search-events'],
                 handle: null
             }],
 
-        subscribe : function(subscriptionId) {
+        subscribe : function(subscriptionId, options) {
             var deferred = $q.defer();
             var subscription = _.findWhere(this.subscriptions, {id:subscriptionId});
             angular.forEach(subscription.unsubscribers,function(unsubscriptionId){this.stopHandle(_.findWhere(this.subscriptions, {id:unsubscriptionId}));});
             if(!subscription.handle) {
                 this.startHandle(subscription).then(function(){
-                    deferred.resolve(subscription);
+                    deferred.resolve($meteor.collection(subscription.collection));
                 });
             } else {
-                deferred.resolve(subscription);
+                deferred.resolve($meteor.collection(subscription.collection));
             }
             return deferred.promise;
         },
