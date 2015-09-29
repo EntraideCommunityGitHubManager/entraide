@@ -51,10 +51,18 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
 
         startHandle: function(sub, options){
             console.log("Try to subscribe to "+sub.id);
-            return $meteor.subscribe(sub.id).then(function(handle) {
-                console.log("Success subscription : "+sub.id);
-                sub.handle = handle;
-            });
+            if(options){
+                return $meteor.subscribe(sub.id, options).then(function(handle) {
+                    console.log("Success subscription : "+sub.id);
+                    sub.handle = handle;
+                });
+            } else {
+                return $meteor.subscribe(sub.id).then(function(handle) {
+                    console.log("Success subscription : "+sub.id);
+                    sub.handle = handle;
+                });
+            }
+            
         },
 
         stopHandle : function (sub) {
