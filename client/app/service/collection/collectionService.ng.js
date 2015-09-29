@@ -24,7 +24,17 @@ angular.module("entraide").factory("CollectionService", function($meteor){
                     sub.handle = handle;
                 });
             }
+        },
 
+        startHandle: function(sub){
+            return $meteor.subscribe(sub.sub).then(function(handle) {
+                sub.handle = handle;
+            });
+        },
+
+        stopHandle : function (sub) {
+            sub.handle.stop();
+            sub.handle = undefined;
         }
     };
 
