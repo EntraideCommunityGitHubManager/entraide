@@ -5,7 +5,7 @@ angular.module('entraide').controller('EventDetailCtrl', function ($scope, $mete
 
     $scope.event = $meteor.object(Events, $stateParams.eventId, false);
 
-    $scope.$meteorSubscribe('my-events');
+    $meteor.subscribe('my-events');
 
     $scope.update = function(event){
         event.save().then(function(){

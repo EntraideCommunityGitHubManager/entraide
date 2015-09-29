@@ -3,7 +3,7 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($scope, $met
     console.log("my events list Ctrl");
 
     $scope.loading = true;
-    $scope.$meteorSubscribe('my-events').then(function(subscriptionHandler){
+    $meteor.subscribe('my-events').then(function(subscriptionHandler){
         $scope.events = $meteor.collection(Events);
         $scope.loading = false;
         subscriptionHandler.stop();
