@@ -16,9 +16,9 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         get : function(subscriptionId) {
             var deferred = $q.defer();
             var subscribtion = _.findWhere(this.subscriptions, {id:subscriptionId});
-            if(!subscribtion.handle){
-                $meteor.subscribe(subscribtion.id).then(function(handle) {
-                    subscribtion.handle = handle;
+            if(!subscribtion.handle) {
+                
+                this.startHandle(subscription).then(function(){
                     deferred.resolve(subscribtion);
                 });
             } else {
