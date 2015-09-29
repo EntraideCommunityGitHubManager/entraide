@@ -7,7 +7,7 @@ angular.module('entraide').controller('SearchEventsListCtrl', function ($scope, 
         //$scope.events = $meteor.collection(Events)
         //$scope.loading = false;
     //});
-    var options = {collectionOptions:{region:{id:1}}, backend:true};
+    var options = {collectionOptions:{'region.id':1}, backend:true};
     CollectionService.subscribe('search-events', options). then(function(events) {
         $scope.events = events;
         $scope.loading = false;
