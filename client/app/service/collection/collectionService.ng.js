@@ -4,14 +4,12 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         subscriptions : [{
                 name: "Search events by profile",
                 id: "search-events",
+                unsubscribers: ['my-events'],
                 handle: null
             }, {
                 name: "My events",
                 id: "my-events",
-                handle: null
-            }, {
-                name: "All Events",
-                id: "all-events",
+                unsubscribers: ['search-events'],
                 handle: null
             }],
 
