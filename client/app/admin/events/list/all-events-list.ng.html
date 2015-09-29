@@ -22,7 +22,7 @@
                 <td>{{event.owner.name}}</td>
                 <td>{{event.region.id}}</td>
                 <td>{{event.region.name}}</td>
-                <td><a ng-click="edit(event)">Edit</a></td>
+                <td><a ng-href="#/events/edit/{{event._id}}">Edit</a></td>
                 <td><a ng-click="remove(event)">Delete</a></td>
             </tr>
         </tbody>

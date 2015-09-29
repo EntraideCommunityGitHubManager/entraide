@@ -1,5 +1,5 @@
 
-angular.module('entraide').controller('EventDetailCtrl', function ($scope, $meteor, $stateParams, $state, CollectionService) {
+angular.module('entraide').controller('EventEditCtrl', function ($scope, $meteor, $stateParams, $state, CollectionService) {
 
     CollectionService.subscribe('all-events').then(function(){
         $scope.event = $meteor.object(Events, $stateParams.eventId, false);

@@ -3,6 +3,7 @@ angular.module('entraide', ['angular-meteor', 'ui.router']);
 
 angular.module('entraide').run(["$rootScope", "$state", function ($rootScope, $state) {
     $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+        console.log(error);
         switch(error) {
             case "AUTH_REQUIRED":
                 $state.go("app.main.error.required");
@@ -92,7 +93,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             }
         })
         .state('app.main.events.edit', {
-            url: '/edit',
+            url: '/edit/:eventId',
             views: {
                 'map-view@app': {
                     templateUrl: 'client/app/admin/events/edit/event-edit.ng.html',

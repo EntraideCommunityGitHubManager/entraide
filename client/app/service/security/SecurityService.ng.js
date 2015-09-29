@@ -10,6 +10,12 @@ angular.module("entraide").factory("SecurityService", function(){
                 }
             }
             return 'FORBIDDEN';
+        },
+        isConnected: function(user){
+            if(user){
+                return true
+            }
+            return false;
         }
     };
 

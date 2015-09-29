@@ -1,8 +1,7 @@
 angular.module('entraide').controller('AllEventsListCtrl', function ($scope, $meteor, CollectionService) {
 
     $scope.loading = true;
-    var options = {collectionOptions:{}, backend:true};
-    CollectionService.subscribe('all-events', options).then(function(events) {
+    CollectionService.subscribe('all-events').then(function(events) {
         $scope.events = events;
         $scope.loading = false;
     });
