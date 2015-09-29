@@ -1,4 +1,4 @@
-angular.module("entraide").factory("CollectionService", function($meteor){
+angular.module("entraide").factory("CollectionService", function($meteor, $q){
 
     var collectionService = {
         subscriptions : [{
