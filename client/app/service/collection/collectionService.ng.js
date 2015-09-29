@@ -17,7 +17,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
 
         subscribe : function(subscriptionId, options) {
             var deferred = $q.defer();
-            this.validateOptions(options);
+            this.initOptions(options);
             var subscription = _.findWhere(this.subscriptions, {id:subscriptionId});
             if(subscription){
                 angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
@@ -74,7 +74,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             }
         },
         
-        validateOptions: function(options){
+        initOptions: function(options){
             options = options ? options : {collectionOptions:{}, sortLimitOptions:{}, backend:false};
             options.collectionOptions = options.collectionOptions ? : {};
             options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {};
