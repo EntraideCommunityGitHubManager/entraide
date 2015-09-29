@@ -1,9 +1,29 @@
-angular.module("entraide").factory("CollectionService", function(){
+angular.module("entraide").factory("CollectionService", function($meteor){
 
     var collectionService = {
-        subscriptions : [],
+        subscriptions : [{
+                name: "Search events by profile",
+                id: "search-events",
+                started: false
+            }, {
+                name: "My events",
+                id: "my-events",
+                started: false
+            }, {
+                name: "All Events",
+                id: "all-events",
+                started: false
+            }],
 
-        get : function(subscription){
+        get : function(subscriptionId){
+            var subscribtion = _.find(this.subscriptions, {id:subscriptionId});
+            if(subscribtion.started){
+
+            } else {
+                return $meteor.subscribe(subscriptionId).then(function(handle) {
+                    sub.handle = handle;
+                });
+            }
 
         }
     };
