@@ -17,7 +17,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
 
         subscribe : function(subscriptionId, options) {
             var deferred = $q.defer();
-            this.initOptions(options);
+            options = this.initOptions(options);
             var subscription = _.findWhere(this.subscriptions, {id:subscriptionId});
             if(subscription){
                 angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
@@ -27,11 +27,11 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
                     } else {
                         console.log("Unsubcription ["+unsubscriptionId+"] does not exist for the subscription ["+subscriptionId+"]"); 
                     }
-                });
+                }, this);
                 if(!subscription.handle) {
                     if(options.backend){
                         this.startHandle(subscription, options).then(function(handle) {
-                            deferred.resolve($meteor.collection());
+                            deferred.resolve($meteor.collection(subscription.collection));
                         });
                     } else {
                         this.startHandle(subscription).then(function(handle) {
@@ -76,9 +76,10 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         
         initOptions: function(options){
             options = options ? options : {collectionOptions:{}, sortLimitOptions:{}, backend:false};
-            options.collectionOptions = options.collectionOptions ? : {};
+            options.collectionOptions = options.collectionOptions ? options.collectionOptions : {};
             options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {};
             options.backend = options.backend ? options.backend : false;
+            return options;
         }
     };
 

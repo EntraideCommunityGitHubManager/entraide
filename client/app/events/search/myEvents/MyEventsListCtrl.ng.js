@@ -1,4 +1,4 @@
-angular.module('entraide').controller('MyEventsListCtrl', function ($scope, $meteor) {
+angular.module('entraide').controller('MyEventsListCtrl', function ($scope, $meteor, CollectionService) {
 
     console.log("my events list Ctrl");
 
