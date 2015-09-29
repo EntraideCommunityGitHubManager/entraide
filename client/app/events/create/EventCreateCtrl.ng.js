@@ -1,7 +1,5 @@
 angular.module('entraide').controller('EventCreateCtrl', function ($scope, $meteor, $state, CollectionService) {
 
-    console.log("Event create Ctrl : event create");
-
     CollectionService.subscribe('my-events').then(function(events){
         $scope.events = events;
     });

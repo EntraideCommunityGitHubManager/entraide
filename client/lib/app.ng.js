@@ -1,12 +1,20 @@
 angular.module('entraide', ['angular-meteor', 'ui.router']);
 
 
-angular.module('entraide').run(["$rootScope", "$location", function ($rootScope, $state) {
-    $rootScope.$on("$stateChangeError", function (event, next, previous, error) {
-        if (error === "AUTH_REQUIRED") {
-            $state.go("/events");
-        } else if (error === "AUTH_REQUIRED") {
-
+angular.module('entraide').run(["$rootScope", "$state", function ($rootScope, $state) {
+    $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+        switch(error) {
+            case "AUTH_REQUIRED":
+                $state.go("app.main.error.required");
+                break;
+            case "FORBIDDEN":
+                $state.go("app.main.error.forbidden");
+                break;
+            case "UNAUTHORIZED":
+                $state.go("app.main.error.unauthorized");
+                break;
+            default:
+                $state.go("app.main.error");
         }
     });
 }]);
@@ -56,6 +64,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 }
             }
         })
+
         .state('app.main.events', {
             url: '/events',
             abstract: true,
@@ -65,6 +74,38 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             url: '/search',
             abstract: true,
             template: '<ui-view/>'
+        })
+        .state('app.main.events.search.all', {
+            url: '/all',
+            views: {
+                'map-view@app': {
+                    templateUrl: 'client/app/admin/events/list/all-events-list.ng.html',
+                    controller: 'AllEventsListCtrl'
+                }
+            },
+            resolve: {
+                "currentUser": ["$meteor", "SecurityService", function($meteor, SecurityService){
+                    return $meteor.requireValidUser(function(user) {
+                        return SecurityService.isAdmin(user);
+                    });
+                }]
+            }
+        })
+        .state('app.main.events.edit', {
+            url: '/edit',
+            views: {
+                'map-view@app': {
+                    templateUrl: 'client/app/admin/events/edit/event-edit.ng.html',
+                    controller: 'EventEditCtrl'
+                }
+            },
+            resolve: {
+                "currentUser": ["$meteor", "SecurityService", function($meteor, SecurityService){
+                    return $meteor.requireValidUser(function(user) {
+                        return SecurityService.isAdmin(user);
+                    });
+                }]
+            }
         })
         .state('app.main.events.search.byProfile', {
             url: '/byProfile',
@@ -90,6 +131,11 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                     templateUrl: 'client/app/side/left/side-left.ng.html',
                     controller: 'SideLeftCtrl'
                 }
+            },
+            resolve: {
+                "currentUser": ["$meteor", function($meteor){
+                    return $meteor.requireUser();
+                }]
             }
         })
         .state('app.main.events.detail', {
@@ -103,6 +149,11 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                     templateUrl: 'client/app/side/left/side-left.ng.html',
                     controller: 'SideLeftCtrl'
                 }
+            },
+            resolve: {
+                "currentUser": ["$meteor", function($meteor){
+                    return $meteor.requireUser();
+                }]
             }
 
         })
@@ -117,6 +168,11 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                     templateUrl: 'client/app/side/left/side-left.ng.html',
                     controller: 'SideLeftCtrl'
                 }
+            },
+            resolve: {
+                "currentUser": ["$meteor", function($meteor){
+                    return $meteor.requireUser();
+                }]
             }
 
         })
@@ -130,12 +186,49 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             views: {
                 'side-left-view@app.main': {
                     templateUrl: 'client/app/side/left/side-left.ng.html',
-                    controller: 'SideLeftCtrl',
-                    resolve: {
-                        "currentUser": ["$meteor", function ($meteor) {
-                            return $meteor.requireUser();
-                        }]
-                    }
+                    controller: 'SideLeftCtrl'
+                }
+            },
+            resolve: {
+                "currentUser": ["$meteor", function($meteor){
+                    return $meteor.requireUser();
+                }]
+            }
+        })
+        .state('app.main.logout', {
+            url: '/logout',
+            resolve: {
+                "logout": ["$meteor", function($meteor){
+                    return $meteor.logout();
+                }]
+            }
+        })
+        .state('app.main.error', {
+            url: '/error',
+            abstract: true,
+            template: '<ui-view/>'
+        })
+        .state('app.main.error.required', {
+            url: '/required',
+            views: {
+                'map-view@app': {
+                    template: '<div>You must be signed in to access this functionality</div>'
+                }
+            }
+        })
+        .state('app.main.error.forbidden', {
+            url: '/forbidden',
+            views: {
+                'map-view@app': {
+                    template: '<div>You try to access to a forbidden functionality</div>'
+                }
+            }
+        })
+        .state('app.main.error.unauthorized', {
+            url: '/unauthorized',
+            views: {
+                'map-view@app': {
+                    template: '<div>You must be authorized in order to access this functionality</div>'
                 }
             }
         });

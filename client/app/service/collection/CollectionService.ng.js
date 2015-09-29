@@ -2,16 +2,22 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
 
     var collectionService = {
         subscriptions : [{
+                name: "Search all events",
+                id: "all-events",
+                collection: Events,
+                unsubscribers: ['my-events', 'search-events'],
+                handle: null
+            }, {
                 name: "Search events by profile",
                 id: "search-events",
                 collection: Events,
-                unsubscribers: ['my-events'],
+                unsubscribers: ['all-events', 'my-events'],
                 handle: null
             }, {
                 name: "My events",
                 id: "my-events",
                 collection: Events,
-                unsubscribers: ['search-events'],
+                unsubscribers: ['all-events', 'search-events'],
                 handle: null
             }],
 

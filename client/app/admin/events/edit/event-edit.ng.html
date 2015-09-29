@@ -1,0 +1,35 @@
+<div>
+    <form>
+        <div>
+            <label>ID</label>
+            <input ng-model="event._id" ng-disabled>
+        </div>
+        <div>
+            <label>Name</label>
+            <input ng-model="event.name">
+        </div>
+        <div>
+            <label>Description</label>
+            <input ng-model="event.description">
+        </div>
+        <div>
+            <label>Region ID</label>
+            <input ng-model="region.id">
+        </div>
+        <div>
+            <label>Region Name</label>
+            <input ng-model="region.name">
+        </div>
+        <div>
+            <label>Owner ID</label>
+            <input ng-model="owner.id">
+        </div>
+        <div>
+            <label>Owner Name</label>
+            <input ng-model="owner.name">
+        </div>
+        <div>
+            <button ng-click="update(event)">Update</button>
+        </div>
+    </form>
+</div>

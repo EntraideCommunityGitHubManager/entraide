@@ -1,0 +1,30 @@
+<div>
+    All Events List
+    <table>
+        <thead>
+            <tr>
+                <td>Event ID</td>
+                <td>Event Name</td>
+                <td>Event description</td>
+                <td>Event owner ID</td>
+                <td>Event owner Name</td>
+                <td>Region ID</td>
+                <td>Region Name</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="event in events">
+                <td>{{event._id}}</td>
+                <td>{{event.name}}</td>
+                <td>{{event.description}}</td>
+                <td>{{event.owner.id}}</td>
+                <td>{{event.owner.name}}</td>
+                <td>{{event.region.id}}</td>
+                <td>{{event.region.name}}</td>
+                <td><a ng-click="edit(event)">Edit</a></td>
+                <td><a ng-click="remove(event)">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
