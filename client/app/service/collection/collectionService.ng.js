@@ -19,7 +19,14 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             var deferred = $q.defer();
             var subscription = _.findWhere(this.subscriptions, {id:subscriptionId});
             if(subscription){
-                angular.forEach(subscription.unsubscribers,function(unsubscriptionId){this.stopHandle(_.findWhere(this.subscriptions, {id:unsubscriptionId}));});
+                angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
+                    var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
+                    if(unsubscription){
+                        this.stopHandle(unsubscription);
+                    } else {
+                        deferred.reject("Unsubcription ["+unsubscriptionId+"] does not exist for the subscription ["+subscriptionId+"]"); 
+                    }
+                });
                 if(!subscription.handle) {
                     this.startHandle(subscription, options).then(function(handle){
                         deferred.resolve($meteor.collection(subscription.collection));
@@ -28,7 +35,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
                     deferred.resolve($meteor.collection(subscription.collection));
                 }
             } else {
-                deferred.reject("Subcription " + subscriptionId +" does not exist");    
+                deferred.reject("Subcription ["+subscriptionId+"] does not exist");    
             }
             return deferred.promise;
         },
