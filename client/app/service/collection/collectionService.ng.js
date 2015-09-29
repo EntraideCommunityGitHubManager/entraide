@@ -13,7 +13,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
                 handle: null
             }],
 
-        get : function(subscriptionId) {
+        subscribe : function(subscriptionId) {
             var deferred = $q.defer();
             var subscription = _.findWhere(this.subscriptions, {id:subscriptionId});
             angular.forEach(subscription.unsubscribers,function(unsubscriptionId){this.stopHandle(_.findWhere(this.subscriptions, {id:unsubscriptionId}));});
@@ -36,8 +36,8 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         },
 
         stopHandle : function (sub) {
-            console.log("Try to unsubscribe from "+sub.id);
             if(sub && sub.handle){
+                console.log("Try to unsubscribe from "+sub.id);
                 sub.handle.stop();
                 sub.handle = null;
                 console.log("Success UnSubscription : "+sub.id);
