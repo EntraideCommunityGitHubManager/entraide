@@ -49,14 +49,13 @@ Meteor.startup(function () {
     	return Events.find({'owner.id' :  this.userId}, {sort: {name:1}});
     });
     
-    Meteor.publish("search-events", function(param, options){
+    Meteor.publish("search-events", function(options){
         console.log("search-events");
-    	options = options ? options : {sort: {name:1}, limit:100};
-    	if(param && param.region){
-    		return Events.find({$and: [ { 'owner.id' : { $ne: this.userId } }, {'region.id' : param.region.id} ]}, options);
-    	} else {
-    		return Events.find({}, options);
-    	}
+    	options.collectionOptions = options.collectionOptions ? : {'region.id' : 1};
+    	options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:100};
+    	var arrOptions = [{'owner.id': { $ne: this.userId }}];
+    	arrOptions.push(options.collectionOptions);
+    	return Events.find({$and: arrOptions}, options.sortLimitOptions);
     });
 
 
