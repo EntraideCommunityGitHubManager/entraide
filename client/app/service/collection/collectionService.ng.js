@@ -21,7 +21,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             if(subscription){
                 angular.forEach(subscription.unsubscribers,function(unsubscriptionId){this.stopHandle(_.findWhere(this.subscriptions, {id:unsubscriptionId}));});
                 if(!subscription.handle) {
-                    this.startHandle(subscription).then(function(){
+                    this.startHandle(subscription).then(function(handle){
                         deferred.resolve($meteor.collection(subscription.collection));
                     });
                 } else {
