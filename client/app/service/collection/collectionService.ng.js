@@ -25,7 +25,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
                     if(unsubscription){
                         this.stopHandle(unsubscription);
                     } else {
-                        deferred.reject("Unsubcription ["+unsubscriptionId+"] does not exist for the subscription ["+subscriptionId+"]"); 
+                        console.log("Unsubcription ["+unsubscriptionId+"] does not exist for the subscription ["+subscriptionId+"]"); 
                     }
                 });
                 if(!subscription.handle) {
@@ -36,7 +36,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
                     } else {
                         this.startHandle(subscription).then(function(handle) {
                             deferred.resolve($meteor.collection(function() {
-                                return subscription.collection.find(options, sortLimitOptions);
+                                return subscription.collection.find(options.collectionOptions, options.sortLimitOptions);
                             }));
                         });
                     }
