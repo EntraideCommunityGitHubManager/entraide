@@ -30,8 +30,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
     $stateProvider
         .state('home', {
             url: '/home',
-            templateUrl: 'client/home/home.ng.html',
-            controller: 'HomeCtrl'
+            templateUrl: 'client/home/home.ng.html'
         })
 
         .state('app', {
