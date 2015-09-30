@@ -1,25 +1,17 @@
 angular.module('entraide', ['angular-meteor', 'ui.router']);
 
-
-angular.module('entraide').run(["$rootScope", "$state", function ($rootScope, $state) {
-    $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
-        console.log(error);
-        switch(error) {
-            case "AUTH_REQUIRED":
-                $state.go("app.main.error.required");
-                break;
-            case "FORBIDDEN":
-                $state.go("app.main.error.forbidden");
-                break;
-            case "UNAUTHORIZED":
-                $state.go("app.main.error.unauthorized");
-                break;
-            default:
-                $state.go("app.main.error");
-        }
+angular.module('entraide').config(function($provide) {
+    $provide.decorator('$state', function($delegate, $stateParams) {
+        $delegate.forceReload = function() {
+            return $delegate.go($delegate.current, $stateParams, {
+                reload: true,
+                inherit: false,
+                notify: true
+            });
+        };
+        return $delegate;
     });
-}]);
-
+});
 
 angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
@@ -232,11 +224,26 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 }
             }
         });
-
-
 }]);
 
-
+angular.module('entraide').run(["$rootScope", "$state", function ($rootScope, $state) {
+    $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+        console.log(error);
+        switch(error) {
+            case "AUTH_REQUIRED":
+                $state.go("app.main.error.required");
+                break;
+            case "FORBIDDEN":
+                $state.go("app.main.error.forbidden");
+                break;
+            case "UNAUTHORIZED":
+                $state.go("app.main.error.unauthorized");
+                break;
+            default:
+                $state.go("app.main.error");
+        }
+    });
+}]);
 
 
 
