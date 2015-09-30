@@ -1,6 +1,7 @@
 angular.module('entraide', ['angular-meteor', 'ui.router']);
 
 angular.module('entraide').config(function($provide) {
+    // $state.forceReload();
     $provide.decorator('$state', function($delegate, $stateParams) {
         $delegate.forceReload = function() {
             return $delegate.go($delegate.current, $stateParams, {
