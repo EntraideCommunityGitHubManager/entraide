@@ -12,8 +12,8 @@ Meteor.startup(function () {
 
 });
 
-Accounts.onCreateUser(function(user) {
-    user.profile = { roles:["helper"] };
+Accounts.onCreateUser(function(options, user) {
+    user.profile = options.profile = { roles:["helper"] };
     return user;
 });
 

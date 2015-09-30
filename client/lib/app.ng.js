@@ -77,14 +77,25 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.admin', {
             url: '/admin',
             abstract: true,
-            template: '<ui-view/>'
+            template: '<ui-view/>',
+            resolve: {
+                "currentUser": ["$meteor", "SecurityService", function($meteor, SecurityService){
+                    return $meteor.requireValidUser(function(user) {
+                        return SecurityService.isAdmin(user);
+                    });
+                }]
+            }
         })
         .state('app.main.admin.users', {
             url: '/users',
             abstract: true,
             template: '<ui-view/>'
         })
-
+        .state('app.main.admin.events', {
+            url: '/events',
+            abstract: true,
+            template: '<ui-view/>'
+        })
         .state('app.main.admin.users.all', {
             url: '/all',
             views: {
@@ -92,13 +103,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                     templateUrl: 'client/app/admin/users/list/all-users-list.ng.html',
                     controller: 'AllUsersListCtrl'
                 }
-            },
-            resolve: {
-                "currentUser": ["$meteor", "SecurityService", function($meteor, SecurityService){
-                    return $meteor.requireValidUser(function(user) {
-                        return SecurityService.isAdmin(user);
-                    });
-                }]
             }
         })
         .state('app.main.admin.users.edit', {
@@ -108,19 +112,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                     templateUrl: 'client/app/admin/users/edit/user-edit.ng.html',
                     controller: 'EventEditCtrl'
                 }
-            },
-            resolve: {
-                "currentUser": ["$meteor", "SecurityService", function($meteor, SecurityService){
-                    return $meteor.requireValidUser(function(user) {
-                        return SecurityService.isAdmin(user);
-                    });
-                }]
             }
-        })
-        .state('app.main.admin.events', {
-            url: '/events',
-            abstract: true,
-            template: '<ui-view/>'
         })
         .state('app.main.admin.events.all', {
             url: '/all',
@@ -129,13 +121,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                     templateUrl: 'client/app/admin/events/list/all-events-list.ng.html',
                     controller: 'AllEventsListCtrl'
                 }
-            },
-            resolve: {
-                "currentUser": ["$meteor", "SecurityService", function($meteor, SecurityService){
-                    return $meteor.requireValidUser(function(user) {
-                        return SecurityService.isAdmin(user);
-                    });
-                }]
             }
         })
         .state('app.main.admin.events.edit', {
@@ -145,13 +130,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                     templateUrl: 'client/app/admin/events/edit/event-edit.ng.html',
                     controller: 'EventEditCtrl'
                 }
-            },
-            resolve: {
-                "currentUser": ["$meteor", "SecurityService", function($meteor, SecurityService){
-                    return $meteor.requireValidUser(function(user) {
-                        return SecurityService.isAdmin(user);
-                    });
-                }]
             }
         })
 

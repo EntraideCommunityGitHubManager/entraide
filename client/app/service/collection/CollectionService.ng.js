@@ -85,6 +85,14 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
                 console.log("Success UnSubscription : "+sub.id);
             }
         },
+
+        stopHandlers : function(pattern){
+            angular.forEach(this.subscriptions, function(subscription){
+                if(subscription.id.indexOf(pattern)>-1){
+                    this.stopHandle(subscription);
+                }
+            }, this);
+        },
         
         initOptions: function(options){
             options = options ? options : {collectionOptions:{}, sortLimitOptions:{}, backend:false};

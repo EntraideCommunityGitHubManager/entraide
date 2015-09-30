@@ -1,4 +1,4 @@
-angular.module("entraide").factory("SecurityService", function($meteor){
+angular.module("entraide").factory("SecurityService", function($meteor, CollectionService){
 
     var securityService = {
 
@@ -6,7 +6,8 @@ angular.module("entraide").factory("SecurityService", function($meteor){
             return  $meteor.loginWithPassword(email, password);
         },
         logout: function(){
-            $meteor.logout();
+            CollectionService.stopHandlers('users');
+            return $meteor.logout();
         },
         createUser: function(user){
             return $meteor.createUser(user);

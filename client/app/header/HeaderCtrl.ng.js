@@ -23,8 +23,11 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
 
     $scope.create = function(){
-        $scope.user.username = $scope.user.email;
-        SecurityService.createUser($scope.user).then(function () {
+        SecurityService.createUser({
+            username:$scope.user.email,
+            email:$scope.user.email,
+            password: $scope.user.password,
+        }).then(function () {
                 $scope.signInOpen = false;
                 $state.reload();
             }, function (err) {$scope.error = err;}
@@ -32,7 +35,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
 
     $scope.signOut = function(){
-        $meteor.logout().then(function(){
+        SecurityService.logout().then(function(){
             $state.go('home', {}, {reload: true, inherit: true, notify: true});
         }, function(){$state.go('app.main.error');});
     };
