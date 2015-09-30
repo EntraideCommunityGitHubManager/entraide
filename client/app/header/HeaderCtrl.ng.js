@@ -1,9 +1,11 @@
 angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope, SecurityService, $meteor, $state) {
+
     console.log("header-view Ctrl");
+
     $scope.isAdmin = SecurityService.isAdmin($rootScope.currentUser) !== true ? false : true ;
     $scope.isConnected = SecurityService.isConnected($rootScope.currentUser);
 
-    $scope.credentials = {email:'', password:''};
+    $scope.user = {email:'', password:''};
     $scope.signInOpen = false;
     $scope.error = null;
 
@@ -13,7 +15,16 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.signIn = function(){
         $scope.error = null;
-        $meteor.loginWithPassword($scope.credentials.email, $scope.credentials.password).then(function () {
+        SecurityService.loginWithPassword($scope.user.email, $scope.user.password).then(function () {
+                $scope.signInOpen = false;
+                $state.reload();
+            }, function (err) {$scope.error = err;}
+        );
+    };
+
+    $scope.create = function(){
+        $scope.user.username = $scope.user.email;
+        SecurityService.createUser($scope.user).then(function () {
                 $scope.signInOpen = false;
                 $state.reload();
             }, function (err) {$scope.error = err;}

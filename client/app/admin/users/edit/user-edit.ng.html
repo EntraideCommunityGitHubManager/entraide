@@ -1,0 +1,19 @@
+<div>
+    <form>
+        <div>
+            <label>ID</label>
+            <input ng-model="user._id" ng-disabled>
+        </div>
+        <div>
+            <label>Name</label>
+            <input ng-model="user.username">
+        </div>
+        <div>
+            <label>Email</label>
+            <input ng-model="user.email">
+        </div>
+        <div>
+            <button ng-click="update(user)">Update</button>
+        </div>
+    </form>
+</div>

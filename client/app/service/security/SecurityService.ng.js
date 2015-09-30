@@ -2,11 +2,14 @@ angular.module("entraide").factory("SecurityService", function($meteor){
 
     var securityService = {
 
-        login: function(login, password){
-
+        loginWithPassword: function(email, password){
+            return  $meteor.loginWithPassword(email, password);
         },
         logout: function(){
             $meteor.logout();
+        },
+        createUser: function(user){
+            return $meteor.createUser(user);
         },
         isAdmin: function(user){
             if(user && user.profile && user.profile.roles && user.profile.roles.length>0){

@@ -3,14 +3,14 @@
     <table>
         <thead>
             <tr>
-                <td>Event ID</td>
-                <td>Event Name</td>
-                <td>Event description</td>
-                <td>Event owner ID</td>
-                <td>Event owner Name</td>
-                <td>Region ID</td>
-                <td>Region Name</td>
-                <td></td>
+                <th>Event ID</th>
+                <th>Event Name</th>
+                <th>Event description</th>
+                <th>Event owner ID</th>
+                <th>Event owner Name</th>
+                <th>Region ID</th>
+                <th>Region Name</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -22,7 +22,7 @@
                 <td>{{event.owner.name}}</td>
                 <td>{{event.region.id}}</td>
                 <td>{{event.region.name}}</td>
-                <td><a ng-href="#/events/edit/{{event._id}}">Edit</a></td>
+                <td><a ng-href="#/admin/events/edit/{{event._id}}">Edit</a></td>
                 <td><a ng-click="remove(event)">Delete</a></td>
             </tr>
         </tbody>
