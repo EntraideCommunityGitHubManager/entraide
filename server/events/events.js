@@ -51,15 +51,15 @@ Meteor.startup(function () {
 
 
 var isAdmin = function(userId){
+    var isAdmin = false;
     var user = Meteor.users.findOne({'_id':userId});
     if(user && user.profile && user.profile.roles && user.profile.roles.length>0){
-        var isAdmin = false;
         for(var i=0; i< user.profile.roles.length; i++){
             if(user.profile.roles[i]==="admin"){
                 isAdmin = true;
                 break;
             }
         }
-        return isAdmin;
     }
+    return isAdmin;
 };
