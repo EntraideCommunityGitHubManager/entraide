@@ -63,3 +63,17 @@ body{
     bottom: 1px;
     width: 100%;
 }
+
+
+.sign-in-container{
+    padding: 10px;
+    position: absolute;
+    top: 40px;
+    right: 0px;
+    background-color: rgba(127, 167, 49, 0.69);
+    border: 1px dashed;
+}
+
+.sign-in-button{
+    margin-top:13px;
+}

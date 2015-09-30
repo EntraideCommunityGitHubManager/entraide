@@ -188,11 +188,19 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 }]
             }
         })
-        .state('app.main.logout', {
-            url: '/logout',
+        /*.state('app.main.login', {
+            url: '/login',
             resolve: {
                 "logout": ["$meteor", function($meteor){
                     return $meteor.logout();
+                }]
+            }
+        })*/
+        .state('app.main.logout', {
+            url: '/logout',
+            resolve: {
+                "logout": ["$meteor", "$state", function($meteor, $state){
+                    return $meteor.logout().then(function(){$state.go('home');}, function(){$state.go('app.main.error');});
                 }]
             }
         })
