@@ -249,14 +249,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 }
             }
         })
-        .state('app.main.error.forbidden', {
-            url: '/forbidden',
-            views: {
-                'map-view@app': {
-                    template: '<div>You try to access to a forbidden functionality</div>'
-                }
-            }
-        })
         .state('app.main.error.unauthorized', {
             url: '/unauthorized',
             views: {
@@ -275,7 +267,7 @@ angular.module('entraide').run(["$rootScope", "$state", function ($rootScope, $s
                 $state.go("app.main.error.required");
                 break;
             case "FORBIDDEN":
-                $state.go("app.main.error.forbidden");
+                $state.go("home");
                 break;
             case "UNAUTHORIZED":
                 $state.go("app.main.error.unauthorized");
