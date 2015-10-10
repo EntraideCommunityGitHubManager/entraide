@@ -1,0 +1,96 @@
+<div class="mockup-content" ng-show="!isConnected">
+    <div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed">
+        <button type="button"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign in</a></button>
+        <div class="morph-content">
+            <div>
+                <div class="content-style-form content-style-form-1">
+                    <span class="icon icon-close">Close the dialog</span>
+                    <h2>{{titleLogin}}</h2>
+                    <form>
+                        <p><label>Email</label><input type="text" ng-model="model.email"></p>
+                        <p><label>Password</label><input type="password" ng-model="model.password"></p>
+                        <p><button ng-click="login()" class="sign-in-button">{{titleLogin}}</button></p>
+                        <p><button ng-click="create()" class="sign-in-button">{{titleCreate}}</button></p>
+                        <p><div class="error-message" ng-show="error">{{error.reason}}</div></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><!-- morph-button -->
+</div>
+
+<div ng-show="isConnected" class="dropdown">
+    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span ng-show="isConnected">{{$root.currentUser.username}}</span><span ng-show="!isConnected">Profile</span> <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a ng-href="#/profile/edit">Edit</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a ng-click="logout()">Logout</a></li>
+    </ul>
+</div>
+
+
+<script>
+    (function() {
+        var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+        // trick to prevent scrolling when opening/closing button
+        function noScrollFn() {
+            window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+        }
+
+        function noScroll() {
+            window.removeEventListener( 'scroll', scrollHandler );
+            window.addEventListener( 'scroll', noScrollFn );
+        }
+
+        function scrollFn() {
+            window.addEventListener( 'scroll', scrollHandler );
+        }
+
+        function canScroll() {
+            window.removeEventListener( 'scroll', noScrollFn );
+            scrollFn();
+        }
+
+        function scrollHandler() {
+            if( !didScroll ) {
+                didScroll = true;
+                setTimeout( function() { scrollPage(); }, 60 );
+            }
+        };
+
+        function scrollPage() {
+            scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+            didScroll = false;
+        };
+
+        scrollFn();
+
+        [].slice.call( document.querySelectorAll( '.morph-button' ) ).forEach( function( bttn ) {
+            new UIMorphingButton( bttn, {
+                closeEl : '.icon-close',
+                onBeforeOpen : function() {
+                    // don't allow to scroll
+                    noScroll();
+                },
+                onAfterOpen : function() {
+                    // can scroll again
+                    canScroll();
+                },
+                onBeforeClose : function() {
+                    // don't allow to scroll
+                    noScroll();
+                },
+                onAfterClose : function() {
+                    // can scroll again
+                    canScroll();
+                }
+            } );
+        } );
+
+        // for demo purposes only
+        [].slice.call( document.querySelectorAll( 'form button' ) ).forEach( function( bttn ) {
+            bttn.addEventListener( 'click', function( ev ) { ev.preventDefault(); } );
+        } );
+    })();
+</script>

@@ -4,6 +4,12 @@
         <input ng-model="event.name">
         <label>Description</label>
         <input ng-model="event.description">
+        <label>Longitude</label>
+        <input ng-model="event.location.longitude">
+        <label>Latitude</label>
+        <input ng-model="event.location.latitude">
+        <label>Region</label>
+        <input ng-model="event.region.id">
         <button ng-click="update(event)">Update</button>
     </form>
 </div>

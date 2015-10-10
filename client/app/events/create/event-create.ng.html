@@ -9,6 +9,12 @@
                             <input ng-model="newEvent.name">
                             <label>Description</label>
                             <input ng-model="newEvent.description">
+                            <label>Longitude</label>
+                            <input ng-model="newEvent.location.longitude">
+                            <label>Latitude</label>
+                            <input ng-model="newEvent.location.latitude">
+                            <label>Region</label>
+                            <input ng-model="newEvent.region.id">
                             <button ng-click="create(newEvent)">Add</button>
                         </form>
                     </div>

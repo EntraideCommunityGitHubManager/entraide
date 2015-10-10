@@ -1,13 +1,16 @@
 /* CSS declarations go here */
 html {
-    height:96%;
+/*    height:96%;*/
+    overflow: hidden;
 }
 
 body{
-    padding-top: 55px;
+    /*padding-top: 51px;*/
     margin-bottom: 1px;
-    background-color: rgba(43, 71, 84, 0.17);
+    background-color: #696764;
     height:100%;
+    color: #65CCE6;
+    font-size: 137%;
 }
 
 .login{
@@ -31,12 +34,13 @@ body{
 }
 
 .main-view{
-    height: 97%;
+    /*height: 97%;*/
 }
 
 .notification-view {
     border: 1px black dashed;
-    height: 30px;
+    /*height: 30px;*/
+    margin-top: 51px;
 }
 
 .side-left-view {
@@ -52,7 +56,7 @@ body{
 
 .map-view {
     border: 1px black dashed;
-    height: 97%;
+    /*height: 97%;*/
     width: 100%;
     margin-top: 5px;
 }
@@ -70,10 +74,25 @@ body{
     position: absolute;
     top: 40px;
     right: 0px;
-    background-color: rgba(127, 167, 49, 0.69);
+    background-color: rgba(86, 139, 148, 0.85);
     border: 1px dashed;
 }
 
 .sign-in-button{
     margin-top:13px;
+}
+
+.france-region-map {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.jqvmap-label {
+    position: absolute;
+}
+
+.angular-google-map-container {
+    height: 600px;
+    width: 800px;
 }

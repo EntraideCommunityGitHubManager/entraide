@@ -1,4 +1,4 @@
-angular.module('entraide', ['angular-meteor', 'ui.router']);
+angular.module('entraide', ['angular-meteor', 'ui.router', 'uiGmapgoogle-maps']);
 
 angular.module('entraide').config(function($provide) {
     $provide.decorator('$state', function($delegate, $stateParams) {
@@ -26,7 +26,18 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         })
 
         .state('app', {
-            template: '<div class="header-view" ui-view="header-view"></div><div class="notification-view" ui-view="notification-view"></div><div class="map-view" ui-view="map-view"></div><div class="footer-view" ui-view="footer-view"></div>',
+            template: '' +
+            '<div class="" ui-view="side-left-view"></div>' +
+            '<div class="st-pusher">' +
+            '<div class="st-content">' +
+            '<div class="st-content-inner">' +
+            '<div class="header-view" ui-view="header-view"></div>' +
+            '<div class="notification-view" ui-view="notification-view"></div>' +
+            '<div class="map-view" ui-view="map-view"></div>' +
+            '<div class="footer-view" ui-view="footer-view"></div>' +
+            '</div>' +
+            '</div>' +
+            '</div>',
             controller: function ($scope, $meteor) {
                 console.log("app Ctrl");
             }

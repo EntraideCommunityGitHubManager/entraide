@@ -14,19 +14,27 @@
         </div>
         <div>
             <label>Region ID</label>
-            <input ng-model="region.id">
+            <input ng-model="event.region.id">
         </div>
         <div>
             <label>Region Name</label>
-            <input ng-model="region.name">
+            <input ng-model="event.region.name">
         </div>
         <div>
             <label>Owner ID</label>
-            <input ng-model="owner.id">
+            <input ng-model="event.owner.id">
         </div>
         <div>
             <label>Owner Name</label>
-            <input ng-model="owner.name">
+            <input ng-model="event.owner.name">
+        </div>
+        <div>
+            <label>Latitude</label>
+            <input ng-model="event.location.latitude">
+        </div>
+        <div>
+            <label>Longitude</label>
+            <input ng-model="event.location.longitude">
         </div>
         <div>
             <button ng-click="update(event)">Update</button>

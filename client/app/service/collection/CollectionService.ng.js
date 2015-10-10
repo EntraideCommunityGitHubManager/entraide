@@ -53,7 +53,14 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
                         });
                     }
                 } else {
-                    deferred.resolve($meteor.collection(subscription.collection));
+                    if(options.backend){
+                        this.stopHandle(subscription);
+                        this.startHandle(subscription, options).then(function(handle) {
+                            deferred.resolve($meteor.collection(subscription.collection));
+                        });
+                    } else {
+                        deferred.resolve($meteor.collection(subscription.collection));
+                    }
                 }
             } else {
                 deferred.reject("Subcription ["+subscriptionId+"] does not exist");    

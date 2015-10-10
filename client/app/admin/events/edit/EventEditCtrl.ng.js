@@ -7,7 +7,7 @@ angular.module('entraide').controller('EventEditCtrl', function ($scope, $meteor
 
     $scope.update = function(event){
         event.save().then(function(){
-            $state.go("app.main.events.search.all");
+            $state.go("app.main.admin.events.all");
         }, function(error){alert(error);});
     }
 

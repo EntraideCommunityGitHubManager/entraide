@@ -10,6 +10,8 @@
                 <th>Event owner Name</th>
                 <th>Region ID</th>
                 <th>Region Name</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
                 <th></th>
             </tr>
         </thead>
@@ -22,6 +24,8 @@
                 <td>{{event.owner.name}}</td>
                 <td>{{event.region.id}}</td>
                 <td>{{event.region.name}}</td>
+                <td>{{event.location.longitude}}</td>
+                <td>{{event.location.latitude}}</td>
                 <td><a ng-href="#/admin/events/edit/{{event._id}}">Edit</a></td>
                 <td><a ng-click="remove(event)">Delete</a></td>
             </tr>

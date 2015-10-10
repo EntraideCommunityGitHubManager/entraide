@@ -29,3 +29,5 @@ accounts-ui
 accounts-google
 accounts-facebook
 accounts-twitter
+angularui:angular-google-maps
+email

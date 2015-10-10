@@ -27,10 +27,11 @@ Meteor.publish("my-events", function(){
 
 Meteor.publish("search-events", function(options){
     console.log("search-events");
-    options.collectionOptions = options.collectionOptions ? options.collectionOptions : {'region.id' : 1};
+    options.collectionOptions = options.collectionOptions ? options.collectionOptions : {'region.id' : "74"};
     options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:100};
     var arrOptions = [{'owner.id': { $ne: this.userId }}];
     arrOptions.push(options.collectionOptions);
+    console.log(arrOptions);
     return Events.find({$and: arrOptions}, options.sortLimitOptions);
 });
 
