@@ -7,10 +7,16 @@ html {
 body{
     /*padding-top: 51px;*/
     margin-bottom: 1px;
+    /*background-color: #f3efe0;sable*/
     background-color: #696764;
     height:100%;
     color: #65CCE6;
     font-size: 137%;
+}
+
+.app-view{
+    height: 100%;
+/*    overflow: auto;*/
 }
 
 .login{
@@ -33,10 +39,6 @@ body{
     margin-right: 20px;
 }
 
-.main-view{
-    /*height: 97%;*/
-}
-
 .notification-view {
     border: 1px black dashed;
     /*height: 30px;*/
@@ -44,18 +46,11 @@ body{
 }
 
 .side-left-view {
-    border: 1px black dashed;
-    height: 64%;
-    width: 250px;
-    position: fixed;
-    top: 100px;
-    left: 1px;
-    background-color: darkgray;
-    z-index: 1;
+
 }
 
 .map-view {
-    border: 1px black dashed;
+    /*border: 1px black dashed;*/
     /*height: 97%;*/
     width: 100%;
     margin-top: 5px;
@@ -64,7 +59,7 @@ body{
 .footer-view {
     background-color: #222;
     position: fixed;
-    bottom: 1px;
+    bottom: 0px;
     width: 100%;
 }
 

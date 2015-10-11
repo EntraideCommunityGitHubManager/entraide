@@ -15,7 +15,7 @@ body,
 
 .st-content {
 	overflow-y: scroll;
-	background: #f3efe0;
+/*	background: #f3efe0;*/
 }
 
 .st-content,
@@ -24,6 +24,7 @@ body,
 }
 
 .st-container {
+	height: 100%;
 	position: relative;
 	overflow: hidden;
 }
@@ -66,7 +67,7 @@ body,
 	visibility: hidden;
 	width: 300px;
 	height: 100%;
-	background: #93B9A3;
+	background: rgba(231, 88, 84, 0.79);
 	-webkit-transition: all 0.5s;
 	transition: all 0.5s;
 }
@@ -566,4 +567,8 @@ body,
 .no-csstransforms3d .st-pusher,
 .no-js .st-pusher {
 	padding-left: 300px;
+}
+
+.anim-sidebar-class{
+	height: 100%;
 }
