@@ -8,8 +8,8 @@ angular.module('entraide').directive('selectMap', function($state, SessionServic
         templateUrl: 'client/app/directives/select-map/select-map.ng.html',
         controller: function($scope){
             $scope.title = 'Select a region ';
-            $scope.goTo = function(regionId) {
-                SessionService.getUserProfile().regionId = regionId;
+            $scope.goTo = function(regionCode) {
+                SessionService.getUserProfile().region = {code:regionCode};
                 $state.go("app.main.events.search.byProfile");
             }
         },
@@ -24,8 +24,8 @@ angular.module('entraide').directive('selectMap', function($state, SessionServic
                 selectedColor: "rgb(53, 80, 84)",
                 enableZoom: false,
                 showTooltip: true,
-                onRegionClick: function(element, regionId, regionName) {
-                    scope.goTo(regionId);
+                onRegionClick: function(element, regionCode, regionName) {
+                    scope.goTo(regionCode);
                 }
             });
 

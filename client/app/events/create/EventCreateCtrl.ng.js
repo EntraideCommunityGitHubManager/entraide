@@ -6,7 +6,7 @@ angular.module('entraide').controller('EventCreateCtrl', function ($scope, $mete
 
     $scope.event = {
         location: {longitude:0, latitude:0},
-        region: {id: SessionService.getUserProfile().regionId},
+        region: SessionService.getUserProfile().region,
         owner: {id:$scope.$root.currentUser._id}
     }
 

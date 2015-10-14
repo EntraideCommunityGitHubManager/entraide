@@ -13,7 +13,7 @@ angular.module("entraide").factory("SessionService", function(){
 
         initUserProfile : function(){
             this.userProfile = {
-                regionId: '74'
+                region: {code:'74'}
             };
         }
     };

@@ -1,17 +1,14 @@
 angular.module('entraide').controller('SearchEventsListCtrl', function ($scope, $meteor, SessionService, CollectionService) {
 
-    $scope.regionId = SessionService.getUserProfile().regionId;
+    $scope.region = SessionService.getUserProfile().region;
 
     $scope.event = {};
 
 
     $scope.loading = true;
-    var options = {collectionOptions:{'region.id':SessionService.getUserProfile().regionId}, backend:true};
+    var options = {collectionOptions:{'region.code':SessionService.getUserProfile().region.code}, backend:true};
     CollectionService.subscribe('search-events', options).then(function(events) {
         $scope.events = events;
-
-
-
         $scope.map = {
             center: {
                 latitude: 45.9,

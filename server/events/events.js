@@ -27,7 +27,7 @@ Meteor.publish("my-events", function(){
 
 Meteor.publish("search-events", function(options){
     console.log("search-events");
-    options.collectionOptions = options.collectionOptions ? options.collectionOptions : {'region.id' : "74"};
+    options.collectionOptions = options.collectionOptions ? options.collectionOptions : {'region.code' : "74"};
     options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:100};
     var arrOptions = [{'owner.id': { $ne: this.userId }}];
     arrOptions.push(options.collectionOptions);
