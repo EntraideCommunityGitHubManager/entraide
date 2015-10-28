@@ -18,7 +18,7 @@ angular.module('entraide').directive('selectMap', function($state, SessionServic
                 map: 'france_fr',
                 hoverOpacity: 0.5,
                 hoverColor: "#EC0000",
-                backgroundColor: "#696764",
+                backgroundColor: "#FFFFFF",
                 color: "rgba(86, 139, 148, 0.85)",
                 borderColor: "#000000",
                 selectedColor: "rgb(53, 80, 84)",

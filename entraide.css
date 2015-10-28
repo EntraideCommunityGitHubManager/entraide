@@ -8,9 +8,10 @@ body{
     /*padding-top: 51px;*/
     margin-bottom: 1px;
     /*background-color: #f3efe0;sable*/
-    background-color: #696764;
+    /*background-color: #696764;*/
+    background-color: #FFFFFF;
     height:100%;
-    color: #65CCE6;
+    color: #5F4040;
     font-size: 137%;
 }
 
@@ -21,6 +22,10 @@ body{
 
 .login{
     margin-bottom: 40px;
+}
+
+.st-content-inner{
+    margin-top: 51px;
 }
 
 /* Connection Banner style */
@@ -42,7 +47,7 @@ body{
 .notification-view {
     border: 1px black dashed;
     /*height: 30px;*/
-    margin-top: 51px;
+    /*margin-top: 51px;*/
 }
 
 .side-left-view {

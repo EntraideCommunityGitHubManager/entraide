@@ -75,6 +75,9 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             url: '/admin',
             abstract: true,
             template: '<ui-view/>',
+            views: {
+                'notification-view@app': {}
+            },
             resolve: {
                 "currentUser": ["$meteor", "SecurityService", function($meteor, SecurityService){
                     return $meteor.requireValidUser(function(user) {
