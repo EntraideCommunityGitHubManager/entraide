@@ -67,7 +67,9 @@ body,
 	visibility: hidden;
 	width: 300px;
 	height: 100%;
-	background: rgba(231, 88, 84, 0.79);
+	/*background: rgba(231, 88, 84, 0.79);*/
+	background: rgb(100, 164, 164);
+	/*background: #7DCDCD;*/
 	-webkit-transition: all 0.5s;
 	transition: all 0.5s;
 }

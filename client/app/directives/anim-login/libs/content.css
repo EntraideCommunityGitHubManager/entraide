@@ -202,8 +202,8 @@
 
 .content-style-form input[type="text"]:focus,
 .content-style-form input[type="password"]:focus {
-	border-color: #e75854;
-	color: #e75854;
+	border-color: #7DCDCD;
+	color: #7DCDCD;
 }
 
 .content-style-form input:focus {
@@ -216,7 +216,7 @@
 	padding: 1.5em;
 	width: 100%;
 	border: none;
-	background: #e75854;
+	background: #7DCDCD;
 	color: #f9f6e5;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -232,7 +232,7 @@
 }
 
 .content-style-form .icon-close:hover {
-	color: #e75854;
+	color: #7DCDCD;
 }
 
 .js .content-style-form-1 h2,
@@ -366,7 +366,7 @@
 }
 
 .morph-button-inflow-2 > button svg path {
-	fill: #e75854;
+	fill: #7DCDCD;
 }
 
 .content-style-social a {
@@ -389,11 +389,11 @@
 }
 
 .content-style-social a:hover {
-	color: #e75854;
+	color: #7DCDCD;
 }
 
 .content-style-social a:hover svg path {
-	fill: #e75854;
+	fill: #7DCDCD;
 }
 
 .content-style-social a svg {

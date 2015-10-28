@@ -9,6 +9,23 @@ angular.module('entraide').controller('SearchEventsListCtrl', function ($scope, 
     var options = {collectionOptions:{'region.code':SessionService.getUserProfile().region.code}, backend:true};
     CollectionService.subscribe('search-events', options).then(function(events) {
         $scope.events = events;
+
+
+        var mapStyles =  [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}];
+        var mapOptions = {
+            styles: mapStyles,
+            streetViewControl: false,
+            draggable: false,
+            minZoom: 8,
+            mapTypeControlOptions: {
+                mapTypeIds: ['roadmap']
+            },
+            zoomControlOptions: {
+                //position: 12
+            },
+            panControl: false
+        };
+
         $scope.map = {
             center: {
                 latitude: 45.9,
@@ -42,7 +59,8 @@ angular.module('entraide').controller('SearchEventsListCtrl', function ($scope, 
                         $scope.event.location.longitude = marker.getPosition().lng();
                     }
                 }
-            }
+            },
+            options: mapOptions
         };
 
         $scope.loading = false;
