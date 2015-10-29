@@ -37,4 +37,7 @@ Blaze Template      (0.0.1)  	---> meteor add urigo:angular-blaze-template
 https://github.com/Tallyb/ng-leaderboard-subs2
 http://jvectormap.com/maps/countries/france-regions-2016/
 http://www.daveweb.fr/blog/vos-cartes-de-france-cliquables-avec-jquery-vector-maps-et-jvector-map.html
+http://www.evoluted.net/thinktank/web-design/custom-google-maps-style-tool
+http://www.danparis.fr/
+https://snazzymaps.com/explore?sort=recent&tag=dark&page=7
 </pre></code>
