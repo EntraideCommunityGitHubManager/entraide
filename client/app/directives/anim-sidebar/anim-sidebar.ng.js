@@ -32,10 +32,8 @@ angular.module('entraide').directive('animSidebar', function(UtilsService){
             });
 
             $scope.$on("$destroy", animSideBarListener);
-
-            $scope.insidePusher = function(type){
-                return _.contains(['3','6','7','8','14'], type);
-            }
+            
+            $scope.sideBarPosition = _.contains(['3','6','7','8','14'], $scope.type) ? "outside" : "inside";
         },
         link: function (scope, element) {
 
