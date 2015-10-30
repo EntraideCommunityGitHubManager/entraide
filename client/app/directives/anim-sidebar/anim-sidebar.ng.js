@@ -6,12 +6,13 @@ angular.module('entraide').directive('animSidebar', function(UtilsService){
         templateUrl: 'client/app/directives/anim-sidebar/anim-sidebar.ng.html',
         scope : {
             type: '@',
-            targetView: '@'
+            targetView: '@',
+            pusher: '@'
         },
         controller: function($scope){
             console.log('animSideBar controller');
             $scope.container = 'st-container';
-            var animSideBarListener = $scope.$on('anim-sidebar-on', function(event){
+            var animSideBarListener = $scope.$on('anim-sidebar-on', function(event) {
                 event.preventDefault();
                 var container = document.getElementById($scope.container);
                 var eventtype = UtilsService.isMobile() ? 'touchstart' : 'click';
@@ -32,8 +33,8 @@ angular.module('entraide').directive('animSidebar', function(UtilsService){
             });
 
             $scope.$on("$destroy", animSideBarListener);
-            
-            $scope.sideBarPosition = _.contains(['3','6','7','8','14'], $scope.type) ? "outside" : "inside";
+
+            $scope.insidePusher = function(type){return _.contains(['3','6','7','8','14'], type);};
         },
         link: function (scope, element) {
 

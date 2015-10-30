@@ -1,7 +1,7 @@
-<div class="st-container" id="st-container" ng-switch on="sideBarPosition">
-    <nav class="st-menu st-effect-{{type}}" id="menu-{{type}}" ui-view="{{targetView}}" ng-switch-when="outside"></nav>
-    <div class="st-pusher" ng-switch-when="inside">
-        <nav class="st-menu st-effect-{{type}}" id="menu-{{type}}" ui-view="{{targetView}}"></nav>
+<div class="st-container" id="st-container">
+    <nav class="st-menu st-effect-{{type}}" id="menu-{{type}}" ui-view="{{targetView}}" ng-if="!insidePusher(type)"></nav>
+    <div class="st-pusher">
+        <nav class="st-menu st-effect-{{type}}" id="menu-{{type}}" ui-view="{{targetView}}" ng-if="insidePusher(type)"></nav>
         <div class="st-content">
             <div class="st-content-inner">
                 <div ng-transclude></div>

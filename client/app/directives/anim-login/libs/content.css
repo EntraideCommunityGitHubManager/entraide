@@ -1,4 +1,3 @@
-
 .icon-close {
 	z-index: 100;
 	display: block;
@@ -63,10 +62,6 @@
 
 .icon-cog::before {
 	content: "\e600";
-}
-
-.icon-close::before {
-	content: "\e601";
 }
 
 .icon-play::before {

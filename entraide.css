@@ -51,6 +51,20 @@ body{
     /*margin-top: 51px;*/
 }
 
+.menu-toggler {
+    position: fixed;
+    padding: 5px;
+    height: 400px;
+    background: rgba(28, 136, 136, 0.51);
+    top: 16%;
+    left: 300px;
+    visibility: visible;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border-top-left-radius: 0.3em;
+    border-bottom-left-radius: 0.3em;
+}
+
 .side-left-view {
 
 }

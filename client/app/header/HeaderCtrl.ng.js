@@ -1,4 +1,4 @@
-angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope, SecurityService, $meteor, $state, UtilsService) {
+angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope, SecurityService, $meteor, $state) {
 
     console.log("header-view Ctrl");
 
