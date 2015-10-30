@@ -41,4 +41,5 @@ http://www.evoluted.net/thinktank/web-design/custom-google-maps-style-tool
 http://www.danparis.fr/
 https://snazzymaps.com/explore?sort=recent&tag=dark&page=7
 http://tympanus.net/codrops/category/playground/http://tympanus.net/codrops/category/playground/
+http://tympanus.net/Development/TooltipStylesInspiration/curved.htmlhttp://tympanus.net/Development/TooltipStylesInspiration/curved.html
 </pre></code>
