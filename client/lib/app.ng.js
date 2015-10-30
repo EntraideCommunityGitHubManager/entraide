@@ -43,9 +43,8 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                     templateUrl: 'client/app/side/left/side-left.ng.html',
                     controller: 'SideLeftCtrl'
                 },
-                'map-view@app': {
-                    templateUrl: 'client/app/map/map.ng.html',
-                    controller: 'MapCtrl'
+                'content-view@app': {
+                    templateUrl: 'client/app/map/map.ng.html'
                 },
                 'footer-view@app': {
                     templateUrl: 'client/app/footer/footer.ng.html',
@@ -99,7 +98,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.admin.users.all', {
             url: '/all',
             views: {
-                'map-view@app': {
+                'content-view@app': {
                     templateUrl: 'client/app/admin/users/list/all-users-list.ng.html',
                     controller: 'AllUsersListCtrl'
                 }
@@ -108,7 +107,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.admin.users.edit', {
             url: '/edit/:userId',
             views: {
-                'map-view@app': {
+                'content-view@app': {
                     templateUrl: 'client/app/admin/users/edit/user-edit.ng.html',
                     controller: 'EventEditCtrl'
                 }
@@ -117,7 +116,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.admin.events.all', {
             url: '/all',
             views: {
-                'map-view@app': {
+                'content-view@app': {
                     templateUrl: 'client/app/admin/events/list/all-events-list.ng.html',
                     controller: 'AllEventsListCtrl'
                 }
@@ -126,7 +125,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.admin.events.edit', {
             url: '/edit/:eventId',
             views: {
-                'map-view@app': {
+                'content-view@app': {
                     templateUrl: 'client/app/admin/events/edit/event-edit.ng.html',
                     controller: 'EventEditCtrl'
                 }
@@ -143,7 +142,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.events.search.byProfile', {
             url: '/byProfile',
             views: {
-                'map-view@app': {
+                'content-view@app': {
                     templateUrl: 'client/app/events/search/byProfile/search-events-list.ng.html',
                     controller: 'SearchEventsListCtrl'
                 },
@@ -156,7 +155,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.events.search.myEvents', {
             url: '/myEvents',
             views: {
-                'map-view@app': {
+                'content-view@app': {
                     templateUrl: 'client/app/events/search/myEvents/my-events-list.ng.html',
                     controller: 'MyEventsListCtrl'
                 },
@@ -174,7 +173,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.events.detail', {
             url: '/detail/:eventId',
             views: {
-                'map-view@app': {
+                'content-view@app': {
                     templateUrl: 'client/app/events/detail/event-detail.ng.html',
                     controller: 'EventDetailCtrl'
                 },
@@ -193,7 +192,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.events.create', {
             url: '/create',
             views: {
-                'map-view@app': {
+                'content-view@app': {
                     templateUrl: 'client/app/events/create/event-create.ng.html',
                     controller: 'EventCreateCtrl'
                 },
@@ -244,7 +243,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.error.required', {
             url: '/required',
             views: {
-                'map-view@app': {
+                'content-view@app': {
                     template: '<div>You must be signed in to access this functionality</div>'
                 }
             }
@@ -252,7 +251,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.error.unauthorized', {
             url: '/unauthorized',
             views: {
-                'map-view@app': {
+                'content-view@app': {
                     template: '<div>You must be authorized in order to access this functionality</div>'
                 }
             }
