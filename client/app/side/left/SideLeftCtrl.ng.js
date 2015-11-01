@@ -15,7 +15,7 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
 
 
     $scope.$on('event-create', function(e, location){
-        $scope.event = {longitude:location.longitude, latitude:location.latitude};
+        $scope.event = {location: location};
         $scope.eventCreate = true;
         $scope.eventEdit = false;
         $scope.eventDetail = false;

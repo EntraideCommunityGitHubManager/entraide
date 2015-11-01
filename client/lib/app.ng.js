@@ -56,7 +56,11 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.events', {
             url: '/events',
             abstract: true,
-            template: '<ui-view/>'
+            template: '<ui-view/>',
+            'side-left-view@app.main': {
+                templateUrl: 'client/app/side/left/side-left.ng.html',
+                controller: 'SideLeftCtrl'
+            }
         })
         .state('app.main.events.search', {
             url: '/search',
@@ -145,10 +149,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 'content-view@app': {
                     templateUrl: 'client/app/events/search/byProfile/search-events-list.ng.html',
                     controller: 'SearchEventsListCtrl'
-                },
-                'side-left-view@app.main': {
-                    templateUrl: 'client/app/side/left/side-left.ng.html',
-                    controller: 'SideLeftCtrl'
                 }
             }
         })
@@ -158,10 +158,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 'content-view@app': {
                     templateUrl: 'client/app/events/search/myEvents/my-events-list.ng.html',
                     controller: 'MyEventsListCtrl'
-                },
-                'side-left-view@app.main': {
-                    templateUrl: 'client/app/side/left/side-left.ng.html',
-                    controller: 'SideLeftCtrl'
                 }
             },
             resolve: {
@@ -176,10 +172,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 'content-view@app': {
                     templateUrl: 'client/app/events/detail/event-detail.ng.html',
                     controller: 'EventDetailCtrl'
-                },
-                'side-left-view@app.main': {
-                    templateUrl: 'client/app/side/left/side-left.ng.html',
-                    controller: 'SideLeftCtrl'
                 }
             },
             resolve: {
@@ -195,10 +187,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 'content-view@app': {
                     templateUrl: 'client/app/events/create/event-create.ng.html',
                     controller: 'EventCreateCtrl'
-                },
-                'side-left-view@app.main': {
-                    templateUrl: 'client/app/side/left/side-left.ng.html',
-                    controller: 'SideLeftCtrl'
                 }
             },
             resolve: {
