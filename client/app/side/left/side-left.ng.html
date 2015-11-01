@@ -7,121 +7,8 @@
     <div>UserEdit : {{userEdit}}</div>-->
 </div>
 
-<!--<div ui-view="side-left-content-view"></div>-->
-
-
-<div ng-if="eventCreate">
-    <h2 class="icon icon-lab">Event create</h2>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">Name</label>
-            <div class="col-sm-10"><input type="text" class="form-control" id="name" placeholder="Name" ng-model="event.name"></div>
-        </div>
-        <div class="form-group">
-            <label for="description" class="col-sm-2 control-label">Description</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" id="description" placeholder="Description" rows="4"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="location" class="col-sm-2 control-label">Location</label>
-            <div class="col-sm-10" id="location">
-                <div class="form-inline">
-                    <input type="text" class="form-control" id="longitude" placeholder="Longitude" ng-model="event.location.longitude" ng-disabled>
-                    <input type="text" class="form-control" id="latitude" placeholder="Latitude" ng-model="event.location.latitude" ng-disabled>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="region" class="col-sm-2 control-label">Region</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="region" placeholder="Region" ng-model="event.region.code">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="categories" class="col-sm-2 control-label">Categories</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="categories" placeholder="Categories" ng-model="event.categories">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default" ng-click="create(event)">Create</button>
-            </div>
-        </div>
-    </form>
-</div>
-
-<div ng-if="eventEdit">
-    <h2 class="icon icon-lab">Event edit</h2>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-sm-12">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Name" ng-model="event.name">
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea class="form-control" id="description" placeholder="Description" rows="4"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Location</label>
-                            <input type="text" class="form-control" id="longitude" placeholder="Longitude" ng-model="event.location.longitude" ng-disabled>
-                            <input type="text" class="form-control" id="latitude" placeholder="Latitude" ng-model="event.location.latitude" ng-disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="region">Region</label>
-                            <input type="text" class="form-control" id="region" placeholder="Region" ng-model="event.region.code">
-                        </div>
-                        <div class="form-group">
-                            <label for="categories">Categories</label>
-                            <input type="text" class="form-control" id="categories" placeholder="Categories" ng-model="event.categories">
-                        </div>
-                        <button type="submit" class="btn btn-default" ng-click="update(event)" ng-disabled="hasChanged()">Update</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div ng-if="eventDetail">
-    <h2 class="icon icon-lab">Event detail</h2>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-sm-12">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Name</label>
-                            <div class="col-sm-10">{{event.name}}</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="description" class="col-sm-2 control-label">Description</label>
-                            <div class="col-sm-10">
-                                {{event.description}}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="region" class="col-sm-2 control-label">Region</label>
-                            <div class="col-sm-10">{{event.region.code}}</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="categories" class="col-sm-2 control-label">Categories</label>
-                            <div class="col-sm-10">
-                                <span ng-repeat="c in event.categories">{{c}}</span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+<div ui-view="side-left-content-view"></div>
+<!--
 <div ng-if="userEdit">
     <h2 class="icon icon-lab">User edit</h2>
     <ul>
@@ -131,4 +18,4 @@
         <li><a class="icon icon-photo" href="#">Collections</a></li>
         <li><a class="icon icon-wallet" href="#">Credits</a></li>
     </ul>
-</div>
+</div>-->

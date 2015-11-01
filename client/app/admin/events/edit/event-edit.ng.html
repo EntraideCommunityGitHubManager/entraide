@@ -1,43 +1,27 @@
 <div>
     <form>
-        <div>
-            <label>ID</label>
-            <input ng-model="event._id" ng-disabled>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" ng-model="event.name">
         </div>
-        <div>
-            <label>Name</label>
-            <input ng-model="event.name">
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" placeholder="Description" rows="4"></textarea>
         </div>
-        <div>
-            <label>Description</label>
-            <input ng-model="event.description">
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" class="form-control" id="longitude" placeholder="Longitude" ng-model="event.location.longitude" ng-disabled>
+            <input type="text" class="form-control" id="latitude" placeholder="Latitude" ng-model="event.location.latitude" ng-disabled>
         </div>
-        <div>
-            <label>Region ID</label>
-            <input ng-model="event.region.code">
+        <div class="form-group">
+            <label for="region">Region</label>
+            <input type="text" class="form-control" id="region" placeholder="Region" ng-model="event.region.code">
         </div>
-        <div>
-            <label>Region Name</label>
-            <input ng-model="event.region.name">
+        <div class="form-group">
+            <label for="categories">Categories</label>
+            <input type="text" class="form-control" id="categories" placeholder="Categories" ng-model="event.categories">
         </div>
-        <div>
-            <label>Owner ID</label>
-            <input ng-model="event.owner.id">
-        </div>
-        <div>
-            <label>Owner Name</label>
-            <input ng-model="event.owner.name">
-        </div>
-        <div>
-            <label>Latitude</label>
-            <input ng-model="event.location.latitude">
-        </div>
-        <div>
-            <label>Longitude</label>
-            <input ng-model="event.location.longitude">
-        </div>
-        <div>
-            <button ng-click="update(event)">Update</button>
-        </div>
+        <button type="submit" class="btn btn-default" ng-click="update(event)" ng-disabled="!hasChanged()">Update</button>
+        <button type="submit" class="btn btn-default" ng-click="remove(event)" >Delete</button>
     </form>
 </div>

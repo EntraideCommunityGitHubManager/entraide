@@ -56,11 +56,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         .state('app.main.events', {
             url: '/events',
             abstract: true,
-            template: '<ui-view/>',
-            'side-left-view@app.main': {
-                templateUrl: 'client/app/side/left/side-left.ng.html',
-                controller: 'SideLeftCtrl'
-            }
+            template: '<ui-view/>'
         })
         .state('app.main.events.search', {
             url: '/search',
@@ -131,7 +127,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             views: {
                 'content-view@app': {
                     templateUrl: 'client/app/admin/events/edit/event-edit.ng.html',
-                    controller: 'EventEditCtrl'
+                    controller: 'AdminEventEditCtrl'
                 }
             }
         })
@@ -152,6 +148,18 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 }
             }
         })
+        .state('app.main.events.search.byProfile.detail', {
+            url: '/detail',
+            params: {
+                event: {}
+            },
+            views: {
+                'side-left-content-view@app.main': {
+                    templateUrl: 'client/app/events/detail/event-detail.ng.html',
+                    controller: 'EventDetailCtrl'
+                }
+            }
+        })
         .state('app.main.events.search.myEvents', {
             url: '/myEvents',
             views: {
@@ -166,35 +174,29 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 }]
             }
         })
-        .state('app.main.events.detail', {
-            url: '/detail/:eventId',
-            views: {
-                'content-view@app': {
-                    templateUrl: 'client/app/events/detail/event-detail.ng.html',
-                    controller: 'EventDetailCtrl'
-                }
-            },
-            resolve: {
-                "currentUser": ["$meteor", function($meteor){
-                    return $meteor.requireUser();
-                }]
-            }
-
-        })
-        .state('app.main.events.create', {
+        .state('app.main.events.search.myEvents.create', {
             url: '/create',
+            params: {
+                event: {}
+            },
             views: {
-                'content-view@app': {
+                'side-left-content-view@app.main': {
                     templateUrl: 'client/app/events/create/event-create.ng.html',
                     controller: 'EventCreateCtrl'
                 }
-            },
-            resolve: {
-                "currentUser": ["$meteor", function($meteor){
-                    return $meteor.requireUser();
-                }]
             }
-
+        })
+        .state('app.main.events.search.myEvents.edit', {
+            url: '/edit',
+            params: {
+                event: {}
+            },
+            views: {
+                'side-left-content-view@app.main': {
+                    templateUrl: 'client/app/events/edit/event-edit.ng.html',
+                    controller: 'EventEditCtrl'
+                }
+            }
         })
         .state('app.main.profile', {
             url: '/profile',

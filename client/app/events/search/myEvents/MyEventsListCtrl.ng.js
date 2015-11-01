@@ -1,22 +1,30 @@
-angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, $scope, $meteor, CollectionService, MapService) {
+angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, $scope, $meteor, $state, CollectionService, MapService, SessionService) {
 
     $scope.loading = true;
+
     CollectionService.subscribe('my-events'). then(function(events) {
         $scope.events = events;
         $scope.map = MapService.getMap();
-        $scope.events.forEach(function(event) {
-            event.eventClicked = function () {
-                $rootScope.$broadcast('event-edit', event);
-                $scope.$apply();
-                console.log(event);
-            };
-        });
         $scope.loading = false;
     });
 
-    $scope.$on('map-click', function(e, originalEventArgs) {
-        $rootScope.$broadcast('event-create', MapService.getCoord(originalEventArgs));
+    $scope.eventClicked = function(marker, eventName, event){
         $scope.$apply();
+        $state.go("app.main.events.search.myEvents.edit", {"event" : event});
+        $rootScope.$broadcast('event-edit', event);
+
+    };
+
+    $scope.$on('map-click', function(e, originalEventArgs) {
+        $scope.$apply();
+        $state.go("app.main.events.search.myEvents.create", {
+            "event": {
+                location: MapService.getCoord(originalEventArgs),
+                region: SessionService.getUserProfile().region,
+                owner: {id:$scope.$root.currentUser._id}
+            }
+        });
+        $rootScope.$broadcast('event-create', $scope.event);
     });
 
 });

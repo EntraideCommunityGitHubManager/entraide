@@ -1,14 +1,19 @@
-angular.module('entraide').controller('SearchEventsListCtrl', function ($rootScope, $scope, $meteor, SessionService, CollectionService, MapService) {
+angular.module('entraide').controller('SearchEventsListCtrl', function ($rootScope, $scope, $meteor, $state, SessionService, CollectionService, MapService) {
 
     $scope.loading = true;
-
     var options = {collectionOptions:{'region.code':SessionService.getUserProfile().region.code}, backend:true};
+
     CollectionService.subscribe('search-events', options).then(function(events) {
         $scope.events = events;
-        $scope.events.forEach( function (event) {event.eventClicked = function () {$rootScope.$broadcast('event-detail', event);$scope.$apply();console.log(event);};});
         $scope.map = MapService.getMap();
         $scope.loading = false;
     });
+
+    $scope.eventClicked = function(marker, eventName, event) {
+        $scope.$apply();
+        $state.go("app.main.events.search.byProfile.detail", {"event" : event});
+        $rootScope.$broadcast('event-detail', event);
+    };
 
 });
 
