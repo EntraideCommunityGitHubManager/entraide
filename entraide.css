@@ -55,7 +55,8 @@ body{
     position: fixed;
     padding: 5px;
     height: 400px;
-    background: rgba(28, 136, 136, 0.51);
+    /*background: rgba(28, 136, 136, 0.51);*/
+    background: rgba(30, 127, 128, 0.82);
     top: 16%;
     left: 300px;
     visibility: visible;

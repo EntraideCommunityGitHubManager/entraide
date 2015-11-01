@@ -1,60 +1,10 @@
 <div class="container">
     <div id="content">
-        <!--<div class="row">
-            &lt;!&ndash; SIDEBAR &ndash;&gt;
-            <div class="col-md-3">
-                <div class="row">
-                    <div class="col-lg-12 hidden-sm">
-                        <h4>
-                            Search Events List ({{region.code}})
-                        </h4>
-                        <div class="well">
-                            <h4 style="display: inline-block;"> <i class="fa fa-cc-jcb"></i>Entraide:  </h4>
-                            <div>
-                                <div ng-repeat="event in events">
-                                    <p id="how-bootstrap-is-structured">{{event.name}} [{{event.region.id}}]: [{{event.location.longitude}} - {{event.location.latitude}}]</p>
-                                    <p></p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <hr>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="angular-google-map-container">
-                            <ui-gmap-google-map center="event.location || map.center" events="map.events" zoom="map.zoom" options="map.options">
-                                &lt;!&ndash;<ui-gmap-marker coords="event.location" options="map.marker.options" events="map.marker.events" idkey="event._id"></ui-gmap-marker>&ndash;&gt;
-                                <ui-gmap-markers models="events" coords="'location'" click="onClicked()" fit="true" idkey="'_id'" doRebuildAll="true"></ui-gmap-markers>
-                            </ui-gmap-google-map>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-
         <div class="angular-google-map-container">
             <ui-gmap-google-map center="event.location || map.center" events="map.events" zoom="map.zoom" options="map.options">
-                <ui-gmap-markers models="events" coords="'location'" click="onClicked()" fit="true" idkey="'_id'" doRebuildAll="true"></ui-gmap-markers>
+                <ui-gmap-markers models="events" coords="'location'" click="eventClicked()" fit="true" idkey="'_id'" doRebuildAll="true"></ui-gmap-markers>
             </ui-gmap-google-map>
         </div>
     </div>
 
 </div>
-
-
-
-<!--
-<div>
-    Search Events List  ({{regionId}})
-    <ul>
-        <li ng-repeat="event in events">
-            <h2 id="how-bootstrap-is-structured">{{event.name}}</h2>
-            <p>{{event.description}}</p>
-        </li>
-    </ul>
-</div>
--->

@@ -40,7 +40,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
 
     $scope.openSidebar = function(){
-        $rootScope.$broadcast('anim-sidebar-on');
+        $rootScope.$broadcast('anim-sidebar-toggle');
     };
 
 });

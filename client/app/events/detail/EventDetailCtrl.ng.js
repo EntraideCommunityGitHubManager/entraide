@@ -1,4 +1,3 @@
-
 angular.module('entraide').controller('EventDetailCtrl', function ($scope, $meteor, $stateParams, $state, CollectionService) {
 
     CollectionService.subscribe('my-events').then(function() {
@@ -14,7 +13,7 @@ angular.module('entraide').controller('EventDetailCtrl', function ($scope, $mete
 
     $scope.hasChanged = function(){
         return $scope.event != $scope.backup;
-    }
+    };
 
 });
 

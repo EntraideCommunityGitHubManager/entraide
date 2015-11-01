@@ -1,14 +1,10 @@
-<div>
-    My Events List
-    <ul>
-        <li ng-repeat="event in events">
-            <h2 id="how-bootstrap-is-structured">{{event.name}}</h2>
-            <a ng-href="#/events/detail/{{event._id}}">edit</a>
-            <p>{{event.description}}</p>
-            <p>{{event.owner}}</p>
-            <p>{{event.region}}</p>
-            <button ng-click="remove(event)">X</button>
-        </li>
-    </ul>
-</div>
+<div class="container">
+    <div id="content">
+        <div class="angular-google-map-container">
+            <ui-gmap-google-map center="event.location || map.center" events="map.events" zoom="map.zoom" options="map.options">
+                <ui-gmap-markers models="events" coords="'location'" click="eventClicked()" fit="true" idkey="'_id'" doRebuildAll="true"></ui-gmap-markers>
+            </ui-gmap-google-map>
+        </div>
+    </div>
 
+</div>

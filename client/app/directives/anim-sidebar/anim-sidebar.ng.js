@@ -12,7 +12,7 @@ angular.module('entraide').directive('animSidebar', function(UtilsService){
         controller: function($scope){
             console.log('animSideBar controller');
             $scope.container = 'st-container';
-            var animSideBarListener = $scope.$on('anim-sidebar-on', function(event) {
+            var animSideBarListener = $scope.$on('anim-sidebar-toggle', function(event) {
                 event.preventDefault();
                 var container = document.getElementById($scope.container);
                 var eventtype = UtilsService.isMobile() ? 'touchstart' : 'click';
