@@ -1,5 +1,5 @@
 
-angular.module('entraide').controller('UserEditCtrl', function ($scope, $meteor, $stateParams, $state, CollectionService) {
+angular.module('entraide').controller('AdminUserEditCtrl', function ($scope, $meteor, $stateParams, $state, CollectionService) {
 
     CollectionService.subscribe('all-users').then(function(){
         $scope.user = $meteor.object(Meteor.users, $stateParams.userId, false);
