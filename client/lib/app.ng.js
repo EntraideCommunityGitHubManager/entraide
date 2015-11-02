@@ -64,74 +64,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             template: '<ui-view/>'
         })
 
-        /*********************************************************/
-        /*
-        *                   ADMIN STATES
-        *
-        **********************************************************/
-
-        .state('app.main.admin', {
-            url: '/admin',
-            abstract: true,
-            template: '<ui-view/>',
-            views: {
-                'notification-view@app': {}
-            },
-            resolve: {
-                "currentUser": ["$meteor", "SecurityService", function($meteor, SecurityService){
-                    return $meteor.requireValidUser(function(user) {
-                        return SecurityService.isAdmin(user);
-                    });
-                }]
-            }
-        })
-        .state('app.main.admin.users', {
-            url: '/users',
-            abstract: true,
-            template: '<ui-view/>'
-        })
-        .state('app.main.admin.events', {
-            url: '/events',
-            abstract: true,
-            template: '<ui-view/>'
-        })
-        .state('app.main.admin.users.all', {
-            url: '/all',
-            views: {
-                'content-view@app': {
-                    templateUrl: 'client/app/admin/users/list/all-users-list.ng.html',
-                    controller: 'AllUsersListCtrl'
-                }
-            }
-        })
-        .state('app.main.admin.users.edit', {
-            url: '/edit/:userId',
-            views: {
-                'content-view@app': {
-                    templateUrl: 'client/app/admin/users/edit/user-edit.ng.html',
-                    controller: 'EventEditCtrl'
-                }
-            }
-        })
-        .state('app.main.admin.events.all', {
-            url: '/all',
-            views: {
-                'content-view@app': {
-                    templateUrl: 'client/app/admin/events/list/all-events-list.ng.html',
-                    controller: 'AllEventsListCtrl'
-                }
-            }
-        })
-        .state('app.main.admin.events.edit', {
-            url: '/edit/:eventId',
-            views: {
-                'content-view@app': {
-                    templateUrl: 'client/app/admin/events/edit/event-edit.ng.html',
-                    controller: 'AdminEventEditCtrl'
-                }
-            }
-        })
-
 
         /*********************************************************/
         /*
@@ -217,6 +149,81 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                 }]
             }
         })
+        
+        /*********************************************************/
+        /*
+        *                   ADMIN STATES
+        *
+        **********************************************************/
+
+        .state('app.main.admin', {
+            url: '/admin',
+            abstract: true,
+            template: '<ui-view/>',
+            views: {
+                'notification-view@app': {}
+            },
+            resolve: {
+                "currentUser": ["$meteor", "SecurityService", function($meteor, SecurityService){
+                    return $meteor.requireValidUser(function(user) {
+                        return SecurityService.isAdmin(user);
+                    });
+                }]
+            }
+        })
+        .state('app.main.admin.users', {
+            url: '/users',
+            abstract: true,
+            template: '<ui-view/>'
+        })
+        .state('app.main.admin.events', {
+            url: '/events',
+            abstract: true,
+            template: '<ui-view/>'
+        })
+        .state('app.main.admin.users.all', {
+            url: '/all',
+            views: {
+                'content-view@app': {
+                    templateUrl: 'client/app/admin/users/list/all-users-list.ng.html',
+                    controller: 'AdminUserListCtrl'
+                }
+            }
+        })
+        .state('app.main.admin.users.edit', {
+            url: '/edit/:userId',
+            views: {
+                'content-view@app': {
+                    templateUrl: 'client/app/admin/users/edit/user-edit.ng.html',
+                    controller: 'AdminUserEditCtrl'
+                }
+            }
+        })
+        .state('app.main.admin.events.all', {
+            url: '/all',
+            views: {
+                'content-view@app': {
+                    templateUrl: 'client/app/admin/events/list/all-events-list.ng.html',
+                    controller: 'AdminEventListCtrl'
+                }
+            }
+        })
+        .state('app.main.admin.events.edit', {
+            url: '/edit/:eventId',
+            views: {
+                'content-view@app': {
+                    templateUrl: 'client/app/admin/events/edit/event-edit.ng.html',
+                    controller: 'AdminEventEditCtrl'
+                }
+            }
+        })
+        
+        /*********************************************************/
+        /*
+        *                   REDIRECT STATES
+        *
+        **********************************************************/
+        
         .state('app.main.logout', {
             url: '/logout',
             resolve: {
