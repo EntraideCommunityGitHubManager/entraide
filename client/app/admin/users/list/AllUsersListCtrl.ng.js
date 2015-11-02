@@ -1,4 +1,4 @@
-angular.module('entraide').controller('AdminUsersListCtrl', function ($scope, $meteor, CollectionService) {
+angular.module('entraide').controller('AdminUserListCtrl', function ($scope, $meteor, CollectionService) {
 
     $scope.loading = true;
     var options = {'_id': { $ne: this.userId }};
