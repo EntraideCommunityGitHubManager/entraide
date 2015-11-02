@@ -185,7 +185,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             url: '/all',
             views: {
                 'content-view@app': {
-                    templateUrl: 'client/app/admin/users/list/all-users-list.ng.html',
+                    templateUrl: 'client/app/admin/users/list/admin-user-list.ng.html',
                     controller: 'AdminUserListCtrl'
                 }
             }
@@ -194,7 +194,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             url: '/edit/:userId',
             views: {
                 'content-view@app': {
-                    templateUrl: 'client/app/admin/users/edit/user-edit.ng.html',
+                    templateUrl: 'client/app/admin/users/edit/admin-user-edit.ng.html',
                     controller: 'AdminUserEditCtrl'
                 }
             }
@@ -203,7 +203,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             url: '/all',
             views: {
                 'content-view@app': {
-                    templateUrl: 'client/app/admin/events/list/all-events-list.ng.html',
+                    templateUrl: 'client/app/admin/events/list/admin-event-list.ng.html',
                     controller: 'AdminEventListCtrl'
                 }
             }
@@ -212,7 +212,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             url: '/edit/:eventId',
             views: {
                 'content-view@app': {
-                    templateUrl: 'client/app/admin/events/edit/event-edit.ng.html',
+                    templateUrl: 'client/app/admin/events/edit/admin-event-edit.ng.html',
                     controller: 'AdminEventEditCtrl'
                 }
             }

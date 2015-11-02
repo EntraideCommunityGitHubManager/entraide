@@ -9,7 +9,11 @@ angular.module('entraide').controller('AdminUserEditCtrl', function ($scope, $me
         user.save().then(function(){
             $state.go("app.main.admin.users.search.all");
         }, function(error){alert(error);});
-    }
+    };
+
+    $scope.hasChanged = function(){
+        return true;
+    };
 
 });
 

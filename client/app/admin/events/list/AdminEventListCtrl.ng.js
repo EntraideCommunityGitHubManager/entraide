@@ -1,4 +1,4 @@
-angular.module('entraide').controller('AllEventsListCtrl', function ($scope, $meteor, CollectionService) {
+angular.module('entraide').controller('AdminEventListCtrl', function ($scope, $meteor, CollectionService) {
 
     $scope.loading = true;
     CollectionService.subscribe('all-events').then(function(events) {
