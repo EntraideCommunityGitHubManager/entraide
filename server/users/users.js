@@ -1,6 +1,6 @@
 
 Meteor.startup(function () {
-    /*if(Meteor.users.find({'emails.address':'entraide.community.developer@gmail.com'}).count()<=0){
+    if(Meteor.users.find({'emails.address':'entraide.community.developer@gmail.com'}).count()<=0){
         Accounts.createUser({
             email: "entraide.community.developer@gmail.com",
             username: "admin",
@@ -8,7 +8,7 @@ Meteor.startup(function () {
             profile: { roles:["admin"] },
             roles: ["admin"]
         });
-    }*/
+    }
 
 });
 
