@@ -1,20 +1,48 @@
-angular.module("entraide").factory("SessionService", function(){
+angular.module("entraide").factory("SessionService", function($rootScope, CollectionService, SecurityService, $q){
+
+    var defaultDepartment = {"code":"74","name":"Haute Savoie", location:{ "latitude":46.08085173686787,"longitude":6.3995361328125}};
 
     var sessionService = {
 
-        userProfile : null,
+        userProfile : {
+            user: null,
+            department: defaultDepartment
+        },
 
         getUserProfile : function(){
-            if(!this.userProfile){
-                this.initUserProfile();
-            }
             return this.userProfile;
         },
 
-        initUserProfile : function(){
-            this.userProfile = {
-                region: {code:'74'}
-            };
+        setUserProfile : function(user, department){
+            this.userProfile.user = user ? user : this.userProfile.user;
+            this.userProfile.department = department ? department : defaultDepartment;
+        },
+
+        setDepartmentByCode : function(code) {
+            var deferred = $q.defer();
+            if(!SecurityService.isConnected()){
+                var options = {collectionOptions:{'code': code}, backend:true};
+                CollectionService.subscribe('department-by-code', options).then(function(departments) {
+                    sessionService.getUserProfile().department = departments[0];
+                    deferred.resolve(null, departments[0]);
+                });
+            } else {
+                deferred.resolve(null, defaultDepartment);
+            }
+            return deferred.promise;;
+        },
+
+        resetUser: function(){
+            this.userProfile.user = null;
+        },
+
+        resetDepartment: function(){
+            this.userProfile.department = null;
+        },
+
+        resetUserProfile: function(){
+            this.resetUser();
+            this.resetDepartment();
         }
     };
 

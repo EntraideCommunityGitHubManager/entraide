@@ -1,9 +1,9 @@
-angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope, SecurityService, $meteor, $state) {
+angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope, SecurityService, SessionService,  $meteor, $state) {
 
     console.log("header-view Ctrl");
 
-    $scope.isAdmin = SecurityService.isAdmin($rootScope.currentUser) !== true ? false : true ;
-    $scope.isConnected = SecurityService.isConnected($rootScope.currentUser);
+    $scope.isAdmin = SecurityService.isAdmin() !== true ? false : true ;
+    $scope.isConnected = SecurityService.isConnected();
 
     $scope.user = {email:'', password:''};
     $scope.error = null;
@@ -11,6 +11,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     $scope.login = function(){
         $scope.error = null;
         SecurityService.loginWithPassword($scope.user.email, $scope.user.password).then(function () {
+            SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
             $state.reload();
         }, function (err) {
             $scope.error = err;
@@ -35,6 +36,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.logout = function(){
         SecurityService.logout().then(function(){
+            SessionService.resetUserProfile();
             $state.go('home', {}, {reload: true, inherit: true, notify: true});
         }, function(){$state.go('app.main.error');});
     };

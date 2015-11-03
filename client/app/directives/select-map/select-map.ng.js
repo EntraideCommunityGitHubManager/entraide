@@ -7,30 +7,31 @@ angular.module('entraide').directive('selectMap', function($state, SessionServic
         },
         templateUrl: 'client/app/directives/select-map/select-map.ng.html',
         controller: function($scope){
-            $scope.title = 'Select a region ';
-            $scope.goTo = function(regionCode) {
-                SessionService.getUserProfile().region = {code:regionCode};
-                $state.go("app.main.events.search.byProfile");
+            $scope.title = 'Select a department ';
+            $scope.goTo = function(code) {
+                SessionService.setDepartmentByCode(code).then(function(){
+                    $state.go("app.main.events.search.byProfile");
+                });
             }
         },
         link: function (scope, element) {
-            $('.france-region-map').vectorMap({
-                map: 'france_fr',
+            $('.france-map').vectorMap({
+                map: 'france_department_2015',
                 hoverOpacity: 0.5,
                 hoverColor: "#EC0000",
                 backgroundColor: "#E0EFEF",
                 color: "rgba(86, 139, 148, 0.85)",
-                borderColor: "#000000",
+                borderColor: "black",
                 selectedColor: "rgb(53, 80, 84)",
                 enableZoom: false,
                 showTooltip: true,
-                onRegionClick: function(element, regionCode, regionName) {
-                    scope.goTo(regionCode);
+                onMapElementClick: function(element, code, name) {
+                    scope.goTo(code);
                 }
             });
 
             scope.$on("$destroy", function () {
-                $('.france-region-map').off();
+                $('.france-map').off();
                 $('.jqvmap-label').remove();
             });
 

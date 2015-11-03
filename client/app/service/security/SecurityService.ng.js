@@ -1,4 +1,4 @@
-angular.module("entraide").factory("SecurityService", function($meteor, CollectionService){
+angular.module("entraide").factory("SecurityService", function($rootScope, $meteor, CollectionService){
 
     var securityService = {
 
@@ -12,7 +12,8 @@ angular.module("entraide").factory("SecurityService", function($meteor, Collecti
         createUser: function(user){
             return $meteor.createUser(user);
         },
-        isAdmin: function(user){
+        isAdmin: function(){
+            var user = $rootScope.currentUser;
             if(user && user.profile && user.profile.roles && user.profile.roles.length>0){
                 for(var i=0; i< user.profile.roles.length; i++){
                     if(user.profile.roles[i]==="admin"){
@@ -22,8 +23,8 @@ angular.module("entraide").factory("SecurityService", function($meteor, Collecti
             }
             return 'FORBIDDEN';
         },
-        isConnected: function(user){
-            if(user){
+        isConnected: function(){
+            if($rootScope.currentUser){
                 return true
             }
             return false;

@@ -4,7 +4,7 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
 
     CollectionService.subscribe('my-events'). then(function(events) {
         $scope.events = events;
-        $scope.map = MapService.getMap();
+        $scope.map = MapService.getMap(SessionService.getUserProfile().department.location);
         $scope.loading = false;
     });
 
@@ -20,7 +20,7 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
         $state.go("app.main.events.search.myEvents.create", {
             "event": {
                 location: MapService.getCoord(originalEventArgs),
-                region: SessionService.getUserProfile().region,
+                department: SessionService.getUserProfile().department,
                 owner: {id:$scope.$root.currentUser._id}
             }
         });

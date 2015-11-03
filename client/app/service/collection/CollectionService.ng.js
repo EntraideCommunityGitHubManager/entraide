@@ -25,6 +25,12 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             collection: Events,
             unsubscribers: ['all-events', 'search-events'],
             handle: null
+        }, {
+            name: "Department by code",
+            id: "department-by-code",
+            collection: Departments,
+            unsubscribers: [],
+            handle: null
         }],
 
         subscribe : function(subscriptionId, options) {

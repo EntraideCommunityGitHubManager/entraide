@@ -4,8 +4,8 @@ angular.module("entraide").factory("MapService", function($rootScope){
     var mapOptions = {
         styles: mapStyles,
         streetViewControl: false,
-        draggable: false,
-        minZoom: 8,
+        draggable: true,
+        minZoom: 10,
         mapTypeControlOptions: {
             mapTypeIds: ['roadmap']
         },
@@ -17,8 +17,7 @@ angular.module("entraide").factory("MapService", function($rootScope){
 
     var map = {
         center: {
-            latitude: 45.9,
-            longitude: 6.57239
+            "latitude":46.08085173686787,"longitude":6.3995361328125
         },
         zoom: 8,
         events: {
@@ -41,8 +40,9 @@ angular.module("entraide").factory("MapService", function($rootScope){
         options: mapOptions
     };
 
-    var securityService = {
-        getMap : function(){
+    var mapService = {
+        getMap : function(location){
+            map.center = location ? location : map.center;
             return map;
         },
         getCoord : function(originalEventArgs) {
@@ -56,5 +56,5 @@ angular.module("entraide").factory("MapService", function($rootScope){
 
     };
 
-    return securityService;
+    return mapService;
 });

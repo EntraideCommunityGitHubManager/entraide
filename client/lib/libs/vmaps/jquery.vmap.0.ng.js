@@ -22,14 +22,14 @@
     borderColor: 1,
     borderWidth: 1,
     borderOpacity: 1,
-    selectedRegion: 1
+    selectedElement: 1
   };
 
   var apiEvents = {
     onLabelShow: 'labelShow',
-    onRegionOver: 'regionMouseOver',
-    onRegionOut: 'regionMouseOut',
-    onRegionClick: 'regionClick'
+    onMapElementOver: 'mapElementMouseOver',
+    onMapElementOut: 'mapElementMouseOut',
+    onMapElementClick: 'mapElementClick'
   };
 
   $.fn.vectorMap = function (options){
@@ -47,7 +47,7 @@
       borderColor: '#818181',
       borderWidth: 1,
       borderOpacity: 0.25,
-      selectedRegion: null
+      selectedElement: null
     }, map;
 
     if (options === 'addMap')
@@ -458,11 +458,11 @@
 	  
       jQuery(this.rootGroup).append(path);
 
-      path.setAttribute('class', 'jqvmap-region');
+      path.setAttribute('class', 'jqvmap-department');
 
-      if(params.selectedRegion !== null)
+      if(params.selectedElement !== null)
       {
-        if(key.toLowerCase() == params.selectedRegion.toLowerCase())
+        if(key.toLowerCase() == params.selectedElement.toLowerCase())
         {
           path.setFill(params.selectedColor);
         }
@@ -473,12 +473,12 @@
       var path = e.target,
       code = e.target.id.split('_').pop(),
       labelShowEvent = $.Event('labelShow.jqvmap'),
-      regionMouseOverEvent = $.Event('regionMouseOver.jqvmap');
+      elementMouseOverEvent = $.Event('elementMouseOver.jqvmap');
 
       if (e.type == 'mouseover')
       {
-        jQuery(params.container).trigger(regionMouseOverEvent, [code, mapData.pathes[code].name]);
-        if (!regionMouseOverEvent.isDefaultPrevented())
+        jQuery(params.container).trigger(elementMouseOverEvent, [code, mapData.pathes[code].name]);
+        if (!elementMouseOverEvent.isDefaultPrevented())
         {
           if (params.hoverOpacity)
           {
@@ -512,7 +512,7 @@
         }
 
         map.label.hide();
-        jQuery(params.container).trigger('regionMouseOut.jqvmap', [code, mapData.pathes[code].name]);
+        jQuery(params.container).trigger('mapElementMouseOut.jqvmap', [code, mapData.pathes[code].name]);
       }
     });
 
@@ -527,7 +527,7 @@
       var path = e.target;
       var code = e.target.id.split('_').pop();
 
-      jQuery(params.container).trigger('regionClick.jqvmap', [code, mapData.pathes[code].name]);
+      jQuery(params.container).trigger('mapElementClick.jqvmap', [code, mapData.pathes[code].name]);
 
 	  path.currentFillColor = params.selectedColor;
       path.setFill(params.selectedColor);
