@@ -10,6 +10,7 @@ angular.module('entraide').directive('animLogin', function(){
             isConnected: '=',
             loginCallback: '&',
             createCallback: '&',
+            editCallback: '&',
             logoutCallback: '&'
         },
         templateUrl: 'client/app/directives/anim-login/anim-login.ng.html',
@@ -20,6 +21,10 @@ angular.module('entraide').directive('animLogin', function(){
 
             $scope.create = function(){
                 $scope.createCallback();
+            };
+            
+            $scope.edit = function(){
+                $scope.editCallback();
             };
 
             $scope.logout = function(){
