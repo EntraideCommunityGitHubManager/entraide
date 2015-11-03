@@ -48,5 +48,4 @@ https://snazzymaps.com/explore?sort=recent&tag=dark&page=7
 http://tympanus.net/codrops/category/playground/http://tympanus.net/codrops/category/playground/
 http://tympanus.net/Development/TooltipStylesInspiration/curved.htmlhttp://tympanus.net/Development/TooltipStylesInspiration/curved.html
 http://tympanus.net/Development/PageLoadingEffects/index8.htmlhttp://tympanus.net/Development/PageLoadingEffects/index8.htmlhttp://tympanus.net/Development/PageLoadingEffects/index8.html
-
 </pre></code>
