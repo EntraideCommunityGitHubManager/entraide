@@ -1,4 +1,4 @@
-angular.module('entraide', ['angular-meteor', 'ui.router', 'uiGmapgoogle-maps']);
+angular.module('entraide', ['angular-meteor', 'ui.router', 'uiGmapgoogle-maps', 'ngFileUpload', 'ngImgCrop']);
 
 angular.module('entraide').config(function($provide) {
     $provide.decorator('$state', function($delegate, $stateParams) {
