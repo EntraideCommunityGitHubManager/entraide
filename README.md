@@ -26,11 +26,11 @@ Angular UI Router   (0.2.15)    ---> meteor add angularui:angular-ui-router
 Twitter Bootstrap   (3.3.5)     ---> meteor add twbs:bootstrap
 Font Awesome        (4.4.0)     ---> meteor add fortawesome:fontawesome
 Connection Banner   (0.4.3)     ---> meteor add natestrauser:connection-banner      
-				     (Toast message to show and prevent lost connection with the server)
+                                    (Toast message to show and prevent lost connection with the server)
 Blaze Template      (0.0.1)  	---> meteor add urigo:angular-blaze-template       
-				     (Mixin Angular and Meteor template)
+                                    (Mixin Angular and Meteor template)
 CollectionFS        (0.0.1)  	---> meteor add cfs:standard-packages  (File management lib)
-				     meteor add cfs:gridfs  (Mongo Persist file lib)
+                            	---> meteor add cfs:gridfs  (Mongo Persist file lib)
 File Upload         (9.1.2)  	---> meteor add danialfarid:ng-file-upload
 Meteor Camera       (1.1.5)  	---> meteor add mdg:camera
 NgImgCrop           (0.3.2)  	---> meteor add alexk111:ng-img-crop
