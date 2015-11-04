@@ -43,10 +43,12 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             options = this.initOptions(options);
             var subscription = _.findWhere(this.subscriptions, {id:subscriptionId});
             if(subscription){
+            	// Load data or reload data when options has changed
 		if(subscription.handle && subscription.options != options || !subscription.handle){
 		    subscription.options = options;
 		    this.loadData(subscription, deffered);
 		} else {
+		    // Return the found collection without reloading
 		    if(subscription.typeFS){
 		    	deferred.resolve($meteor.collectionFS(subscription.collection));
 		    } else {
