@@ -33,46 +33,41 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             handle: null
         }],
 
-        subscribe : function(subscriptionId, options) {
+       subscribe : function(subscriptionId, options) {
             var deferred = $q.defer();
             options = this.initOptions(options);
             var subscription = _.findWhere(this.subscriptions, {id:subscriptionId});
             if(subscription){
-                angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
-                    var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
-                    if(unsubscription){
-                        this.stopHandle(unsubscription);
-                    } else {
-                        console.log("Unsubcription ["+unsubscriptionId+"] does not exist for the subscription ["+subscriptionId+"]"); 
-                    }
-                }, this);
-                if(!subscription.handle) {
-                    if(options.backend){
-                        this.startHandle(subscription, options).then(function(handle) {
-                            deferred.resolve($meteor.collection(subscription.collection));
-                        });
-                    } else {
-                        this.startHandle(subscription).then(function(handle) {
-                            deferred.resolve($meteor.collection(function() {
-                                return subscription.collection.find(options.collectionOptions, options.sortLimitOptions);
-                            }));
-                        });
-                    }
-                } else {
-                    if(options.backend){
-                        this.stopHandle(subscription);
-                        this.startHandle(subscription, options).then(function(handle) {
-                            deferred.resolve($meteor.collection(subscription.collection));
-                        });
-                    } else {
-                        deferred.resolve($meteor.collection(subscription.collection));
-                    }
-                }
+				if(subscription.handle && subscription.options != options || !subscription.handle){
+					subscription.options = options;
+					this.loadData(subscription, deffered);
+				} else {
+					deferred.resolve($meteor.collection(subscription.collection));
+				}
             } else {
                 deferred.reject("Subcription ["+subscriptionId+"] does not exist");    
             }
             return deferred.promise;
         },
+		
+		loadData: function(subscription, deferred) {
+			angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
+				var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
+				if(unsubscription){this.stopHandle(unsubscription);}
+			}, this);
+			if(subscription.handle){this.stopHandle(subscription);}
+			if(subscription.options.backend){
+				this.startHandle(subscription, subscription.options).then(function(handle) {
+					deferred.resolve($meteor.collection(subscription.collection));
+				});
+			} else {
+				this.startHandle(subscription).then(function(handle) {
+					deferred.resolve($meteor.collection(function() {
+						return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);
+					}));
+				});
+			}
+		},
 
         startHandle: function(sub, options){
             console.log("Try to subscribe to "+sub.id);
