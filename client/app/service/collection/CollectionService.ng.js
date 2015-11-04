@@ -6,30 +6,35 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             id: "all-users",
             collection: Meteor.users,
             unsubscribers: [],
+            options: null,
             handle: null
         },{
             name: "Search all events",
             id: "all-events",
             collection: Events,
             unsubscribers: ['my-events', 'search-events'],
+            options: null,
             handle: null
         }, {
             name: "Search events by profile",
             id: "search-events",
             collection: Events,
             unsubscribers: ['all-events', 'my-events'],
+            options: null,
             handle: null
         }, {
             name: "My events",
             id: "my-events",
             collection: Events,
             unsubscribers: ['all-events', 'search-events'],
+            options: null,
             handle: null
         }, {
             name: "Department by code",
             id: "department-by-code",
             collection: Departments,
             unsubscribers: [],
+            options: null,
             handle: null
         }],
 
@@ -38,36 +43,36 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             options = this.initOptions(options);
             var subscription = _.findWhere(this.subscriptions, {id:subscriptionId});
             if(subscription){
-				if(subscription.handle && subscription.options != options || !subscription.handle){
-					subscription.options = options;
-					this.loadData(subscription, deffered);
-				} else {
-					deferred.resolve($meteor.collection(subscription.collection));
-				}
+		if(subscription.handle && subscription.options != options || !subscription.handle){
+			subscription.options = options;
+			this.loadData(subscription, deffered);
+		} else {
+			deferred.resolve($meteor.collection(subscription.collection));
+		}
             } else {
                 deferred.reject("Subcription ["+subscriptionId+"] does not exist");    
             }
             return deferred.promise;
         },
 		
-		loadData: function(subscription, deferred) {
-			angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
-				var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
-				if(unsubscription){this.stopHandle(unsubscription);}
-			}, this);
-			if(subscription.handle){this.stopHandle(subscription);}
-			if(subscription.options.backend){
-				this.startHandle(subscription, subscription.options).then(function(handle) {
-					deferred.resolve($meteor.collection(subscription.collection));
-				});
-			} else {
-				this.startHandle(subscription).then(function(handle) {
-					deferred.resolve($meteor.collection(function() {
-						return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);
-					}));
-				});
-			}
-		},
+	loadData: function(subscription, deferred) {
+		angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
+			var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
+			if(unsubscription){this.stopHandle(unsubscription);}
+		}, this);
+		if(subscription.handle){this.stopHandle(subscription);}
+		if(subscription.options.backend){
+			this.startHandle(subscription, subscription.options).then(function(handle) {
+				deferred.resolve($meteor.collection(subscription.collection));
+			});
+		} else {
+			this.startHandle(subscription).then(function(handle) {
+				deferred.resolve($meteor.collection(function() {
+					return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);
+				}));
+			});
+		}
+	},
 
         startHandle: function(sub, options){
             console.log("Try to subscribe to "+sub.id);
