@@ -4,7 +4,7 @@ angular.module("entraide").factory("MapService", function($rootScope){
     var mapOptions = {
         styles: mapStyles,
         streetViewControl: false,
-        draggable: true,
+        draggable: false,
         minZoom: 10,
         mapTypeControlOptions: {
             mapTypeIds: ['roadmap']

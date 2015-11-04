@@ -24,6 +24,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
             email:$scope.user.email,
             password: $scope.user.password
         }).then(function () {
+            SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
             $state.reload();
         }, function (err) {
             $scope.error = err;

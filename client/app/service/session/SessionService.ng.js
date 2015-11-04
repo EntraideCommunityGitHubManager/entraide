@@ -1,6 +1,6 @@
 angular.module("entraide").factory("SessionService", function($rootScope, CollectionService, SecurityService, $q){
 
-    var defaultDepartment = {"code":"74","name":"Haute Savoie", location:{ "latitude":46.08085173686787,"longitude":6.3995361328125}};
+    var defaultDepartment = {"code":"74","name":"Haute Savoie", location:{ "latitude":46.08,"longitude":6.39}};
 
     var sessionService = {
 

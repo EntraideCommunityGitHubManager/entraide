@@ -13,7 +13,9 @@ Meteor.startup(function () {
 });
 
 Accounts.onCreateUser(function(options, user) {
-    user.profile = options.profile = { roles:["helper"] };
+    if(user.email!='entraide.community.developer@gmail.com'){
+        user.profile = options.profile = { roles:["helper"] };
+    }
     return user;
 });
 
