@@ -62,32 +62,19 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         },
 		
 	loadData: function(subscription, deferred) {
-	    angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
-		var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
-		if(unsubscription){this.stopHandle(unsubscription);}
-	    }, this);
-	    if(subscription.handle){this.stopHandle(subscription);}
-	    if(subscription.options && subscription.options.backend){
+		angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
+			var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
+			if(unsubscription){this.stopHandle(unsubscription);}
+		}, this);
+		if(subscription.handle){this.stopHandle(subscription);}
+		var callback = this.isBackend(subscription.options) ? subscription.collection : function() {return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);});
 		this.startHandle(subscription).then(function() {
-		    if(subscription.typeFS){
-		    	deferred.resolve($meteor.collectionFS(subscription.collection));
-		    } else {
-		    	deferred.resolve($meteor.collection(subscription.collection));
-		    }
+			if(subscription.typeFS){
+				deferred.resolve($meteor.collectionFS(callback));
+			} else {
+				deferred.resolve($meteor.collection(callback));
+			}
 		});
-	    } else {
-		this.startHandle(subscription).then(function() {
-		    if(subscription.typeFS){
-		    	deferred.resolve($meteor.collectionFS(function() {
-			    return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);
-		        }));
-		    } else {
-		    	deferred.resolve($meteor.collection(function() {
-			    return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);
-		        }));
-		    }
-		});
-	    }
 	},
 
         startHandle: function(sub){
