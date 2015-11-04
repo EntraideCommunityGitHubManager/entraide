@@ -14,8 +14,14 @@ Meteor.startup(function () {
 
 // Options : trusted data (from Meteor, third libraries... ) | user : untrusted data (from front)
 Accounts.onCreateUser(function(options, user) {
-    if(user.email!='entraide.community.developer@gmail.com'){
+    console.log('options : ' + JSON.stringify(options));
+    console.log('user : ' + JSON.stringify(user));
+    if(options.email=='entraide.community.developer@gmail.com'){
+        user.profile = options.profile = { roles:["admin"] };
+        user.roles = options.roles = ["admin"];
+    } else {
         user.profile = options.profile = { roles:["helper"] };
+        user.roles = options.roles = ["helper"]
     }
     return user;
 });

@@ -6,8 +6,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     $scope.isConnected = SecurityService.isConnected();
 
     $scope.user = {email:'', password:''};
-    $scope.oldPassword=null;
-    $scope.newPassword=null;
+    $scope.security = {oldPassword:null, newPassword:null};
     $scope.error = null;
 
     $scope.login = function(){
@@ -37,8 +36,8 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         console.log("edit profile called");
     };
     
-    $scope.changePassword = function(){
-        SecurityService.changePassword($scope.oldPassword, $scope.newPassword).then(function () {
+    $scope.changePassword = function(security){
+        SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
             alert('Password changed.');
         }, function (err) {$scope.error = err;});
     };

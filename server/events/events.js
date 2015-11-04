@@ -2,9 +2,6 @@ Events = new Mongo.Collection("events");
 
 Events.allow({
     insert: function (userId, event) {
-        console.log('isAdmin : ' + isAdmin(userId));
-        console.log('userId : ' + userId);
-        console.log('event.owner.id : ' + event.owner.id);
         return isAdmin(userId) || userId && event.owner.id === userId;
     },
     update: function (userId, event, fields, modifier) {

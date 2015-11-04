@@ -38,44 +38,44 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             handle: null
         }],
 
-       subscribe : function(subscriptionId, options) {
+        subscribe : function(subscriptionId, options) {
             var deferred = $q.defer();
             options = this.initOptions(options);
             var subscription = _.findWhere(this.subscriptions, {id:subscriptionId});
             if(subscription){
-            	// Load data or reload data when options has changed
-		if(subscription.handle && subscription.options != options || !subscription.handle){
-		    subscription.options = options;
-		    this.loadData(subscription, deferred);
-		} else {
-		    // Return the found collection without reloading
-		    if(subscription.typeFS){
-		    	deferred.resolve($meteor.collectionFS(subscription.collection));
-		    } else {
-		        deferred.resolve($meteor.collection(subscription.collection));	
-		    }
-		}
+                // Load data or reload data when options has changed
+                if(subscription.handle && !_.isEqual(subscription.options, options) || !subscription.handle){
+                    if(subscription.handle){this.stopHandle(subscription);}
+                    subscription.options = options;
+                    this.loadData(subscription, deferred);
+                } else {
+                    // Return the found collection without reloading
+                    if(subscription.typeFS){
+                        deferred.resolve($meteor.collectionFS(subscription.collection));
+                    } else {
+                        deferred.resolve($meteor.collection(subscription.collection));
+                    }
+                }
             } else {
-                deferred.reject("Subcription ["+subscriptionId+"] does not exist");    
+                deferred.reject("Subcription ["+subscriptionId+"] does not exist");
             }
             return deferred.promise;
         },
 		
-	loadData: function(subscription, deferred) {
+	    loadData: function(subscription, deferred) {
             angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
                 var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
                 if(unsubscription){this.stopHandle(unsubscription);}
             }, this);
-            if(subscription.handle){this.stopHandle(subscription);}
-            var callback = this.isBackend(subscription.options) ? subscription.collection : function() {return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);});
+            var callback = this.isBackend(subscription.options) ? subscription.collection : function() {return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);};
             this.startHandle(subscription).then(function() {
                 if(subscription.typeFS){
-		    deferred.resolve($meteor.collectionFS(callback));
+		            deferred.resolve($meteor.collectionFS(callback));
                 } else {
-		    deferred.resolve($meteor.collection(callback));
+		            deferred.resolve($meteor.collection(callback));
                 }
             });
-	},
+	    },
 
         startHandle: function(sub){
             console.log("Try to subscribe to "+sub.id);
