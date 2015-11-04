@@ -44,10 +44,14 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             var subscription = _.findWhere(this.subscriptions, {id:subscriptionId});
             if(subscription){
 		if(subscription.handle && subscription.options != options || !subscription.handle){
-			subscription.options = options;
-			this.loadData(subscription, deffered);
+		    subscription.options = options;
+		    this.loadData(subscription, deffered);
 		} else {
-			deferred.resolve($meteor.collection(subscription.collection));
+		    if(subscription.typeFS){
+		    	deferred.resolve($meteor.collectionFS(subscription.collection));
+		    } else {
+		        deferred.resolve($meteor.collection(subscription.collection));	
+		    }
 		}
             } else {
                 deferred.reject("Subcription ["+subscriptionId+"] does not exist");    
@@ -56,22 +60,32 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         },
 		
 	loadData: function(subscription, deferred) {
-		angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
-			var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
-			if(unsubscription){this.stopHandle(unsubscription);}
-		}, this);
-		if(subscription.handle){this.stopHandle(subscription);}
-		if(subscription.options.backend){
-			this.startHandle(subscription, subscription.options).then(function(handle) {
-				deferred.resolve($meteor.collection(subscription.collection));
-			});
-		} else {
-			this.startHandle(subscription).then(function(handle) {
-				deferred.resolve($meteor.collection(function() {
-					return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);
-				}));
-			});
-		}
+	    angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
+		var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
+		if(unsubscription){this.stopHandle(unsubscription);}
+	    }, this);
+	    if(subscription.handle){this.stopHandle(subscription);}
+	    if(subscription.options.backend){
+		this.startHandle(subscription, subscription.options).then(function(handle) {
+		    if(subscription.typeFS){
+		    	deferred.resolve($meteor.collectionFS(subscription.collection));
+		    } else {
+		    	deferred.resolve($meteor.collection(subscription.collection));
+		    }
+		});
+	    } else {
+		this.startHandle(subscription).then(function(handle) {
+		    if(subscription.typeFS){
+		    	deferred.resolve($meteor.collectionFS(function() {
+			    return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);
+		        }));
+		    } else {
+		    	deferred.resolve($meteor.collection(function() {
+			    return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);
+		        }));
+		    }
+		});
+	    }
 	},
 
         startHandle: function(sub, options){
@@ -95,6 +109,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
                 console.log("Try to unsubscribe from "+sub.id);
                 sub.handle.stop();
                 sub.handle = null;
+                sub.options = null;
                 console.log("Success UnSubscription : "+sub.id);
             }
         },
