@@ -15,6 +15,12 @@ angular.module("entraide").factory("SecurityService", function($rootScope, $mete
         changePassword: function(oldPassword, newPassword){
             return $meteor.changePassword(oldPassword, newPassword);
         },
+        forgotPassword: function(options){
+            return $meteor.forgotPassword(options);
+        },
+        resetPassword: function(token, newPassword){
+            return $meteor.resetPassword(token, newPassword);
+        },
         isAdmin: function(){
             var user = $rootScope.currentUser;
             if(user && user.profile && user.profile.roles && user.profile.roles.length>0){
