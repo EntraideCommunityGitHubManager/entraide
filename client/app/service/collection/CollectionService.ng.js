@@ -46,7 +46,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             	// Load data or reload data when options has changed
 		if(subscription.handle && subscription.options != options || !subscription.handle){
 		    subscription.options = options;
-		    this.loadData(subscription, deffered);
+		    this.loadData(subscription, deferred);
 		} else {
 		    // Return the found collection without reloading
 		    if(subscription.typeFS){
