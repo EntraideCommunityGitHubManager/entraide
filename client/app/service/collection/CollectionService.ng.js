@@ -67,8 +67,8 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
 		if(unsubscription){this.stopHandle(unsubscription);}
 	    }, this);
 	    if(subscription.handle){this.stopHandle(subscription);}
-	    if(subscription.options.backend){
-		this.startHandle(subscription, subscription.options).then(function(handle) {
+	    if(subscription.options && subscription.options.backend){
+		this.startHandle(subscription).then(function() {
 		    if(subscription.typeFS){
 		    	deferred.resolve($meteor.collectionFS(subscription.collection));
 		    } else {
@@ -76,7 +76,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
 		    }
 		});
 	    } else {
-		this.startHandle(subscription).then(function(handle) {
+		this.startHandle(subscription).then(function() {
 		    if(subscription.typeFS){
 		    	deferred.resolve($meteor.collectionFS(function() {
 			    return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);
@@ -90,20 +90,12 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
 	    }
 	},
 
-        startHandle: function(sub, options){
+        startHandle: function(sub){
             console.log("Try to subscribe to "+sub.id);
-            if(options){
-                return $meteor.subscribe(sub.id, options).then(function(handle) {
-                    console.log("Success subscription : "+sub.id);
-                    sub.handle = handle;
-                });
-            } else {
-                return $meteor.subscribe(sub.id).then(function(handle) {
-                    console.log("Success subscription : "+sub.id);
-                    sub.handle = handle;
-                });
-            }
-            
+            return $meteor.subscribe(sub.id, this.isBackend(sub.options) ? sub.options : null).then(function(handle) {
+                console.log("Success subscription : "+sub.id);
+                sub.handle = handle;
+            });
         },
 
         stopHandle : function (sub) {
@@ -130,6 +122,10 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {};
             options.backend = options.backend ? options.backend : false;
             return options;
+        },
+        
+        isBackend: function(options){
+            return options && options.backend ? true : false;	
         }
     };
 
