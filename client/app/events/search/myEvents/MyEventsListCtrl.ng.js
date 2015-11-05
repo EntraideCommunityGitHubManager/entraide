@@ -12,7 +12,6 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
         $scope.$apply();
         $state.go("app.main.events.search.myEvents.edit", {"event" : event});
         $rootScope.$broadcast('event-edit', event);
-
     };
 
     $scope.$on('map-click', function(e, originalEventArgs) {
