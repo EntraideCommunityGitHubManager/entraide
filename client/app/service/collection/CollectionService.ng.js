@@ -60,8 +60,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
 		
 	loadData: function(subscription, deferred) {
             angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
-                var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
-                if(unsubscription){this.stopHandle(unsubscription);}
+                this.stopHandle(_.findWhere(this.subscriptions, {id:unsubscriptionId}));
             }, this);
             var callback = this.isBackend(subscription.options) ? subscription.collection : function() {return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);};
             this.startHandle(subscription).then(function() {
