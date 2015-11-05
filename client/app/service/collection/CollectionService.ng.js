@@ -50,11 +50,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
                     this.loadData(subscription, deferred);
                 } else {
                     // Return the found collection without reloading
-                    if(subscription.typeFS){
-                        deferred.resolve($meteor.collectionFS(subscription.collection));
-                    } else {
-                        deferred.resolve($meteor.collection(subscription.collection));
-                    }
+                    deferred.resolve(this.getCollection(subscription, subscription.collection));
                 }
             } else {
                 deferred.reject("Subcription ["+subscriptionId+"] does not exist");
@@ -69,13 +65,13 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             }, this);
             var callback = this.isBackend(subscription.options) ? subscription.collection : function() {return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);};
             this.startHandle(subscription).then(function() {
-                if(subscription.typeFS){
-                    deferred.resolve($meteor.collectionFS(callback));
-                } else {
-                    deferred.resolve($meteor.collection(callback));
-                }
+                deferred.resolve(this.getCollection(subscription));
             });
 	},
+	
+	getCollection: function(sub, callback){
+            return sub.typeFS ? $meteor.collectionFS(callback) : $meteor.collection(callback);
+        },
 
         startHandle: function(sub){
             console.log("Try to subscribe to "+sub.id);
