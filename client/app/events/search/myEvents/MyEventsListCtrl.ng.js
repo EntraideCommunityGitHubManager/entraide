@@ -2,7 +2,7 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
 
     $scope.loading = true;
 
-    CollectionService.subscribe('my-events'). then(function(events) {
+    CollectionService.subscribe('my-events').then(function(events) {
         $scope.events = events;
         $scope.map = MapService.getMap(SessionService.getUserProfile().department.location);
         $scope.loading = false;
