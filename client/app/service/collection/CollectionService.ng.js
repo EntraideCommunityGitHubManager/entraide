@@ -62,7 +62,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             return deferred.promise;
         },
 		
-	    loadData: function(subscription, deferred) {
+	loadData: function(subscription, deferred) {
             angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
                 var unsubscription = _.findWhere(this.subscriptions, {id:unsubscriptionId});
                 if(unsubscription){this.stopHandle(unsubscription);}
@@ -70,12 +70,12 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             var callback = this.isBackend(subscription.options) ? subscription.collection : function() {return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);};
             this.startHandle(subscription).then(function() {
                 if(subscription.typeFS){
-		            deferred.resolve($meteor.collectionFS(callback));
+                    deferred.resolve($meteor.collectionFS(callback));
                 } else {
-		            deferred.resolve($meteor.collection(callback));
+                    deferred.resolve($meteor.collection(callback));
                 }
             });
-	    },
+	},
 
         startHandle: function(sub){
             console.log("Try to subscribe to "+sub.id);
