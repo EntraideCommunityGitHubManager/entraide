@@ -11,13 +11,12 @@
                 <a class="navbar-brand" href="#/home">Entraide</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+               <!-- <ul class="nav navbar-nav">
                     <li><a class="twitter" href="https://twitter.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
                     <li><a class="facebook" href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
                     <li><a class="google-plus" href="https://plus.google.com/" title="Google+" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                </ul>
+                </ul>-->
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a ng-href="#/home">Home</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -34,8 +33,6 @@
                             <li><a ng-href="#/admin/users/all">All users</a></li>
                         </ul>
                     </li>
-                    <li><a ng-href="#/about">About</a></li>
-                    <li><a ng-href="#/contact">Contact</a></li>
                     <li>
                         <a anim-login model="user" title-create="Create" title-login="Login" login-callback="login()" create-callback="create()" edit-callback="edit()" logout-callback="logout()" error="error" is-connected="isConnected"></a>
                     </li>
@@ -44,7 +41,7 @@
                         <ul class="dropdown-menu">
                             <li><input type="text" placeholder="Old password" ng-model="security.oldPassword"></li>
                             <li><input type="text" placeholder="New password" ng-model="security.newPassword"></li>
-                            <li><a ng-click="changePassword(security)">Change</a></li>
+                            <li><a ng-click="changePassword()">Change</a></li>
                         </ul>
                     </li>
                     <li><a class="twitter" href="https://twitter.com/" title="Twitter" target="_blank"></a></li>

@@ -10,7 +10,8 @@ a, button {
 }
 
 a:hover, a:focus {
-	color: #7DCDCD;
+	color: white;
+	text-decoration: none;
 }
 
 .codrops-header {

@@ -59,13 +59,14 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         },
 		
 	loadData: function(subscription, deferred) {
-            angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
-                this.stopHandle(_.findWhere(this.subscriptions, {id:unsubscriptionId}));
-            }, this);
-            var callback = this.isBackend(subscription.options) ? subscription.collection : function() {return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);};
-            this.startHandle(subscription).then(function() {
-                deferred.resolve(this.getCollection(subscription, callback));
-            });
+        var service = this;
+        angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
+            service.stopHandle(_.findWhere(this.subscriptions, {id:unsubscriptionId}));
+        });
+        var callback = service.isBackend(subscription.options) ? subscription.collection : function() {return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);};
+        this.startHandle(subscription).then(function() {
+            deferred.resolve(service.getCollection(subscription, callback));
+        });
 	},
 	
 	getCollection: function(sub, callback){

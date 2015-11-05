@@ -36,7 +36,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         console.log("edit profile called");
     };
     
-    $scope.changePassword = function(security){
+    $scope.changePassword = function(){
         SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
             alert('Password changed.');
         }, function (err) {$scope.error = err;});
