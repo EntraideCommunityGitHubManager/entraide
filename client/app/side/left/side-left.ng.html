@@ -1,21 +1,4 @@
-<div class="menu-toggler">
+<div class="menu-toggler" ng-if="isConnected">
     <a ng-click="toggleSidebar()">Sidebar</a>
-<!--    <div>isOpen : {{isOpen}}</div>
-    <div>EventCreate : {{eventCreate}}</div>
-    <div>EventEdit : {{eventEdit}}</div>
-    <div>EventDetail : {{eventDetail}}</div>
-    <div>UserEdit : {{userEdit}}</div>-->
 </div>
-
 <div ui-view="side-left-content-view"></div>
-<!--
-<div ng-if="userEdit">
-    <h2 class="icon icon-lab">User edit</h2>
-    <ul>
-        <li><a class="icon icon-data" href="#">Data Management</a></li>
-        <li><a class="icon icon-location" href="#">Location</a></li>
-        <li><a class="icon icon-study" href="#">Study</a></li>
-        <li><a class="icon icon-photo" href="#">Collections</a></li>
-        <li><a class="icon icon-wallet" href="#">Credits</a></li>
-    </ul>
-</div>-->

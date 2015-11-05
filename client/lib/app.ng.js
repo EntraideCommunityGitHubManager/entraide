@@ -15,21 +15,18 @@ angular.module('entraide').config(function($provide) {
 
 angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
-    $urlRouterProvider.when("",  "/home");
-    $urlRouterProvider.when("/", "/home");
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.when("",  "main");
+    $urlRouterProvider.when("/", "main");
+    $urlRouterProvider.otherwise("main");
 
     $stateProvider
-        .state('home', {
-            url: '/home',
-            templateUrl: 'client/home/home.ng.html'
-        })
 
         .state('app', {
             templateUrl: 'client/app/app.ng.html'
         })
 
         .state('app.main', {
+            url: '/main',
             views: {
                 'header-view@app': {
                     templateUrl: 'client/app/header/header.ng.html',
@@ -44,7 +41,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                     controller: 'SideLeftCtrl'
                 },
                 'content-view@app': {
-                    templateUrl: 'client/app/map/map.ng.html'
+                    template: '<div select-map></div>'
                 },
                 'footer-view@app': {
                     templateUrl: 'client/app/footer/footer.ng.html',

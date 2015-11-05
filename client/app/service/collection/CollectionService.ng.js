@@ -58,18 +58,18 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             return deferred.promise;
         },
 		
-	loadData: function(subscription, deferred) {
-        var service = this;
-        angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
-            service.stopHandle(_.findWhere(this.subscriptions, {id:unsubscriptionId}));
-        });
-        var callback = service.isBackend(subscription.options) ? subscription.collection : function() {return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);};
-        this.startHandle(subscription).then(function() {
-            deferred.resolve(service.getCollection(subscription, callback));
-        });
-	},
-	
-	getCollection: function(sub, callback){
+        loadData: function(subscription, deferred) {
+            var service = this;
+            angular.forEach(subscription.unsubscribers,function(unsubscriptionId){
+                service.stopHandle(_.findWhere(service.subscriptions, {id:unsubscriptionId}));
+            });
+            var callback = service.isBackend(subscription.options) ? subscription.collection : function() {return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);};
+            this.startHandle(subscription).then(function() {
+                deferred.resolve(service.getCollection(subscription, callback));
+            });
+        },
+
+        getCollection: function(sub, callback){
             return sub.typeFS ? $meteor.collectionFS(callback) : $meteor.collection(callback);
         },
 

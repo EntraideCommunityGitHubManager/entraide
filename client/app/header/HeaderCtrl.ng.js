@@ -39,13 +39,13 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     $scope.changePassword = function(){
         SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
             alert('Password changed.');
-        }, function (err) {$scope.error = err;});
+        }, function (err) {alert(err);$scope.error = err;});
     };
 
     $scope.logout = function(){
         SecurityService.logout().then(function(){
             SessionService.resetUserProfile();
-            $state.go('home', {}, {reload: true, inherit: true, notify: true});
+            $state.go('app.main', {}, {reload: true, inherit: true, notify: true});
         }, function(){$state.go('app.main.error');});
     };
 

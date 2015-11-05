@@ -9,7 +9,8 @@ angular.module("entraide").factory("SessionService", function($rootScope, Collec
             department: defaultDepartment
         },
 
-        getUserProfile : function(){
+        getUserProfile : function() {
+            this.userProfile.department = this.userProfile.department ? this.userProfile.department : defaultDepartment;
             return this.userProfile;
         },
 
