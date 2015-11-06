@@ -64,7 +64,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
                 service.stopHandle(_.findWhere(service.subscriptions, {id:unsubscriptionId}));
             });
             var callback = service.isBackend(subscription.options) ? subscription.collection : function() {return subscription.collection.find(subscription.options.collectionOptions, subscription.options.sortLimitOptions);};
-            this.startHandle(subscription).then(function() {
+            service.startHandle(subscription).then(function() {
                 deferred.resolve(service.getCollection(subscription, callback));
             });
         },
