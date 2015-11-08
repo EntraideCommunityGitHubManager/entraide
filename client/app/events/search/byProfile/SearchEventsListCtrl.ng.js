@@ -8,6 +8,9 @@ angular.module('entraide').controller('SearchEventsListCtrl', function ($rootSco
         $scope.events = events;
         $scope.map = MapService.getMap(department.location);
         $scope.loading = false;
+        setTimeout( function() {
+            $rootScope.$broadcast('anim-transition-stop');
+        }, 2000 );
     });
 
     $scope.eventClicked = function(marker, eventName, event) {

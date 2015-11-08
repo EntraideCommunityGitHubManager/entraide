@@ -1,7 +1,8 @@
 <div anim-sidebar type="1" target-view="side-left-view" class="anim-sidebar-class">
     <div class="header-view" ui-view="header-view"></div>
     <div class="notification-view" ui-view="notification-view"></div>
-    <div class="content-view" ui-view="content-view"></div>
+    <div anim-transition start-event="anim-transition-start" stop-event="anim-transition-stop">
+        <div class="content-view" ui-view="content-view"></div>
+    </div>
     <div class="footer-view" ui-view="footer-view"></div>
 </div>
-<div anim-background start-event="start-video" stop-event="stop-video"></div>

@@ -44,8 +44,12 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.logout = function(){
         SecurityService.logout().then(function(){
+            $rootScope.$broadcast('anim-transition-start');
+            $rootScope.$broadcast('anim-background-start');
             SessionService.resetUserProfile();
-            $state.go('app.main', {}, {reload: true, inherit: true, notify: true});
+            setTimeout( function() {
+                $state.go('app.main', {}, {reload: true, inherit: true, notify: true});
+            }, 1000 );
         }, function(){$state.go('app.main.error');});
     };
 

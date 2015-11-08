@@ -10,8 +10,11 @@ angular.module('entraide').directive('selectMap', function($rootScope, $state, S
             $scope.title = 'Select a department ';
             $scope.goTo = function(code) {
                 SessionService.setDepartmentByCode(code).then(function(){
-                    $rootScope.$broadcast('stop-video');
-                    $state.go("app.main.events.search.byProfile");
+                    $rootScope.$broadcast('anim-transition-start');
+                    setTimeout( function() {
+                        $rootScope.$broadcast('anim-background-stop');
+                        $state.go("app.main.events.search.byProfile");
+                    }, 1000 );
                 });
             }
         },
