@@ -1,4 +1,4 @@
-angular.module('entraide').directive('selectMap', function($state, SessionService){
+angular.module('entraide').directive('selectMap', function($rootScope, $state, SessionService){
 
     return {
         restrict: 'AEC',
@@ -10,6 +10,7 @@ angular.module('entraide').directive('selectMap', function($state, SessionServic
             $scope.title = 'Select a department ';
             $scope.goTo = function(code) {
                 SessionService.setDepartmentByCode(code).then(function(){
+                    $rootScope.$broadcast('stop-video');
                     $state.go("app.main.events.search.byProfile");
                 });
             }
@@ -19,7 +20,7 @@ angular.module('entraide').directive('selectMap', function($state, SessionServic
                 map: 'france_department_2015',
                 hoverOpacity: 0.5,
                 hoverColor: "#EC0000",
-                backgroundColor: "#E0EFEF",
+                backgroundColor: "transparent",
                 color: "rgba(86, 139, 148, 0.85)",
                 borderColor: "black",
                 selectedColor: "rgb(53, 80, 84)",

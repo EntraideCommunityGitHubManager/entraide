@@ -41,7 +41,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
                     controller: 'SideLeftCtrl'
                 },
                 'content-view@app': {
-                    template: '<div select-map></div>'
+                    templateUrl: 'client/app/map/map.ng.html'
                 },
                 'footer-view@app': {
                     templateUrl: 'client/app/footer/footer.ng.html',
