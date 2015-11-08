@@ -12,7 +12,7 @@ body{
     /*background-color: #FFFFFF;*/
     background-color: #E0EFEF;
     height:100%;
-    color: #5F4040;
+    color: white;
     font-size: 137%;
 }
 
@@ -147,11 +147,11 @@ body{
 }
 
 .map-bubble-container h1 {
-    font-size: 0.7em;
+    font-size: 1em;
 }
 
 .map-bubble-container h1 span {
-    font-weight: 100;
+    font-weight: 200;
 }
 
 .map-bubble-container p {

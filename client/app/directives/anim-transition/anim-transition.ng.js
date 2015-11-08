@@ -1,7 +1,5 @@
 angular.module('entraide').directive('animTransition', function($window){
 
-
-
     function extend( a, b ) {
         for( var key in b ) {
             if( b.hasOwnProperty( key ) ) {
