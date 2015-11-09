@@ -56,4 +56,5 @@ http://tympanus.net/codrops/2014/04/23/page-loading-effects/
 http://tympanus.net/Development/SimpleDropDownEffects/
 http://tympanus.net/Development/ResponsiveMultiLevelMenu/index4.html
 http://tympanus.net/Development/TooltipStylesInspiration/img/map.jpg
+https://github.com/angular-ui/ui-router/issues/178
 </pre></code>
