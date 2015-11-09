@@ -39,6 +39,7 @@ NgImgCrop           (0.3.2)  	---> meteor add alexk111:ng-img-crop
 
 
 <pre><code>
+https://github.com/Urigo/awesome-meteor
 https://github.com/Tallyb/ng-leaderboard-subs2
 http://jvectormap.com/maps/countries/france-regions-2016/
 http://www.daveweb.fr/blog/vos-cartes-de-france-cliquables-avec-jquery-vector-maps-et-jvector-map.html
