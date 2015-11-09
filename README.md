@@ -58,4 +58,5 @@ http://tympanus.net/Development/ResponsiveMultiLevelMenu/index4.html
 http://tympanus.net/Development/TooltipStylesInspiration/img/map.jpg
 https://github.com/angular-ui/ui-router/issues/178
 https://github.com/angular-ui/angular-google-maps/issues/429
+https://randomuser.me/api/portraits/thumb/men/1.jpg
 </pre></code>
