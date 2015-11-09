@@ -6,7 +6,7 @@ angular.module('entraide').controller('SearchEventsListCtrl', function ($rootSco
     CollectionService.subscribe('search-events', options).then(function(events) {
         $scope.events = events;
         $scope.map = MapService.getMap(department.location);
-        AnimService.stopTransition();
+        //AnimService.stopTransition();
     });
 
     $scope.eventClicked = function(marker, eventName, event) {
