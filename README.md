@@ -57,4 +57,5 @@ http://tympanus.net/Development/SimpleDropDownEffects/
 http://tympanus.net/Development/ResponsiveMultiLevelMenu/index4.html
 http://tympanus.net/Development/TooltipStylesInspiration/img/map.jpg
 https://github.com/angular-ui/ui-router/issues/178
+https://github.com/angular-ui/angular-google-maps/issues/429
 </pre></code>
