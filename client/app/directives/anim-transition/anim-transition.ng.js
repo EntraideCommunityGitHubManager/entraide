@@ -104,6 +104,7 @@ angular.module('entraide').directive('animTransition', function($window){
         controller: function($scope){
             $scope.dataOpening = "M 0,0 0,60 80,60 80,0 z M 80,0 40,30 0,60 40,30 z";
             $scope.dataClosing = "M 0,0 0,60 80,60 80,0 Z M 80,0 80,60 0,60 0,0 Z";
+
             $scope.$on($scope.startEvent, function(){
                 $scope.loader ? $scope.loader.show() : null;
             });
@@ -112,7 +113,7 @@ angular.module('entraide').directive('animTransition', function($window){
             });
         },
         link: function (scope, element) {
-            scope.loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn : 300, speedOut : 600, easingIn : mina.easeinout, easingOut : mina.bounce } );
+            scope.loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn : 300, speedOut : 600, easingIn : mina.easeinout, easingOut : mina.bounce });
             scope.$on("$destroy", function () {
                 console.log('anim-transition-destroy event');
             });

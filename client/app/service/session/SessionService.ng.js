@@ -30,7 +30,7 @@ angular.module("entraide").factory("SessionService", function($rootScope, Collec
             } else {
                 deferred.resolve(null, defaultDepartment);
             }
-            return deferred.promise;;
+            return deferred.promise;
         },
 
         resetUser: function(){

@@ -1,6 +1,7 @@
 angular.module('entraide', ['angular-meteor', 'ui.router', 'uiGmapgoogle-maps', 'ngFileUpload', 'ngImgCrop']);
 
-angular.module('entraide').config(function($provide) {
+angular.module('entraide').config(function($provide, $urlRouterProvider) {
+    $urlRouterProvider.deferIntercept();
     $provide.decorator('$state', function($delegate, $stateParams) {
         $delegate.forceReload = function() {
             return $delegate.go($delegate.current, $stateParams, {
@@ -13,7 +14,7 @@ angular.module('entraide').config(function($provide) {
     });
 });
 
-angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function ($urlRouterProvider, $stateProvider, $locationProvider) {
+angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
 
     $urlRouterProvider.when("",  "main");
     $urlRouterProvider.when("/", "main");
@@ -225,7 +226,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
             url: '/logout',
             resolve: {
                 "logout": ["$meteor", "$state", function($meteor, $state){
-                    return $meteor.logout().then(function(){$state.go('home');}, function(){$state.go('app.main.error');});
+                    return $meteor.logout().then(function(){$state.go('main');}, function(){$state.go('app.main.error');});
                 }]
             }
         })
@@ -252,7 +253,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', '$loc
         });
 }]);
 
-angular.module('entraide').run(["$rootScope", "$state", function ($rootScope, $state) {
+angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimService", function ($rootScope, $urlRouter, $state, AnimService) {
     $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
         console.log(error);
         switch(error) {
@@ -260,7 +261,7 @@ angular.module('entraide').run(["$rootScope", "$state", function ($rootScope, $s
                 $state.go("app.main.error.required");
                 break;
             case "FORBIDDEN":
-                $state.go("home");
+                $state.go("main");
                 break;
             case "UNAUTHORIZED":
                 $state.go("app.main.error.unauthorized");
@@ -269,6 +270,56 @@ angular.module('entraide').run(["$rootScope", "$state", function ($rootScope, $s
                 $state.go("app.main.error");
         }
     });
+
+    /*$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+
+        var transition = {toState: toState.name,fromState: fromState.name};
+
+        if(AnimService.isTransitionning(transition) || toState.name.length>=1 && fromState.name.length>=1){
+            event.preventDefault();
+        }
+
+        if(toState.name.indexOf('app.main')>=0){
+            if(!toState.name.endsWith("create") && !toState.name.endsWith("edit") && !toState.name.endsWith("detail") && fromState.name.length>=1){
+                if(!AnimService.isTransitionning(transition)){
+                    AnimService.startTransition(transition, 1);
+                    setTimeout(function(){
+                        $state.go(toState);
+                    }, 2000);
+                    AnimService.stopTransition(3000);
+                }
+            }
+            if(toState.name.endsWith("main")){
+                AnimService.stopTransition(2000);
+            }
+        } else {
+            $state.go('app.main');
+        }
+    });*/
+
+
+    $rootScope.$on('$locationChangeSuccess', function(e, url, oldUrl) {
+        e.preventDefault();
+
+        if(url.indexOf('/#/main')>=0){
+            if(!url.endsWith("create") && !url.endsWith("edit") && !url.endsWith("detail")){
+                AnimService.startTransition(1);
+            }
+
+            setTimeout(function(){
+                $urlRouter.sync();
+            }, 1000);
+
+            if(url.endsWith("#/main")){
+                AnimService.stopTransition(2000);
+            }
+        } else {
+            $state.go('app.main');
+        }
+
+    });
+    $urlRouter.listen();
+
 }]);
 
 

@@ -1,4 +1,4 @@
-angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope, SecurityService, SessionService,  $meteor, $state) {
+angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope, SecurityService, SessionService,  $meteor, $state, AnimService) {
 
     console.log("header-view Ctrl");
 
@@ -44,12 +44,11 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.logout = function(){
         SecurityService.logout().then(function(){
-            $rootScope.$broadcast('anim-transition-start');
-            $rootScope.$broadcast('anim-background-start');
+            AnimService.startTransition(1);
             SessionService.resetUserProfile();
             setTimeout( function() {
                 $state.go('app.main', {}, {reload: true, inherit: true, notify: true});
-            }, 1000 );
+            }, 1500 );
         }, function(){$state.go('app.main.error');});
     };
 

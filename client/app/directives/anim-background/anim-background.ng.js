@@ -13,15 +13,15 @@ angular.module('entraide').directive('animBackground', function(){
             if (!$scope.isTouch) {
                 $scope.BV = new $.BigVideo({forceAutoplay:$scope.isTouch});
                 $scope.BV.init();
-                $scope.BV.show('video/bird.mp4',{ambient:true});
+                $scope.BV.show('video/beach.mp4',{ambient:true});
             }
 
             $scope.$on($scope.startEvent, function(){
-                $scope.BV ? $scope.BV.show('video/bird.mp4',{ambient:true}) : null;
+                $scope.BV ? $scope.BV.show('video/beach.mp4',{ambient:true}) : null;
             });
 
             $scope.$on($scope.stopEvent, function(){
-                $scope.BV ? $scope.BV.show('img/bird.jpg',{ambient:true}) : null;
+                $scope.BV ? $scope.BV.show('img/beach.jpg',{ambient:true}) : null;
             });
         },
         link: function (scope, element) {
