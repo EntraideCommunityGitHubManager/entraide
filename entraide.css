@@ -1,7 +1,7 @@
 /* CSS declarations go here */
 html {
 /*    height:96%;*/
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 body{
@@ -13,12 +13,14 @@ body{
     /*background-color: #E0EFEF;*/
     background-color: white;
     height:100%;
+    width: 100%;
     color: white;
     font-size: 137%;
 }
 
 .app-view{
     height: 100%;
+    width: 100%;
 /*    overflow: auto;*/
 }
 
@@ -74,6 +76,7 @@ body{
 .content-view {
     /*border: 1px black dashed;*/
     /*height: 97%;*/
+    height: 100%;
     width: 100%;
     margin-top: 5px;
 }
@@ -108,20 +111,17 @@ body{
 
 .jqvmap-label {
     position: absolute;
-    z-index: 99999;
+    z-index: 99;
     color: white;
-}
-
-.angular-google-map-container {
-    /*height: 400px;*/
-    /*width: 800px;*/
 }
 
 .angular-google-map {
     position: relative;
-    padding-bottom: 50%; /* aspectratio 3:2 */
+    /*padding-bottom: 50%;
     height: 0;
-    overflow: hidden;
+    overflow: hidden;*/
+    height: 100%;
+    width: 100%;
 }
 .angular-google-map-container {
     position: absolute;
