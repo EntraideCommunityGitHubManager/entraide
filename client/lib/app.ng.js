@@ -295,8 +295,11 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
     });
 
 
-    /*$rootScope.$on('$locationChangeSuccess', function(e, url, oldUrl) {
-        e.preventDefault();
+    $rootScope.$on('$locationChangeSuccess', function(e, url, oldUrl) {
+        
+        AnimService.stopTransition(2000);
+        
+        /*e.preventDefault();
 
         if(url.indexOf('/#/main')>=0){
             if(!url.endsWith("create") && !url.endsWith("edit") && !url.endsWith("detail")){
@@ -312,10 +315,10 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
             }
         } else {
             $state.go('app.main');
-        }
+        }*/
 
     });
-    $urlRouter.listen();*/
+    //$urlRouter.listen();
 
 }]);
 
