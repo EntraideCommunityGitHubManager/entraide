@@ -301,7 +301,7 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
 
     $rootScope.$on('$locationChangeSuccess', function(e, url, oldUrl) {
         
-        AnimService.stopTransition(2000);
+        //AnimService.stopTransition(2000);
         
         /*e.preventDefault();
 
