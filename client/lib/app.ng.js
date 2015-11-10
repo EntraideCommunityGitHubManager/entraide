@@ -293,7 +293,7 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
 			event.preventDefault();
 			setTimeout(function(){
 				$state.go(transition.toState.name);
-			}, AnimService.getTransitionConfig().delay);
+			}, AnimService.getTransitionConfig().delay + 100);
 		}
         }
     });
