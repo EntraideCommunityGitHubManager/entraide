@@ -273,7 +273,7 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         
-        var isTransitionable = function(t){
+        var isTransitionnable = function(t){
             var routes = [];
             if(t.toState.name.indexOf('app.main')>=0){
                 if(t.fromState.name.indexOf('app.main')<0 || t.toState.name.endsWith("create") || t.toState.name.endsWith("edit") || t.toState.name.endsWith("detail")){
@@ -283,14 +283,18 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
             return true;
         }
 
-        var transition = {toState: toState.name, fromState: fromState.name};
+        var transition = {toState: toState, fromState: fromState};
 
-        if(isTransitionable(transition)){
-            event.preventDefault();
-            AnimService.startTransition(1);
-            setTimeout(function(){
-                $location.path(transition.toState.name);
-            }, 2000);
+        if(isTransitionnable(transition)){
+			if(AnimSerice.isNotCurrent(transition)){
+				AnimService.startTransition(transition);
+			}
+			if(AnimService.isTransitionning()){
+				event.preventDefault();
+				setTimeout(function(){
+					$state.go(transition.toState.name);
+				}, AnimService.getTransitionConfig().delay);
+			}
         }
     });
 
