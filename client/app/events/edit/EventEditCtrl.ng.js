@@ -1,7 +1,8 @@
-angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $scope, $meteor, $stateParams, $state, CollectionService) {
+angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $scope, $meteor, $stateParams, $state, CollectionService, AnimService) {
 
     if($stateParams.event && $stateParams.event._id) {
         $scope.event = $meteor.object(Events, $stateParams.event._id, false);
+        AnimService.stopTransition();
     }
 
     $scope.update = function(event) {

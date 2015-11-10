@@ -3,7 +3,7 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
     var animService = {
         transitionConfig: {
             type: 'parallelogram',
-            delay: 2000,
+            delay: 1000,
             transitionning: false,
             transition: null
         },
@@ -35,7 +35,7 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
         	this.transitionConfig.transitionning = false;
             setTimeout(function(){
                 $rootScope.$broadcast('anim-transition-stop');
-            }, delay ? delay : 2000);
+            }, delay ? delay : 1000);
         }
 
     };

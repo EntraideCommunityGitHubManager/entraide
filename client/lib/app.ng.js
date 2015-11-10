@@ -288,6 +288,9 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
                     || t.toState.name.endsWith("edit")
                     || t.toState.name.endsWith("detail")
                     || t.toState.name == t.fromState.name
+                    /*|| t.toState.name.indexOf('events')>=0 && t.fromState.name.endsWith('create')
+                    || t.toState.name.indexOf('events')>=0 && t.fromState.name.endsWith('edit')
+                    || t.toState.name.indexOf('events')>=0 && t.fromState.name.endsWith('detail')*/
                     || toParams && toParams.targetState == "logout"){
                     return  false;
                 }
