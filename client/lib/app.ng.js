@@ -27,6 +27,9 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
 
         .state('app.main', {
             url: '/main',
+            params: {
+                targetState: {}
+            },
             views: {
                 'header-view@app': {
                     templateUrl: 'client/app/header/header.ng.html',
@@ -228,7 +231,9 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
             url: '/logout',
             resolve: {
                 "logout": ["$meteor", "$state", function($meteor, $state){
-                    return $meteor.logout().then(function(){$state.go('main');}, function(){$state.go('app.main.error');});
+                    return $meteor.logout().then(function(){
+                        $state.go('app.main', {targetState:'logout'});
+                    }, function(){$state.go('app.main.error');});
                 }]
             }
         })
@@ -282,7 +287,8 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
                     || t.toState.name.endsWith("create")
                     || t.toState.name.endsWith("edit")
                     || t.toState.name.endsWith("detail")
-                    || t.toState.name == t.fromState.name){
+                    || t.toState.name == t.fromState.name
+                    || toParams && toParams.targetState == "logout"){
                     return  false;
                 }
             }
@@ -298,10 +304,14 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
             if(AnimService.isTransitionning()){
                 event.preventDefault();
                 setTimeout(function(){
-                    $state.go(transition.toState.name);
+                    $state.go(transition.toState.name, toParams);
                 }, AnimService.getTransitionConfig().delay + 100);
             }
         }
+        if(toParams && toParams.targetState == "logout"){
+            toParams.targetState =null;
+        }
+
     });
 
 

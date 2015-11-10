@@ -43,12 +43,14 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
 
     $scope.logout = function(){
-        SecurityService.logout().then(function(){
+        $state.go('app.main.logout');
+
+       /* SecurityService.logout().then(function(){
             SessionService.resetUserProfile();
             setTimeout( function() {
                 $state.go('app.main', {reload: true, inherit: true, notify: true});
             }, 1500 );
-        }, function(){$state.go('app.main.error');});
+        }, function(){$state.go('app.main.error');});*/
     };
 
     $scope.openSidebar = function(){

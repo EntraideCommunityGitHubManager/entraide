@@ -33,19 +33,10 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
             console.log('AnimService.stopTransition called');
         	this.transitionConfig.transition = null;
         	this.transitionConfig.transitionning = false;
-            setTimeout(function(){$rootScope.$broadcast('anim-transition-stop');}, delay ? delay : 2000);
-        },
-
-        animTransitionTo: function(state){
-            console.log('AnimService.transitionTo called');
-            $rootScope.$broadcast('anim-transition-start');
-            var service = this;
             setTimeout(function(){
-                $state.go(state);
-            }, service.transitionConfig.delay);
+                $rootScope.$broadcast('anim-transition-stop');
+            }, delay ? delay : 2000);
         }
-
-
 
     };
 
