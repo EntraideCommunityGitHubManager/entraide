@@ -29,7 +29,9 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
 			
         },
         stopTransition : function(delay) {
-            setTimeout(function(){$rootScope.$broadcast('anim-transition-stop');}, delay ? delay : 2000);
+        	this.service.transitionConfig.transition = null;
+        	this.service..transitionConfig.transitionning = false;
+            	setTimeout(function(){$rootScope.$broadcast('anim-transition-stop');}, delay ? delay : 2000);
         }
     };
 
