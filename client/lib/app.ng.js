@@ -292,15 +292,15 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
         var transition = {toState: toState, fromState: fromState};
 
         if(isTransitionnable(transition)){
-		if(AnimService.isNotCurrent(transition)){
-			AnimService.startTransition(transition);
-		}
-		if(AnimService.isTransitionning()){
-			event.preventDefault();
-			setTimeout(function(){
-				$state.go(transition.toState.name);
-			}, AnimService.getTransitionConfig().delay + 100);
-		}
+            if(AnimService.isNotCurrent(transition)){
+                AnimService.startTransition(transition);
+            }
+            if(AnimService.isTransitionning()){
+                event.preventDefault();
+                setTimeout(function(){
+                    $state.go(transition.toState.name);
+                }, AnimService.getTransitionConfig().delay + 100);
+            }
         }
     });
 
