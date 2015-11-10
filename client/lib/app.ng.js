@@ -1,7 +1,6 @@
 angular.module('entraide', ['angular-meteor', 'ui.router', 'uiGmapgoogle-maps', 'ngFileUpload', 'ngImgCrop']);
 
 angular.module('entraide').config(function($provide, $urlRouterProvider) {
-    //$urlRouterProvider.deferIntercept();
     $provide.decorator('$state', function($delegate, $stateParams) {
         $delegate.forceReload = function() {
             return $delegate.go($delegate.current, $stateParams, {
@@ -42,7 +41,10 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                     controller: 'SideLeftCtrl'
                 },
                 'content-view@app': {
-                    templateUrl: 'client/app/map/map.ng.html'
+                    templateUrl: 'client/app/map/map.ng.html',
+                    controller: function(AnimService){
+                        AnimService.stopTransition(1);
+                    }
                 },
                 'footer-view@app': {
                     templateUrl: 'client/app/footer/footer.ng.html',
@@ -276,7 +278,11 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
         var isTransitionnable = function(t){
             var routes = [];
             if(t.toState.name.indexOf('app.main')>=0){
-                if(t.fromState.name.indexOf('app.main')<0 || t.toState.name.endsWith("create") || t.toState.name.endsWith("edit") || t.toState.name.endsWith("detail")){
+                if(t.fromState.name.indexOf('app.main')<0
+                    || t.toState.name.endsWith("create")
+                    || t.toState.name.endsWith("edit")
+                    || t.toState.name.endsWith("detail")
+                    || t.toState.name == t.fromState.name){
                     return  false;
                 }
             }
@@ -286,7 +292,7 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
         var transition = {toState: toState, fromState: fromState};
 
         if(isTransitionnable(transition)){
-		if(AnimSerice.isNotCurrent(transition)){
+		if(AnimService.isNotCurrent(transition)){
 			AnimService.startTransition(transition);
 		}
 		if(AnimService.isTransitionning()){
@@ -298,31 +304,6 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
         }
     });
 
-
-    $rootScope.$on('$locationChangeSuccess', function(e, url, oldUrl) {
-        
-        //AnimService.stopTransition(2000);
-        
-        /*e.preventDefault();
-
-        if(url.indexOf('/#/main')>=0){
-            if(!url.endsWith("create") && !url.endsWith("edit") && !url.endsWith("detail")){
-                AnimService.startTransition(1);
-            }
-
-            setTimeout(function(){
-                $urlRouter.sync();
-            }, 1000);
-
-            if(url.endsWith("#/main")){
-                AnimService.stopTransition(2000);
-            }
-        } else {
-            $state.go('app.main');
-        }*/
-
-    });
-    //$urlRouter.listen();
 
 }]);
 

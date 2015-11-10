@@ -3,7 +3,7 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
     CollectionService.subscribe('my-events').then(function(events) {
         $scope.events = events;
         $scope.map = MapService.getMap(SessionService.getUserProfile().department.location);
-        //AnimService.stopTransition();
+        AnimService.stopTransition();
     });
 
     $scope.eventClicked = function(marker, eventName, event){

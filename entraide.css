@@ -1,7 +1,7 @@
 /* CSS declarations go here */
 html {
 /*    height:96%;*/
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 
 body{
@@ -28,9 +28,14 @@ body{
     margin-bottom: 40px;
 }
 
-.st-content-inner{
+.st-content{
     margin-top: 51px;
 }
+
+  .st-content-inner{
+    height: 100%;
+    width: 100%;
+} 
 
 /* Connection Banner style */
 
@@ -129,6 +134,7 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
+    bottom: 29px;
 }
 
 

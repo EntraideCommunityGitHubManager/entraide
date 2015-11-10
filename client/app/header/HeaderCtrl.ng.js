@@ -44,10 +44,9 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.logout = function(){
         SecurityService.logout().then(function(){
-            AnimService.startTransition(1);
             SessionService.resetUserProfile();
             setTimeout( function() {
-                $state.go('app.main', {}, {reload: true, inherit: true, notify: true});
+                $state.go('app.main', {reload: true, inherit: true, notify: true});
             }, 1500 );
         }, function(){$state.go('app.main.error');});
     };

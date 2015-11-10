@@ -9,29 +9,31 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
 	},
 	getTransitionConfig: function(){
 		return this.transitionConfig;
-	}
+	},
 	isTransitionning: function(){
 		return this.transitionConfig.transitionning;
 	},
 	isNotCurrent: function(transition){
-		return !_.equals(transition, this.transitionConfig.transition);
+		return !angular.equals(transition, this.transitionConfig.transition);
 	},
 	startTransition : function(transition, type){
+        console.log('AnimService.starTransition called');
 		var service = this;
 		service.transitionConfig.transition = transition;
 		service.transitionConfig.type = type ? type : service.transitionConfig.type;
 		service.transitionConfig.transitionning = true;
-    		$rootScope.$broadcast('anim-transition-start');
-		
-    		setTimeout(function(){
+        $rootScope.$broadcast('anim-transition-start');
+        setTimeout(function(){
+            console.log('AnimService.transitionConfig.transitionning : false');
 			service.transitionConfig.transitionning = false;
 		}, service.transitionConfig.delay);
 			
         },
         stopTransition : function(delay) {
-        	this.service.transitionConfig.transition = null;
-        	this.service..transitionConfig.transitionning = false;
-            	setTimeout(function(){$rootScope.$broadcast('anim-transition-stop');}, delay ? delay : 2000);
+            console.log('AnimService.stopTransition called');
+        	this.transitionConfig.transition = null;
+        	this.transitionConfig.transitionning = false;
+            setTimeout(function(){$rootScope.$broadcast('anim-transition-stop');}, delay ? delay : 2000);
         }
     };
 
