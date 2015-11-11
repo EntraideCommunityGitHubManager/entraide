@@ -291,8 +291,8 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
                     || t.toState.name.endsWith("edit")
                     || t.toState.name.endsWith("detail")
                     || t.toState.name == t.fromState.name
-                    || t.toState.name.indexOf('app.main.profile')
-                    || t.fromState.name.indexOf('app.main.admin')
+                    || t.toState.name.indexOf('app.main.profile')>=0
+                    || t.fromState.name.indexOf('app.main.admin')>=0
                     /*|| t.toState.name.indexOf('events')>=0 && t.fromState.name.endsWith('create')
                     || t.toState.name.indexOf('events')>=0 && t.fromState.name.endsWith('edit')
                     || t.toState.name.indexOf('events')>=0 && t.fromState.name.endsWith('detail')*/
