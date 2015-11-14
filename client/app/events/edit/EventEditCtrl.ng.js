@@ -9,7 +9,6 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
         if(event._id) {
             event.save().then(function() {
                 $rootScope.$broadcast('anim-sidebar-toggle');
-                $state.go("app.main.events.search.myEvents");
             }, function(error){alert(error);});
         }
     };
@@ -19,7 +18,6 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
             CollectionService.subscribe('my-events').then(function(events) {
                 events.remove(event);
                 $rootScope.$broadcast('anim-sidebar-toggle');
-                $state.go("app.main.events.search.myEvents");
             });
         }
     };

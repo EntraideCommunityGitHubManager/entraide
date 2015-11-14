@@ -3,3 +3,11 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+.big-image {
+    position: absolute !important;
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    width: auto;
+}

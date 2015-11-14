@@ -48,8 +48,8 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                     controller: function(AnimService){AnimService.stopTransition(1);}
                 },
                 'background-view@app': {
-                    template: '<div anim-background start-event="anim-background-start" stop-event="anim-background-stop"></div>'
-                }
+                    template: '<div anim-background start-event="anim-background-start" stop-event="anim-background-stop", source-video="video/beach.mp4" source-image="img/beach.jpg"></div>'
+                },
                 'footer-view@app': {
                     templateUrl: 'client/app/footer/footer.ng.html',
                     controller: 'FooterCtrl'
@@ -61,11 +61,8 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
             url: '/events',
             abstract: true,
             template: '<ui-view/>',
-            params: {
-                event: {}
-            },
             views: {
-                'background-view@app': {}
+
             }
         })
         .state('app.main.events.search', {
@@ -92,6 +89,9 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         })
         .state('app.main.events.search.byProfile.detail', {
             url: '/detail',
+            params: {
+                event: {}
+            },
             views: {
                 'side-left-content-view@app.main': {
                     templateUrl: 'client/app/events/detail/event-detail.ng.html',
@@ -115,6 +115,9 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         })
         .state('app.main.events.search.myEvents.create', {
             url: '/create',
+            params: {
+                event: {}
+            },
             views: {
                 'side-left-content-view@app.main': {
                     templateUrl: 'client/app/events/create/event-create.ng.html',
@@ -124,6 +127,9 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         })
         .state('app.main.events.search.myEvents.edit', {
             url: '/edit',
+            params: {
+                event: {}
+            },
             views: {
                 'side-left-content-view@app.main': {
                     templateUrl: 'client/app/events/edit/event-edit.ng.html',
@@ -134,10 +140,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         .state('app.main.profile', {
             url: '/profile',
             abstract: true,
-            template: '<ui-view/>',
-            views: {
-                'background-view@app': {}
-            }
+            template: '<ui-view/>'
         })
         .state('app.main.profile.edit', {
             url: '/edit/:userId',

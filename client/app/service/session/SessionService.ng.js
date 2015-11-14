@@ -11,6 +11,7 @@ angular.module("entraide").factory("SessionService", function($rootScope, Collec
 
         getUserProfile : function() {
             this.userProfile.department = this.userProfile.department ? this.userProfile.department : defaultDepartment;
+            this.userProfile.user = this.userProfile.user ? this.userProfile.user : $rootScope.currentUser;
             return this.userProfile;
         },
 

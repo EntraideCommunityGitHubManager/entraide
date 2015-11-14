@@ -10,7 +10,6 @@ angular.module('entraide').controller('EventCreateCtrl', function ($rootScope, $
     $scope.create = function(event){
         $scope.events.push(event);
         $rootScope.$broadcast('anim-sidebar-toggle');
-        $state.go("app.main.events.search.myEvents");
     };
 
 
