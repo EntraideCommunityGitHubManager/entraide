@@ -45,10 +45,10 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 },
                 'content-view@app': {
                     templateUrl: 'client/app/map/map.ng.html',
-                    controller: function(AnimService){AnimService.stopTransition(1);}
+                    controller: 'MapCtrl'
                 },
                 'background-view@app': {
-                    template: '<div anim-background start-event="anim-background-start" stop-event="anim-background-stop", source-video="video/beach.mp4" source-image="img/beach.jpg"></div>'
+                    template: '<div anim-background source-video="video/beach.mp4" source-image="img/beach.jpg"></div>'
                 },
                 'footer-view@app': {
                     templateUrl: 'client/app/footer/footer.ng.html',

@@ -1,20 +1,12 @@
-angular.module('entraide').directive('selectMap', function($rootScope, $state, SessionService){
+angular.module('entraide').directive('selectMap', function(){
 
     return {
         restrict: 'AEC',
         scope: {
-
+            goTo: '&'
         },
         templateUrl: 'client/app/directives/select-map/select-map.ng.html',
-        controller: function($scope){
-            $scope.title = 'Select a department ';
-            $scope.goTo = function(code) {
-                SessionService.setDepartmentByCode(code).then(function(){
-                    $state.go("app.main.events.search.byProfile");
-                });
-            }
-        },
-        link: function (scope, element) {
+        link: function (scope) {
             $('.france-map').vectorMap({
                 map: 'france_department_2015',
                 hoverOpacity: 0.5,
@@ -25,8 +17,8 @@ angular.module('entraide').directive('selectMap', function($rootScope, $state, S
                 selectedColor: "rgb(53, 80, 84)",
                 enableZoom: false,
                 showTooltip: true,
-                onMapElementClick: function(element, code, name) {
-                    scope.goTo(code);
+                onMapElementClick: function(element, code) {
+                    scope.goTo()(code);
                 }
             });
 

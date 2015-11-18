@@ -81,7 +81,7 @@ angular.module('entraide').directive('animTransition', function(){
                 }
             };
             attrs.startEvent = attrs.startEvent && attrs.startEvent.length>0 ? attrs.startEvent : "anim-transition-start";
-            attrs.stopEvent  = attrs.startEvent && attrs.stopEvent.length>0 ? attrs.stopEvent : "anim-transition-stop";
+            attrs.stopEvent  = attrs.stopEvent && attrs.stopEvent.length>0 ? attrs.stopEvent : "anim-transition-stop";
 
             attrs.animTransitionType = attrs.animTransitionType && attrs.animTransitionType.length>0 ? attrs.animTransitionType : 'parallelogram';
             var animation = config[attrs.animTransitionType] ? config[attrs.animTransitionType] : config['parallelogram'];
