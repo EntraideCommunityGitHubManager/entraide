@@ -6,7 +6,7 @@ angular.module('entraide').directive('animTransition', function(){
         scope: {
             startEvent: '@',
             stopEvent : '@',
-            animationType: '@'
+            animTransitionType: '@'
         },
         templateUrl: 'client/app/directives/anim-transition/anim-transition.ng.html',
         controller: function($scope){
@@ -28,8 +28,8 @@ angular.module('entraide').directive('animTransition', function(){
                     'close' : 'm -5,-5 0,70 90,0 0,-70 z m 5,5 c 0,0 7.9843788,0 40,0 35,0 40,0 40,0 l 0,60 c 0,0 -3.944487,0 -40,0 -30,0 -40,0 -40,0 z'
                 }    
             };
-            attrs.animationType = attrs.animationType && attrs.animationType.length>0 ? attrs.animationType : 'parallelogram';
-            var animation = config[attrs.animationType] ? config[attrs.animationType] : config['parallelogram'];
+            attrs.animTransitionType = attrs.animTransitionType && attrs.animTransitionType.length>0 ? attrs.animTransitionType : 'parallelogram';
+            var animation = config[attrs.animTransitionType] ? config[attrs.animTransitionType] : config['parallelogram'];
             
             var div = element[0].querySelector('.pageload-overlay'));
             div.setAttribute("data-opening", animation.open);
