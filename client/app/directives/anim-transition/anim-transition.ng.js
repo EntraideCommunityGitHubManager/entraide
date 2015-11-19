@@ -1,4 +1,4 @@
-angular.module('entraide').directive('animTransition', function(AnimService, $state){
+angular.module('entraide').directive('animTransition', function($rootScope, AnimService, $state){
     
     return {
         restrict: 'AEC',
