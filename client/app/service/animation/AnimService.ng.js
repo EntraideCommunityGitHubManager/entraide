@@ -11,6 +11,12 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
         getTransitionConfig: function(){
             return this.transitionConfig;
         },
+        getRoutingConfig: function(){
+            return this.routingConfig;
+        },
+        setTransitionConfig: function(routingConfig){
+            this.routingConfig = routingConfig;
+        },
         isTransitionning: function(){
             return this.transitionConfig.transitionning;
         },
