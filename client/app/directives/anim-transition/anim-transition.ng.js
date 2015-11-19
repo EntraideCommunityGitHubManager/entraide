@@ -1,4 +1,4 @@
-angular.module('entraide').directive('animTransition', function(){
+angular.module('entraide').directive('animTransition', function(AnimService, $state){
     
     return {
         restrict: 'AEC',
@@ -6,10 +6,30 @@ angular.module('entraide').directive('animTransition', function(){
         scope: {
             startEvent: '@',
             stopEvent : '@',
-            animTransitionType: '@'
+            animTransitionType: '@',
+            animTransitionRoutingConfig: '='
         },
         templateUrl: 'client/app/directives/anim-transition/anim-transition.ng.html',
-        controller: function($scope){
+        controller: function($scope) {
+            
+            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+  
+                    var transition = {toState: toState, fromState: fromState};
+            
+                    if(AnimService.isTransitionnable(transition, toParams)){
+                        if(AnimService.isNotCurrent(transition)){
+                            AnimService.startTransition(transition);
+                        }
+                        if(AnimService.isTransitionning()){
+                            event.preventDefault();
+                            setTimeout(function(){
+                                $state.go(transition.toState.name, toParams);
+                            }, AnimService.getTransitionConfig().delay + 100);
+                        }
+                    }
+                   
+                });
+            
             $scope.$on($scope.startEvent, function(){
                 $scope.svgLoader ? $scope.svgLoader.show() : null;
             });
@@ -82,6 +102,10 @@ angular.module('entraide').directive('animTransition', function(){
             };
             attrs.startEvent = attrs.startEvent && attrs.startEvent.length>0 ? attrs.startEvent : "anim-transition-start";
             attrs.stopEvent  = attrs.stopEvent && attrs.stopEvent.length>0 ? attrs.stopEvent : "anim-transition-stop";
+            
+            if(attrs.animTransitionRoutingConfig){
+                AnimService.setRoutingConfig(attrs.animTransitionRoutingConfig);
+            }
 
             attrs.animTransitionType = attrs.animTransitionType && attrs.animTransitionType.length>0 ? attrs.animTransitionType : 'parallelogram';
             var animation = config[attrs.animTransitionType] ? config[attrs.animTransitionType] : config['parallelogram'];
