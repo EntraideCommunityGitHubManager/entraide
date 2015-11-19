@@ -1,6 +1,7 @@
 angular.module("entraide").factory("AnimService", function($rootScope, $state){
 
     var animService = {
+        routingConfig : {includes:[],excludes:[]},
         transitionConfig: {
             type: 'parallelogram',
             delay: 1000,
