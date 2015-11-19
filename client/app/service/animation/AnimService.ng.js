@@ -45,59 +45,55 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
             }, delay ? delay : 1500);
         },
         isTransitionnable : function(t, params) {
-            var config = this.getRoutingConfig();
-            for(var i= 0; i < config.excludes.length; i++){
-				if(config.excludes[i]==params.targetState){
-            				params.targetState =null;
-					return false;
+            	var config = this.getRoutingConfig();
+            
+		var checkRule = function(wildcard, state, target){
+			if(wildcard){
+				if(state.name.indexOf(target)>=0){
+					return true;
+				} else {
+					if(state.name == target){
+						return true;
+					}
 				}
+			}	
+		}
+            
+            	for(var i= 0; i < config.excludes.length; i++){
+			if(config.excludes[i]==params.targetState){
+    				params.targetState =null;
+				return false;
+			}
+		}
+			
+		for(var i= 0; i < config.includes.length; i++){
+			var fromRule = config.includes[i].from;
+			var target = config.includes[i].to;
+			
+			var fromWildcard = false;
+			var toWildcard = false;
+			
+			if(fromRule.indexOf('*')>=0){
+				fromRule = fromRule.replace('*','');
+				fromWildcard = true;
 			}
 			
-			for(var i= 0; i < config.includes.length; i++){
-				var fromRule = config.includes[i].from;
-				var toRule = config.includes[i].to;
-				
-				var fromStar = false;
-				var toStar = false;
-				
-				if(fromRule.indexOf('*')>=0){
-					fromRule = fromRule.replace('*','');
-					fromStar = true;
+			if(target.indexOf('*')>=0){
+				target = target.replace('*','');
+				toWildcard = true;
+			}
+			
+			if(fromWildcard){
+				if(t.fromState.name.indexOf(fromRule)>=0){
+					checkRule(toWildCard, t.toState, target);
 				}
-				
-				if(toRule.indexOf('*')>=0){
-					toRule = toRule.replace('*','');
-					toStar = true;
-				}
-				
-				if(fromStar){
-					if(t.fromState.name.indexOf(fromRule)>=0){
-						if(toStar){
-							if(t.toState.name.indexOf(toRule)>=0){
-								return true;
-							}
-						} else {
-							if(t.toState.name == toRule){
-								return true;
-							}
-						}
-					}
-					
-				} else {
-					if(t.fromState.name == fromRule){
-						if(toStar){
-							if(t.toState.name.indexOf(toRule)>=0){
-								return true;
-							}
-						} else {
-							if(t.toState.name == toRule){
-								return true;
-							}
-						}
-					}
+			} else {
+				if(t.fromState.name == fromRule){
+					checkRule(toWildCard, t.toState, target);
 				}
 			}
-			return false;
+		}
+		return false;
 
         }
 
