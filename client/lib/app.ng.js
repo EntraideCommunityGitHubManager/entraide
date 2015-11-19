@@ -281,41 +281,6 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
                 $state.go("app.main.error");
         }
     });
-
-    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-
-	var config = {
-		includes : [{
-				from : 'app.main',
-				to : 'app.main.events.search.*'
-			},{
-				from : 'app.main.events.search.byProfile',
-				to : 'app.main.events.search.myEvents'
-			},{
-				from : 'app.main.events.search.myEvents',
-				to : 'app.main.events.search.byProfile'
-			}],
-		excludes : ['logout']
-	};
-        
-       
-        var transition = {toState: toState, fromState: fromState};
-
-        if(AnimService.isTransitionnable(transition, toParams)){
-            if(AnimService.isNotCurrent(transition)){
-                AnimService.startTransition(transition);
-            }
-            if(AnimService.isTransitionning()){
-                event.preventDefault();
-                setTimeout(function(){
-                    $state.go(transition.toState.name, toParams);
-                }, AnimService.getTransitionConfig().delay + 100);
-            }
-        }
-       
-    });
-
-
 }]);
 
 
