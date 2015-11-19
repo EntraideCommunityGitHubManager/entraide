@@ -10,7 +10,7 @@ angular.module("entraide").factory("MapService", function($rootScope){
             mapTypeIds: ['roadmap']
         },
         zoomControlOptions: {
-            //position: 12
+            position: 12
         },
         panControl: false
     };

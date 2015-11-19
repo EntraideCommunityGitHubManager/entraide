@@ -47,14 +47,19 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
         isTransitionnable : function(t, params) {
             var result = false;
             var config = this.getRoutingConfig();
-            
-            var checkRule = function(wildcard, state, target){
-                if(wildcard && state.indexOf(target)>=0 || (!wildcard && state == target)){
-                    return true;
+
+            for(var i= 0; i < config.excludes.length; i++){
+                if(config.excludes[i]==params.targetState){
+                    return false;
                 }
             }
 
             for(var i= 0; i < config.includes.length; i++){
+                var from = t.fromState.name;
+                var to = t.toState.name;
+
+                if(from == to){break;}
+
                 var fromRule = config.includes[i].from;
                 var toRule = config.includes[i].to;
 
@@ -71,23 +76,36 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
                     toWildcard = true;
                 }
 
-                if(fromWildcard && t.fromState.name.indexOf(fromRule)>=0 || (!fromWildcard && t.fromState.name == fromRule)){
-                    result = checkRule(fromWildcard, t.toState.name, toRule);
+                if(!fromWildcard && toWildcard){
+                    if(to.indexOf(toRule)>=0 && from==fromRule){
+                        result = true;
+                        break
+                    }
                 }
-                if(toWildcard && t.toState.name.indexOf(toRule)>=0 || (!toWildcard && t.toState.name == toRule)){
-                    result = checkRule(toWildcard, toRule, t.toState.name);
+
+                if(fromWildcard && !toWildcard){
+                    if(from.indexOf(fromRule)>=0 && to==toRule){
+                        result = true;
+                        break
+                    }
                 }
-                if(result){
-                    break;
+
+                if(!fromWildcard && !toWildcard){
+                    if(to==toRule && from==fromRule){
+                        result = true;
+                        break
+                    }
                 }
+
+                if(fromWildcard && toWildcard){
+                    if(from.indexOf(fromRule)>=0 && to.indexOf(toRule)>=0){
+                        result = true;
+                        break
+                    }
+                }
+
             }
 
-            for(var i= 0; i < config.excludes.length; i++){
-                if(config.excludes[i]==params.targetState){
-                    params.targetState = null;
-                    result = false;
-                }
-            }
             return result;
         }
 

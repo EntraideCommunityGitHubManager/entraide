@@ -15,6 +15,15 @@ angular.module('entraide').directive('animTransition', function($rootScope, Anim
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 
                 var transition = {toState: toState, fromState: fromState};
+
+                /*
+                console.log(JSON.stringify(transition));
+                console.log(transition.fromState.name + " -> " + transition.toState.name);
+
+                app.main.events.search.byProfile -> app.main.logout
+                anim-transition.ng.js:20 app.main.events.search.byProfile -> app.main
+
+                */
         
                 if(AnimService.isTransitionnable(transition, toParams)){
                     if(AnimService.isNotCurrent(transition)){
@@ -27,6 +36,7 @@ angular.module('entraide').directive('animTransition', function($rootScope, Anim
                         }, AnimService.getTransitionConfig().delay + 100);
                     }
                 }
+
             });
             
             $scope.$on($scope.startEvent, function(){
