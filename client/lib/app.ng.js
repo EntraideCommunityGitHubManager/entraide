@@ -312,10 +312,7 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
                 }, AnimService.getTransitionConfig().delay + 100);
             }
         }
-        if(toParams && toParams.targetState == "logout"){
-            toParams.targetState =null;
-        }
-
+       
     });
 
 
