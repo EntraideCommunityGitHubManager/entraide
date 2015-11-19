@@ -13,22 +13,21 @@ angular.module('entraide').directive('animTransition', function($rootScope, Anim
         controller: function($scope) {
             
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-  
-                    var transition = {toState: toState, fromState: fromState};
-            
-                    if(AnimService.isTransitionnable(transition, toParams)){
-                        if(AnimService.isNotCurrent(transition)){
-                            AnimService.startTransition(transition);
-                        }
-                        if(AnimService.isTransitionning()){
-                            event.preventDefault();
-                            setTimeout(function(){
-                                $state.go(transition.toState.name, toParams);
-                            }, AnimService.getTransitionConfig().delay + 100);
-                        }
+
+                var transition = {toState: toState, fromState: fromState};
+        
+                if(AnimService.isTransitionnable(transition, toParams)){
+                    if(AnimService.isNotCurrent(transition)){
+                        AnimService.startTransition(transition);
                     }
-                   
-                });
+                    if(AnimService.isTransitionning()){
+                        event.preventDefault();
+                        setTimeout(function(){
+                            $state.go(transition.toState.name, toParams);
+                        }, AnimService.getTransitionConfig().delay + 100);
+                    }
+                }
+            });
             
             $scope.$on($scope.startEvent, function(){
                 $scope.svgLoader ? $scope.svgLoader.show() : null;
