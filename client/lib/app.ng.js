@@ -282,19 +282,19 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
         }
     });
     
-    	var routingConfig = {
-            		includes : [{
-            				from : 'app.main',
-            				to : 'app.main.events.search.*'
-            			},{
-            				from : 'app.main.events.search.byProfile',
-            				to : 'app.main.events.search.myEvents'
-            			},{
-            				from : 'app.main.events.search.myEvents',
-            				to : 'app.main.events.search.byProfile'
-            			}],
-            		excludes : ['logout']
-            	};
+	var routingConfig = {
+        		includes : [{
+        				from : 'app.main',
+        				to : 'app.main.events.search.*'
+        			},{
+        				from : 'app.main.events.search.byProfile',
+        				to : 'app.main.events.search.myEvents'
+        			},{
+        				from : 'app.main.events.search.myEvents',
+        				to : 'app.main.events.search.byProfile'
+        			}],
+        		excludes : ['logout']
+        	};
     AnimService.setRoutingConfig(routingConfig);
 }]);
 
