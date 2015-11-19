@@ -48,6 +48,7 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
             var config = this.getRoutingConfig();
             for(var i= 0; i < config.excludes.length; i++){
 				if(config.excludes[i]==params.targetState){
+            				params.targetState =null;
 					return false;
 				}
 			}
