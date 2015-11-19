@@ -48,15 +48,9 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
             	var config = this.getRoutingConfig();
             
 		var checkRule = function(wildcard, state, target){
-			if(wildcard){
-				if(state.name.indexOf(target)>=0){
-					return true;
-				} else {
-					if(state.name == target){
-						return true;
-					}
-				}
-			}	
+			if(wildcard && state.name.indexOf(target)>=0 || (!wildcard && state.name == target)){
+				return true;
+			}
 		}
             
             	for(var i= 0; i < config.excludes.length; i++){
@@ -83,14 +77,8 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
 				toWildcard = true;
 			}
 			
-			if(fromWildcard){
-				if(t.fromState.name.indexOf(fromRule)>=0){
-					checkRule(toWildCard, t.toState, target);
-				}
-			} else {
-				if(t.fromState.name == fromRule){
-					checkRule(toWildCard, t.toState, target);
-				}
+			if(fromWildcard && t.fromState.name.indexOf(fromRule)>=0 || (!fromWildcard && t.fromState.name == fromRule)){
+				checkRule(toWildCard, t.toState, target);
 			}
 		}
 		return false;
