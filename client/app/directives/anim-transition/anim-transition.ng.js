@@ -11,7 +11,7 @@ angular.module('entraide').directive('animTransition', function($rootScope, Anim
         },
         templateUrl: 'client/app/directives/anim-transition/anim-transition.ng.html',
         controller: function($scope) {
-            
+
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 
                 var transition = {toState: toState, fromState: fromState};
@@ -101,10 +101,6 @@ angular.module('entraide').directive('animTransition', function($rootScope, Anim
             };
             attrs.startEvent = attrs.startEvent && attrs.startEvent.length>0 ? attrs.startEvent : "anim-transition-start";
             attrs.stopEvent  = attrs.stopEvent && attrs.stopEvent.length>0 ? attrs.stopEvent : "anim-transition-stop";
-            
-            if(attrs.animTransitionRoutingConfig){
-                AnimService.setRoutingConfig(attrs.animTransitionRoutingConfig);
-            }
 
             attrs.animTransitionType = attrs.animTransitionType && attrs.animTransitionType.length>0 ? attrs.animTransitionType : 'parallelogram';
             var animation = config[attrs.animTransitionType] ? config[attrs.animTransitionType] : config['parallelogram'];

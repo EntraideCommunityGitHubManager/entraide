@@ -14,7 +14,7 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
         getRoutingConfig: function(){
             return this.routingConfig;
         },
-        setTransitionConfig: function(routingConfig){
+        setRoutingConfig: function(routingConfig){
             this.routingConfig = routingConfig;
         },
         isTransitionning: function(){
@@ -45,44 +45,50 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
             }, delay ? delay : 1500);
         },
         isTransitionnable : function(t, params) {
-            	var config = this.getRoutingConfig();
+            var result = false;
+            var config = this.getRoutingConfig();
             
-		var checkRule = function(wildcard, state, target){
-			if(wildcard && state.name.indexOf(target)>=0 || (!wildcard && state.name == target)){
-				return true;
-			}
-		}
-            
-            	for(var i= 0; i < config.excludes.length; i++){
-			if(config.excludes[i]==params.targetState){
-    				params.targetState =null;
-				return false;
-			}
-		}
-			
-		for(var i= 0; i < config.includes.length; i++){
-			var fromRule = config.includes[i].from;
-			var target = config.includes[i].to;
-			
-			var fromWildcard = false;
-			var toWildcard = false;
-			
-			if(fromRule.indexOf('*')>=0){
-				fromRule = fromRule.replace('*','');
-				fromWildcard = true;
-			}
-			
-			if(target.indexOf('*')>=0){
-				target = target.replace('*','');
-				toWildcard = true;
-			}
-			
-			if(fromWildcard && t.fromState.name.indexOf(fromRule)>=0 || (!fromWildcard && t.fromState.name == fromRule)){
-				checkRule(toWildCard, t.toState, target);
-			}
-		}
-		return false;
+            var checkRule = function(wildcard, state, target){
+                if(wildcard && state.indexOf(target)>=0 || (!wildcard && state == target)){
+                    return true;
+                }
+            }
 
+            for(var i= 0; i < config.includes.length; i++){
+                var fromRule = config.includes[i].from;
+                var toRule = config.includes[i].to;
+
+                var fromWildcard = false;
+                var toWildcard = false;
+
+                if(fromRule.indexOf('*')>=0){
+                    fromRule = fromRule.replace('*','');
+                    fromWildcard = true;
+                }
+
+                if(toRule.indexOf('*')>=0){
+                    toRule = toRule.replace('*','');
+                    toWildcard = true;
+                }
+
+                if(fromWildcard && t.fromState.name.indexOf(fromRule)>=0 || (!fromWildcard && t.fromState.name == fromRule)){
+                    result = checkRule(fromWildcard, t.toState.name, toRule);
+                }
+                if(toWildcard && t.toState.name.indexOf(toRule)>=0 || (!toWildcard && t.toState.name == toRule)){
+                    result = checkRule(toWildcard, toRule, t.toState.name);
+                }
+                if(result){
+                    break;
+                }
+            }
+
+            for(var i= 0; i < config.excludes.length; i++){
+                if(config.excludes[i]==params.targetState){
+                    params.targetState = null;
+                    result = false;
+                }
+            }
+            return result;
         }
 
     };

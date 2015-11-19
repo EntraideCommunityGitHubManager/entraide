@@ -60,10 +60,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         .state('app.main.events', {
             url: '/events',
             abstract: true,
-            template: '<ui-view/>',
-            views: {
-
-            }
+            template: '<ui-view/>'
         })
         .state('app.main.events.search', {
             url: '/search',
@@ -283,18 +280,21 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
     });
     
 	var routingConfig = {
-        		includes : [{
-        				from : 'app.main',
-        				to : 'app.main.events.search.*'
-        			},{
-        				from : 'app.main.events.search.byProfile',
-        				to : 'app.main.events.search.myEvents'
-        			},{
-        				from : 'app.main.events.search.myEvents',
-        				to : 'app.main.events.search.byProfile'
-        			}],
-        		excludes : ['logout']
-        	};
+        includes : [{
+                from : 'app.main.events.search.*',
+                to : 'app.main'
+            },{
+                from : 'app.main',
+                to : 'app.main.events.search.*'
+            },{
+                from : 'app.main.events.search.byProfile',
+                to : 'app.main.events.search.myEvents'
+            },{
+                from : 'app.main.events.search.myEvents',
+                to : 'app.main.events.search.byProfile'
+            }],
+        excludes : ['logout']
+    };
     AnimService.setRoutingConfig(routingConfig);
 }]);
 
