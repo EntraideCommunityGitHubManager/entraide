@@ -231,8 +231,10 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         .state('app.main.logout', {
             url: '/logout',
             resolve: {
-                "logout": ["$meteor", "$state", function($meteor, $state){
+                "logout": ["$meteor", "$state", function($meteor, $state, SessionService, CollectionService){
                     return $meteor.logout().then(function(){
+                    	CollectionService.stopHandlers('users'); 
+                    	SessionService.resetUserProfile();
                         $state.go('app.main', {targetState:'logout'});
                     }, function(){$state.go('app.main.error');});
                 }]
