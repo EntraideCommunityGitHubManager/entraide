@@ -231,7 +231,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         .state('app.main.logout', {
             url: '/logout',
             resolve: {
-                "logout": ["$meteor", "$state", function($meteor, $state, SessionService, CollectionService){
+                "logout": ["$meteor", "$state", "SessionService", "CollectionService", function($meteor, $state, SessionService, CollectionService){
                     return $meteor.logout().then(function(){
                     	CollectionService.stopHandlers('users'); 
                     	SessionService.resetUserProfile();
@@ -288,6 +288,12 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
             },{
                 from : 'app.main',
                 to : 'app.main.events.search.*'
+            },{
+                from : 'app.main.events.search.byProfile.detail',
+                to : 'app.main.events.search.myEvents'
+            },{
+                from : 'app.main.events.search.myEvents.edit',
+                to : 'app.main.events.search.byProfile'
             },{
                 from : 'app.main.events.search.byProfile',
                 to : 'app.main.events.search.myEvents'
