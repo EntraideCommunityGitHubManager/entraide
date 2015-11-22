@@ -27,9 +27,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
 
         .state('app.main', {
             url: '/main',
-            params: {
-                targetState: {}
-            },
             views: {
                 'header-view@app': {
                     templateUrl: 'client/app/header/header.ng.html',
@@ -227,19 +224,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         *                   REDIRECT STATES
         *
         **********************************************************/
-        
-        .state('app.main.logout', {
-            url: '/logout',
-            resolve: {
-                "logout": ["$meteor", "$state", "SessionService", "CollectionService", function($meteor, $state, SessionService, CollectionService){
-                    return $meteor.logout().then(function(){
-                    	CollectionService.stopHandlers('users'); 
-                    	SessionService.resetUserProfile();
-                        $state.go('app.main', {targetState:'logout'});
-                    }, function(){$state.go('app.main.error');});
-                }]
-            }
-        })
+
         .state('app.main.error', {
             url: '/error',
             abstract: true,
@@ -249,7 +234,8 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
             url: '/required',
             views: {
                 'content-view@app': {
-                    template: '<div>You must be signed in to access this functionality</div>'
+                    template: '<div>You must be signed in to access this functionality</div>',
+                    controller: function(AnimService){AnimService.stopTransition(1);}
                 }
             }
         })
@@ -257,7 +243,8 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
             url: '/unauthorized',
             views: {
                 'content-view@app': {
-                    template: '<div>You must be authorized in order to access this functionality</div>'
+                    template: '<div>You must be authorized in order to access this functionality</div>',
+                    controller: function(AnimService){AnimService.stopTransition(1);}
                 }
             }
         });
@@ -283,27 +270,30 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
     
 	var routingConfig = {
         includes : [{
-                from : 'app.main.events.search.*',
-                to : 'app.main'
-            },{
-                from : 'app.main',
-                to : 'app.main.events.search.*'
-            },{
-                from : 'app.main.events.search.byProfile.detail',
-                to : 'app.main.events.search.myEvents'
-            },{
-                from : 'app.main.events.search.myEvents.edit',
-                to : 'app.main.events.search.byProfile'
-            },{
-                from : 'app.main.events.search.byProfile',
-                to : 'app.main.events.search.myEvents'
-            },{
-                from : 'app.main.events.search.myEvents',
-                to : 'app.main.events.search.byProfile'
-            }],
-        excludes : ['logout']
+            from : 'app.main.events.search.*',
+            to : 'app.main'
+        },{
+            from : 'app.main',
+            to : 'app.main.events.search.*'
+        },{
+            from : 'app.main.events.search.byProfile.detail',
+            to : 'app.main.events.search.myEvents'
+        },{
+            from : 'app.main.events.search.myEvents.edit',
+            to : 'app.main.events.search.byProfile'
+        },{
+            from : 'app.main.events.search.byProfile',
+            to : 'app.main.events.search.myEvents'
+        },{
+            from : 'app.main.events.search.myEvents',
+            to : 'app.main.events.search.byProfile'
+        },{
+            from : 'app.main.events.search.myEvents.create',
+            to : 'app.main.events.search.byProfile'
+        }]
     };
     AnimService.setRoutingConfig(routingConfig);
+
 }]);
 
 

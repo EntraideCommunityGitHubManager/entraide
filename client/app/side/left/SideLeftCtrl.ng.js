@@ -3,7 +3,7 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
     console.log("side-left-view Ctrl");
 
     $scope.isOpen = false;
-    $scope.isConnected = SecurityService.isConnected();
+    $scope.isConnected = SecurityService.isConnected;
 
     $scope.toggleSidebar = function(){toggle();};
     $scope.$on('event-create', function(){toggle(true);});

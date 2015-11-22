@@ -24,7 +24,7 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
             return !angular.equals(transition, this.transitionConfig.transition);
         },
         startTransition : function(transition, type){
-            console.log('AnimService.starTransition called');
+            console.log('AnimService.startTransition called');
             var service = this;
             service.transitionConfig.transition = transition;
             service.transitionConfig.type = type ? type : service.transitionConfig.type;
@@ -47,12 +47,6 @@ angular.module("entraide").factory("AnimService", function($rootScope, $state){
         isTransitionnable : function(t, params) {
             var result = false;
             var config = this.getRoutingConfig();
-
-            for(var i= 0; i < config.excludes.length; i++){
-                if(config.excludes[i]==params.targetState){
-                    return false;
-                }
-            }
 
             for(var i= 0; i < config.includes.length; i++){
                 var from = t.fromState.name;

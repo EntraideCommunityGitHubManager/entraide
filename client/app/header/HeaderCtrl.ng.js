@@ -1,19 +1,22 @@
-angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope, SecurityService, SessionService,  $meteor, $state, AnimService) {
+angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope, SecurityService, SessionService,  $meteor, $state, AnimService, CollectionService) {
 
     console.log("header-view Ctrl");
 
-    $scope.isAdmin = SecurityService.isAdmin() !== true ? false : true ;
-    $scope.isConnected = SecurityService.isConnected();
+    $scope.isAdmin = SecurityService.isAdmin ;
+    $scope.isConnected = SecurityService.isConnected;
 
     $scope.user = {email:'', password:''};
     $scope.security = {oldPassword:null, newPassword:null};
     $scope.error = null;
+    $scope.animLoginToggleEvent = 'animLoginToggleEvent';
 
     $scope.login = function(){
         $scope.error = null;
         SecurityService.loginWithPassword($scope.user.email, $scope.user.password).then(function () {
+            $rootScope.$broadcast($scope.animLoginToggleEvent);
+            setTimeout(function(){AnimService.startTransition();}, 1000);
             SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
-            $state.reload();
+            AnimService.stopTransition(3000);
         }, function (err) {
             $scope.error = err;
         });
@@ -43,14 +46,13 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
 
     $scope.logout = function(){
-        $state.go('app.main.logout');
-
-       /* SecurityService.logout().then(function(){
+        AnimService.startTransition();
+        SecurityService.logout().then(function(){
             SessionService.resetUserProfile();
-            setTimeout( function() {
-                $state.go('app.main', {reload: true, inherit: true, notify: true});
-            }, 1500 );
-        }, function(){$state.go('app.main.error');});*/
+            CollectionService.stopHandlers('users');
+            $state.go('app.main', {reload: true, inherit: true, notify: true});
+            AnimService.stopTransition(3000);
+        }, function(){$state.go('app.main.error');});
     };
 
     $scope.openSidebar = function(){
