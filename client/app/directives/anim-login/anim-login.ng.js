@@ -31,6 +31,10 @@ angular.module('entraide').directive('animLogin', function(){
             $scope.$on($scope.animLoginToggleEvent, function(){
                 $scope.uIMorphingButton.toggle();
             });
+            $scope.initState = function(){
+                $scope.uIMorphingButton.expanded = false;
+                $scope.uIMorphingButton.isAnimating = false;
+            }
         },
         link: function (scope, element) {
 

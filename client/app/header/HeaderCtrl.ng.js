@@ -4,11 +4,8 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.isAdmin = SecurityService.isAdmin ;
     $scope.isConnected = SecurityService.isConnected;
-
-    $scope.user = {email:'', password:''};
-    $scope.security = {oldPassword:null, newPassword:null};
-    $scope.error = null;
     $scope.animLoginToggleEvent = 'animLoginToggleEvent';
+    init();
 
     $scope.login = function(){
         $scope.error = null;
@@ -50,10 +47,17 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         SecurityService.logout().then(function(){
             SessionService.resetUserProfile();
             CollectionService.stopHandlers('users');
+            init();
             $state.go('app.main', {reload: true, inherit: true, notify: true});
             AnimService.stopTransition(3000);
         }, function(){$state.go('app.main.error');});
     };
+
+    function init(){
+        $scope.user = {email:'', password:''};
+        $scope.security = {oldPassword:null, newPassword:null};
+        $scope.error = null;
+    }
 
     $scope.openSidebar = function(){
         $rootScope.$broadcast('anim-sidebar-toggle');
