@@ -36,6 +36,45 @@ Meteor.publish("search-events", function(options){
 });
 
 
+
+
+
+
+
+ProfileImages = new FS.Collection("profile_img", {
+  stores: [
+    new FS.Store.GridFS("original")
+  ],
+  filter: {
+    allow: {
+      contentTypes: ['image/*']
+    }
+  }
+});
+     
+
+ProfileImages.allow({
+    insert: function (userId, img) {
+        return isAdmin(userId) || userId && img.owner.id === userId;
+    },
+    update: function (userId, img, fields, modifier) {
+        return isAdmin(userId) || userId && img.owner.id === userId;
+    },
+    remove: function (userId, img) {
+        return isAdmin(userId) || userId && img.owner.id === userId;
+    }
+    download: function (userId) {
+        return true;
+      //return (userId ? true : false);
+    }
+});
+
+Meteor.publish('profile-images', function() {
+  return ProfileImages.find({'owner.id' :  this.userId}, {sort: {order:1}});
+});
+
+
+
 var isAdmin = function(userId){
     var isAdmin = false;
     var user = Meteor.users.findOne({'_id':userId});
@@ -49,3 +88,5 @@ var isAdmin = function(userId){
     }
     return isAdmin;
 };
+
+
