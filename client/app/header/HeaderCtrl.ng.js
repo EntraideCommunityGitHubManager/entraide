@@ -20,6 +20,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
 
     $scope.create = function(){
+        $scope.error = null;
         SecurityService.createUser({
             username:$scope.user.email,
             email:$scope.user.email,
