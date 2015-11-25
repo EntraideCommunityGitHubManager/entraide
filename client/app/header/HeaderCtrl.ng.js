@@ -22,13 +22,19 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
 
     $scope.create = function(){
+        $scope.error = null;
         SecurityService.createUser({
             username:$scope.user.email,
             email:$scope.user.email,
             password: $scope.user.password
         }).then(function () {
+            $rootScope.$broadcast($scope.animLoginToggleEvent);
+            setTimeout(function(){AnimService.startTransition();}, 1000);
             SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
-            $state.reload();
+            $meteor.call('initUserDataAfterCreation').then(function(){
+                $state.reload();
+                AnimService.stopTransition(3000);
+            });
         }, function (err) {
             $scope.error = err;
         });

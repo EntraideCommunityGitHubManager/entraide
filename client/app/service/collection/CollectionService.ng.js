@@ -30,6 +30,21 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             options: null,
             handle: null
         }, {
+            name: "My profile",
+            id: "profiles",
+            collection: Profiles,
+            unsubscribers: [],
+            options: null,
+            handle: null
+        }, {
+            name: "My profile images",
+            id: "profile-images",
+            collection: ProfileImages,
+            typeFS: true,
+            unsubscribers: [],
+            options: {backend:true},
+            handle: null
+        }, {
             name: "Department by code",
             id: "department-by-code",
             collection: Departments,
@@ -70,7 +85,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         },
 
         getCollection: function(sub, callback){
-            return sub.typeFS ? $meteor.collectionFS(callback) : $meteor.collection(callback);
+            return sub.typeFS ? $meteor.collectionFS(callback, false, sub.collection) : $meteor.collection(callback, false);
         },
 
         startHandle: function(sub){
@@ -83,7 +98,6 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
 
         stopHandle : function (sub) {
             if(sub && sub.handle){
-                console.log("Try to unsubscribe from "+sub.id);
                 sub.handle.stop();
                 sub.handle = null;
                 sub.options = null;

@@ -62,4 +62,6 @@ https://github.com/angular-ui/angular-google-maps/issues/429
 https://randomuser.me/api/portraits/thumb/men/1.jpg
 http://info.meteor.com/blog/whatsapp-with-meteor-angular-and-ionic
 http://tympanus.net/codrops/2012/09/19/fullscreen-video-slideshow-with-bigvideo-js/
+http://www.angular-meteor.com/tutorials/socially/angular1/bootstrapping
+http://www.forbes.com/global2000/list/44/#tab:overall
 </pre></code>
