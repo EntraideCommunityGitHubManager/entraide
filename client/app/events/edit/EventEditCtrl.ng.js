@@ -28,3 +28,29 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
 
 });
 
+angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, $stateParams, $state, CollectionService, AnimService) {
+
+    CollectionService.subscribe('profile').then(function(profile) {
+        $scope.profile = profile;
+        CollectionService.subscribe('profile-images').then(function(images) {
+            $scope.images = images;
+            AnimService.stopTransition();
+        });
+    });
+
+    $scope.insertImage = function(img) {
+       
+    };
+
+    $scope.removeImage = function(img) {
+        
+    };
+
+    $scope.hasChanged = function(){
+        return true;
+    };
+
+});
+
+
+
