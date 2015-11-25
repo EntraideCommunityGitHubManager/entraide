@@ -70,6 +70,17 @@ Meteor.publish("my-profile", function(){
 
 
 
+Meteor.methods({
+  initUserDataAfterCreation: function () {
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+ 
+    Profiles.insert({
+      owner: {id:Meteor.userId()}
+    });
+  }
+});
 
 
 
