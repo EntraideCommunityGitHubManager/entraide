@@ -43,6 +43,19 @@ Meteor.methods({
 });
 
 
+Meteor.methods({
+    initUserDataAfterCreation: function () {
+        if (! Meteor.userId()) {
+            throw new Meteor.Error("not-authorized");
+        }
+
+        Profiles.insert({
+            owner: {id:Meteor.userId()}
+        });
+    }
+});
+
+
 
 var isAdmin = function(userId){
     var isAdmin = false;

@@ -85,7 +85,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         },
 
         getCollection: function(sub, callback){
-            return sub.typeFS ? $meteor.collectionFS(callback, false, sub.collection) : $meteor.collection(callback, false);
+            return sub.typeFS ? $meteor.collectionFS(callback, true, sub.collection) : $meteor.collection(callback, true);
         },
 
         startHandle: function(sub){
