@@ -39,11 +39,11 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     });
 
     $scope.insertImage = function(img) {
-       
+       $scope.images.push(img);
     };
 
     $scope.removeImage = function(img) {
-        
+        $scope.images.remove(img);
     };
 
     $scope.hasChanged = function(){
