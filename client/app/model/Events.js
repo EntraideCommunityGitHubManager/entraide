@@ -1,5 +1,8 @@
 Events = new Mongo.Collection("events");
-ProfileImages = new FS.Collection("profile_img", {
+
+Profiles = new Mongo.Collection("profiles");
+
+ProfileImages = new FS.Collection("profile_images", {
   stores: [
     new FS.Store.GridFS("original")
   ],
