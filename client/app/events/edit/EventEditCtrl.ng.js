@@ -30,7 +30,7 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
 
 angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, $stateParams, $state, CollectionService, AnimService) {
 
-    CollectionService.subscribe('profiles').then(function(profiles) {
+    CollectionService.subscribe('my-profile').then(function(profiles) {
         $scope.profile = $meteor.object(Profiles, profiles[0]._id, false);
         CollectionService.subscribe('profile-images').then(function(images) {
             $scope.images = images;
