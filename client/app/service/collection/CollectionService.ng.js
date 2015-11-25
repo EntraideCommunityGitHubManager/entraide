@@ -30,6 +30,13 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             options: null,
             handle: null
         }, {
+            name: "My profile",
+            id: "profiles",
+            collection: Profiles,
+            unsubscribers: [],
+            options: null,
+            handle: null
+        }, {
             name: "My profile images",
             id: "profile-images",
             collection: ProfileImages,
