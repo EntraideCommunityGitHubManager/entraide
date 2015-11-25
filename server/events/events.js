@@ -76,7 +76,7 @@ Meteor.publish("my-profile", function(){
 
 
 
-ProfileImages = new FS.Collection("profile_img", {
+ProfileImages = new FS.Collection("profile_images", {
   stores: [
     new FS.Store.GridFS("original")
   ],
