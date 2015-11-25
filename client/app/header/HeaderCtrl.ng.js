@@ -11,9 +11,11 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         $scope.error = null;
         SecurityService.loginWithPassword($scope.user.email, $scope.user.password).then(function () {
             $rootScope.$broadcast($scope.animLoginToggleEvent);
-            setTimeout(function(){AnimService.startTransition();}, 1000);
-            SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
-            AnimService.stopTransition(3000);
+            setTimeout(function(){
+                AnimService.startTransition();
+                SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
+                AnimService.stopTransition(2000);
+            }, 1000);
         }, function (err) {
             $scope.error = err;
         });
