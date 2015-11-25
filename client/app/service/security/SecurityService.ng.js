@@ -38,7 +38,7 @@ angular.module("entraide").factory("SecurityService", function($rootScope, $mete
             return false;
         },
         initUserDataAfterCreation : function(){
-            return $meteor.call('initUserDataAfterCreation', user._id);
+            return $meteor.call('initUserDataAfterCreation');
         }
     };
 
