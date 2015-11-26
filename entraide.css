@@ -193,11 +193,6 @@ body{
     max-height: 100px;
     max-width: 200px;
 }
- 
-.ng-crop-container {
-    height: 350px;
-}
-
 
 .ng-crop-container {
     height: 350px;
@@ -227,4 +222,8 @@ body{
     text-align: center;
     background-color: #f8f8f8;
 }
+
+.profile-image {
+    border-radius: 50%;
+}    
 
