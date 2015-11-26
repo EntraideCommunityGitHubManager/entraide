@@ -4,14 +4,16 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
 
     $scope.isOpen = false;
     $scope.isConnected = SecurityService.isConnected;
+    $scope.currentView = 'event';
 
     $scope.toggleSidebar = function(){toggle();};
-    $scope.$on('event-create', function(){toggle(true);});
-    $scope.$on('event-edit', function(){toggle(true)});
-    $scope.$on('event-detail', function(){toggle(true)});
-    $scope.$on('profile-edit', function(){toggle(true)});
+    $scope.$on('event-create', function(){toggle(true, 'event');});
+    $scope.$on('event-edit', function(){toggle(true, 'event')});
+    $scope.$on('event-detail', function(){toggle(true, 'event')});
+    $scope.$on('profile-edit', function(){toggle(true, 'profile')});
 
-    function toggle(open){
+    function toggle(open, currentView){
+        $scope.currentView = currentView;
         open ? $scope.isOpen = true : $scope.isOpen = !$scope.isOpen;
         $rootScope.$broadcast('anim-sidebar-toggle');
     };
