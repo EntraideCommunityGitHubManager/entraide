@@ -33,6 +33,12 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         });
     });
     
+    $scope.addImages = function (files) {
+        if (files.length > 0) {
+          $scope.images.save(files[0]);
+        }
+    };
+
     
 });
 
