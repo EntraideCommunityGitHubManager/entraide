@@ -9,7 +9,7 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
     $scope.$on('event-create', function(){toggle(true);});
     $scope.$on('event-edit', function(){toggle(true)});
     $scope.$on('event-detail', function(){toggle(true)});
-    $scope.$on('user-edit', function(){toggle(true)});
+    $scope.$on('profile-edit', function(){toggle(true)});
 
     function toggle(open){
         open ? $scope.isOpen = true : $scope.isOpen = !$scope.isOpen;
