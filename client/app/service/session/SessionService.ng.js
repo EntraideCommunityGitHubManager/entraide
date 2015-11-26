@@ -45,6 +45,12 @@ angular.module("entraide").factory("SessionService", function($rootScope, Collec
         resetUserProfile: function(){
             this.resetUser();
             this.resetDepartment();
+        },
+
+        getOwner: function(){
+            if(this.userProfile && this.userProfile.user){
+                return {id: this.userProfile.user._id};
+            }
         }
     };
 

@@ -18,7 +18,7 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
             "event": {
                 location: MapService.getCoord(originalEventArgs),
                 department: SessionService.getUserProfile().department,
-                owner: {id: SessionService.getUserProfile().user._id}
+                owner: SessionService.getOwner()
             }
         });
         $rootScope.$broadcast('event-create', $scope.event);

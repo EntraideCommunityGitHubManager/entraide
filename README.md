@@ -34,7 +34,7 @@ CollectionFS        (0.0.1)  	---> meteor add cfs:standard-packages  (File manag
 File Upload         (9.1.2)  	---> meteor add danialfarid:ng-file-upload
 Meteor Camera       (1.1.5)  	---> meteor add mdg:camera
 NgImgCrop           (0.3.2)  	---> meteor add alexk111:ng-img-crop
-Thumbnail           (?.?.?)  	---> meteor add cfs:graphicsmagick
+Thumbnail           (0.0.18)  	---> meteor add cfs:graphicsmagick
 </code>
 </pre>
 

@@ -184,10 +184,6 @@ body{
 .drop-box.dragover-err {
     border: 5px dashed red;
 }
-
-.drop-box.dragover-err {
-    border: 5px dashed red;
-  }
  
 .uploaded-image {
     max-height: 100px;
@@ -207,11 +203,6 @@ body{
     margin-right: 10px;
     max-height: 200px;
     max-width: 200px;
- 
-    img {
-        max-height: 100%;
-        max-width: 100%;
-    }
 }
  
 .main-image {
