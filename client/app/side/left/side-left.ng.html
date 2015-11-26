@@ -29,7 +29,7 @@
 
 <div layout="row" class="images-container-title">
     <div class="party-image-container" ng-repeat="image in images">
-      <img ng-src="{{ image.url() }}"/><br/>
+      <img ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>
     </div>
 </div>
 
