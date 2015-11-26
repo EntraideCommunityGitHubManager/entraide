@@ -123,25 +123,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 }
             }
         })
-        .state('app.main.profile', {
-            url: '/profile',
-            abstract: true,
-            template: '<ui-view/>'
-        })
-        .state('app.main.profile.edit', {
-            url: '/edit/:userId',
-            views: {
-                'side-left-view@app.main': {
-                    templateUrl: 'client/app/side/left/side-left.ng.html',
-                    controller: 'SideLeftCtrl'
-                }
-            },
-            resolve: {
-                "currentUser": ["$meteor", function($meteor){
-                    return $meteor.requireUser();
-                }]
-            }
-        })
         
         /*********************************************************/
         /*
