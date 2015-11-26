@@ -1,5 +1,5 @@
 <div class="menu-toggler" ng-if="isConnected()">
     <a ng-click="toggleSidebar()">Sidebar</a>
 </div>
-<div ui-view="side-left-event-view"></div>
-<div ui-view="side-left-profile-view"></div>
+<div ui-view="side-left-event-view" ng-show="isView('event')"></div>
+<div ui-view="side-left-profile-view" ng-show="isView('profile')"></div>
