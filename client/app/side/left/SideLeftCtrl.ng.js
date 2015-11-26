@@ -28,6 +28,9 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
 
     CollectionService.subsribe('my-profile').then(function(data){
         $scope.profile = data[0];
+        CollectionService.subsribe('profile-images').then(function(images){
+            $scope.images = images;
+        });
     });
     
     
