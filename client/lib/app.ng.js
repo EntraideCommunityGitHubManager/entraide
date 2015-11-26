@@ -57,7 +57,8 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         .state('app.main.events', {
             url: '/events',
             abstract: true,
-            template: '<ui-view/>'
+            template: '<ui-view/>',
+            params: {event: {}}
         })
         .state('app.main.events.search', {
             url: '/search',
@@ -83,9 +84,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         })
         .state('app.main.events.search.byProfile.detail', {
             url: '/detail',
-            params: {
-                event: {}
-            },
             views: {
                 'side-left-content-view@app.main': {
                     templateUrl: 'client/app/events/detail/event-detail.ng.html',
@@ -109,9 +107,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         })
         .state('app.main.events.search.myEvents.create', {
             url: '/create',
-            params: {
-                event: {}
-            },
             views: {
                 'side-left-content-view@app.main': {
                     templateUrl: 'client/app/events/create/event-create.ng.html',
@@ -121,9 +116,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         })
         .state('app.main.events.search.myEvents.edit', {
             url: '/edit',
-            params: {
-                event: {}
-            },
             views: {
                 'side-left-content-view@app.main': {
                     templateUrl: 'client/app/events/edit/event-edit.ng.html',
