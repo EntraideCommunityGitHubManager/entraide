@@ -31,7 +31,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             handle: null
         }, {
             name: "My profile",
-            id: "profile",
+            id: "my-profile",
             collection: Profiles,
             unsubscribers: [],
             options: null,
