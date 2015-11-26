@@ -3,3 +3,17 @@
 </div>
 <div ui-view="side-left-event-view" ng-show="isView('event')"></div>
 <div ui-view="side-left-profile-view" ng-show="isView('profile')"></div>
+
+
+<div ngf-drop ngf-select
+     ngf-change="addImages($files)"
+     ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
+     ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
+     ngf-drop-available="dropAvailable">
+  <div>Click here to select image</div>
+  <div>
+    <strong>OR</strong>
+  </div>
+  <div ng-show="dropAvailable">You can also drop image to here</div>
+</div>
+
