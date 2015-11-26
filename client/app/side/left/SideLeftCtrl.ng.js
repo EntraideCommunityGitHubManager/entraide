@@ -24,3 +24,14 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
 
 });
 
+angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, CollectionService) {
+
+    CollectionService.subsribe('my-profile').then(function(data){
+        $scope.profile = data[0];
+    });
+    
+    
+});
+
+
+
