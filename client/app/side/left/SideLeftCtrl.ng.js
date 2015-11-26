@@ -50,6 +50,16 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
           $scope.imgSrc = undefined;
         }
     };
+    
+    $scope.saveCroppedImage = function () {
+        if ($scope.myCroppedImage !== '') {
+          $scope.images.save($scope.myCroppedImage).then(function (result) {
+            $scope.imgSrc = undefined;
+            $scope.myCroppedImage = '';
+          });
+        }
+    };
+
 
     
 });
