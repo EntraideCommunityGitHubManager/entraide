@@ -79,13 +79,17 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'content-view@app': {
                     templateUrl: 'client/app/events/search/byProfile/search-events-list.ng.html',
                     controller: 'SearchEventsListCtrl'
+                },
+                'side-left-profile-view@app.main': {
+                    templateUrl: 'client/app/profile/profile-edit.ng.html',
+                    controller: 'ProfileEditCtrl'
                 }
             }
         })
         .state('app.main.events.search.byProfile.detail', {
             url: '/detail',
             views: {
-                'side-left-content-view@app.main': {
+                'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/detail/event-detail.ng.html',
                     controller: 'EventDetailCtrl'
                 }
@@ -97,6 +101,10 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'content-view@app': {
                     templateUrl: 'client/app/events/search/myEvents/my-events-list.ng.html',
                     controller: 'MyEventsListCtrl'
+                },
+                'side-left-profile-view@app.main': {
+                    templateUrl: 'client/app/profile/profile-edit.ng.html',
+                    controller: 'ProfileEditCtrl'
                 }
             },
             resolve: {
@@ -108,7 +116,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         .state('app.main.events.search.myEvents.create', {
             url: '/create',
             views: {
-                'side-left-content-view@app.main': {
+                'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/create/event-create.ng.html',
                     controller: 'EventCreateCtrl'
                 }
@@ -117,7 +125,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
         .state('app.main.events.search.myEvents.edit', {
             url: '/edit',
             views: {
-                'side-left-content-view@app.main': {
+                'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/edit/event-edit.ng.html',
                     controller: 'EventEditCtrl'
                 }
