@@ -22,3 +22,10 @@
   <button ng-click="saveCroppedImage()" ng-disabled="!imgSrc" class="md-primary">Save Image</button>
   <img-crop image="imgSrc" result-image="myCroppedImage" area-type="square"></img-crop>
 </div>
+
+<div layout="row" class="images-container-title">
+    <div class="party-image-container" ng-repeat="image in images">
+      <img ng-src="{{ image.url() }}"/><br/>
+    </div>
+</div>
+
