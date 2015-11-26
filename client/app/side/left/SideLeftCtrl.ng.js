@@ -17,6 +17,10 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
         open ? $scope.isOpen = true : $scope.isOpen = !$scope.isOpen;
         $rootScope.$broadcast('anim-sidebar-toggle');
     };
+    
+    $scope.isView = function(view){
+        return view == $scope.currentView;
+    }
 
 });
 
