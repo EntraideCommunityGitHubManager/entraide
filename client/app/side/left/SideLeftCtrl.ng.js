@@ -53,9 +53,10 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     
     $scope.saveCroppedImage = function () {
         if ($scope.myCroppedImage !== '') {
-          $scope.images.save($scope.myCroppedImage).then(function (result) {
+          $scope.images.save($scope.myCroppedImage).then(function (image) {
             $scope.imgSrc = undefined;
             $scope.myCroppedImage = '';
+            $scope.image = image;
           });
         }
     };
