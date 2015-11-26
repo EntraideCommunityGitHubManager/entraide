@@ -216,5 +216,9 @@ body{
 
 .profile-image {
     border-radius: 50%;
-}    
+}
+
+.photo-preview {
+    width: 280px !important;
+}
 
