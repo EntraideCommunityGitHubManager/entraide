@@ -19,5 +19,6 @@
 
 <div ng-show="imgSrc" class="ng-crop-container">
   <h3>Great! Now edit & crop your image...</h3><br />
+  <button ng-click="saveCroppedImage()" ng-disabled="!imgSrc" class="md-primary">Save Image</button>
   <img-crop image="imgSrc" result-image="myCroppedImage" area-type="square"></img-crop>
 </div>
