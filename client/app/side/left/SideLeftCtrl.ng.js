@@ -61,6 +61,14 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         }
     };
 
+    $scope.takePicture = function(){
+        $meteor.getPicture().then(function(data){
+            $scope.$apply(function () {
+              $scope.imgSrc = data;
+              $scope.myCroppedImage = '';
+            });
+        });
+    };
 
     
 });
