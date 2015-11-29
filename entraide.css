@@ -200,6 +200,12 @@ body{
     background-color: #f8f8f8;
 }
 
+.profile-image-header {
+    border-radius: 50%;
+    width: 42px;
+    margin: 4px;
+}
+
 .profile-image {
     border-radius: 50%;
     width: 60px;

@@ -3,7 +3,7 @@ angular.module('entraide').directive('animSidebar', function(UtilsService){
     return {
         restrict: 'AEC',
         transclude: true,
-        templateUrl: 'client/app/directives/anim-sidebar/anim-sidebar.ng.html',
+        templateUrl: 'client/app/common/directives/anim-sidebar/anim-sidebar.ng.html',
         scope : {
             type: '@',
             targetView: '@',

@@ -8,7 +8,7 @@ angular.module('entraide').directive('animBackground', function(){
             sourceVideo : '@',
             sourceImage : '@'
         },
-        templateUrl: 'client/app/directives/anim-background/anim-background.ng.html',
+        templateUrl: 'client/app/common/directives/anim-background/anim-background.ng.html',
         controller: function ($scope) {
             $scope.BV = null;
         },

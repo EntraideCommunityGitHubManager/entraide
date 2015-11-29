@@ -9,7 +9,7 @@ angular.module('entraide').directive('animTransition', function($rootScope, Anim
             animTransitionType: '@',
             animTransitionRoutingConfig: '='
         },
-        templateUrl: 'client/app/directives/anim-transition/anim-transition.ng.html',
+        templateUrl: 'client/app/common/directives/anim-transition/anim-transition.ng.html',
         controller: function($scope) {
 
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {

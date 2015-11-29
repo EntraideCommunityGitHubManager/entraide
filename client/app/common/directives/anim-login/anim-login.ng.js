@@ -14,7 +14,7 @@ angular.module('entraide').directive('animLogin', function(){
             logoutCallback: '&',
             animLoginToggleEvent: '@'
         },
-        templateUrl: 'client/app/directives/anim-login/anim-login.ng.html',
+        templateUrl: 'client/app/common/directives/anim-login/anim-login.ng.html',
         controller: function($scope){
             $scope.login = function(){
                 $scope.loginCallback();

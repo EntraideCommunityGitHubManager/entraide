@@ -5,7 +5,7 @@ angular.module('entraide').directive('selectMap', function(){
         scope: {
             goTo: '&'
         },
-        templateUrl: 'client/app/directives/select-map/select-map.ng.html',
+        templateUrl: 'client/app/common/directives/select-map/select-map.ng.html',
         link: function (scope) {
             $('.france-map').vectorMap({
                 map: 'france_department_2015',
