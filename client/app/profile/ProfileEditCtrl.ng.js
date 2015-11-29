@@ -2,26 +2,22 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
 
     CollectionService.subscribe('my-profile').then(function(data){
         $scope.profile = data[0];
-        CollectionService.subscribe('profile-images').then(function(images){
+        CollectionService.subscribe('my-profile-images').then(function(images){
             $scope.images = images;
         });
     });
     
     $scope.addImages = function (files) {
-        /*if (files.length > 0) {
-          $scope.images.save(files[0]);
-        }*/
         if (files.length > 0) {
           var reader = new FileReader();
           reader.onload = function (e) {
             $scope.$apply(function () {
-              $scope.imgSrc = e.target.result;
-              $scope.myCroppedImage = '';
+              setPicture(e.target.result);
             });
           };
           reader.readAsDataURL(files[0]);
         } else {
-          $scope.imgSrc = undefined;
+            setPicture(undefined);
         }
     };
     
@@ -31,20 +27,27 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
             fsFile.owner = SessionService.getOwner();
 
           $scope.images.save(fsFile).then(function (image) {
-            $scope.imgSrc = undefined;
-            $scope.myCroppedImage = '';
+              setPicture(undefined);
           }, function(error){
               console.log(error);
           });
         }
     };
 
-    $scope.takePicture = function(){
+    $scope.remove = function(img){
+        $scope.images.remove(img);
+    };
+
+    $scope.camera = function(){
         $meteor.getPicture().then(function(data){
-              $scope.imgSrc = data;
-              $scope.myCroppedImage = '';
+            setPicture(data);
         });
     };
+
+    var setPicture = function(img){
+        $scope.imgSrc = img;
+        $scope.myCroppedImage = '';
+    }
 
     
 });

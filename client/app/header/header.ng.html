@@ -11,11 +11,6 @@
                 <a class="navbar-brand" ng-href="#/main">Entraide</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <!-- <ul class="nav navbar-nav">
-                    <li><a class="twitter" href="https://twitter.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                    <li><a class="facebook" href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                    <li><a class="google-plus" href="https://plus.google.com/" title="Google+" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                </ul>-->
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events <span class="caret"></span></a>
@@ -43,6 +38,9 @@
                             <li><input type="text" placeholder="New password" ng-model="security.newPassword"></li>
                             <li><a ng-click="changePassword()">Change</a></li>
                         </ul>
+                    </li>
+                    <li ng-show="profileImage">
+                        <img class="profile-image" src="{{ profileImage.url()}}" style="position: absolute"/>
                     </li>
                 </ul>
             </div>

@@ -1,7 +1,4 @@
-angular.module('entraide').controller('MapCtrl', function($rootScope, $scope, $state, SessionService, AnimService){
-
-
-    console.log("map Ctrl");
+angular.module('entraide').controller('MapCtrl', function($rootScope, $scope, $state, SessionService, AnimService, CollectionService){
 
     $scope.title = 'Select a department ';
 

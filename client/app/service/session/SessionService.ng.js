@@ -48,9 +48,7 @@ angular.module("entraide").factory("SessionService", function($rootScope, Collec
         },
 
         getOwner: function(){
-            if(this.userProfile && this.userProfile.user){
-                return {id: this.userProfile.user._id};
-            }
+            return {id: this.getUserProfile().user._id};
         }
     };
 

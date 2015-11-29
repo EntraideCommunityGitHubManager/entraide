@@ -38,7 +38,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             handle: null
         }, {
             name: "My profile images",
-            id: "profile-images",
+            id: "my-profile-images",
             collection: ProfileImages,
             typeFS: true,
             unsubscribers: [],
@@ -85,7 +85,7 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
         },
 
         getCollection: function(sub, callback){
-            return sub.typeFS ? $meteor.collectionFS(callback, true, sub.collection) : $meteor.collection(callback, true);
+            return sub.typeFS ? $meteor.collectionFS(callback, false, sub.collection) : $meteor.collection(callback, true);
         },
 
         startHandle: function(sub){
@@ -111,6 +111,12 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
                     this.stopHandle(subscription);
                 }
             }, this);
+        },
+
+        stopUserHandlers: function(){
+            angular.forEach(this.userSubscriptions, function(){
+
+            });
         },
         
         initOptions: function(options){

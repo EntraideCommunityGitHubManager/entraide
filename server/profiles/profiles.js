@@ -43,7 +43,6 @@ ProfileImages = new FS.Collection("profile_images", {
     }
   }
 });
-     
 
 ProfileImages.allow({
     insert: function (userId, img) {
@@ -57,33 +56,12 @@ ProfileImages.allow({
     },
     download: function (userId) {
         return true;
-      //return (userId ? true : false);
     }
 });
-/*
 
-ProfileImages.allow({
-    insert: function (userId) {
-        return (userId ? true : false);
-    },
-    remove: function (userId) {
-        return (userId ? true : false);
-    },
-    download: function () {
-        return true;
-    },
-    update: function (userId) {
-        return (userId ? true : false);
-    }
+Meteor.publish('my-profile-images', function() {
+    return ProfileImages.find({'owner.id' :  this.userId}, {sort: {order:1}});
 });
-*/
-
-Meteor.publish('profile-images', function() {
-    //return ProfileImages.find({'owner.id' :  this.userId}, {sort: {order:1}});
-    return ProfileImages.find();
-});
-
-
 
 var isAdmin = function(userId){
     var isAdmin = false;

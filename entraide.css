@@ -1,16 +1,10 @@
 /* CSS declarations go here */
 html {
-/*    height:96%;*/
     overflow: hidden;
 }
 
 body{
-    /*padding-top: 51px;*/
     margin-bottom: 1px;
-    /*background-color: #f3efe0;sable*/
-    /*background-color: #696764;*/
-    /*background-color: #FFFFFF;*/
-    /*background-color: #E0EFEF;*/
     background-color: white;
     height:100%;
     width: 100%;
@@ -21,7 +15,6 @@ body{
 .app-view{
     height: 100%;
     width: 100%;
-/*    overflow: auto;*/
 }
 
 .login{
@@ -55,15 +48,12 @@ body{
 
 .notification-view {
     border: 1px black dashed;
-    /*height: 30px;*/
-    /*margin-top: 51px;*/
 }
 
 .menu-toggler {
     position: fixed;
     padding: 5px;
     height: 400px;
-    /*background: rgba(28, 136, 136, 0.51);*/
     background: rgba(30, 127, 128, 0.82);
     top: 16%;
     left: 300px;
@@ -79,8 +69,6 @@ body{
 }
 
 .content-view {
-    /*border: 1px black dashed;*/
-    /*height: 97%;*/
     height: 100%;
     width: 100%;
     margin-top: 5px;
@@ -122,9 +110,6 @@ body{
 
 .angular-google-map {
     position: relative;
-    /*padding-bottom: 50%;
-    height: 0;
-    overflow: hidden;*/
     height: 100%;
     width: 100%;
 }
@@ -140,7 +125,6 @@ body{
 
 .map-bubble-container {
     position: absolute;
-    /*top: 50%;*/
     left: 50%;
     color: #fff;
     background: rgba(0,0,0,0.5);
@@ -168,13 +152,14 @@ body{
 
 .drop-box {
     background: #F8F8F8;
-    border: 5px dashed #DDD;
-    width: 230px;
-    height: 120px;
+    border: 2px dashed rgba(214, 111, 222, 0.52);
+    height: 70px;
     text-align: center;
-    padding-top: 25px;
-    margin-left: 10px;
-    margin-bottom: 20px;
+    padding-top: 10px;
+    color: #59325A;
+    font-size: x-small;
+    margin-top: 10px;
+    margin: 38px;
 }
  
 .drop-box.dragover {
@@ -192,6 +177,7 @@ body{
 
 .ng-crop-container {
     height: 350px;
+    overflow: hidden;
 }
  
 .images-container-title {
@@ -216,9 +202,31 @@ body{
 
 .profile-image {
     border-radius: 50%;
+    width: 60px;
+    margin: 4px;
 }
 
 .photo-preview {
+    margin-top: 14px;
+    margin-bottom: 15px;
     width: 280px !important;
 }
 
+.img-crop{
+    width: 300px !important;
+    height: 224px !important;
+}
+
+.icon-action-container{
+    display: table;
+    margin: 0 auto;
+}
+
+.icon-action{
+    margin: 10px;
+}
+
+.fa-floppy-o:hover, .fa-camera:hover, .fa-remove:hover {
+    color: black;
+    cursor: pointer;
+}

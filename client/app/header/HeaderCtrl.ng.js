@@ -5,7 +5,12 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     $scope.isAdmin = SecurityService.isAdmin ;
     $scope.isConnected = SecurityService.isConnected;
     $scope.animLoginToggleEvent = 'animLoginToggleEvent';
+
     init();
+
+    CollectionService.subscribe('my-profile-images').then(function(images){
+        $scope.profileImage = images[0];
+    });
 
     $scope.login = function(){
         $scope.error = null;
@@ -14,6 +19,9 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
             setTimeout(function(){
                 AnimService.startTransition();
                 SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
+                CollectionService.subscribe('my-profile-images').then(function(images){
+                    $scope.profileImage = images[0];
+                });
                 AnimService.stopTransition(2000);
             }, 1000);
         }, function (err) {
@@ -54,7 +62,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         AnimService.startTransition();
         SecurityService.logout().then(function(){
             SessionService.resetUserProfile();
-            CollectionService.stopHandlers('users');
+            CollectionService.stopHandlers('my-');
             init();
             $state.go('app.main', {reload: true, inherit: true, notify: true});
             AnimService.stopTransition(3000);
@@ -65,6 +73,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         $scope.user = {email:'', password:''};
         $scope.security = {oldPassword:null, newPassword:null};
         $scope.error = null;
+        $scope.profileImage = null;
     }
 
     $scope.openSidebar = function(){
