@@ -11,9 +11,9 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         if (files.length > 0) {
           var reader = new FileReader();
           reader.onload = function (e) {
-            $scope.$apply(function () {
+            //$scope.$apply(function () {
               setPicture(e.target.result);
-            });
+            //});
           };
           reader.readAsDataURL(files[0]);
         } else {
@@ -25,12 +25,9 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         if ($scope.myCroppedImage !== '') {
             var fsFile = new FS.File($scope.myCroppedImage);
             fsFile.owner = SessionService.getOwner();
-
-          $scope.images.save(fsFile).then(function (image) {
+            $scope.images.save(fsFile).then(function (image) {
               setPicture(undefined);
-          }, function(error){
-              console.log(error);
-          });
+            }, function(error){console.log(error);});
         }
     };
 
