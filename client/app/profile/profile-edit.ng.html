@@ -1,4 +1,4 @@
-<div ng-hide="imgSrc" ngf-drop ngf-select
+<div ng-show="addable() && !imgSrc" ngf-drop ngf-select
      ngf-change="addImages($files)"
      ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
      ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
@@ -15,7 +15,7 @@
     <img-crop image="imgSrc" result-image="myCroppedImage" area-type="square"></img-crop>
 </div>
 
-<div class="icon-action-container">
+<div class="icon-action-container" ng-show="addable()">
     <span class="icon-action"><i class="fa fa-camera" ng-click="camera()" ng-show="!imgSrc"></i></span>
     <span class="icon-action"><i class="fa fa-floppy-o" ng-click="saveCroppedImage()" ng-show="imgSrc"></i></span>
 </div>
@@ -24,6 +24,8 @@
     <span ng-repeat="image in images">
         <img class="profile-image" src="{{ image.url()}}"/>
         <i class="fa fa-remove" ng-click="remove(image)"></i>
+        <i class="fa fa-heart-o" ng-show="!image.visible" ng-click="setVisible(image)"></i>
+        <i class="fa fa-heart" ng-show="image.visible"></i>
         <!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
     </span>
 </div>
