@@ -24,9 +24,10 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     };
     
     $scope.saveCroppedImage = function () {
-        if ($scope.myCroppedImage !== '') {
+        if ($scope.myCroppedImage !== '' && $scope.addable()) {
             var fsFile = new FS.File($scope.myCroppedImage);
             fsFile.owner = SessionService.getOwner();
+            $scope.images.lenth==0 ? fsFile.visible = true : null;
             $scope.images.save(fsFile).then(function (image) {
               setPicture(undefined);
             }, function(error){console.log(error);});
