@@ -37,12 +37,14 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
             password: $scope.user.password
         }).then(function () {
             $rootScope.$broadcast($scope.animLoginToggleEvent);
-            setTimeout(function(){AnimService.startTransition();}, 1000);
-            SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
-            $meteor.call('initUserDataAfterCreation').then(function(){
-                $state.reload();
-                AnimService.stopTransition(3000);
-            });
+            setTimeout(function(){
+                AnimService.startTransition();
+                SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
+                $meteor.call('initUserDataAfterCreation').then(function(){
+                    $state.reload();
+                });
+                AnimService.stopTransition(2000);
+            }, 1000);
         }, function (err) {
             $scope.error = err;
         });
