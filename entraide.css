@@ -236,3 +236,12 @@ body{
     color: black;
     cursor: pointer;
 }
+
+.fa-heart {
+    color: red;
+}
+
+.fa-heart-o:hover {
+    color: red;
+    cursor: pointer;
+}
