@@ -1,5 +1,7 @@
 angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SessionService) {
 
+    var MAX_IMAGES = 3;
+
     CollectionService.subscribe('my-profile').then(function(data){
         $scope.profile = data[0];
         CollectionService.subscribe('my-profile-images').then(function(images){
@@ -40,11 +42,25 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
             setPicture(data);
         });
     };
+    
+    $scope.setVisible = function(img){
+        angular.forEach($scope.images, function(image){
+            if(image._id != img._id){
+                image.visible = false;
+            }
+        });
+        img.visible = true;
+        $scope.images.save();
+    };
 
     var setPicture = function(img){
         $scope.imgSrc = img;
         $scope.myCroppedImage = '';
     }
+    
+    $scope.addable = function(){
+        return $scope.images.length < MAX_IMAGES;  
+    };
 
     
 });
