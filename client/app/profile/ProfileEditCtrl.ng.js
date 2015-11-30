@@ -35,7 +35,13 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     };
 
     $scope.remove = function(img){
-        $scope.images.remove(img);
+        var visible = img.visible;
+        $scope.images.remove(img).then(function(){
+            if(visible && $scope.images.length>0){
+                $scope.images[0].visible = true;
+                $scope.images.save();
+            }
+        });
     };
 
     $scope.camera = function(){
