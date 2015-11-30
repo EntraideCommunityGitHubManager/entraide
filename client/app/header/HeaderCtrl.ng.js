@@ -7,47 +7,20 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     $scope.animLoginToggleEvent = 'animLoginToggleEvent';
 
     init();
-
-    CollectionService.subscribe('my-profile-images').then(function(images){
-        $scope.profileImage = images[0];
-    });
+    loadProfileImage()
 
     $scope.login = function(){
         $scope.error = null;
         SecurityService.loginWithPassword($scope.user.email, $scope.user.password).then(function () {
-            $rootScope.$broadcast($scope.animLoginToggleEvent);
-            setTimeout(function(){
-                AnimService.startTransition();
-                SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
-                CollectionService.subscribe('my-profile-images').then(function(images){
-                    $scope.profileImage = images[0];
-                });
-                AnimService.stopTransition(2000);
-            }, 1000);
-        }, function (err) {
-            $scope.error = err;
-        });
+            logUser(loadProfileImage);
+        }, function (err) { $scope.error = err; });
     };
 
     $scope.create = function(){
         $scope.error = null;
-        SecurityService.createUser({
-            username:$scope.user.email,
-            email:$scope.user.email,
-            password: $scope.user.password
-        }).then(function () {
-            $rootScope.$broadcast($scope.animLoginToggleEvent);
-            setTimeout(function(){
-                AnimService.startTransition();
-                SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
-                $meteor.call('initUserDataAfterCreation').then(function(){
-                    $state.reload();
-                });
-                AnimService.stopTransition(2000);
-            }, 1000);
-        }, function (err) {
-            $scope.error = err;
-        });
+        SecurityService.createUser({ username:$scope.user.email, email:$scope.user.email, password: $scope.user.password}).then(function () {
+            logUser(initUserDataAfterCreation);
+        }, function (err) {$scope.error = err; });
     };
 
     $scope.edit = function(){
@@ -70,17 +43,38 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
             AnimService.stopTransition(3000);
         }, function(){$state.go('app.main.error');});
     };
+    
+    $scope.openSidebar = function(){
+        $rootScope.$broadcast('anim-sidebar-toggle');
+    };
 
-    function init(){
+    var init = function(){
         $scope.user = {email:'', password:''};
         $scope.security = {oldPassword:null, newPassword:null};
         $scope.error = null;
         $scope.profileImage = null;
     }
-
-    $scope.openSidebar = function(){
-        $rootScope.$broadcast('anim-sidebar-toggle');
-    };
-
+    
+    var logUser = function(callback){
+        $rootScope.$broadcast($scope.animLoginToggleEvent);
+        setTimeout(function(){
+            AnimService.startTransition();
+            SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
+            callback();
+            AnimService.stopTransition(2000);
+        }, 1000);
+    }
+    
+    var loadProfileImage = function(){
+        CollectionService.subscribe('my-profile-images').then(function(images){
+            $scope.profileImage = images[0];
+        });
+    }
+    
+    var initUserDataAfterCreation = function(){
+        $meteor.call('initUserDataAfterCreation').then(function(){
+            $state.reload();
+        });
+    }
 });
 
