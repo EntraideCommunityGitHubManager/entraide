@@ -18,7 +18,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.create = function(){
         $scope.error = null;
-        SecurityService.createUser({ username:$scope.user.email, email:$scope.user.email, password: $scope.user.password}).then(function () {
+        SecurityService.createUser({ username:$scope.user.email.substring(0,$scope.user.email.indexOf('@')), email:$scope.user.email, password: $scope.user.password}).then(function () {
             logUser(initUserDataAfterCreation);
         }, function (err) {$scope.error = err; });
     };
