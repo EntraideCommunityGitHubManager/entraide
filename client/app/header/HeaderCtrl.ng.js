@@ -23,10 +23,6 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         }, function (err) {$scope.error = err; });
     };
 
-    $scope.edit = function(){
-        console.log("edit profile called");
-    };
-    
     $scope.changePassword = function(){
         SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
             alert('Password changed.');
@@ -42,10 +38,6 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
             $state.go('app.main', {reload: true, inherit: true, notify: true});
             AnimService.stopTransition(3000);
         }, function(){$state.go('app.main.error');});
-    };
-    
-    $scope.openSidebar = function(){
-        $rootScope.$broadcast('anim-sidebar-toggle');
     };
 
     var init = function(){
@@ -78,10 +70,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
     
     var getUserName = function(email){
-        if(email.indexOf('@')>0){
-            return email.substring(0,email.indexOf('@'));
-        }
-        return email;
+        return email.indexOf('@')>0 ? email.substring(0,email.indexOf('@')) : email;
     };
 });
 
