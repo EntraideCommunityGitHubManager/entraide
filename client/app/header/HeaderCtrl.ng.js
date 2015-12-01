@@ -18,7 +18,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.create = function(){
         $scope.error = null;
-        SecurityService.createUser({ username:$scope.user.email.substring(0,$scope.user.email.indexOf('@')), email:$scope.user.email, password: $scope.user.password}).then(function () {
+        SecurityService.createUser({ username:getUserName($scope.user.email), email:$scope.user.email, password: $scope.user.password}).then(function () {
             logUser(initUserDataAfterCreation);
         }, function (err) {$scope.error = err; });
     };
@@ -53,7 +53,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         $scope.security = {oldPassword:null, newPassword:null};
         $scope.error = null;
         $scope.profileImage = null;
-    }
+    };
     
     var logUser = function(callback){
         $rootScope.$broadcast($scope.animLoginToggleEvent);
@@ -63,18 +63,25 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
             callback();
             AnimService.stopTransition(2000);
         }, 1000);
-    }
+    };
     
     var loadProfileImage = function(){
         CollectionService.subscribe('my-profile-images').then(function(images){
             $scope.profileImage = images[0];
         });
-    }
+    };
     
     var initUserDataAfterCreation = function(){
         $meteor.call('initUserDataAfterCreation').then(function(){
             $state.reload();
         });
-    }
+    };
+    
+    var getUserName = function(email){
+        if(email.indexOf('@')>0){
+            return email.substring(0,email.indexOf('@'));
+        }
+        return email;
+    };
 });
 
