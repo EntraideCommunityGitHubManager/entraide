@@ -5,9 +5,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     $scope.isAdmin = SecurityService.isAdmin ;
     $scope.isConnected = SecurityService.isConnected;
     $scope.animLoginToggleEvent = 'animLoginToggleEvent';
-
-    init();
-    loadProfileImage()
+    $scope.sessionService = SessionService;
 
     $scope.login = function(){
         $scope.error = null;
@@ -58,8 +56,9 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
     
     var loadProfileImage = function(){
-        CollectionService.subscribe('my-profile-images').then(function(images){
-            $scope.profileImage = images[0];
+        var options = {collectionOptions:{'visible': true}};
+        CollectionService.subscribe('my-profile-images', options).then(function(images){
+            SessionService.setUserProfileImage(images[0]);
         });
     };
     
@@ -72,5 +71,9 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     var getUserName = function(email){
         return email.indexOf('@')>0 ? email.substring(0,email.indexOf('@')) : email;
     };
+
+    init();
+    loadProfileImage();
+
 });
 

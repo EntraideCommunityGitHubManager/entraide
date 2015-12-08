@@ -50,18 +50,37 @@ body{
     border: 1px black dashed;
 }
 
-.menu-toggler {
+.menu-toggler-profile {
     position: fixed;
-    padding: 5px;
-    height: 400px;
+    padding: 9px;
+    height: 40px;
     background: rgba(30, 127, 128, 0.82);
-    top: 16%;
-    left: 300px;
+    top: 130px;
+    left: 301px;
     visibility: visible;
     border-top-right-radius: 1em;
     border-bottom-right-radius: 1em;
-    border-top-left-radius: 0.3em;
-    border-bottom-left-radius: 0.3em;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    width: 30px;
+}
+
+.menu-toggler-event {
+    position: fixed;
+    padding: 9px;
+    height: 40px;
+    background: rgba(9, 60, 144, 0.72);
+    top: 180px;
+    left: 301px;
+    visibility: visible;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    width: 30px;
+}
+.menu-toggler-event:hover, .menu-toggler-profile:hover {
+    cursor: pointer;
 }
 
 .side-left-view {
@@ -198,6 +217,12 @@ body{
     width: 100%;
     text-align: center;
     background-color: #f8f8f8;
+}
+
+.profile-image-header-default {
+    border-radius: 50%;
+    width: 36px;
+    margin: 7px;
 }
 
 .profile-image-header {

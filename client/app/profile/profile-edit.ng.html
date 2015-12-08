@@ -7,7 +7,7 @@
   <div>
     <strong>OR</strong>
   </div>
-  <div ng-show="dropAvailable">You can also drop image to here</div>
+  <div ng-show="dropAvailable">Drop image here</div>
 </div>
 
 <div ng-show="imgSrc" class="ng-crop-container">
@@ -22,11 +22,13 @@
 
 <div>
     <span ng-repeat="image in images">
-        <img class="profile-image" src="{{ image.url()}}"/>
-        <i class="fa fa-remove" ng-click="remove(image)"></i>
-        <i class="fa fa-heart-o" ng-show="!image.visible" ng-click="setVisible(image)"></i>
-        <i class="fa fa-heart" ng-show="image.visible"></i>
-        <!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
+        <div>
+            <img class="profile-image" src="{{ image.url()}}"/>
+            <i class="fa fa-remove" ng-click="remove(image)"></i>
+            <i class="fa fa-heart-o" ng-show="!image.visible" ng-click="setVisible(image)"></i>
+            <i class="fa fa-heart" ng-show="image.visible"></i>
+            <!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
+        </div>
     </span>
 </div>
 

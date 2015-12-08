@@ -6,18 +6,21 @@ angular.module("entraide").factory("SessionService", function($rootScope, Collec
 
         userProfile : {
             user: null,
-            department: defaultDepartment
+            department: defaultDepartment,
+            image: null
         },
 
         getUserProfile : function() {
             this.userProfile.department = this.userProfile.department ? this.userProfile.department : defaultDepartment;
             this.userProfile.user = this.userProfile.user ? this.userProfile.user : $rootScope.currentUser;
+            this.userProfile.image = this.userProfile.image ? this.userProfile.image : null;
             return this.userProfile;
         },
 
-        setUserProfile : function(user, department){
+        setUserProfile : function(user, department, image){
             this.userProfile.user = user ? user : this.userProfile.user;
             this.userProfile.department = department ? department : defaultDepartment;
+            this.userProfile.image = image ? image : null;
         },
 
         setDepartmentByCode : function(code) {
@@ -34,6 +37,10 @@ angular.module("entraide").factory("SessionService", function($rootScope, Collec
             return deferred.promise;
         },
 
+        setUserProfileImage : function(image){
+            this.userProfile.image = image;
+        },
+
         resetUser: function(){
             this.userProfile.user = null;
         },
@@ -42,9 +49,14 @@ angular.module("entraide").factory("SessionService", function($rootScope, Collec
             this.userProfile.department = null;
         },
 
+        resetImage: function(){
+            this.userProfile.image = null;
+        },
+
         resetUserProfile: function(){
             this.resetUser();
             this.resetDepartment();
+            this.resetImage();
         },
 
         getOwner: function(){

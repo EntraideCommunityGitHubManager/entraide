@@ -39,8 +39,11 @@
                             <li><a ng-click="changePassword()">Change</a></li>
                         </ul>
                     </li>
-                    <li ng-show="profileImage">
-                        <img class="profile-image-header" src="{{ profileImage.url()}}" />
+                    <li ng-show="isConnected() && !sessionService.userProfile.image">
+                        <img class="profile-image-header-default" src="img/profile.png" />
+                    </li>
+                    <li ng-show="sessionService.userProfile.image">
+                        <img class="profile-image-header" src="{{ sessionService.userProfile.image.url()}}" />
                     </li>
                 </ul>
             </div>
