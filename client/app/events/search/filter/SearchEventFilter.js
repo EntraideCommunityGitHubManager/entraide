@@ -11,6 +11,11 @@ angular.module('entraide').controller('SearchEventFilterCtrl', function ($rootSc
     $scope.search = function(){
         alert('search');
     };
+    
+    $scope.getCategoryClass=function(cat){
+        var level = cat.code.split("-").length;
+        return cat.code + "-" +level;
+    }
 
 });
 
