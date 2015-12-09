@@ -4,14 +4,14 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
 
     $scope.isOpen = false;
     $scope.isConnected = SecurityService.isConnected;
-    $scope.currentView = 'event-search';
+    $scope.currentView = 'search';
 
     $scope.toggleSidebar = function(){toggle();};
-    $scope.$on('event-search', function(){toggle(true, 'event-search');});
-    $scope.$on('event-create', function(){toggle(true, 'event-create');});
-    $scope.$on('event-edit', function(){toggle(true, 'event-edit')});
-    $scope.$on('event-detail', function(){toggle(true, 'event-detail')});
-    $scope.$on('profile-edit', function(){toggle(true, 'profile-edit')});
+    $scope.$on('event-search', function(){toggle(true, 'search');});
+    $scope.$on('event-create', function(){toggle(true, 'event');});
+    $scope.$on('event-edit', function(){toggle(true, 'event')});
+    $scope.$on('event-detail', function(){toggle(true, 'event')});
+    $scope.$on('profile-edit', function(){toggle(true, 'profile')});
 
     function toggle(open, currentView){
         var state = $scope.isOpen ? true : false;
