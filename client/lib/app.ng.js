@@ -322,7 +322,16 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
         },{
             from : 'app.main.events.search.myEvents.create',
             to : 'app.main.events.search.byProfile'
-        }]
+        }
+        /*,{
+            from : 'app.main.events.search.myEvents.*',
+            to : 'app.main.events.search.byProfile'
+        },{
+            from : 'app.main.events.search.byProfile.*',
+            to : 'app.main.events.search.myEvents'
+        }*/
+        
+        ]
     };
     AnimService.setRoutingConfig(animRoutingConfig);
 
