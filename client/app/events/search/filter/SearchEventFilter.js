@@ -2,7 +2,11 @@ angular.module('entraide').controller('SearchEventFilterCtrl', function ($rootSc
 
     console.log('SearchEventFilterCtrl');
     
-    $scope.categories = 
+    $scope.categories = [];
+    
+    CollectionService.subscribe('all-categories').then(function(categories){
+        $scope.categories = categories;
+    }, function(err){console.log(err);});
 
     $scope.search = function(){
         alert('search');
