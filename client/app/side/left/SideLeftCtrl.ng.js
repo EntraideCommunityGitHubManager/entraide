@@ -14,9 +14,12 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
     $scope.$on('profile-edit', function(){toggle(true, 'profile-edit')});
 
     function toggle(open, currentView){
+        var state = $scope.isOpen ? true : false;
         $scope.currentView = currentView;
         $scope.isOpen = open ? true : !$scope.isOpen;
-        $rootScope.$broadcast('anim-sidebar-toggle');
+        if(state != $scope.isOpen){
+            $rootScope.$broadcast('anim-sidebar-toggle');
+        }
     };
     
     $scope.isView = function(view){
