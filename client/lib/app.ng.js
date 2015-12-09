@@ -300,7 +300,7 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
         }
     });
     
-	var animRoutingConfig = {
+    var animRoutingConfig = {
         includes : [{
             from : 'app.main.events.search.*',
             to : 'app.main'
