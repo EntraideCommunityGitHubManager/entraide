@@ -14,7 +14,7 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
 
     function toggle(open, currentView){
         $scope.currentView = currentView;
-        open ? $scope.isOpen = true : $scope.isOpen = !$scope.isOpen;
+        $scope.isOpen = open ? true : !$scope.isOpen;
         $rootScope.$broadcast('anim-sidebar-toggle');
     };
     
