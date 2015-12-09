@@ -6,7 +6,10 @@ Meteor.publish("all-categories", function(){
 
 Meteor.startup(function () {
   if(Categories.find({}).count()<=0){
+     
+      // Music
       Categories.insert({code: 'music', ancestors:[], parent:null, name:'Musique'});
+      Categories.insert({code: 'music-oth', ancestors:['music'], parent:'music', name:'Autres'});
       
       Categories.insert({code: 'music-wind', ancestors:['music'], parent:'music', name:'Instrument à vent'});
       Categories.insert({code: 'music-wind-flt', ancestors:['music', 'music-wind'], parent:'music-wind', name:'Flûtes'});
@@ -15,12 +18,20 @@ Meteor.startup(function () {
       
       Categories.insert({code: 'music-elec', ancestors:['music'], parent:'music', name:'Instrument électronique'});
       Categories.insert({code: 'music-elec-syn', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Instrument électronique'});
+      Categories.insert({code: 'music-elec-oth', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Autres'});
       
       Categories.insert({code: 'music-str', ancestors:['music'], parent:'music', name:'Instrument à corde'});
       Categories.insert({code: 'music-str-vio', ancestors:['music', 'music-str'], parent:'music-str', name:'Violons'});
       Categories.insert({code: 'music-str-oth', ancestors:['music', 'music-str'], parent:'music-str', name:'Autres'});
       
-      Categories.insert({code: 'BRICO', ancestors:[], parent:null, name:'Bricolage'});
+      // Bricolage
+      Categories.insert({code: 'brico', ancestors:[], parent:null, name:'Bricolage'});
+      Categories.insert({code: 'brico-oth', ancestors:['brico'], parent:'brico', name:'Autres'});
+      
+      Categories.insert({code: 'brico-gdn', ancestors:['brico'], parent:'brico', name:'Jardin'});
+      Categories.insert({code: 'brico-hom', ancestors:['brico'], parent:'brico', name:'Maison'});
+      
+      
   }
 
 });
