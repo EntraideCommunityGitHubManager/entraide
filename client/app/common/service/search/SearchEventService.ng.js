@@ -1,6 +1,8 @@
 angular.module("entraide").factory("SearchEventService", function($rootScope, CollectionService, $q){
 
-    var searchEventService = {};
+    var searchEventService = {
+        searchEventFilter: {};
+    };
 
 
     return searchEventService;
