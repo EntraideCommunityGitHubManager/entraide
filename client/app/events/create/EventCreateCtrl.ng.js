@@ -9,9 +9,12 @@ angular.module('entraide').controller('EventCreateCtrl', function ($rootScope, $
 
     $scope.create = function(event){
         $scope.events.push(event);
-        $rootScope.$broadcast('anim-sidebar-toggle');
+        $rootScope.$broadcast('event-create');
     };
 
+    $scope.close=function(){
+        $rootScope.$broadcast('event-create');
+    };
 
 });
 

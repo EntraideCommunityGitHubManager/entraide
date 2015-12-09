@@ -5,9 +5,9 @@ angular.module('entraide').controller('EventDetailCtrl', function ($rootScope, $
         AnimService.stopTransition();
     }
 
-    $scope.closeSideBar = function(){
-        $rootScope.$broadcast('anim-sidebar-toggle');
-    }
+    $scope.close=function(){
+        $rootScope.$broadcast('event-detail');
+    };
 
 });
 

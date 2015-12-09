@@ -52,6 +52,13 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             options: null,
             handle: null
         }, {
+            name: "All departments",
+            id: "all-departments",
+            collection: Departments,
+            unsubscribers: [],
+            options: null,
+            handle: null
+        }, {
             name: "All categories",
             id: "all-categories",
             collection: Categories,

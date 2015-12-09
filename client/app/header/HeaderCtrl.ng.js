@@ -38,6 +38,10 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         }, function(){$state.go('app.main.error');});
     };
 
+    $scope.editProfile = function(){
+        $rootScope.$broadcast('profile-edit');
+    };
+
     var init = function(){
         $scope.user = {email:'', password:''};
         $scope.security = {oldPassword:null, newPassword:null};

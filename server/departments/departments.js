@@ -4,6 +4,10 @@ Meteor.publish("department-by-code", function(options){
    return Departments.find({$and: [options.collectionOptions]});
 });
 
+Meteor.publish("all-departments", function(){
+    return Departments.find({});
+});
+
 Meteor.startup(function () {
   if(Departments.find({}).count()<=0){
       Departments.insert({"code":"10","name":"Aube", location:{ "latitude":48.30146673770983,"longitude":4.0704345703125}}); 

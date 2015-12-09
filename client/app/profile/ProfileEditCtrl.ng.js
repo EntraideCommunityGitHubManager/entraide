@@ -1,5 +1,7 @@
 angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SessionService) {
 
+    console.log('ProfileEditCtrl');
+
     var MAX_IMAGES = 3;
     $scope.images = [];
 

@@ -4,9 +4,9 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
 
     $scope.isOpen = false;
     $scope.isConnected = SecurityService.isConnected;
-    $scope.currentView = 'search';
+    $scope.currentView = null;
 
-    $scope.toggleSidebar = function(){toggle();};
+    $scope.toggleSidebar = function(state, view){toggle(state, view);};
     $scope.$on('event-search', function(){toggle(true, 'search');});
     $scope.$on('event-create', function(){toggle(true, 'event');});
     $scope.$on('event-edit', function(){toggle(true, 'event')});
@@ -14,12 +14,13 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
     $scope.$on('profile-edit', function(){toggle(true, 'profile')});
 
     function toggle(open, currentView){
-        var state = $scope.isOpen ? true : false;
-        $scope.currentView = currentView;
-        $scope.isOpen = open ? true : !$scope.isOpen;
-        if(state != $scope.isOpen){
+        if($scope.isOpen && open && $scope.currentView != currentView){
+
+        } else if(!$scope.isOpen || ($scope.isOpen && $scope.currentView == currentView)){
+            $scope.isOpen = !$scope.isOpen;
             $rootScope.$broadcast('anim-sidebar-toggle');
         }
+        $scope.currentView = currentView;
     };
     
     $scope.isView = function(view){

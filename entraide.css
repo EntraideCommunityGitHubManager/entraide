@@ -231,6 +231,11 @@ body{
     margin: 4px;
 }
 
+.profile-image-header:hover, .profile-image-header-default:hover {
+    cursor:pointer;
+    border: 1px solid rgba(61, 148, 175, 0.68);
+}
+
 .profile-image {
     border-radius: 50%;
     width: 60px;
@@ -273,4 +278,24 @@ body{
 
 .table-font{
     color: #2C6D7D;
+}
+
+.table-lookups{
+    height: 300px;
+    margin-bottom: 50px;
+}
+
+.side-left-profile{
+    background-color: rgba(28, 136, 136, 0.91);
+    height: 100%;
+}
+
+.side-left-search{
+    background-color: rgba(23, 63, 123, 0.78);
+    height: 100%;
+}
+
+.side-left-event{
+    background-color: rgba(83, 54, 119, 0.85);
+    height: 100%;
 }

@@ -204,13 +204,12 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 }]
             }
         })
+
+        /*********************************************************/
+        /*                   Users
+         **********************************************************/
         .state('app.main.admin.users', {
             url: '/users',
-            abstract: true,
-            template: '<ui-view/>'
-        })
-        .state('app.main.admin.events', {
-            url: '/events',
             abstract: true,
             template: '<ui-view/>'
         })
@@ -232,6 +231,14 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 }
             }
         })
+        /*********************************************************/
+        /*                   Events
+         **********************************************************/
+        .state('app.main.admin.events', {
+            url: '/events',
+            abstract: true,
+            template: '<ui-view/>'
+        })
         .state('app.main.admin.events.all', {
             url: '/all',
             views: {
@@ -247,6 +254,57 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'content-view@app': {
                     templateUrl: 'client/app/admin/events/edit/admin-event-edit.ng.html',
                     controller: 'AdminEventEditCtrl'
+                }
+            }
+        })
+        /*********************************************************/
+        /*                   Lookups
+         **********************************************************/
+        .state('app.main.admin.lookups', {
+            url: '/lookups',
+            abstract: true,
+            template: '<ui-view/>'
+        })
+        .state('app.main.admin.lookups.all', {
+            url: '/all',
+            views: {
+                'content-view@app': {
+                    templateUrl: 'client/app/admin/lookups/list/admin-lookup-list.ng.html',
+                    controller: 'AdminLookupListCtrl'
+                }
+            }
+        })
+        /*********************************************************/
+        /*                   Lookups - category
+         **********************************************************/
+        .state('app.main.admin.lookups.category', {
+            url: '/category',
+            abstract: true,
+            template: '<ui-view/>'
+        })
+        .state('app.main.admin.lookups.category.edit', {
+            url: '/edit/:categoryId',
+            views: {
+                'content-view@app': {
+                    templateUrl: 'client/app/admin/lookups/category/edit/admin-category-edit.ng.html',
+                    controller: 'AdminCategoryEditCtrl'
+                }
+            }
+        })
+        /*********************************************************/
+        /*                   Lookups - department
+         **********************************************************/
+        .state('app.main.admin.lookups.department', {
+            url: '/department',
+            abstract: true,
+            template: '<ui-view/>'
+        })
+        .state('app.main.admin.lookups.department.edit', {
+            url: '/edit/:departmentId',
+            views: {
+                'content-view@app': {
+                    templateUrl: 'client/app/admin/lookups/department/edit/admin-department-edit.ng.html',
+                    controller: 'AdminDepartmentEditCtrl'
                 }
             }
         })

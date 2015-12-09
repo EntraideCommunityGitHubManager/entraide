@@ -1,5 +1,7 @@
 angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $scope, $meteor, $stateParams, $state, CollectionService, AnimService) {
 
+    console.log('EventEditCtrl');
+
     if($stateParams.event && $stateParams.event._id) {
         $scope.event = $meteor.object(Events, $stateParams.event._id, false);
         AnimService.stopTransition();
@@ -22,28 +24,8 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
         }
     };
 
-    $scope.hasChanged = function(){
-        return true;
-    };
-
-});
-
-angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, $stateParams, $state, CollectionService, AnimService) {
-
-    CollectionService.subscribe('my-profile').then(function(profiles) {
-        $scope.profile = $meteor.object(Profiles, profiles[0]._id, false);
-        CollectionService.subscribe('profile-images').then(function(images) {
-            $scope.images = images;
-            AnimService.stopTransition();
-        });
-    });
-
-    $scope.insertImage = function(img) {
-       $scope.images.push(img);
-    };
-
-    $scope.removeImage = function(img) {
-        $scope.images.remove(img);
+    $scope.close=function(){
+        $rootScope.$broadcast('event-edit');
     };
 
     $scope.hasChanged = function(){
@@ -51,6 +33,3 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     };
 
 });
-
-
-
