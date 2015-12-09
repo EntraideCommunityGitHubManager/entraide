@@ -95,6 +95,14 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
+                'side-left-profile-view@app.main': {
+                    templateUrl: 'client/app/profile/profile-edit.ng.html',
+                    controller: 'ProfileEditCtrl'
+                },
+                'side-left-search-view@app.main': {
+                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
+                    controller: 'SearchEventFilterCtrl'
+                },
                 'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/detail/event-detail.ng.html',
                     controller: 'EventDetailCtrl'
@@ -111,6 +119,10 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'side-left-profile-view@app.main': {
                     templateUrl: 'client/app/profile/profile-edit.ng.html',
                     controller: 'ProfileEditCtrl'
+                },
+                'side-left-search-view@app.main': {
+                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
+                    controller: 'SearchEventFilterCtrl'
                 }
             },
             resolve: {
@@ -125,6 +137,14 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
+            	'side-left-profile-view@app.main': {
+                    templateUrl: 'client/app/profile/profile-edit.ng.html',
+                    controller: 'ProfileEditCtrl'
+                },
+                'side-left-search-view@app.main': {
+                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
+                    controller: 'SearchEventFilterCtrl'
+                },
                 'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/create/event-create.ng.html',
                     controller: 'EventCreateCtrl'
@@ -137,6 +157,14 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
+            	'side-left-profile-view@app.main': {
+                    templateUrl: 'client/app/profile/profile-edit.ng.html',
+                    controller: 'ProfileEditCtrl'
+                },
+                'side-left-search-view@app.main': {
+                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
+                    controller: 'SearchEventFilterCtrl'
+                },
                 'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/edit/event-edit.ng.html',
                     controller: 'EventEditCtrl'
