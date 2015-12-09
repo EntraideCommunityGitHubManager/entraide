@@ -82,6 +82,10 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'side-left-profile-view@app.main': {
                     templateUrl: 'client/app/profile/profile-edit.ng.html',
                     controller: 'ProfileEditCtrl'
+                },
+                'side-left-search-view@app.main': {
+                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
+                    controller: 'SearchEventFilterCtrl'
                 }
             }
         })
