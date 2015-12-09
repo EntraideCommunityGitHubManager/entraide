@@ -4,8 +4,6 @@
 <div class="menu-toggler-event" ng-click="toggleSidebar(true, 'event-search')">
     <a><i class="fa fa-eye"></i></a>
 </div>
-<div ui-view="side-left-profile-view" ng-if="isView('profile-edit')"></div>
-<div ui-view="side-left-search-view" ng-if="isView('event-search')"></div>
-<div ui-view="side-left-event-view" ng-if="isView('event-create')"></div>
-<div ui-view="side-left-event-view" ng-if="isView('event-edit')"></div>
-<div ui-view="side-left-event-view" ng-if="isView('event-detail')"></div>
+<div ui-view="side-left-profile-view" ng-if="isView('profile')"></div>
+<div ui-view="side-left-search-view" ng-if="isView('search')"></div>
+<div ui-view="side-left-event-view" ng-if="isView('event')"></div>
