@@ -21,7 +21,7 @@ Meteor.startup(function () {
       Categories.insert({code: 'music-elec-othr', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Autres'});
       
       Categories.insert({code: 'music-strg', ancestors:['music'], parent:'music', name:'Instrument à corde'});
-      Categories.insert({code: 'music-strg-viol', ancestors:['music', 'music-strg'], parent:'music-strg', name:'Violons'});
+      Categories.insert({code: 'music-strg-viln', ancestors:['music', 'music-strg'], parent:'music-strg', name:'Violons'});
       Categories.insert({code: 'music-strg-othr', ancestors:['music', 'music-strg'], parent:'music-strg', name:'Autres'});
       
       // Bricolage
