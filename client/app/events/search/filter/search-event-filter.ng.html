@@ -1,1 +1,4 @@
-<div>Search Event Filter</div>
+<h4>Search Event Filter</h4>
+<div ng-repeat="cat in categories">
+  <div class="{{getCategoryClass(cat)}}">{{cat.name}}</div>
+</div>
