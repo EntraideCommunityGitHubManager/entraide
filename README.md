@@ -54,15 +54,13 @@ http://tympanus.net/Development/TooltipStylesInspiration/curved.html
 http://tympanus.net/Development/PageLoadingEffects/index8.html
 http://tympanus.net/codrops/2014/09/23/animated-background-headers/
 http://tympanus.net/codrops/2013/08/28/transitions-for-off-canvas-navigations/
-http://tympanus.net/Development/SelectInspiration/index2.html
+http://tympanus.net/Development/SelectInspiration/index4.html
 http://tympanus.net/Development/ClickEffects/
 http://tympanus.net/codrops/2014/04/23/page-loading-effects/
 http://tympanus.net/Development/SimpleDropDownEffects/
 http://tympanus.net/Development/ResponsiveMultiLevelMenu/index4.html
-http://tympanus.net/Development/TooltipStylesInspiration/img/map.jpg
 https://github.com/angular-ui/ui-router/issues/178
 https://github.com/angular-ui/angular-google-maps/issues/429
-https://randomuser.me/api/portraits/thumb/men/1.jpg
 http://info.meteor.com/blog/whatsapp-with-meteor-angular-and-ionic
 http://tympanus.net/codrops/2012/09/19/fullscreen-video-slideshow-with-bigvideo-js/
 http://www.angular-meteor.com/tutorials/socially/angular1/bootstrapping
