@@ -49,6 +49,7 @@ http://www.danparis.fr/
 https://snazzymaps.com/explore?sort=recent&tag=dark&page=7
 http://tympanus.net/codrops/2013/08/13/multi-level-push-menu/
 http://tympanus.net/codrops/2013/04/17/slide-and-push-menus/
+http://tympanus.net/Development/DragDropInteractions/icons.html
 http://tympanus.net/codrops/category/playground/
 http://tympanus.net/Development/TooltipStylesInspiration/curved.html
 http://tympanus.net/Development/PageLoadingEffects/index8.html
