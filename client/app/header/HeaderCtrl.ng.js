@@ -4,7 +4,6 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.isAdmin = SecurityService.isAdmin ;
     $scope.isConnected = SecurityService.isConnected;
-    $scope.animLoginToggleEvent = 'animLoginToggleEvent';
     $scope.sessionService = SessionService;
 
     $scope.login = function(){
@@ -50,7 +49,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
     
     var logUser = function(callback){
-        $rootScope.$broadcast($scope.animLoginToggleEvent);
+        $rootScope.$broadcast('animLoginToggleEvent');
         setTimeout(function(){
             AnimService.startTransition();
             SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
@@ -60,7 +59,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
     
     var loadProfileImage = function(){
-        var options = {collectionOptions:{'visible': true}};
+        var options = {collectionOptions:{'favorite': true}};
         CollectionService.subscribe('my-profile-images', options).then(function(images){
             SessionService.setUserProfileImage(images[0]);
         });
