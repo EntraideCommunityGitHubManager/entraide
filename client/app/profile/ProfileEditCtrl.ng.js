@@ -30,7 +30,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         if ($scope.myCroppedImage !== '' && $scope.addable()) {
             var fsFile = new FS.File($scope.myCroppedImage);
             fsFile.owner = SessionService.getOwner();
-            fsFile.visible = $scope.images.length==0 ? true : false;
+            fsFile.favorite = $scope.images.length==0 ? true : false;
             if($scope.images.length==0){
                 SessionService.setUserProfileImage(fsFile);
             }
@@ -41,10 +41,10 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     };
 
     $scope.remove = function(img){
-        var visible = img.visible;
+        var favorite = img.favorite;
         $scope.images.remove(img).then(function(){
-            if(visible && $scope.images.length>0){
-                $scope.images[0].update({$set: {'visible': true}});
+            if(favorite && $scope.images.length>0){
+                $scope.images[0].update({$set: {'favorite': true}});
                 SessionService.setUserProfileImage($scope.images[0]);
             } else {
                 SessionService.resetImage();
@@ -61,10 +61,10 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     $scope.setVisible = function(img){
         angular.forEach($scope.images, function(image){
             if(image._id == img._id){
-                image.update({$set: {'visible': true}});
+                image.update({$set: {'favorite': true}});
                 SessionService.setUserProfileImage(image);
             } else {
-                image.update({$set: {'visible': false}});
+                image.update({$set: {'favorite': false}});
             }
         });
 
