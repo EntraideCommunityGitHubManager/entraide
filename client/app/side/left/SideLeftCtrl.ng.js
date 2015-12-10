@@ -22,9 +22,5 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
         }
         $scope.currentView = currentView;
     };
-    
-    $scope.isView = function(view){
-        return view == $scope.currentView;
-    }
-
+   
 });
