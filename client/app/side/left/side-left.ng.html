@@ -1,7 +1,9 @@
-<div class="menu-toggler-profile" ng-click="toggleSidebar(true, 'profile')" ng-if="isConnected()" >
-    <a><i class="fa fa-user"></i></a>
-</div>
-<div class="menu-toggler-event" ng-click="toggleSidebar(true, 'search')">
-    <a><i class="fa fa-eye"></i></a>
+<div ng-if="isActive()" >
+    <div class="menu-toggler-profile" ng-click="toggleSidebar(true, 'profile')">
+        <a><i class="fa fa-user"></i></a>
+    </div>
+    <div class="menu-toggler-event" ng-click="toggleSidebar(true, 'search')">
+        <a><i class="fa fa-eye"></i></a>
+    </div>
 </div>
 <div ui-view="side-left-{{currentView}}-view" class="side-left-{{currentView}}"></div>
