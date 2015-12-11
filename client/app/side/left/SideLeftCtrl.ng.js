@@ -25,6 +25,6 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
     
     $scope.isActive = function(){
         return !($state.is('app') || $state.is('app.main'));
-    }
+    };
    
 });
