@@ -102,7 +102,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
-                'side-left-event-view@app.main': {
+                'side-left-event-view@app': {
                     templateUrl: 'client/app/events/detail/event-detail.ng.html',
                     controller: 'EventDetailCtrl'
                 }
@@ -128,7 +128,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
-                'side-left-event-view@app.main': {
+                'side-left-event-view@app': {
                     templateUrl: 'client/app/events/create/event-create.ng.html',
                     controller: 'EventCreateCtrl'
                 }
@@ -140,7 +140,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
-                'side-left-event-view@app.main': {
+                'side-left-event-view@app': {
                     templateUrl: 'client/app/events/edit/event-edit.ng.html',
                     controller: 'EventEditCtrl'
                 }
