@@ -312,7 +312,7 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
                 $state.go("app.main.error.required");
                 break;
             case "FORBIDDEN":
-                $state.go("main");
+                $state.go("app.main");
                 break;
             case "UNAUTHORIZED":
                 $state.go("app.main.error.unauthorized");
