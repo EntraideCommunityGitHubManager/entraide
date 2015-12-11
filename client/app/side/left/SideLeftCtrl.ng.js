@@ -23,8 +23,8 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
         $scope.currentView = currentView;
     };
     
-    $scope.hideSideMenu = function(){
-        return $state.current.name=='app' || $state.current.name=='app.main';
+    $scope.isActive = function(){
+        return !($state.current.name=='app' || $state.current.name=='app.main');
     }
    
 });
