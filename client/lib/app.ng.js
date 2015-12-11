@@ -21,43 +21,53 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
     $urlRouterProvider.otherwise("main");
 
     $stateProvider
-
+    
         .state('app', {
-            templateUrl: 'client/app/app.ng.html'
-        })
-
-        .state('app.main', {
-            url: '/main',
+            templateUrl: 'client/app/app.ng.html',
             views: {
-                'header-view@app': {
+                'header-view': {
                     templateUrl: 'client/app/header/header.ng.html',
                     controller: 'HeaderCtrl'
                 },
-                'notification-view@app': {
+                'notification-view': {
                     templateUrl: 'client/app/notification/notification.ng.html',
                     controller: 'NotificationCtrl'
                 },
-                'side-left-view@app': {
+                'side-left-view': {
                     templateUrl: 'client/app/side/left/side-left.ng.html',
                     controller: 'SideLeftCtrl'
                 },
-                'content-view@app': {
+                'content-view': {
                     templateUrl: 'client/app/map/map.ng.html',
                     controller: 'MapCtrl'
                 },
-                'background-view@app': {
+                'background-view': {
                     template: '<div anim-background source-video="video/beach.mp4" source-image="img/beach.jpg"></div>'
                 },
-                'footer-view@app': {
+                'footer-view': {
                     templateUrl: 'client/app/footer/footer.ng.html',
                     controller: 'FooterCtrl'
                 }
             }
         })
 
-        // TODO:    - Try to hide the sidebar toggler button on home state
-        //          - Try to remove the main of the url
-        //          - Try to refactor the side-left profile and search views
+        .state('app.main', {
+            url: '/main',
+            abstract: true,
+            template: '<ui-view/>',
+            views: {
+                'side-left-profile-view@app': {
+                    templateUrl: 'client/app/profile/profile-edit.ng.html',
+                    controller: 'ProfileEditCtrl'
+                },
+                'side-left-search-view@app': {
+                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
+                    controller: 'SearchEventFilterCtrl'
+                }
+            }
+        })
+
+        // TODO: - Try to remove the main of the url
 
         .state('app.main.events', {
             url: '/events',
@@ -68,17 +78,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
             url: '/search',
             abstract: true,
             template: '<ui-view/>'
-            /*,
-            views: {
-                'side-left-profile-view@app.main': {
-                    templateUrl: 'client/app/profile/profile-edit.ng.html',
-                    controller: 'ProfileEditCtrl'
-                },
-                'side-left-search-view@app.main': {
-                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
-                    controller: 'SearchEventFilterCtrl'
-                }
-            }*/
         })
 
 
@@ -94,14 +93,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'content-view@app': {
                     templateUrl: 'client/app/events/search/byProfile/search-events-list.ng.html',
                     controller: 'SearchEventsListCtrl'
-                },
-                'side-left-profile-view@app.main': {
-                    templateUrl: 'client/app/profile/profile-edit.ng.html',
-                    controller: 'ProfileEditCtrl'
-                },
-                'side-left-search-view@app.main': {
-                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
-                    controller: 'SearchEventFilterCtrl'
                 }
             }
         })
@@ -111,14 +102,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
-                'side-left-profile-view@app.main': {
-                    templateUrl: 'client/app/profile/profile-edit.ng.html',
-                    controller: 'ProfileEditCtrl'
-                },
-                'side-left-search-view@app.main': {
-                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
-                    controller: 'SearchEventFilterCtrl'
-                },
                 'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/detail/event-detail.ng.html',
                     controller: 'EventDetailCtrl'
@@ -131,14 +114,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'content-view@app': {
                     templateUrl: 'client/app/events/search/myEvents/my-events-list.ng.html',
                     controller: 'MyEventsListCtrl'
-                },
-                'side-left-profile-view@app.main': {
-                    templateUrl: 'client/app/profile/profile-edit.ng.html',
-                    controller: 'ProfileEditCtrl'
-                },
-                'side-left-search-view@app.main': {
-                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
-                    controller: 'SearchEventFilterCtrl'
                 }
             },
             resolve: {
@@ -153,14 +128,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
-            	'side-left-profile-view@app.main': {
-                    templateUrl: 'client/app/profile/profile-edit.ng.html',
-                    controller: 'ProfileEditCtrl'
-                },
-                'side-left-search-view@app.main': {
-                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
-                    controller: 'SearchEventFilterCtrl'
-                },
                 'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/create/event-create.ng.html',
                     controller: 'EventCreateCtrl'
@@ -173,14 +140,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
-            	'side-left-profile-view@app.main': {
-                    templateUrl: 'client/app/profile/profile-edit.ng.html',
-                    controller: 'ProfileEditCtrl'
-                },
-                'side-left-search-view@app.main': {
-                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
-                    controller: 'SearchEventFilterCtrl'
-                },
                 'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/edit/event-edit.ng.html',
                     controller: 'EventEditCtrl'
