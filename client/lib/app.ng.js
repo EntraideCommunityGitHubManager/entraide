@@ -1,5 +1,6 @@
 angular.module('entraide', ['angular-meteor', 'ui.router', 'uiGmapgoogle-maps', 'ngFileUpload', 'ngImgCrop']);
 
+// TODO: Try to remove forceReload and use reload directly
 angular.module('entraide').config(function($provide, $urlRouterProvider) {
     $provide.decorator('$state', function($delegate, $stateParams) {
         $delegate.forceReload = function() {
