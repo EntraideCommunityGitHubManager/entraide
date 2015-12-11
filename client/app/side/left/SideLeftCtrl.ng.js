@@ -1,4 +1,4 @@
-angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $scope, SecurityService) {
+angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $scope, $state, SecurityService) {
 
     console.log("side-left-view Ctrl");
 
@@ -22,5 +22,9 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
         }
         $scope.currentView = currentView;
     };
+    
+    $scope.hideSideMenu = function(){
+        return $state.current.name=='app' || $state.current.name=='app.main';
+    }
    
 });
