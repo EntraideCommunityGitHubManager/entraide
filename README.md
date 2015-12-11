@@ -22,6 +22,7 @@ The files are loaded in an alphabetical order within a folder.
 <pre>
 <code>
 AngularJS           (1.4.6)     ---> meteor add angular
+Angular Animate     (1.4.6)     ---> meteor add angular:angular-animate
 Angular UI Router   (0.2.15)    ---> meteor add angularui:angular-ui-router
 Twitter Bootstrap   (3.3.5)     ---> meteor add twbs:bootstrap
 Font Awesome        (4.4.0)     ---> meteor add fortawesome:fontawesome
