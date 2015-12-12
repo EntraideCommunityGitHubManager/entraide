@@ -10,7 +10,6 @@ angular.module('entraide').controller('SearchEventsListCtrl', function ($rootSco
     });
 
     $scope.eventClicked = function(marker, eventName, event) {
-        $scope.$apply();
         $state.go("app.main.events.search.byProfile.detail", {"event" : event});
         $rootScope.$broadcast('event-detail', event);
     };

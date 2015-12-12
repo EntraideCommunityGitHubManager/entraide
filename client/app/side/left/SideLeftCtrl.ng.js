@@ -13,6 +13,14 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
     $scope.$on('event-detail', function(){toggle(true, 'event')});
     $scope.$on('profile-edit', function(){toggle(true, 'profile')});
 
+    $scope.$on('side-left-close', function(){
+        if($scope.isOpen){
+            $scope.currentView=null;
+            $scope.isOpen = false;
+            $rootScope.$broadcast('anim-sidebar-toggle');
+        }
+    });
+
     function toggle(open, currentView){
         if($scope.isOpen && open && $scope.currentView != currentView){
 
@@ -23,8 +31,16 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
         $scope.currentView = currentView;
     };
     
-    $scope.isActive = function(){
+    $scope.isProfileActive = function(){
+        return SecurityService.isConnected();
+    };
+
+    $scope.isSearchActive = function(){
         return !($state.is('app') || $state.is('app.main'));
     };
-   
+
+    $scope.isView = function(view){
+        return view == $scope.currentView;
+    };
+
 });

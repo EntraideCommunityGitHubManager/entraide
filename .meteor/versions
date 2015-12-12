@@ -9,6 +9,7 @@ accounts-ui-unstyled@1.1.8
 alexk111:ng-img-crop@0.3.2
 angular@1.0.0-rc.6
 angular:angular@1.4.6
+angular:angular-animate@1.4.6
 angularui:angular-google-maps@2.2.1
 angularui:angular-ui-router@0.2.15
 autoupdate@1.2.3

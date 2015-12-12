@@ -34,23 +34,15 @@
                             <li><a ng-href="#/main/admin/lookups/all">All lookups</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a anim-login model="user" title-create="Create" title-login="Login" login-callback="login()" create-callback="create()" edit-callback="edit()" logout-callback="logout()" error="error" is-connected="isConnected()" anim-login-toggle-event="animLoginToggleEvent"></a>
-                    </li>
-                    <li class="dropdown" ng-if="isConnected()">
+                    <li anim-login model="user" title-create="Create" title-login="Login" login-callback="login()" create-callback="create()" edit-callback="edit()" logout-callback="logout()" error="error" is-connected="isConnected()" anim-login-toggle-event="animLoginToggleEvent" profile-image="sessionService.userProfile.image" profile-image-default="img/profile.png"></li>
+                    <!--<li class="dropdown" ng-if="isConnected()">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-secret"></i></a>
                         <ul class="dropdown-menu">
                             <li><input type="text" placeholder="Old password" ng-model="security.oldPassword"></li>
                             <li><input type="text" placeholder="New password" ng-model="security.newPassword"></li>
                             <li><a ng-click="changePassword()">Change</a></li>
                         </ul>
-                    </li>
-                    <li ng-show="isConnected() && !sessionService.userProfile.image">
-                        <img class="profile-image-header-default" src="img/profile.png" ng-click="editProfile()"/>
-                    </li>
-                    <li ng-show="sessionService.userProfile.image">
-                        <img class="profile-image-header" src="{{ sessionService.userProfile.image.url()}}" ng-click="editProfile()" />
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>

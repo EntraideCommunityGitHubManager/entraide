@@ -12,13 +12,28 @@ angular.module('entraide').directive('animSidebar', function(UtilsService){
         controller: function($scope){
             console.log('animSideBar controller');
             $scope.container = 'st-container';
+            var container = document.getElementById($scope.container);
+            var resetMenu = function() {classie.remove( container, 'st-menu-open' );};
+
+            var hasThisParent = function( e, id ) {
+                if (!e) return false;
+                var el = e.target||e.srcElement||e||false;
+                while (el && el.id != id) {
+                    el = el.parentNode||false;
+                }
+                return (el!==false);
+            }
+
+            document.addEventListener('click', function( ev ) {
+                if( $scope.menuOpen && hasThisParent( ev.target, 'st-container') ) {
+                    resetMenu();
+                    $scope.menuOpen = false;
+                }
+            });
+
             var animSideBarListener = $scope.$on('anim-sidebar-toggle', function(event) {
                 event.preventDefault();
-                var container = document.getElementById($scope.container);
-                var eventtype = UtilsService.isMobile() ? 'touchstart' : 'click';
-                var resetMenu = function() {
-                    classie.remove( container, 'st-menu-open' );
-                };
+                var eventType = UtilsService.isMobile() ? 'touchstart' : 'click';
                 if($scope.menuOpen){
                     resetMenu();
                     $scope.menuOpen = false;

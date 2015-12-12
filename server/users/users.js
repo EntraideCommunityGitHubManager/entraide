@@ -1,4 +1,3 @@
-
 Meteor.startup(function () {
     if(Meteor.users.find({'emails.address':'entraide.community.developer@gmail.com'}).count()<=0){
         Accounts.createUser({
@@ -20,6 +19,7 @@ Accounts.onCreateUser(function(options, user) {
         user.profile = options.profile = { roles:["helper"] };
         user.roles = options.roles = ["helper"]
     }
+    Profiles.insert({owner: {id:Meteor.userId()}});
     return user;
 });
 
@@ -33,27 +33,26 @@ Meteor.publish("all-users", function(){
 });
 
 Meteor.methods({
+    check_user: function(username, digest){
+        var user = Meteor.users.findOne({'$or': [{'username': username},{'emails.address': username}]});
+        if(user){
+            var password = {digest: digest, algorithm: 'sha-256'};
+            var result = Accounts._checkPassword(user, password);
+            if(result.error==null){
+                return true;
+            }
+        }
+        throw new Meteor.Error(404, 'User not found');
+    },
     delete_user: function (userId) {
         if(isAdmin(this.userId) && userId != this.userId){
             Events.remove({'owner.id':userId});
             return Meteor.users.remove(userId);
         }
-        throw new Meteor.Error(401, 'Error 401: Not allowed', 'You can not delete this user');
+        throw new Meteor.Error(401, 'Error 401: Not allowed - You can not delete this user');
     }
 });
 
-
-Meteor.methods({
-    initUserDataAfterCreation: function () {
-        if (! Meteor.userId()) {
-            throw new Meteor.Error("not-authorized");
-        }
-
-        Profiles.insert({
-            owner: {id:Meteor.userId()}
-        });
-    }
-});
 
 
 

@@ -1,7 +1,6 @@
-angular.module('entraide', ['angular-meteor', 'ui.router', 'uiGmapgoogle-maps', 'ngFileUpload', 'ngImgCrop']);
+angular.module('entraide', ['angular-meteor', 'ui.router', 'uiGmapgoogle-maps', 'ngFileUpload', 'ngImgCrop', 'ngAnimate']);
 
-// TODO: Try to remove forceReload and use reload directly
-angular.module('entraide').config(function($provide, $urlRouterProvider) {
+angular.module('entraide').config(function($provide) {
     $provide.decorator('$state', function($delegate, $stateParams) {
         $delegate.forceReload = function() {
             return $delegate.go($delegate.current, $stateParams, {
@@ -21,11 +20,15 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
     $urlRouterProvider.otherwise("main");
 
     $stateProvider
-    
+
         .state('app', {
-            templateUrl: 'client/app/app.ng.html',
+            templateUrl: 'client/app/app.ng.html'
+        })
+
+        .state('app.main', {
+            url: '/main',
             views: {
-                'header-view': {
+                'header-view@app': {
                     templateUrl: 'client/app/header/header.ng.html',
                     controller: 'HeaderCtrl'
                 },
@@ -37,6 +40,10 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                     templateUrl: 'client/app/side/left/side-left.ng.html',
                     controller: 'SideLeftCtrl'
                 },
+                'side-left-profile-view@app.main': {
+                    templateUrl: 'client/app/profile/profile-edit.ng.html',
+                    controller: 'ProfileEditCtrl'
+                },
                 'content-view': {
                     templateUrl: 'client/app/map/map.ng.html',
                     controller: 'MapCtrl'
@@ -44,35 +51,30 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'background-view': {
                     template: '<div anim-background source-video="video/beach.mp4" source-image="img/beach.jpg"></div>'
                 },
-                'footer-view': {
+                'footer-view@app': {
                     templateUrl: 'client/app/footer/footer.ng.html',
                     controller: 'FooterCtrl'
                 }
             }
         })
 
-        .state('app.main', {
-            url: '/main',
-            abstract: true,
-            template: '<ui-view/>',
-            views: {
-                'side-left-profile-view@app': {
-                    templateUrl: 'client/app/profile/profile-edit.ng.html',
-                    controller: 'ProfileEditCtrl'
-                },
-                'side-left-search-view@app': {
-                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
-                    controller: 'SearchEventFilterCtrl'
-                }
-            }
-        })
-
-        // TODO: - Try to remove the main of the url
+        // TODO:    - Try to hide the sidebar toggler button on home state
+        //          - Try to remove the main of the url
 
         .state('app.main.events', {
             url: '/events',
             abstract: true,
-            template: '<ui-view/>'
+            template: '<ui-view/>',
+             views: {
+                 'side-left-profile-view': {
+                    templateUrl: 'client/app/profile/profile-edit.ng.html',
+                    controller: 'ProfileEditCtrl'
+                 },
+                 'side-left-search-view': {
+                    templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
+                    controller: 'SearchEventFilterCtrl'
+                 }
+             }
         })
         .state('app.main.events.search', {
             url: '/search',
@@ -102,7 +104,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
-                'side-left-event-view@app': {
+                'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/detail/event-detail.ng.html',
                     controller: 'EventDetailCtrl'
                 }
@@ -128,7 +130,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
-                'side-left-event-view@app': {
+                'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/create/event-create.ng.html',
                     controller: 'EventCreateCtrl'
                 }
@@ -140,18 +142,18 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 event: {}
             },
             views: {
-                'side-left-event-view@app': {
+                'side-left-event-view@app.main': {
                     templateUrl: 'client/app/events/edit/event-edit.ng.html',
                     controller: 'EventEditCtrl'
                 }
             }
         })
-        
+
         /*********************************************************/
         /*
-        *                   ADMIN STATES
-        *
-        **********************************************************/
+         *                   ADMIN STATES
+         *
+         **********************************************************/
 
         .state('app.main.admin', {
             url: '/admin',
@@ -272,12 +274,12 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 }
             }
         })
-        
+
         /*********************************************************/
         /*
-        *                   REDIRECT STATES
-        *
-        **********************************************************/
+         *                   REDIRECT STATES
+         *
+         **********************************************************/
 
         .state('app.main.error', {
             url: '/error',
@@ -312,7 +314,7 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
                 $state.go("app.main.error.required");
                 break;
             case "FORBIDDEN":
-                $state.go("app.main");
+                $state.go("main");
                 break;
             case "UNAUTHORIZED":
                 $state.go("app.main.error.unauthorized");
@@ -321,7 +323,7 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
                 $state.go("app.main.error");
         }
     });
-    
+
     var animRoutingConfig = {
         includes : [{
             from : 'app.main.events.search.*',
@@ -345,14 +347,14 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
             from : 'app.main.events.search.myEvents.create',
             to : 'app.main.events.search.byProfile'
         }
-        /*,{
-            from : 'app.main.events.search.myEvents.*',
-            to : 'app.main.events.search.byProfile'
-        },{
-            from : 'app.main.events.search.byProfile.*',
-            to : 'app.main.events.search.myEvents'
-        }*/
-        
+            /*,{
+             from : 'app.main.events.search.myEvents.*',
+             to : 'app.main.events.search.byProfile'
+             },{
+             from : 'app.main.events.search.byProfile.*',
+             to : 'app.main.events.search.myEvents'
+             }*/
+
         ]
     };
     AnimService.setRoutingConfig(animRoutingConfig);

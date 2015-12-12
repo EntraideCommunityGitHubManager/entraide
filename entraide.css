@@ -65,7 +65,7 @@ body{
     width: 30px;
 }
 
-.menu-toggler-event {
+.menu-toggler-search {
     position: fixed;
     padding: 9px;
     height: 40px;
@@ -79,7 +79,7 @@ body{
     border-bottom-left-radius: 1em;
     width: 30px;
 }
-.menu-toggler-event:hover, .menu-toggler-profile:hover {
+.menu-toggler-search:hover, .menu-toggler-profile:hover {
     cursor: pointer;
 }
 
@@ -223,17 +223,21 @@ body{
     border-radius: 50%;
     width: 36px;
     margin: 7px;
+    top: 0px;
+    position: absolute;
 }
 
 .profile-image-header {
     border-radius: 50%;
     width: 42px;
     margin: 4px;
+    top: 0px;
+    position: absolute;
 }
 
 .profile-image-header:hover, .profile-image-header-default:hover {
     cursor:pointer;
-    border: 1px solid rgba(61, 148, 175, 0.68);
+
 }
 
 .profile-image {
@@ -298,4 +302,51 @@ body{
 .side-left-event{
     background-color: rgba(83, 54, 119, 0.85);
     height: 100%;
+}
+
+.ui-anim-fade {
+    transition:0.5s linear all;
+    opacity:1;
+}
+
+.ui-anim-fade.ng-enter {
+    opacity:0;
+}
+
+.ui-anim-fade.ng-leave.ng-leave-active {
+    opacity:0;
+}
+
+.ui-anim-fade.ng-enter.ng-enter-active {
+    opacity:1;
+}
+
+.list-profile{
+    width:50px;
+}
+
+.ui-sign-in-button{
+    top: 15px;
+    width: 100px;
+}
+
+.dropdown-menu-profile{
+    top: 50px;
+}
+
+.dropdown-toggle-profile{
+    background-color: #222222 !important;
+    width: 65px;
+}
+
+.st-menu h2 {
+    margin: 0;
+    padding: 14px;
+    color: rgba(0,0,0,0.4);
+    text-shadow: 0 0 1px rgba(0,0,0,0.1);
+    font-weight: 300;
+    font-size: 1.5em;
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.71);
 }

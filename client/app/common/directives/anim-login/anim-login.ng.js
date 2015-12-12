@@ -2,6 +2,7 @@ angular.module('entraide').directive('animLogin', function(){
 
     return {
         restrict: 'AEC',
+        replace: true,
         scope: {
             model: '=',
             titleLogin: '@',
@@ -12,7 +13,9 @@ angular.module('entraide').directive('animLogin', function(){
             createCallback: '&',
             editCallback: '&',
             logoutCallback: '&',
-            animLoginToggleEvent: '@'
+            animLoginToggleEvent: '@',
+            profileImage:'=',
+            profileImageDefault:'@'
         },
         templateUrl: 'client/app/common/directives/anim-login/anim-login.ng.html',
         controller: function($scope){
@@ -67,6 +70,12 @@ angular.module('entraide').directive('animLogin', function(){
                 onAfterOpen  : function() {canScroll();},
                 onBeforeClose: function() {noScroll();},
                 onAfterClose : function() {canScroll();}
+            });
+
+            $(".navbar-collapse a:not('.dropdown-toggle')").click(function(){
+                if($(".navbar-toggle").css('display')!='none'){
+                    $(".navbar-toggle").click();
+                }
             });
 
             scope.$on("$destroy", function () {});
