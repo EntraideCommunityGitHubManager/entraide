@@ -24,12 +24,12 @@ angular.module('entraide').directive('animSidebar', function(UtilsService){
                 return (el!==false);
             }
 
-            document.addEventListener('click', function( ev ) {
+            /*document.addEventListener('click', function( ev ) {
                 if( $scope.menuOpen && hasThisParent( ev.target, 'st-container') ) {
                     resetMenu();
                     $scope.menuOpen = false;
                 }
-            });
+            });*/
 
             var animSideBarListener = $scope.$on('anim-sidebar-toggle', function(event) {
                 event.preventDefault();
