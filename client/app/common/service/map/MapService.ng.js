@@ -84,8 +84,9 @@ angular.module("entraide").factory("MapService", function($rootScope){
         getMapStyles : function(){
             return maps;
         },
-        setCurrentMapStyle : function(map){
-            mapOptions.styles = maps[map];
+        setCurrentMapStyle : function(mapStyle){
+            this.currentMapStyle=mapStyle;
+            mapOptions.styles = maps[mapStyle];
         }
 
     };

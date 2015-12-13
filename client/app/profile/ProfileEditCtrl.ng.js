@@ -1,4 +1,4 @@
-angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SessionService, MapService) {
+angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SessionService, MapService, UtilsService) {
 
     console.log('ProfileEditCtrl');
 
@@ -69,24 +69,60 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
                 image.update({$set: {'favorite': false}});
             }
         });
-
-
     };
 
     var setPicture = function(img){
         $scope.imgSrc = img;
         $scope.myCroppedImage = '';
-    }
+    };
     
     $scope.addable = function(){
         return $scope.images.length < MAX_IMAGES;  
     };
 
+    $scope.isSelected = function(mapStyle){
+        return mapStyle == MapService.getCurrentMapStyle() ? '-selected' : '';
+    };
+
     $scope.mapStyles = MapService.getMapStyles().mapStyles;
-    $scope.selectedMapStyle = MapService.getCurrentMapStyle();
-    $scope.setMapStyle = function(){
-        MapService.setCurrentMapStyle($scope.selectedMapStyle);
-    }
+    $scope.setMapStyle = function(evt, mapStyle){
+        MapService.setCurrentMapStyle(mapStyle);
+    };
+
+    $scope.initEffect = function(){
+        var support = { animations : Modernizr.cssanimations },
+            animEndEventNames = { 'WebkitAnimation' : 'webkitAnimationEnd', 'OAnimation' : 'oAnimationEnd', 'msAnimation' : 'MSAnimationEnd', 'animation' : 'animationend' },
+            animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
+            onEndAnimation = function( el, callback ) {
+                var onEndCallbackFn = function( ev ) {
+                    if( support.animations ) {
+                        if( ev.target != this ) return;
+                        this.removeEventListener( animEndEventName, onEndCallbackFn );
+                    }
+                    if( callback && typeof callback === 'function' ) { callback.call(); }
+                };
+                if( support.animations ) {
+                    el.addEventListener( animEndEventName, onEndCallbackFn );
+                }
+                else {
+                    onEndCallbackFn();
+                }
+            },
+            eventtype = UtilsService.isMobile() ? 'touchstart' : 'click';
+
+        [].slice.call( document.querySelectorAll( '.cbutton' ) ).forEach( function( el ) {
+            el.addEventListener( eventtype, function( ev ) {
+                classie.add( el, 'cbutton--click' );
+                onEndAnimation( classie.has( el, 'cbutton--complex' ) ? el.querySelector( '.cbutton__helper' ) : el, function() {
+                    //classie.remove( el, 'cbutton--click' );
+                } );
+            } );
+        } );
+    };
+
+    setTimeout(function(){
+        $scope.initEffect();
+    },1000);
 
     
 });
