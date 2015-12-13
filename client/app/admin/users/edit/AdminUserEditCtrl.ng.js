@@ -6,9 +6,15 @@ angular.module('entraide').controller('AdminUserEditCtrl', function ($scope, $me
     });
 
     $scope.update = function(user){
-        user.save().then(function(){
-            $state.go("app.main.admin.users.search.all");
-        }, function(error){alert(error);});
+        user.save().then(function(){$scope.back();},function(error){alert(error);});
+    };
+
+    $scope.remove = function(event){
+        $scope.events.remove(event).then(function(){$scope.back();},function(err){alert(err);});
+    };
+
+    $scope.back = function(){
+        $state.go('app.main.admin.users.all');
     };
 
     $scope.hasChanged = function(){

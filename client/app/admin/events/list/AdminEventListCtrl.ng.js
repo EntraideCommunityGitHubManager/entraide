@@ -8,8 +8,7 @@ angular.module('entraide').controller('AdminEventListCtrl', function ($scope, $m
 
     $scope.remove = function(event){
         $scope.events.remove(event);
-    }
-
+    };
 
 });
 

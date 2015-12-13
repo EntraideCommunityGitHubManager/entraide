@@ -1,4 +1,4 @@
-angular.module('entraide').directive('animSidebar', function(UtilsService){
+angular.module('entraide').directive('animSidebar', function(UtilsService, AnimSidebarService){
 
     return {
         restrict: 'AEC',
@@ -7,7 +7,8 @@ angular.module('entraide').directive('animSidebar', function(UtilsService){
         scope : {
             type: '@',
             targetView: '@',
-            pusher: '@'
+            pusher: '@',
+            preventClasses: '@'
         },
         controller: function($scope){
             console.log('animSideBar controller');
@@ -15,34 +16,28 @@ angular.module('entraide').directive('animSidebar', function(UtilsService){
             var container = document.getElementById($scope.container);
             var resetMenu = function() {classie.remove( container, 'st-menu-open' );};
 
-            var hasThisParent = function( e, id ) {
-                if (!e) return false;
-                var el = e.target||e.srcElement||e||false;
-                while (el && el.id != id) {
-                    el = el.parentNode||false;
-                }
-                return (el!==false);
-            }
-
-            /*document.addEventListener('click', function( ev ) {
-                if( $scope.menuOpen && hasThisParent( ev.target, 'st-container') ) {
+            var preventClasses = $scope.preventClasses.split(",");
+            preventClasses.push('st-menu');
+            document.addEventListener('click', function( ev ) {
+                if( AnimSidebarService.open && !UtilsService.hasThisParent( ev.target, preventClasses) ) {
+                    console.log('animSideBar click outside close');
                     resetMenu();
-                    $scope.menuOpen = false;
+                    AnimSidebarService.open = false;
                 }
-            });*/
+            });
 
             var animSideBarListener = $scope.$on('anim-sidebar-toggle', function(event) {
                 event.preventDefault();
                 var eventType = UtilsService.isMobile() ? 'touchstart' : 'click';
-                if($scope.menuOpen){
+                if(AnimSidebarService.open){
                     resetMenu();
-                    $scope.menuOpen = false;
+                    AnimSidebarService.open = false;
                 } else {
                     container.className = $scope.container;
                     classie.add( container, 'st-effect-'+$scope.type );
                     setTimeout( function() {
                         classie.add( container, 'st-menu-open' );
-                        $scope.menuOpen = true;
+                        AnimSidebarService.open = true;
                     }, 25 );
                 }
             });
@@ -56,4 +51,13 @@ angular.module('entraide').directive('animSidebar', function(UtilsService){
         }
     };
 
+});
+
+angular.module("entraide").factory("AnimSidebarService", function(){
+
+    var AnimSidebarService = {
+        open: false
+    };
+
+    return AnimSidebarService;
 });

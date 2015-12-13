@@ -26,27 +26,9 @@ Meteor.publish("my-events", function(){
 });
 
 Meteor.publish("search-events", function(options){
-    console.log("search-events");
     options.collectionOptions = options.collectionOptions ? options.collectionOptions : {'department.code' : "74"};
     options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:100};
     var arrOptions = [{'owner.id': { $ne: this.userId }}];
     arrOptions.push(options.collectionOptions);
-    console.log(arrOptions);
     return Events.find({$and: arrOptions}, options.sortLimitOptions);
 });
-
-var isAdmin = function(userId){
-    var isAdmin = false;
-    var user = Meteor.users.findOne({'_id':userId});
-    if(user && user.profile && user.profile.roles && user.profile.roles.length>0){
-        for(var i=0; i< user.profile.roles.length; i++){
-            if(user.profile.roles[i]==="admin"){
-                isAdmin = true;
-                break;
-            }
-        }
-    }
-    return isAdmin;
-};
-
-

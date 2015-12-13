@@ -332,6 +332,9 @@ angular.module('entraide').run(["$rootScope", "$urlRouter", "$state", "AnimServi
             from : 'app.main',
             to : 'app.main.events.search.*'
         },{
+            from : 'app.main.admin.*',
+            to : 'app.main'
+        },{
             from : 'app.main.events.search.byProfile.detail',
             to : 'app.main.events.search.myEvents'
         },{

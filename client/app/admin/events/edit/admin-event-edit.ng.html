@@ -8,7 +8,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" placeholder="Description" rows="4"></textarea>
+                <textarea class="form-control" id="description" placeholder="Description" ng-model="event.description" rows="4"></textarea>
             </div>
             <div class="form-group">
                 <label>Location</label>
@@ -23,8 +23,9 @@
                 <label for="categories">Categories</label>
                 <input type="text" class="form-control" id="categories" placeholder="Categories" ng-model="event.categories">
             </div>
-            <button type="submit" class="btn btn-default" ng-click="update(event)" ng-disabled="!hasChanged()">Update</button>
-            <button type="submit" class="btn btn-default" ng-click="remove(event)" >Delete</button>
+            <button type="button" class="btn btn-default" ng-click="update(event)" ng-disabled="!hasChanged()">Update</button>
+            <button type="button" class="btn btn-default" ng-click="remove(event)">Delete</button>
+            <button type="button" class="btn btn-default" ng-click="back()">Back</button>
         </form>
     </div>
     <div class="col-sm-1"></div>

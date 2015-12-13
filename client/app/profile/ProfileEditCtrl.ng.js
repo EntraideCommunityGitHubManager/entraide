@@ -42,14 +42,16 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
 
     $scope.remove = function(img){
         var favorite = img.favorite;
-        $scope.images.remove(img).then(function(){
-            if(favorite && $scope.images.length>0){
-                $scope.images[0].update({$set: {'favorite': true}});
-                SessionService.setUserProfileImage($scope.images[0]);
-            } else {
-                SessionService.resetImage();
-            }
-        });
+        setTimeout(function(){
+            $scope.images.remove(img).then(function(){
+                if(favorite && $scope.images.length>0){
+                    $scope.images[0].update({$set: {'favorite': true}});
+                    SessionService.setUserProfileImage($scope.images[0]);
+                } else {
+                    SessionService.resetImage();
+                }
+            });
+        },100);
     };
 
     $scope.camera = function(){

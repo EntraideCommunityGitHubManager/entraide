@@ -53,10 +53,7 @@ Meteor.methods({
     }
 });
 
-
-
-
-var isAdmin = function(userId){
+isAdmin = function(userId){
     var isAdmin = false;
     var user = Meteor.users.findOne({'_id':userId});
     if(user && user.profile && user.profile.roles && user.profile.roles.length>0){

@@ -1,8 +1,7 @@
-angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $scope, $state, SecurityService) {
+angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $scope, $state, SecurityService, AnimSidebarService) {
 
     console.log("side-left-view Ctrl");
-
-    $scope.isOpen = false;
+    
     $scope.isConnected = SecurityService.isConnected;
     $scope.currentView = null;
 
@@ -14,18 +13,16 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
     $scope.$on('profile-edit', function(){toggle(true, 'profile')});
 
     $scope.$on('side-left-close', function(){
-        if($scope.isOpen){
+        if(AnimSidebarService.open){
             $scope.currentView=null;
-            $scope.isOpen = false;
             $rootScope.$broadcast('anim-sidebar-toggle');
         }
     });
 
     function toggle(open, currentView){
-        if($scope.isOpen && open && $scope.currentView != currentView){
+        if(AnimSidebarService.open && open && $scope.currentView != currentView){
 
-        } else if(!$scope.isOpen || ($scope.isOpen && $scope.currentView == currentView)){
-            $scope.isOpen = !$scope.isOpen;
+        } else if(!AnimSidebarService.open || (AnimSidebarService.open && $scope.currentView == currentView)){
             $rootScope.$broadcast('anim-sidebar-toggle');
         }
         $scope.currentView = currentView;
