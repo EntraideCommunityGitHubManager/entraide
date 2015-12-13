@@ -1,4 +1,4 @@
-angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SessionService) {
+angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SessionService, MapService) {
 
     console.log('ProfileEditCtrl');
 
@@ -81,6 +81,12 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     $scope.addable = function(){
         return $scope.images.length < MAX_IMAGES;  
     };
+
+    $scope.mapStyles = MapService.getMapStyles().mapStyles;
+    $scope.selectedMapStyle = MapService.getCurrentMapStyle();
+    $scope.setMapStyle = function(){
+        MapService.setCurrentMapStyle($scope.selectedMapStyle);
+    }
 
     
 });

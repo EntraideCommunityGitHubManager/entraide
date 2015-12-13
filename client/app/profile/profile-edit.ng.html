@@ -23,15 +23,19 @@
     </div>
 
     <div>
-    <span ng-repeat="image in images">
-        <div>
-            <img class="profile-image" src="{{ image.url()}}"/>
-            <i class="fa fa-remove" ng-click="remove(image)"></i>
-            <i class="fa fa-heart-o" ng-show="!image.favorite" ng-click="setVisible(image)"></i>
-            <i class="fa fa-heart" ng-show="image.favorite"></i>
-            <!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
-        </div>
-    </span>
+        <span ng-repeat="image in images">
+            <div>
+                <img class="profile-image" src="{{ image.url()}}"/>
+                <i class="fa fa-remove" ng-click="remove(image)"></i>
+                <i class="fa fa-heart-o" ng-show="!image.favorite" ng-click="setVisible(image)"></i>
+                <i class="fa fa-heart" ng-show="image.favorite"></i>
+                <!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
+            </div>
+        </span>
+    </div>
+
+    <div>
+        <select ng-model="selectedMapStyle" ng-change="setMapStyle()" ng-options="map for map in mapStyles" ></select>
     </div>
 </div>
 
