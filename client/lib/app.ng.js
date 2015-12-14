@@ -58,8 +58,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
             }
         })
 
-        // TODO:    - Try to hide the sidebar toggler button on home state
-        //          - Try to remove the main of the url
+        // TODO:    - Try to remove the main of the url
 
         .state('app.main.events', {
             url: '/events',
