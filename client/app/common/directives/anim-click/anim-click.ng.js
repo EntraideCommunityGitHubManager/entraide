@@ -2,6 +2,7 @@ angular.module('entraide').directive('animClick', function(UtilsService){
 
     return {
         restrict: 'AEC',
+        replace: true,
         transclude: true,
         scope: {
             animClickCallback: '&'
