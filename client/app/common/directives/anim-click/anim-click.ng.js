@@ -36,6 +36,7 @@ angular.module('entraide').directive('animClick', function(UtilsService){
                  classie.add( cbutton, 'cbutton--click' );
                     onEndAnimation( classie.has( cbutton, 'cbutton--complex' ) ? cbutton.querySelector( '.cbutton__helper' ) : cbutton, function() {
                         classie.remove( cbutton, 'cbutton--click' );
+                        scope.animClickCallback();
                     });
             }
             
