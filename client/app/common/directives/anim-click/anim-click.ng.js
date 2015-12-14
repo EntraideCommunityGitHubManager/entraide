@@ -5,6 +5,7 @@ angular.module('entraide').directive('animClick', function(UtilsService){
         replace: true,
         transclude: true,
         scope: {
+            animClickIcon: '@'
             animClickCallback: '&'
         },
         templateUrl: 'client/app/common/directives/anim-click/anim-click.ng.html',
