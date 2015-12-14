@@ -37,7 +37,7 @@
     <div class="map-style-edit-container">
         <!--<select ng-model="selectedMapStyle" ng-change="setMapStyle()" ng-options="map for map in mapStyles" ></select>-->
         <div class="map-style-edit" ng-repeat="mapStyle in mapStyles" >
-            <div anim-click anim-click-handler="setMapStyle(mapStyle)">
+            <div anim-click anim-click-callback="setMapStyle(mapStyle)">
                 <span class="map-style-edit-label{{isSelected(mapStyle)}}">{{mapStyle}}</span>
             </div>
             <!--<button class="cbutton cbutton--effect-radomir" ng-click="setMapStyle($event, mapStyle)">
