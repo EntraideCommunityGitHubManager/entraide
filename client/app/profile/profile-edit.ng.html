@@ -37,10 +37,13 @@
     <div class="map-style-edit-container">
         <!--<select ng-model="selectedMapStyle" ng-change="setMapStyle()" ng-options="map for map in mapStyles" ></select>-->
         <div class="map-style-edit" ng-repeat="mapStyle in mapStyles" >
-            <button class="cbutton cbutton--effect-radomir" ng-click="setMapStyle($event, mapStyle)">
+            <div anim-click anim-click-handler="setMapStyle(mapStyle)">
+                <span class="map-style-edit-label{{isSelected(mapStyle)}}">{{mapStyle}}</span>
+            </div>
+            <!--<button class="cbutton cbutton--effect-radomir" ng-click="setMapStyle($event, mapStyle)">
                 <i class="cbutton__icon fa fa-circle-o-notch"></i>
             </button>
-            <span class="map-style-edit-label{{isSelected(mapStyle)}}">{{mapStyle}}</span>
+            <span class="map-style-edit-label{{isSelected(mapStyle)}}">{{mapStyle}}</span>-->
         </div>
     </div>
 </div>
