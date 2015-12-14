@@ -363,9 +363,9 @@ body{
     margin: 12px 10px;
 }
 
-.map-style-edit:hover{
-    /*cursor: pointer;*/
-    /*color: #139787;*/
+.map-style-edit:hover, .map-style-edit:hover .cbutton__icon{
+    cursor: pointer;
+    color: #139787;
 }
 
 .map-style-edit-label{

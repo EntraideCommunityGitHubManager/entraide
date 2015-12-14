@@ -14,13 +14,13 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     
     $scope.addImages = function (files) {
         if (files.length > 0) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $scope.$apply(function () {
-              setPicture(e.target.result);
-            });
-          };
-          reader.readAsDataURL(files[0]);
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $scope.$apply(function () {
+                    setPicture(e.target.result);
+                });
+            };
+            reader.readAsDataURL(files[0]);
         } else {
             setPicture(undefined);
         }
@@ -34,9 +34,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
             if($scope.images.length==0){
                 SessionService.setUserProfileImage(fsFile);
             }
-            $scope.images.save(fsFile).then(function (image) {
-              setPicture(undefined);
-            }, function(error){console.log(error);});
+            $scope.images.save(fsFile).then(function (image) {setPicture(undefined);}, function(error){console.log(error);});
         }
     };
 
@@ -55,9 +53,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     };
 
     $scope.camera = function(){
-        $meteor.getPicture().then(function(data){
-            setPicture(data);
-        });
+        $meteor.getPicture().then(function(data){setPicture(data);});
     };
     
     $scope.setVisible = function(img){
@@ -84,45 +80,14 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         return mapStyle == MapService.getCurrentMapStyle() ? '-selected' : '';
     };
 
+    $scope.getAnimClickIcon = function(mapStyle){
+        return mapStyle == MapService.getCurrentMapStyle() ? 'fa-dot-circle-o' : 'fa-circle-o';
+    };
+
     $scope.mapStyles = MapService.getMapStyles().mapStyles;
-    $scope.setMapStyle = function(evt, mapStyle){
+    $scope.setMapStyle = function(mapStyle){
         MapService.setCurrentMapStyle(mapStyle);
     };
-
-    $scope.initEffect = function(){
-        var support = { animations : Modernizr.cssanimations },
-            animEndEventNames = { 'WebkitAnimation' : 'webkitAnimationEnd', 'OAnimation' : 'oAnimationEnd', 'msAnimation' : 'MSAnimationEnd', 'animation' : 'animationend' },
-            animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
-            onEndAnimation = function( el, callback ) {
-                var onEndCallbackFn = function( ev ) {
-                    if( support.animations ) {
-                        if( ev.target != this ) return;
-                        this.removeEventListener( animEndEventName, onEndCallbackFn );
-                    }
-                    if( callback && typeof callback === 'function' ) { callback.call(); }
-                };
-                if( support.animations ) {
-                    el.addEventListener( animEndEventName, onEndCallbackFn );
-                }
-                else {
-                    onEndCallbackFn();
-                }
-            },
-            eventtype = UtilsService.isMobile() ? 'touchstart' : 'click';
-
-        [].slice.call( document.querySelectorAll( '.cbutton' ) ).forEach( function( el ) {
-            el.addEventListener( eventtype, function( ev ) {
-                classie.add( el, 'cbutton--click' );
-                onEndAnimation( classie.has( el, 'cbutton--complex' ) ? el.querySelector( '.cbutton__helper' ) : el, function() {
-                    //classie.remove( el, 'cbutton--click' );
-                } );
-            } );
-        } );
-    };
-
-    setTimeout(function(){
-        $scope.initEffect();
-    },1000);
 
     
 });
