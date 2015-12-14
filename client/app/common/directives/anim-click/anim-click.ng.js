@@ -4,7 +4,7 @@ angular.module('entraide').directive('animClick', function(UtilsService){
         restrict: 'AEC',
         transclude: true,
         scope: {
-            animClickHandler: '&'
+            animClickCallback: '&'
         },
         templateUrl: 'client/app/common/directives/anim-click/anim-click.ng.html',
         controller: function($scope){
@@ -28,16 +28,26 @@ angular.module('entraide').directive('animClick', function(UtilsService){
                 } else {
                     onEndCallbackFn();
                 }
-            },
-            eventtype = UtilsService.isMobile() ? 'touchstart' : 'click';
+            };
             
             var cbutton = element[0].querySelector('.cbutton');
-            cbutton.addEventListener( eventtype, function( ev ) {
+            
+            scope.clickHandler = function(){
+                 classie.add( cbutton, 'cbutton--click' );
+                    onEndAnimation( classie.has( cbutton, 'cbutton--complex' ) ? cbutton.querySelector( '.cbutton__helper' ) : cbutton, function() {
+                        classie.remove( cbutton, 'cbutton--click' );
+                    });
+            }
+            
+            eventtype = UtilsService.isMobile() ? 'touchstart' : 'click';
+            
+            
+            /*cbutton.addEventListener( eventtype, function( ev ) {
                     classie.add( cbutton, 'cbutton--click' );
                     onEndAnimation( classie.has( cbutton, 'cbutton--complex' ) ? cbutton.querySelector( '.cbutton__helper' ) : cbutton, function() {
                         //classie.remove( cbutton, 'cbutton--click' );
                     });
-                });
+                });*/
 
             /*[].slice.call( document.querySelectorAll( '.cbutton' ) ).forEach( function( el ) {
                 el.addEventListener( eventtype, function( ev ) {
