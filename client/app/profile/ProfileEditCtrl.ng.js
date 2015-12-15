@@ -9,7 +9,6 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     
     CollectionService.subscribe('my-profile').then(function(data){
         $scope.profile = data[0];
-        $scope.profile.updated = Date.now();
         CollectionService.subscribe('my-profile-images').then(function(images){
             $scope.images = images;
         });
@@ -18,7 +17,10 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     /*********************/
     /*      Info         */
     /*********************/
-    
+    $scope.saveProfile = function(){
+        $scope.profile.updated = Date.now();
+        $scope.profile.save().then(function(){}, function(err){console.log(err);});
+    };
     
     
     
