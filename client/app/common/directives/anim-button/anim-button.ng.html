@@ -1,4 +1,5 @@
 <button ng-click="clickHandler($event)" class="{{getAnimButtonClass()}}" data-text="{{animButtonText}}">
     <i class="fa {{animButtonIcon}}" ng-if="animButtonIcon"></i>
-    <span> {{animButtonText}}</span>
+    <span ng-if="isAnimationLetters()" ng-repeat="s in animButtonText">{{s}}</span>
+    <span ng-if="!isAnimationLetters()"> {{animButtonText}}</span>
 </button>
