@@ -7,7 +7,16 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         $scope.profileState = profileState;
     };
     
-    /* Camera */
+    /*********************/
+    /*      Info         */
+    /*********************/
+    
+    
+    
+    
+    /*********************/
+    /*      Camera       */
+    /*********************/
     var MAX_IMAGES = 3;
     $scope.images = [];
 
@@ -81,9 +90,15 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     $scope.addable = function(){
         return $scope.images.length < MAX_IMAGES;  
     };
+    
+    /*********************/
+    /*      Skills       */
+    /*********************/
 
-
-     /* Config */
+    
+    /*********************/
+    /*      Config       */
+    /*********************/
     $scope.isSelected = function(mapStyle){
         return mapStyle == MapService.getCurrentMapStyle() ? '-selected' : '';
     };
