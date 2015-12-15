@@ -58,6 +58,7 @@ http://tympanus.net/codrops/2014/09/23/animated-background-headers/
 http://tympanus.net/codrops/2013/08/28/transitions-for-off-canvas-navigations/
 http://tympanus.net/Development/SelectInspiration/index4.html
 http://tympanus.net/Development/ClickEffects/
+http://tympanus.net/Development/ButtonStylesInspiration/
 http://tympanus.net/codrops/2014/04/23/page-loading-effects/
 http://tympanus.net/Development/SimpleDropDownEffects/
 http://tympanus.net/Development/ResponsiveMultiLevelMenu/index4.html
