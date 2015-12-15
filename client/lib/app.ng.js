@@ -40,6 +40,10 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                     templateUrl: 'client/app/side/left/side-left.ng.html',
                     controller: 'SideLeftCtrl'
                 },
+                'side-left-profile-view@app.main': {
+                    templateUrl: 'client/app/profile/profile-edit.ng.html',
+                    controller: 'ProfileEditCtrl'
+                },
                 'content-view': {
                     templateUrl: 'client/app/map/map.ng.html',
                     controller: 'MapCtrl'
@@ -68,7 +72,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                  'side-left-profile-view@app.main': {
                      templateUrl: 'client/app/profile/profile-edit.ng.html',
                      controller: 'ProfileEditCtrl'
-                 },
+                 }
              }
         })
         .state('app.main.events.search', {
@@ -159,7 +163,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'side-left-profile-view@app.main': {
                     templateUrl: 'client/app/profile/profile-edit.ng.html',
                     controller: 'ProfileEditCtrl'
-                },
+                }
             },
             resolve: {
                 "currentUser": ["$meteor", "SecurityService", function($meteor, SecurityService){

@@ -1,12 +1,12 @@
 angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SecurityService, SessionService, MapService) {
 
     console.log('ProfileEditCtrl');
-    
+
     $scope.profileState = 'info';
     $scope.setProfileState = function(profileState){
         $scope.profileState = profileState;
     };
-    
+
     CollectionService.subscribe('my-profile').then(function(data){
         $scope.profileCollection = data;
         $scope.profile = data[0] ? data[0] : {};
@@ -14,7 +14,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
             $scope.images = images;
         });
     });
-    
+
     /*********************/
     /*      Info         */
     /*********************/
@@ -25,9 +25,9 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         $scope.profile.owner = SessionService.getOwner();
         $scope.profileCollection.save($scope.profile).then(function(){}, function(err){console.log(err);});
     };
-    
-    
-    
+
+
+
     /*********************/
     /*      Camera       */
     /*********************/
@@ -47,7 +47,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
             setPicture(undefined);
         }
     };
-    
+
     $scope.saveCroppedImage = function () {
         if ($scope.myCroppedImage !== '' && $scope.addable()) {
             var fsFile = new FS.File($scope.myCroppedImage);
@@ -56,7 +56,9 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
             if($scope.images.length==0){
                 SessionService.setUserProfileImage(fsFile);
             }
-            $scope.images.save(fsFile).then(function (image) {setPicture(undefined);}, function(error){console.log(error);});
+            $scope.images.save(fsFile).then(function (image) {
+                setPicture(undefined);
+            }, function(error){console.log(error);});
         }
     };
 
@@ -75,9 +77,11 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     };
 
     $scope.camera = function(){
-        $meteor.getPicture().then(function(data){setPicture(data);});
+        $meteor.getPicture().then(function(data){
+            setPicture(data);
+        });
     };
-    
+
     $scope.setFavorite = function(img){
         angular.forEach($scope.images, function(image){
             if(image._id == img._id){
@@ -93,16 +97,16 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         $scope.imgSrc = img;
         $scope.myCroppedImage = '';
     };
-    
+
     $scope.addable = function(){
-        return $scope.images.length < MAX_IMAGES;  
+        return $scope.images.length < MAX_IMAGES;
     };
-    
+
     /*********************/
     /*      Skills       */
     /*********************/
 
-    
+
     /*********************/
     /*      Config       */
     /*********************/
@@ -118,7 +122,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     $scope.setMapStyle = function(mapStyle){
         MapService.setCurrentMapStyle(mapStyle);
     };
-    
+
     /*********************/
     /*    Security       */
     /*********************/
@@ -131,9 +135,9 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         } else {
             $scope.error={reason:'Les 2 nouveaux mots de passe ne correspondent pas.'};
         }
-        
-   };  
-    
+
+   };
+
 });
 
 

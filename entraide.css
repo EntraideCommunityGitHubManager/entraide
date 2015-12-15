@@ -306,6 +306,20 @@ body{
     height: 100%;
 }
 
+
+
+
+.ui-anim-fade.ng-hide {
+    transition:0.5s linear all;
+    opacity:0;
+}
+
+.ui-anim-fade.ng-show {
+    transition:0.5s linear all;
+    opacity:1;
+}
+
+
 .ui-anim-fade {
     transition:0.5s linear all;
     opacity:1;
@@ -354,9 +368,7 @@ body{
 }
 
 .map-style-edit-container{
-    padding: 10px;
-    /*background-color: rgba(34, 34, 34, 0.81);*/
-    height: 1200px;
+
 }
 
 .map-style-edit{
@@ -406,5 +418,9 @@ body{
 /* Fix alignment issue of label on extra small devices in Bootstrap 3.2 */
 .form-horizontal .control-label{
     padding-top: 3px;
+}
+
+.button-change-password:hover .fa {
+    color: inherit;
 }
 

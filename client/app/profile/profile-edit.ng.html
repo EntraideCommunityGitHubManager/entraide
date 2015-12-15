@@ -7,7 +7,7 @@
         <anim-button anim-button-icon="fa-sliders" anim-button-callback="setProfileState('config')" anim-button-type="sacnite"></anim-button>
 	    <anim-button anim-button-icon="fa-unlock-alt" anim-button-callback="setProfileState('security')" anim-button-type="sacnite"></anim-button>
     </div>
-    
+
     <div ng-if="profileState=='info'" class='form-profile ui-anim-fade'>
         <form class="form-horizontal">
 			<div class="form-group">
@@ -48,9 +48,9 @@
 			</div>
 		</form>
         <p><div class="error-message" ng-show="error">{{error.reason}}</div></p>
-    </div> 
-        
-    <div ng-if="profileState=='camera'" class=''>
+    </div>
+
+    <div ng-show="profileState=='camera'" class='form-profile ui-anim-fade'>
         <div ng-show="addable() && !imgSrc" ngf-drop ngf-select
              ngf-change="addImages($files)"
              ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
@@ -85,11 +85,11 @@
         </span>
         </div>
     </div>
-    
+
     <div ng-if="profileState=='skills'" class='form-profile ui-anim-fade'>
         Hello skills !
     </div>
-    
+
     <div ng-if="profileState=='config'" class='form-profile ui-anim-fade'>
         <div class="map-style-edit-container">
             <div ng-repeat="mapStyle in mapStyles" >
@@ -99,7 +99,7 @@
             </div>
         </div>
     </div>
-	
+
 	<div ng-if="profileState=='security'" class='form-profile ui-anim-fade'>
 		<form class="form-horizontal">
 			<div class="form-group">
@@ -122,7 +122,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-xs-10">
-					<button class="btn btn-primary" ng-click="changePassword()" ng-disabled="!security.newPassword || !security.newPassword || !security.newPasswordDiff"><i class="fa fa-floppy-o"></i></button>
+					<button class="btn btn-primary button-change-password" ng-click="changePassword()" ng-disabled="!security.newPassword || !security.newPassword || !security.newPasswordDiff"><i class="fa fa-floppy-o"></i></button>
 				</div>
 			</div>
             <div class="form-group">
