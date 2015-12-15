@@ -376,3 +376,15 @@ body{
     margin-left:8px;
     color: #139787;
 }
+
+.profile-box {
+    padding: 1px 1px;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
