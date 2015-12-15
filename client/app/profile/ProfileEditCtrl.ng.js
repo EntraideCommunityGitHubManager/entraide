@@ -1,4 +1,4 @@
-angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SessionService, MapService, UtilsService) {
+angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SecurityService, SessionService, MapService, UtilsService) {
 
     console.log('ProfileEditCtrl');
     
@@ -114,7 +114,15 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     $scope.setMapStyle = function(mapStyle){
         MapService.setCurrentMapStyle(mapStyle);
     };
-
+    
+    /*********************/
+    /*    Security       */
+    /*********************/
+    $scope.changePassword = function(){    
+        SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {    
+            alert('Password changed.');    
+        }, function(err){alert(err);$scope.error=err;});    
+   };  
     
 });
 
