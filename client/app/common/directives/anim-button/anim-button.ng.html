@@ -1,6 +1,6 @@
-<div ng-click="clickHandler()">
-    <button class="animButton cbutton-effect-{{animButtonType}}">
-        <i class="cbutton__icon fa {{animButtonIcon}}" ng-if="animButtonIcon"></i>
+<div ng-click="clickHandler()" ng-switch on="animButtonType">
+    <button ng-switch-when="winona" class="anim-button anim-button-winona anim-button-border-thin anim-button-round-s" data-text="Open Project">
+        <i class="fa {{animButtonIcon}}" ng-if="animButtonIcon"></i>
+        <span>{{animButtonText}}</span>
     </button>
-    <span ng-transclude></span>
 </div>
