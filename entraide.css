@@ -394,8 +394,17 @@ body{
     position: absolute;
 }
 
+.form-control {
+    height: 24px;
+}
+
+.form-control-static {
+    min-height: 24px;
+    padding-top: 3px;
+}
+
 /* Fix alignment issue of label on extra small devices in Bootstrap 3.2 */
 .form-horizontal .control-label{
-    padding-top: 7px;
+    padding-top: 3px;
 }
 

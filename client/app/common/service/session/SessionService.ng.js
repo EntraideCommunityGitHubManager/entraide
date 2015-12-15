@@ -61,6 +61,10 @@ angular.module("entraide").factory("SessionService", function($rootScope, Collec
 
         getOwner: function(){
             return {id: this.getUserProfile().user._id};
+        },
+
+        getUserEmail: function(){
+            return this.getUserProfile().user.emails[0].address;
         }
     };
 

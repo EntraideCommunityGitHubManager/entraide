@@ -19,7 +19,6 @@ Accounts.onCreateUser(function(options, user) {
         user.profile = options.profile = { roles:["helper"] };
         user.roles = options.roles = ["helper"]
     }
-    Profiles.insert({owner: {id:Meteor.userId()}});
     return user;
 });
 

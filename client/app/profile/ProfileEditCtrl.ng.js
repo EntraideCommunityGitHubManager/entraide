@@ -8,7 +8,8 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     };
     
     CollectionService.subscribe('my-profile').then(function(data){
-        $scope.profile = data[0];
+        $scope.profileCollection = data;
+        $scope.profile = data[0] ? data[0] : {};
         CollectionService.subscribe('my-profile-images').then(function(images){
             $scope.images = images;
         });
@@ -17,9 +18,12 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     /*********************/
     /*      Info         */
     /*********************/
+    $scope.email = SessionService.getUserEmail();
+
     $scope.saveProfile = function(){
         $scope.profile.updated = Date.now();
-        $scope.profile.save().then(function(){}, function(err){console.log(err);});
+        $scope.profile.owner = SessionService.getOwner();
+        $scope.profileCollection.save($scope.profile).then(function(){}, function(err){console.log(err);});
     };
     
     
@@ -118,13 +122,14 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     /*********************/
     /*    Security       */
     /*********************/
+    $scope.security = {};
     $scope.changePassword = function(){
         if($scope.security.newPassword== $scope.security.newPasswordDiff){
-            SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {    
-                alert('Password changed.');    
-            }, function(err){alert(err);$scope.error=err;});
+            SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
+                $scope.error =null;
+            }, function(err){$scope.error=err;});
         } else {
-            $scope.error='Les 2 nouveaux mots de passe ne correspondent pas.';
+            $scope.error={reason:'Les 2 nouveaux mots de passe ne correspondent pas.'};
         }
         
    };  

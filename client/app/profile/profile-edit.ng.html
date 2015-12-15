@@ -13,7 +13,7 @@
 			<div class="form-group">
 				<label class="control-label col-xs-2">Email</label>
 				<div class="col-xs-10">
-					<p class="form-control-static">{{profile.email}}</p>
+					<p class="form-control-static">{{email}}</p>
 				</div>
 			</div>
 			<div class="form-group">
@@ -43,10 +43,11 @@
 			</div>
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-xs-10">
-					<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i></button>
+					<button ng-click="saveProfile()" class="btn btn-primary"><i class="fa fa-floppy-o"></i></button>
 				</div>
 			</div>
 		</form>
+        <p><div class="error-message" ng-show="error">{{error.reason}}</div></p>
     </div> 
         
     <div ng-if="profileState=='camera'" class=''>
@@ -102,28 +103,33 @@
 	<div ng-if="profileState=='security'" class='form-profile ui-anim-fade'>
 		<form class="form-horizontal">
 			<div class="form-group">
-				<label for="oldPassword" class="control-label col-xs-2">Ancien mot de passe</label>
+				<label for="oldPassword" class="control-label col-xs-2"></label>
 				<div class="col-xs-10">
 					<input type="text" class="form-control" id="oldPassword" placeholder="Ancien mot de passe" ng-model="security.oldPassword">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="newPassword" class="control-label col-xs-2">Nouveau mot de passe</label>
+				<label for="newPassword" class="control-label col-xs-2"></label>
 				<div class="col-xs-10">
 					<input type="text" class="form-control" id="newPassword" placeholder="Nouveau mot de passe" ng-model="security.newPassword">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="newPasswordDiff" class="control-label col-xs-2">Nouveau mot de passe</label>
+				<label for="newPasswordDiff" class="control-label col-xs-2"></label>
 				<div class="col-xs-10">
 					<input type="text" class="form-control" id="newPasswordDiff" placeholder="Nouveau mot de passe" ng-model="security.newPasswordDiff">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-xs-10">
-					<button class="btn btn-primary" ng-click="changePassword()"><i class="fa fa-floppy-o"></i></button>
+					<button class="btn btn-primary" ng-click="changePassword()" ng-disabled="!security.newPassword || !security.newPassword || !security.newPasswordDiff"><i class="fa fa-floppy-o"></i></button>
 				</div>
 			</div>
+            <div class="form-group">
+                <div class="col-xs-offset-2 col-xs-10">
+                    <p><div class="error-message" ng-show="error">{{error.reason}}</div></p>
+                </div>
+            </div>
 		</form>
     </div>
 
