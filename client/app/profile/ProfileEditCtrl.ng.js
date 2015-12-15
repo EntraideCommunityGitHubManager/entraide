@@ -1,7 +1,13 @@
 angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SessionService, MapService, UtilsService) {
 
     console.log('ProfileEditCtrl');
-
+    
+    $scope.profileState = 'info';
+    $scope.setProfileState = function(profileState){
+        $scope.profileState = profileState;
+    };
+    
+    /* Camera */
     var MAX_IMAGES = 3;
     $scope.images = [];
 
@@ -76,6 +82,8 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         return $scope.images.length < MAX_IMAGES;  
     };
 
+
+     /* Config */
     $scope.isSelected = function(mapStyle){
         return mapStyle == MapService.getCurrentMapStyle() ? '-selected' : '';
     };
