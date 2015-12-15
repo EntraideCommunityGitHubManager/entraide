@@ -118,10 +118,15 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     /*********************/
     /*    Security       */
     /*********************/
-    $scope.changePassword = function(){    
-        SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {    
-            alert('Password changed.');    
-        }, function(err){alert(err);$scope.error=err;});    
+    $scope.changePassword = function(){
+        if($scope.security.newPassword== $scope.security.newPasswordDiff){
+            SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {    
+                alert('Password changed.');    
+            }, function(err){alert(err);$scope.error=err;});
+        } else {
+            $scope.error='Les 2 nouveaux mots de passe ne correspondent pas.';
+        }
+        
    };  
     
 });
