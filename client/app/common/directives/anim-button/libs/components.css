@@ -14,20 +14,22 @@
 
 /* Common button styles */
 .anim-button {
-	float: left;
-	min-width: 150px;
-	max-width: 250px;
-	display: block;
-	margin: 1em;
-	padding: 1em 2em;
-	border: none;
-	background: none;
-	color: inherit;
-	vertical-align: middle;
-	position: relative;
-	z-index: 1;
-	-webkit-backface-visibility: hidden;
-	-moz-osx-font-smoothing: grayscale;
+    float: left;
+    display: block;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    background: none;
+    color: inherit;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    -webkit-backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    background: rgba(91, 210, 190, 0.7);
+    overflow: hidden;
+    height: 40px;
+    min-width: 50px;
 }
 .anim-button:focus {
 	outline: none;
@@ -560,9 +562,7 @@
 
 /* Isi */
 .anim-button-isi {
-	padding: 1.2em 2em;
 	color: #fff;
-	background: #7986cb;
 	overflow: hidden;
 }
 .anim-button-isi::before {
@@ -1375,9 +1375,6 @@
 
 /* Sacnite */
 .anim-button.anim-button-sacnite {
-	width: 70px;
-	height: 70px;
-	min-width: 0;
 	padding: 0;
 	color: #fff;
 	-webkit-transition: color 0.3s;

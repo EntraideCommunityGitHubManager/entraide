@@ -4,9 +4,10 @@ angular.module('entraide').directive('animButton', function(){
         restrict: 'AEC',
         replace: true,
         scope: {
+            animButtonText: '@',
             animButtonIcon: '@',
             animButtonType: '@',
-            animButtonSubType: '@'
+            animButtonSubType: '@',
             animButtonCallback: '&'
         },
         templateUrl: 'client/app/common/directives/anim-button/anim-button.ng.html',
@@ -136,17 +137,27 @@ angular.module('entraide').directive('animButton', function(){
             	}
             };
             $scope.getAnimButtonClass = function(){
-            	return $scope.config[$scope.animButtonType].class + ' ' + $scope.config[$scope.animButtonType][$scope.animButtonSubType];
+                var config = getAnimConfig($scope.animButtonType);
+                return config ? config.class + ' ' + config[$scope.animButtonSubType] : '';
+
             };
             $scope.isAnimationLetters = function(){
-                return $scope.config[$scope.animButtonType].animLetters;
+                var config = getAnimConfig($scope.animButtonType);
+                return config ? config.animLetters : '';
+            };
+            var getAnimConfig = function(configName){
+                if($scope.config[configName]){
+                    return $scope.config[configName];
+                } else {
+                    console.log('Anim-Button ' + configName + ' config does not exist.');
+                }
             };
         },
         link: function (scope, element) {
             scope.animButtonType = scope.animButtonType ? scope.animButtonType : 'isi'
             scope.animButtonSubType = scope.animButtonSubType ? scope.animButtonSubType : '1';
             //var cbutton = element[0].querySelector('.animButton');
-            scope.clickHandler = function(e){
+            scope.clickHandler = function(){
                 scope.animButtonCallback();
             };
                         

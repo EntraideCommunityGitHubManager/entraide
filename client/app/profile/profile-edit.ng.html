@@ -1,17 +1,17 @@
 <div>
     <h2 class="icon icon-lab">Profile Edit</h2>
     <div class="profile-box">
-        <anim-button anim-button-text="Info" anim-button-icon="fa-user" click-handler="setProfileState('info')" anim-button-type="itzel"></anim-button>
-        <anim-button anim-button-text="Photos" anim-button-icon="fa-camera-retro" click-handler="setProfileState('camera')" anim-button-type="itzel"></anim-button>
-        <anim-button anim-button-text="Compétences" anim-button-icon="fa-tachometer" click-handler="setProfileState('skills')" anim-button-type="itzel"></anim-button>
-        <anim-button anim-button-text="Configuration" anim-button-icon="fa-sliders" click-handler="setProfileState('config')" anim-button-type="itzel"></anim-button>
-	<anim-button anim-button-text="Configuration" anim-button-icon="fa-unlock-alt" click-handler="setProfileState('security')" anim-button-type="itzel"></anim-button>
+        <anim-button anim-button-icon="fa-user" anim-button-callback="setProfileState('info')" anim-button-type="sacnite"></anim-button>
+        <anim-button anim-button-icon="fa-camera-retro" anim-button-callback="setProfileState('camera')" anim-button-type="sacnite"></anim-button>
+        <anim-button anim-button-icon="fa-tachometer" anim-button-callback="setProfileState('skills')" anim-button-type="sacnite"></anim-button>
+        <anim-button anim-button-icon="fa-sliders" anim-button-callback="setProfileState('config')" anim-button-type="sacnite"></anim-button>
+	    <anim-button anim-button-icon="fa-unlock-alt" anim-button-callback="setProfileState('security')" anim-button-type="sacnite"></anim-button>
     </div>
     
-    <div ng-if="profileState=='info'" class='form-profile'>
+    <div ng-if="profileState=='info'" class='form-profile ui-anim-fade'>
         <form class="form-horizontal">
 			<div class="form-group">
-				<label for="email" class="control-label col-xs-2">Email</label>
+				<label class="control-label col-xs-2">Email</label>
 				<div class="col-xs-10">
 					<p class="form-control-static">{{profile.email}}</p>
 				</div>
@@ -49,18 +49,19 @@
 		</form>
     </div> 
         
-    <div ng-if="profileState=='camera'">
+    <div ng-if="profileState=='camera'" class='form-profile ui-anim-fade'>
         <div>
             <div ng-show="addable() && !imgSrc" ngf-drop ngf-select
-             ngf-change="addImages($files)"
-             ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
-             ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
-             ngf-drop-available="dropAvailable">
-            <div>Click here to select image</div>
-            <div>
-                <strong>OR</strong>
+                 ngf-change="addImages($files)"
+                 ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
+                 ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
+                 ngf-drop-available="dropAvailable">
+                <div>Click here to select image</div>
+                <div>
+                    <strong>OR</strong>
+                </div>
+                <div ng-show="dropAvailable">Drop image here</div>
             </div>
-            <div ng-show="dropAvailable">Drop image here</div>
         </div>
     
         <div ng-show="imgSrc" class="ng-crop-container">
@@ -78,7 +79,7 @@
                 <div>
                     <img class="profile-image" src="{{ image.url()}}"/>
                     <i class="fa fa-remove" ng-click="remove(image)"></i>
-                    <i class="fa fa-heart-o" ng-show="!image.favorite" ng-click="setVisible(image)"></i>
+                    <i class="fa fa-heart-o" ng-show="!image.favorite" ng-click="setFavorite(image)"></i>
                     <i class="fa fa-heart" ng-show="image.favorite"></i>
                     <!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
                 </div>
@@ -86,11 +87,11 @@
         </div>
     </div>
     
-    <div ng-if="profileState=='skills'">
+    <div ng-if="profileState=='skills'" class='form-profile ui-anim-fade'>
         Hello skills !
     </div>
     
-    <div ng-if="profileState=='config'">
+    <div ng-if="profileState=='config'" class='form-profile ui-anim-fade'>
         <div class="map-style-edit-container">
             <div ng-repeat="mapStyle in mapStyles" >
                 <div class="map-style-edit"  anim-click anim-click-callback="setMapStyle(mapStyle)" anim-click-type="novak" anim-click-icon="{{getAnimClickIcon(mapStyle)}}">
@@ -100,7 +101,7 @@
         </div>
     </div>
 	
-	<div ng-if="profileState=='security'">
+	<div ng-if="profileState=='security'" class='form-profile ui-anim-fade'>
 		<form class="form-horizontal">
 			<div class="form-group">
 				<label for="oldPassword" class="control-label col-xs-2">Ancien mot de passe</label>
@@ -127,4 +128,5 @@
 			</div>
 		</form>
     </div>
+
 </div>

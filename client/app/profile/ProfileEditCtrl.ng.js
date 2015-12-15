@@ -1,4 +1,4 @@
-angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SecurityService, SessionService, MapService, UtilsService) {
+angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SecurityService, SessionService, MapService) {
 
     console.log('ProfileEditCtrl');
     
@@ -74,7 +74,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         $meteor.getPicture().then(function(data){setPicture(data);});
     };
     
-    $scope.setVisible = function(img){
+    $scope.setFavorite = function(img){
         angular.forEach($scope.images, function(image){
             if(image._id == img._id){
                 image.update({$set: {'favorite': true}});

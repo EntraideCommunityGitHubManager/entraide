@@ -378,7 +378,6 @@ body{
 }
 
 .profile-box {
-    padding: 1px 1px;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -387,10 +386,12 @@ body{
     flex-wrap: wrap;
     -webkit-justify-content: center;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .form-profile{
     margin: 15px;
+    position: absolute;
 }
 
 /* Fix alignment issue of label on extra small devices in Bootstrap 3.2 */
