@@ -1,10 +1,10 @@
 <div>
     <h2 class="icon icon-lab">Profile Edit</h2>
     <div class="profile-box">
-        <anim-button anim-button-text="Info" click-handler="setProfileState('info')" anim-button-type="itzel"></anim-button>
-        <anim-button anim-button-text="Photos" click-handler="setProfileState('camera')" anim-button-type="itzel"></anim-button>
-        <anim-button anim-button-text="Compétences" click-handler="setProfileState('skills')" anim-button-type="itzel"></anim-button>
-        <anim-button anim-button-text="Configuration" click-handler="setProfileState('config')" anim-button-type="itzel"></anim-button>
+        <anim-button anim-button-text="Info" anim-button-icon="fa-user" click-handler="setProfileState('info')" anim-button-type="itzel"></anim-button>
+        <anim-button anim-button-text="Photos" anim-button-icon="fa-camera-retro" click-handler="setProfileState('camera')" anim-button-type="itzel"></anim-button>
+        <anim-button anim-button-text="Compétences" anim-button-icon="fa-tachometer" click-handler="setProfileState('skills')" anim-button-type="itzel"></anim-button>
+        <anim-button anim-button-text="Configuration" anim-button-icon="fa-sliders" click-handler="setProfileState('config')" anim-button-type="itzel"></anim-button>
     </div>
     
     <div ng-if="profileState=='info'">
