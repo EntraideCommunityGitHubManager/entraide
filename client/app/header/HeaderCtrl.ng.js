@@ -29,12 +29,6 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         },function(err){$scope.error=err;});
     };
 
-    $scope.changePassword = function(){
-        SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
-            alert('Password changed.');
-        }, function(err){alert(err);$scope.error=err;});
-    };
-
     $scope.logout = function(){
         AnimService.startTransition();
         SecurityService.logout().then(function(){
