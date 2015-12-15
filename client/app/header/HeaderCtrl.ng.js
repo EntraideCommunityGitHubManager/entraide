@@ -9,23 +9,14 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     $scope.login = function(){
         $scope.error = null;
         $meteor.call('check_user', $scope.user.email, Package.sha.SHA256($scope.user.password)).then(function(){
-            $rootScope.$broadcast('animLoginToggleEvent');
-            AnimService.startTransition();
-            setTimeout(function(){
-                SecurityService.loginWithPassword($scope.user.email, $scope.user.password).then(function () {
-                    SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
-                    loadProfileImage();
-                    $state.go('app.main.events.search.myEvents');
-                },function(err){$scope.error=err;});
-                AnimService.stopTransition(2000); // not needed if we make a redirection
-            }, 1000);
+            logUser();
         },function(err){$scope.error=err;});
     };
 
     $scope.create = function(){
         $scope.error = null;
         SecurityService.createUser({ username:getUserName($scope.user.email), email:$scope.user.email, password: $scope.user.password}).then(function () {
-            logUser(loadProfileImage);
+            logUser();
         },function(err){$scope.error=err;});
     };
 
@@ -52,12 +43,16 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         $scope.profileImage = null;
     };
     
-    var logUser = function(callback){
+    var logUser = function(){
+        $rootScope.$broadcast('animLoginToggleEvent');
+        AnimService.startTransition();
         setTimeout(function(){
-            AnimService.startTransition();
-            SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
-            callback();
-            AnimService.stopTransition(2000);
+            SecurityService.loginWithPassword($scope.user.email, $scope.user.password).then(function () {
+                SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
+                loadProfileImage();
+                $state.go('app.main.events.search.myEvents');
+            },function(err){$scope.error=err;});
+            AnimService.stopTransition(2000); // not needed if we make a redirection
         }, 1000);
     };
     

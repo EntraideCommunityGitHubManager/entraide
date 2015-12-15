@@ -49,41 +49,39 @@
 		</form>
     </div> 
         
-    <div ng-if="profileState=='camera'" class='form-profile ui-anim-fade'>
-        <div>
-            <div ng-show="addable() && !imgSrc" ngf-drop ngf-select
-                 ngf-change="addImages($files)"
-                 ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
-                 ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
-                 ngf-drop-available="dropAvailable">
-                <div>Click here to select image</div>
-                <div>
-                    <strong>OR</strong>
-                </div>
-                <div ng-show="dropAvailable">Drop image here</div>
+    <div ng-if="profileState=='camera'" class=''>
+        <div ng-show="addable() && !imgSrc" ngf-drop ngf-select
+             ngf-change="addImages($files)"
+             ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
+             ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
+             ngf-drop-available="dropAvailable">
+            <div>Click here to select image</div>
+            <div>
+                <strong>OR</strong>
             </div>
+            <div ng-show="dropAvailable">Drop image here</div>
         </div>
-    
+
         <div ng-show="imgSrc" class="ng-crop-container">
             <h4>Adjust your image and save it !</h4><br/>
             <img-crop image="imgSrc" result-image="myCroppedImage" area-type="square"></img-crop>
         </div>
-    
+
         <div class="icon-action-container" ng-show="addable()">
             <span class="icon-action"><i class="fa fa-camera" ng-click="camera()" ng-show="!imgSrc"></i></span>
             <span class="icon-action"><i class="fa fa-floppy-o" ng-click="saveCroppedImage()" ng-show="imgSrc"></i></span>
         </div>
-    
+
         <div>
-            <span ng-repeat="image in images">
-                <div>
-                    <img class="profile-image" src="{{ image.url()}}"/>
-                    <i class="fa fa-remove" ng-click="remove(image)"></i>
-                    <i class="fa fa-heart-o" ng-show="!image.favorite" ng-click="setFavorite(image)"></i>
-                    <i class="fa fa-heart" ng-show="image.favorite"></i>
-                    <!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
-                </div>
-            </span>
+        <span ng-repeat="image in images">
+            <div>
+                <img class="profile-image" src="{{ image.url()}}"/>
+                <i class="fa fa-remove" ng-click="remove(image)"></i>
+                <i class="fa fa-heart-o" ng-show="!image.favorite" ng-click="setFavorite(image)"></i>
+                <i class="fa fa-heart" ng-show="image.favorite"></i>
+                <!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
+            </div>
+        </span>
         </div>
     </div>
     
