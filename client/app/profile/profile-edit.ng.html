@@ -1,46 +1,67 @@
 <div>
     <h2 class="icon icon-lab">Profile Edit</h2>
-    <div ng-show="addable() && !imgSrc" ngf-drop ngf-select
-         ngf-change="addImages($files)"
-         ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
-         ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
-         ngf-drop-available="dropAvailable">
-        <div>Click here to select image</div>
+    <div class="profile-box">
+        <anim-button anim-button-text="Info" click-handler="setProfileState('info')" anim-button-type="itzel"></anim-button>
+        <anim-button anim-button-text="Photos" click-handler="setProfileState('camera')" anim-button-type="itzel"></anim-button>
+        <anim-button anim-button-text="Compétences" click-handler="setProfileState('skills')" anim-button-type="itzel"></anim-button>
+        <anim-button anim-button-text="Configuration" click-handler="setProfileState('config')" anim-button-type="itzel"></anim-button>
+    </div>
+    
+    <div ng-if="profileState=='info'">
+       Hello info ! 
+    </div> 
+        
+    <div ng-if="profileState=='camera'">
         <div>
-            <strong>OR</strong>
-        </div>
-        <div ng-show="dropAvailable">Drop image here</div>
-    </div>
-
-    <div ng-show="imgSrc" class="ng-crop-container">
-        <h4>Adjust your image and save it !</h4><br/>
-        <img-crop image="imgSrc" result-image="myCroppedImage" area-type="square"></img-crop>
-    </div>
-
-    <div class="icon-action-container" ng-show="addable()">
-        <span class="icon-action"><i class="fa fa-camera" ng-click="camera()" ng-show="!imgSrc"></i></span>
-        <span class="icon-action"><i class="fa fa-floppy-o" ng-click="saveCroppedImage()" ng-show="imgSrc"></i></span>
-    </div>
-
-    <div>
-        <span ng-repeat="image in images">
+            <div ng-show="addable() && !imgSrc" ngf-drop ngf-select
+             ngf-change="addImages($files)"
+             ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
+             ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
+             ngf-drop-available="dropAvailable">
+            <div>Click here to select image</div>
             <div>
-                <img class="profile-image" src="{{ image.url()}}"/>
-                <i class="fa fa-remove" ng-click="remove(image)"></i>
-                <i class="fa fa-heart-o" ng-show="!image.favorite" ng-click="setVisible(image)"></i>
-                <i class="fa fa-heart" ng-show="image.favorite"></i>
-                <!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
+                <strong>OR</strong>
             </div>
-        </span>
+            <div ng-show="dropAvailable">Drop image here</div>
+        </div>
+    
+        <div ng-show="imgSrc" class="ng-crop-container">
+            <h4>Adjust your image and save it !</h4><br/>
+            <img-crop image="imgSrc" result-image="myCroppedImage" area-type="square"></img-crop>
+        </div>
+    
+        <div class="icon-action-container" ng-show="addable()">
+            <span class="icon-action"><i class="fa fa-camera" ng-click="camera()" ng-show="!imgSrc"></i></span>
+            <span class="icon-action"><i class="fa fa-floppy-o" ng-click="saveCroppedImage()" ng-show="imgSrc"></i></span>
+        </div>
+    
+        <div>
+            <span ng-repeat="image in images">
+                <div>
+                    <img class="profile-image" src="{{ image.url()}}"/>
+                    <i class="fa fa-remove" ng-click="remove(image)"></i>
+                    <i class="fa fa-heart-o" ng-show="!image.favorite" ng-click="setVisible(image)"></i>
+                    <i class="fa fa-heart" ng-show="image.favorite"></i>
+                    <!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
+                </div>
+            </span>
+        </div>
     </div>
-
-    <div class="map-style-edit-container">
-        <div ng-repeat="mapStyle in mapStyles" >
-            <div class="map-style-edit"  anim-click anim-click-callback="setMapStyle(mapStyle)" anim-click-type="novak" anim-click-icon="{{getAnimClickIcon(mapStyle)}}">
-                <span class="map-style-edit-label{{isSelected(mapStyle)}}">{{mapStyle}}</span>
+    
+    <div ng-if="profileState=='skills'">
+        Hello skills !
+    </div>
+    
+    <div ng-if="profileState=='config'">
+        <div class="map-style-edit-container">
+            <div ng-repeat="mapStyle in mapStyles" >
+                <div class="map-style-edit"  anim-click anim-click-callback="setMapStyle(mapStyle)" anim-click-type="novak" anim-click-icon="{{getAnimClickIcon(mapStyle)}}">
+                    <span class="map-style-edit-label{{isSelected(mapStyle)}}">{{mapStyle}}</span>
+                </div>
             </div>
         </div>
     </div>
+    
 </div>
 
 
