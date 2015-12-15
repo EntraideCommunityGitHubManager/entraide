@@ -1,6 +1,6 @@
-<div ng-switch on="animButtonType">
-    <button ng-switch-when="winona" ng-click="clickHandler($event)" class="anim-button anim-button-winona anim-button-border-thin anim-button-round-s" data-text="Open Project">
+<div>
+    <button ng-click="clickHandler($event)" class="{{getAnimButtonClass()}}" data-text="{{animButtonText}}">
         <i class="fa {{animButtonIcon}}" ng-if="animButtonIcon"></i>
-        <span>{{animButtonText}}</span>
+        <span> {{animButtonText}}</span>
     </button>
 </div>
