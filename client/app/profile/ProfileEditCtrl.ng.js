@@ -7,6 +7,14 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         $scope.profileState = profileState;
     };
     
+    CollectionService.subscribe('my-profile').then(function(data){
+        $scope.profile = data[0];
+        $scope.profile.changed = Date.now();
+        CollectionService.subscribe('my-profile-images').then(function(images){
+            $scope.images = images;
+        });
+    });
+    
     /*********************/
     /*      Info         */
     /*********************/
@@ -20,13 +28,6 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     var MAX_IMAGES = 3;
     $scope.images = [];
 
-    CollectionService.subscribe('my-profile').then(function(data){
-        $scope.profile = data[0];
-        CollectionService.subscribe('my-profile-images').then(function(images){
-            $scope.images = images;
-        });
-    });
-    
     $scope.addImages = function (files) {
         if (files.length > 0) {
             var reader = new FileReader();
