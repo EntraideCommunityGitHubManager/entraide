@@ -23,6 +23,14 @@ Accounts.onCreateUser(function(options, user) {
     return user;
 });
 
+Meteor.users.deny({
+  update: function (userId, doc, fields, modifier) {
+    return _.contains(fields, 'profile') || _.contains(fields, 'roles');
+  }
+});
+
+
+
 Meteor.publish("all-users", function(){
     if(isAdmin(this.userId)){
         return Meteor.users.find({'_id': { $ne: this.userId }});
