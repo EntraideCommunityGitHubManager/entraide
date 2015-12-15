@@ -17,6 +17,9 @@ angular.module('entraide').directive('animButton', function(){
             $scope.getAnimButtonClass = function(){
             	return $scope.config[$scope.animButtonType].class + ' ' + $scope.config[$scope.animButtonType][$scope.animButtonSubType];
             };
+            $scope.isAnimationLetters = function(){
+                return $scope.config[$scope.animButtonType].animLetters;
+            };
         },
         link: function (scope, element) {
             scope.animButtonType = scope.animButtonType ? scope.animButtonType : 'isi'
