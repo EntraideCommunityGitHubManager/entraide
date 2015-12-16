@@ -63,3 +63,41 @@ Meteor.publish('my-profile-images', function() {
     return ProfileImages.find({'owner.id' :  this.userId}, {sort: {order:1}});
 });
 
+
+
+
+
+
+
+
+ProfileSkills = new Mongo.Collection("profile_skills");
+
+ProfileSkills.allow({
+    insert: function (userId, profileSkill) {
+       return isAdmin(userId) || skill.owner.id === userId;
+    },
+    update: function (userId, profileSkill, fields, modifier) {
+        return isAdmin(userId) || skill.owner.id === userId;
+    },
+    remove: function (userId, profileSkill) {
+        return isAdmin(userId) || skill.owner.id === userId;
+    }
+});
+
+ProfileSkills.deny({
+    update: function (userId, skill, fields, modifier) {
+        return skill.owner.id !== userId || _.difference(fields, ['level']).length > 0;
+    }
+});
+
+Meteor.publish("profile-skills", function(options){
+    if(options && options.collectionOptions && options.collectionOptions.profile && options.collectionOptions.profile.id){
+        options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:1};
+        var arrOptions = [{'owner.id': this.userId }];
+        arrOptions.push(options.collectionOptions);
+        return ProfileSkills.find({$and: arrOptions}, options.sortLimitOptions);
+    } else {
+        this.stop();
+        return;
+    }
+});
