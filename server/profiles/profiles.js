@@ -2,11 +2,9 @@ Profiles = new Mongo.Collection("profiles");
 
 Profiles.allow({
     insert: function (userId, profile) {
-        console.log('Profiles.insert userID: '+userId);
-        return isAdmin(userId) || userId && profile.owner.id === userId;
+        return isAdmin(userId) || (Profiles.find({'owner.id':userId}).length==0 && userId && profile.owner.id === userId);
     },
     update: function (userId, profile, fields, modifier) {
-        console.log('Profiles.update userID: '+userId);
         return isAdmin(userId) || userId && profile.owner.id === userId;
     },
     remove: function (userId, profile) {
@@ -24,7 +22,6 @@ Meteor.publish("all-profiles", function(){
 });
 
 Meteor.publish("my-profile", function(){
-    console.log('my-profile:publish userID: '+this.userId);
     return Profiles.find({'owner.id' :  this.userId});
 });
 
