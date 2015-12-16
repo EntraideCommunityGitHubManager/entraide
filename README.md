@@ -36,6 +36,7 @@ File Upload         (9.1.2)  	---> meteor add danialfarid:ng-file-upload
 Meteor Camera       (1.1.5)  	---> meteor add mdg:camera
 NgImgCrop           (0.3.2)  	---> meteor add alexk111:ng-img-crop
 //Thumbnail         (0.0.18)  ---> //meteor add cfs:graphicsmagick ... Not Working
+//TODO: Collection2 (0.0.??)  ---> meteor add aldeed:collection2
 </code>
 </pre>
 
@@ -73,4 +74,5 @@ https://mapicons.mapsmarker.com/category/markers/
 https://www.discovermeteor.com/blog/allow-deny-challenge-results/
 http://fr.discovermeteor.com/chapters/allow-and-deny/
 https://github.com/aldeed/meteor-collection2
+https://www.discovermeteor.com/blog/meteor-methods-client-side-operations/
 </pre></code>
