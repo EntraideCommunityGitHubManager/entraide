@@ -10,3 +10,5 @@ ProfileImages = new FS.Collection("profile_images", {
     }
   }
 });
+
+ProfileSkills = new Mongo.Collection("profile_skills");
