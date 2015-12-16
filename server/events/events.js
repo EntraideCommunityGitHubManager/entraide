@@ -2,18 +2,38 @@ Events = new Mongo.Collection("events");
 
 Events.allow({
     insert: function (userId, event) {
-        if(!isNaN(parseInt(event.startDate)) && event.location && event.location.longitude && event.location.latitude && !isNaN(parseFloat(event.location.longitude)) !isNaN(parseFloat(event.location.latitude)) ){
-           return isAdmin(userId) || userId && event.owner.id === userId;
+        var msg = 'failed';
+        if(event.location && event.location.longitude && event.location.latitude && !isNaN(parseFloat(event.location.longitude)) !isNaN(parseFloat(event.location.latitude)) && !isNaN(parseInt(event.startDate)) ){
+           if(event.owner.id !== userId){
+               msg = 'HACKING failed';
+           } else {
+               return true
+           }
         }
-        console.log('Event insert failed [user:'+userId+']: ' + event);
+        console.log('Event Allow insert '+msg+' [user:'+userId+']: ' + event);
+        return false;
     },
     update: function (userId, event, fields, modifier) {
-        return isAdmin(userId) || userId && event.owner.id === userId;
+        return userId && event.owner.id === userId;
     },
     remove: function (userId, event) {
-        return isAdmin(userId) || userId && event.owner.id === userId;
+        return userId && event.owner.id === userId;
     }
 });
+
+/*  Admin Allow  */
+Events.allow({
+    insert: function (userId, event) {
+       return isAdmin(userId);
+    },
+    update: function (userId, event, fields, modifier) {
+        return isAdmin(userId);
+    },
+    remove: function (userId, event) {
+        return isAdmin(userId);
+    }
+});
+
 
 Events.deny({
     update: function (userId, event, fields, modifier) {
