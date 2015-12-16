@@ -10,13 +10,13 @@ Meteor.publish("all-events", function(){
 });
 
 Meteor.publish("my-events", function(){
-    return Events.find({'owner.id' :  this.userId}, {sort: {name:1}});
+    return Events.find({'owner.id' :  this.userId, removed:false}, {sort: {name:1}});
 });
 
 Meteor.publish("search-events", function(options){
     options.collectionOptions = options.collectionOptions ? options.collectionOptions : {'department.code' : "74"};
     options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:100};
-    var arrOptions = [{'owner.id': { $ne: this.userId }}];
+    var arrOptions = [{'owner.id': { $ne: this.userId }, removed:false}];
     arrOptions.push(options.collectionOptions);
     return Events.find({$and: arrOptions}, options.sortLimitOptions);
 });
@@ -30,7 +30,7 @@ Events.deny({
 
 Meteor.methods({
     event_create: function(e){
-        var event  = {owner:{id:this.userId}, createdAt: Date.now()};
+        var event  = {owner:{id:this.userId}, createdAt: Date.now(), removed:false};
         event.department = Departments.findOne({code: e.department.code});;
         event.location = {longitude:setFloatValue(e.location.longitude), latitude:setFloatValue(e.location.latitude)};
         event.name = setStringValue(e.name, 100);

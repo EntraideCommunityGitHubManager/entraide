@@ -16,12 +16,10 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
     };
 
     $scope.remove = function(event) {
-        if(event._id) {
-            CollectionService.subscribe('my-events').then(function(events) {
-                events.remove(event);
-                $rootScope.$broadcast('anim-sidebar-toggle');
-            });
-        }
+        $meteor.call('event_remove', event._id).then(function(){
+            $rootScope.$broadcast('anim-sidebar-toggle');
+            console.log('event removed');
+        },function(err){$scope.error=err;});
     };
 
     $scope.close=function(){
