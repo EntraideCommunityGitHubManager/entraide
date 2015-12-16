@@ -70,7 +70,9 @@ EventSkills.allow({
 
 EventSkills.deny({
     update: function (userId, skill, fields, modifier) {
-        return skill.owner.id !== userId || _.difference(fields, ['level']).length > 0;
+        var category = Categories.find({code:skill.category.code})[0];
+        var event = Events.find({_id:skill.event.id})[0];
+        return skill.owner.id !== userId || _.difference(fields, ['level']).length > 0 || !category || !event;
     }
 });
 
