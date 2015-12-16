@@ -1,22 +1,9 @@
 Events = new Mongo.Collection("events");
 
-/*  ADMIN Allow  */
-Events.allow({
-    insert: function (userId, event) {
-       return isAdmin(userId);
-    },
-    update: function (userId, event, fields, modifier) {
-        return isAdmin(userId);
-    },
-    remove: function (userId, event) {
-        return isAdmin(userId);
-    }
-});
-
-/*  HELPER Allow  */
 Events.allow({
     insert: function (userId, event) {
         var msg = 'failed';
+        if(isAdmin(userId)){return true;}
         if(event.location && event.location.longitude && event.location.latitude && !isNaN(parseFloat(event.location.longitude)) !isNaN(parseFloat(event.location.latitude)) && !isNaN(parseInt(event.startDate)) ){
            if(event.owner.id !== userId){
                msg = 'HACKING failed';
@@ -28,14 +15,13 @@ Events.allow({
         return false;
     },
     update: function (userId, event, fields, modifier) {
-        return userId && event.owner.id === userId;
+        return isAdmin(userId) || event.owner.id === userId;
     },
     remove: function (userId, event) {
-        return userId && event.owner.id === userId;
+        return isAdmin(userId) || event.owner.id === userId;
     }
 });
 
-/*  HELPER Deny  */
 Events.deny({
     update: function (userId, event, fields, modifier) {
         return !isAdmin(userId);
@@ -70,29 +56,24 @@ Meteor.publish("search-events", function(options){
 
 EventSkills = new Mongo.Collection("event_skills");
 
-/*  ADMIN Allow  */
+
 EventSkills.allow({
     insert: function (userId, eventSkill) {
-       return isAdmin(userId);
+       return isAdmin(userId) || skill.owner.id === userId;
     },
     update: function (userId, eventSkill, fields, modifier) {
-        return isAdmin(userId);
+        return isAdmin(userId) || skill.owner.id === userId;
     },
     remove: function (userId, eventSkill) {
-        return isAdmin(userId);
+        return isAdmin(userId) || skill.owner.id === userId;
     }
 });
 
-/*  HELPER Allow  */
-EventSkills.allow({
-    insert: function (userId, skill) {
-         return skill.owner.id === userId;
-    },
+/*  HELPER Deny  */
+EventSkills.deny({
     update: function (userId, skill, fields, modifier) {
-        return skill.owner.id === userId;
-    },
-    remove: function (userId, skill) {
-        return skill.owner.id === userId;
+        var allowedFields = ['level','category', 'event', 'owner'];
+        return skill.owner.id !== userId || _.difference(fields, allowedFields).length > 0;
     }
 });
 
