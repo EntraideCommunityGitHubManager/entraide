@@ -5,6 +5,7 @@ Events.allow({
         if(!isNaN(parseInt(event.startDate)) && event.location && event.location.longitude && event.location.latitude && !isNaN(parseFloat(event.location.longitude)) !isNaN(parseFloat(event.location.latitude)) ){
            return isAdmin(userId) || userId && event.owner.id === userId;
         }
+        console.log('Event insert failed [user:'+userId+']: ' + event);
     },
     update: function (userId, event, fields, modifier) {
         return isAdmin(userId) || userId && event.owner.id === userId;
