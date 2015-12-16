@@ -2,7 +2,9 @@ Events = new Mongo.Collection("events");
 
 Events.allow({
     insert: function (userId, event) {
-        return isAdmin(userId) || userId && event.owner.id === userId;
+        if(!isNaN(parseInt(event.startDate)) && event.location && event.location.longitude && event.location.latitude && !isNaN(parseFloat(event.location.longitude)) !isNaN(parseFloat(event.location.latitude)) ){
+           return isAdmin(userId) || userId && event.owner.id === userId;
+        }
     },
     update: function (userId, event, fields, modifier) {
         return isAdmin(userId) || userId && event.owner.id === userId;
@@ -14,8 +16,8 @@ Events.allow({
 
 Events.deny({
     update: function (userId, event, fields, modifier) {
-        var allowedFields = ['userName','firstName', 'lastName', 'active'];
-        return _.difference(fields, allowedFields).length > 0;
+        var allowedFields = [];
+        return _.intersection(fields, ['startDate', 'endDate']).length > 0;
     }
 });
 
