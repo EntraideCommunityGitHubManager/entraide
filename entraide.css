@@ -422,5 +422,9 @@ body{
 
 .button-change-password:hover .fa {
     color: inherit;
+    cursor: inherit;
 }
 
+.error-message{
+    color: #EA6464;
+}

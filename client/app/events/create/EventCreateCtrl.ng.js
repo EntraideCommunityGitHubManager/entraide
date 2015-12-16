@@ -8,7 +8,7 @@ angular.module('entraide').controller('EventCreateCtrl', function ($rootScope, $
     }); 
 
     $scope.create = function(event){
-        $scope.events.push(event);
+        $meteor.call('event_create', event).then(function(){console.log('event created');},function(err){$scope.error=err;});
         $rootScope.$broadcast('event-create');
     };
 

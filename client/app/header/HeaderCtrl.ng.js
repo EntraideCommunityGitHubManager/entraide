@@ -16,6 +16,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     $scope.create = function(){
         $scope.error = null;
         SecurityService.createUser({ username:getUserName($scope.user.email), email:$scope.user.email, password: $scope.user.password}).then(function () {
+            $meteor.call('init_user_profile', SessionService.getUserProfile().department.code).then(function(){console.log('init_user_profile success');},function(err){$scope.error=err;});
             logUser();
         },function(err){$scope.error=err;});
     };

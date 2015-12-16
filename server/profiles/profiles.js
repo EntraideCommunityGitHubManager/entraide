@@ -1,16 +1,37 @@
 Profiles = new Mongo.Collection("profiles");
 
-Profiles.allow({
-    insert: function (userId, profile) {
-        return isAdmin(userId) || (Profiles.find({'owner.id':userId}).length==0 && userId && profile.owner.id === userId);
-    },
-    update: function (userId, profile, fields, modifier) {
-        return isAdmin(userId) || userId && profile.owner.id === userId;
-    },
-    remove: function (userId, profile) {
-        return isAdmin(userId) || userId && profile.owner.id === userId;
+Meteor.methods({
+    save_profile: function(p){
+        var profile = Profiles.findOne({'owner.id': this.userId});
+        if(profile){
+            profile.updatedAt = Date.now()
+        } else {
+            profile = {
+                owner:{id:this.userId},
+                createdAt: Date.now()
+            };
+        }
+        profile.userName = setStringValue(p.userName, 100);
+        profile.firstName = setStringValue(p.firstName, 100);
+        profile.lastName = setStringValue(p.lastName, 100);
+        profile.active = p.active ? true : false;
+        if(profile._id){
+            Profiles.update({_id: profile._id}, {
+                $set: {
+                    userName: profile.userName,
+                    firstName: profile.firstName,
+                    lastName: profile.lastName,
+                    active: profile.active,
+                    updatedAt: Date.now()
+                }
+            });
+        } else {
+            Profiles.insert(profile);
+        }
     }
 });
+
+
 
 Meteor.publish("all-profiles", function(){
     if(isAdmin(this.userId)){

@@ -64,7 +64,7 @@ angular.module("entraide").factory("SessionService", function($rootScope, Collec
         },
 
         getUserEmail: function(){
-            return this.getUserProfile().user.emails[0].address;
+            return this.getUserProfile().user ? this.getUserProfile().user.emails[0].address : '';
         },
         
         getDefaultUserName: function(){

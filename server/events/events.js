@@ -1,34 +1,5 @@
 Events = new Mongo.Collection("events");
 
-Events.allow({
-    insert: function (userId, event) {
-        var msg = 'failed';
-        if(isAdmin(userId)){return true;}
-        if(event.location && event.location.longitude && event.location.latitude && !isNaN(parseFloat(event.location.longitude)) !isNaN(parseFloat(event.location.latitude)) && !isNaN(parseInt(event.startDate)) ){
-           if(event.owner.id !== userId){
-               msg = 'HACKING failed';
-           } else {
-               return true
-           }
-        }
-        console.log('Event Allow insert '+msg+' [user:'+userId+']: ' + event);
-        return false;
-    },
-    update: function (userId, event, fields, modifier) {
-        return isAdmin(userId) || event.owner.id === userId;
-    },
-    remove: function (userId, event) {
-        return isAdmin(userId) || event.owner.id === userId;
-    }
-});
-
-Events.deny({
-    update: function (userId, event, fields, modifier) {
-        return !isAdmin(userId);
-    }
-});
-
-
 Meteor.publish("all-events", function(){
     if(isAdmin(this.userId)){
         return Events.find({}, {sort: {name:1}});
@@ -49,6 +20,36 @@ Meteor.publish("search-events", function(options){
     arrOptions.push(options.collectionOptions);
     return Events.find({$and: arrOptions}, options.sortLimitOptions);
 });
+
+
+Events.deny({
+    update: function (userId, event, fields, modifier) {
+        return !isAdmin(userId);
+    }
+});
+
+Meteor.methods({
+    event_create: function(e){
+        var event  = {owner:{id:this.userId}, createdAt: Date.now()};
+        event.department = Departments.findOne({code: e.department.code});;
+        event.location = {longitude:setFloatValue(e.location.longitude), latitude:setFloatValue(e.location.latitude)};
+        event.name = setStringValue(e.name, 100);
+        event.description = setStringValue(e.description, 5000);
+        event.startDate = setDateValue(e.startDate);
+        event.createdAt = Date.now();
+        return Events.insert(event);
+    },
+    event_remove: function (eventId) {
+        var event = Events.findOne({_id:eventId, 'owner.id':this.userId});
+        if(event){
+            if(isAdmin(this.userId) || event.owner.id == this.userId){
+                return Events.update({_id: eventId}, {$set: {removed:true, removedAt: Date.now()}});}
+        }
+        throw new Meteor.Error(401, 'Error 401: Not allowed - You can not removed this event');
+    }
+});
+
+
 
 
 

@@ -7,9 +7,8 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         $scope.profileState = profileState;
     };
 
-    CollectionService.subscribe('my-profile').then(function(data){
-        $scope.profileCollection = data;
-        $scope.profile = data[0] ? data[0] : {userName:SessionService.getDefaultUserName()};
+    CollectionService.subscribe('my-profile').then(function(profiles){
+        $scope.profile = $meteor.object(Profiles, profiles[0] ? profiles[0]._id : null, false) ;
         CollectionService.subscribe('my-profile-images').then(function(images){
             $scope.images = images;
         });
@@ -18,12 +17,9 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     /*********************/
     /*      Info         */
     /*********************/
-    $scope.email = SessionService.getUserEmail();
-
     $scope.saveProfile = function(){
-        $scope.profile.updated = Date.now();
-        $scope.profile.owner = SessionService.getOwner();
-        $scope.profileCollection.save($scope.profile).then(function(){}, function(err){console.log(err);});
+        $scope.error = null;
+        $meteor.call('save_profile', $scope.profile.getRawObject()).then(function(){console.log('Saved');},function(err){$scope.error=err;});
     };
 
 

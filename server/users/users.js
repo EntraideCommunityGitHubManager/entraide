@@ -22,11 +22,6 @@ Accounts.onCreateUser(function(options, user) {
     return user;
 });
 
-Meteor.users.allow({
-  update: function (userId, doc, fields, modifier) {
-    return isAdmin(this.userId);
-  }
-});
 
 Meteor.users.deny({
   update: function (userId, doc, fields, modifier) {
@@ -55,6 +50,28 @@ Meteor.methods({
         }
         throw new Meteor.Error(404, 'User not found');
     },
+    init_user_profile: function(departmentCode){
+        var user = Meteor.users.findOne({'_id': this.userId});
+        if(user){
+            var email = user.emails[0] ? user.emails[0].address : '';
+            if(!Profiles.findOne({'owner.id': this.userId})){
+                var department = Departments.findOne({code:departmentCode});
+                return Profiles.insert({
+                    owner: {id:this.userId},
+                    active: true,
+                    email: email,
+                    userName: email.split('@')[0].capitalize(),
+                    mapStyle: 'entraideStyle2',
+                    department:department,
+                    createdAt: Date.now()
+                });
+            } else {
+                throw new Meteor.Error(403, 'Profile already exists');
+            }
+        } else {
+            throw new Meteor.Error(404, 'User not found');
+        }
+    },
     delete_user: function (userId) {
         if(isAdmin(this.userId) && userId != this.userId){
             Events.remove({'owner.id':userId});
@@ -76,4 +93,24 @@ isAdmin = function(userId){
         }
     }
     return isAdmin;
+};
+
+setStringValue=function(str, length){
+    return str ? str.substring(0, length) : null;
+};
+
+setIntValue= function(val){
+    return isNaN(parseInt(val)) ? null : parseInt(val);
+};
+
+setFloatValue= function(val){
+    return isNaN(parseFloat(val)) ? null : parseFloat(val);
+};
+
+setDateValue= function(val){
+    return isNaN(parseInt(val)) ? null : parseInt(val);
+};
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 };
