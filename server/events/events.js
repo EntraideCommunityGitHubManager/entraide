@@ -14,7 +14,8 @@ Events.allow({
 
 Events.deny({
     update: function (userId, event, fields, modifier) {
-        return _.intersection(fields, ['startDate', 'endDate']).length > 0;
+        var allowedFields = ['userName','firstName', 'lastName', 'active'];
+        return _.difference(fields, allowedFields).length > 0;
     }
 });
 
