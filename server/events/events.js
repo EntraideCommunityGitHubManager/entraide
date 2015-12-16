@@ -56,7 +56,6 @@ Meteor.publish("search-events", function(options){
 
 EventSkills = new Mongo.Collection("event_skills");
 
-
 EventSkills.allow({
     insert: function (userId, eventSkill) {
        return isAdmin(userId) || skill.owner.id === userId;
@@ -69,11 +68,21 @@ EventSkills.allow({
     }
 });
 
-/*  HELPER Deny  */
 EventSkills.deny({
     update: function (userId, skill, fields, modifier) {
-        var allowedFields = ['level','category', 'event', 'owner'];
-        return skill.owner.id !== userId || _.difference(fields, allowedFields).length > 0;
+        return skill.owner.id !== userId || _.difference(fields, ['level']).length > 0;
+    }
+});
+
+Meteor.publish("event-skills", function(options){
+    if(options && options.collectionOptions && options.collectionOptions.event && options.collectionOptions.event.id){
+        options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:1};
+        var arrOptions = [{'owner.id': this.userId }];
+        arrOptions.push(options.collectionOptions);
+        return EventSkills.find({$and: arrOptions}, options.sortLimitOptions);
+    } else {
+        this.stop();
+        return;
     }
 });
 
