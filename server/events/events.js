@@ -34,11 +34,9 @@ Events.allow({
     }
 });
 
-
 Events.deny({
     update: function (userId, event, fields, modifier) {
-        var allowedFields = [];
-        return _.intersection(fields, ['startDate', 'endDate']).length > 0;
+        return !isAdmin(userId);
     }
 });
 
