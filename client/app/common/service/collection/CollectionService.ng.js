@@ -30,9 +30,23 @@ angular.module("entraide").factory("CollectionService", function($meteor, $q){
             options: null,
             handle: null
         }, {
+            name: "My event skills",
+            id: "event-skills",
+            collection: EventSkills,
+            unsubscribers: [],
+            options: null,
+            handle: null
+        }, {
             name: "My profile",
             id: "my-profile",
             collection: Profiles,
+            unsubscribers: [],
+            options: null,
+            handle: null
+        }, {
+            name: "My profile skills",
+            id: "profile-skills",
+            collection: ProfileSkills,
             unsubscribers: [],
             options: null,
             handle: null
