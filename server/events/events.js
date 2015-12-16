@@ -1,5 +1,19 @@
 Events = new Mongo.Collection("events");
 
+/*  ADMIN Allow  */
+Events.allow({
+    insert: function (userId, event) {
+       return isAdmin(userId);
+    },
+    update: function (userId, event, fields, modifier) {
+        return isAdmin(userId);
+    },
+    remove: function (userId, event) {
+        return isAdmin(userId);
+    }
+});
+
+/*  HELPER Allow  */
 Events.allow({
     insert: function (userId, event) {
         var msg = 'failed';
@@ -21,19 +35,7 @@ Events.allow({
     }
 });
 
-/*  Admin Allow  */
-Events.allow({
-    insert: function (userId, event) {
-       return isAdmin(userId);
-    },
-    update: function (userId, event, fields, modifier) {
-        return isAdmin(userId);
-    },
-    remove: function (userId, event) {
-        return isAdmin(userId);
-    }
-});
-
+/*  HELPER Deny  */
 Events.deny({
     update: function (userId, event, fields, modifier) {
         return !isAdmin(userId);
@@ -61,3 +63,36 @@ Meteor.publish("search-events", function(options){
     arrOptions.push(options.collectionOptions);
     return Events.find({$and: arrOptions}, options.sortLimitOptions);
 });
+
+
+
+
+
+EventSkills = new Mongo.Collection("event_skills");
+
+/*  ADMIN Allow  */
+EventSkills.allow({
+    insert: function (userId, eventSkill) {
+       return isAdmin(userId);
+    },
+    update: function (userId, eventSkill, fields, modifier) {
+        return isAdmin(userId);
+    },
+    remove: function (userId, eventSkill) {
+        return isAdmin(userId);
+    }
+});
+
+/*  HELPER Allow  */
+EventSkills.allow({
+    insert: function (userId, skill) {
+         return skill.owner.id === userId;
+    },
+    update: function (userId, skill, fields, modifier) {
+        return skill.owner.id === userId;
+    },
+    remove: function (userId, skill) {
+        return skill.owner.id === userId;
+    }
+});
+
