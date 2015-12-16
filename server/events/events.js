@@ -12,6 +12,13 @@ Events.allow({
     }
 });
 
+Events.deny({
+    update: function (userId, event, fields, modifier) {
+        return _.intersection(fields, ['startDate', 'endDate']).length > 0;
+    }
+});
+
+
 Meteor.publish("all-events", function(){
     if(isAdmin(this.userId)){
         return Events.find({}, {sort: {name:1}});
