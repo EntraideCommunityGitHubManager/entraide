@@ -71,4 +71,5 @@ http://www.forbes.com/global2000/list/44/#tab:overall
 https://docs.mongodb.org/manual/tutorial/model-tree-structures/
 https://mapicons.mapsmarker.com/category/markers/
 https://www.discovermeteor.com/blog/allow-deny-challenge-results/
+http://fr.discovermeteor.com/chapters/allow-and-deny/
 </pre></code>
