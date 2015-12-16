@@ -30,7 +30,7 @@ Meteor.users.allow({
 
 Meteor.users.deny({
   update: function (userId, doc, fields, modifier) {
-    return _.contains(fields, 'profile') || _.contains(fields, 'roles') || userId!=this.userId;
+    return !isAdmin(this.userId);
   }
 });
 
