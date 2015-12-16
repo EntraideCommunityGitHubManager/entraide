@@ -72,4 +72,5 @@ https://docs.mongodb.org/manual/tutorial/model-tree-structures/
 https://mapicons.mapsmarker.com/category/markers/
 https://www.discovermeteor.com/blog/allow-deny-challenge-results/
 http://fr.discovermeteor.com/chapters/allow-and-deny/
+https://github.com/aldeed/meteor-collection2
 </pre></code>
