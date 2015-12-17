@@ -8,14 +8,15 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
     }
 
     $scope.update = function(event) {
-        if(event._id) {
-            event.save().then(function() {
-                $rootScope.$broadcast('anim-sidebar-toggle');
-            }, function(error){alert(error);});
-        }
+        $scope.error=null;
+        $meteor.call('event_update', event).then(function(){
+            $rootScope.$broadcast('anim-sidebar-toggle');
+            console.log('event updated');
+        },function(err){$scope.error=err;});
     };
 
     $scope.remove = function(event) {
+        $scope.error=null;
         $meteor.call('event_remove', event._id).then(function(){
             $rootScope.$broadcast('anim-sidebar-toggle');
             console.log('event removed');
@@ -23,7 +24,7 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
     };
 
     $scope.close=function(){
-        $rootScope.$broadcast('event-edit');
+        $rootScope.$broadcast('anim-sidebar-toggle');
     };
 
     $scope.hasChanged = function(){
