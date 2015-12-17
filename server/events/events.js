@@ -39,13 +39,20 @@ Meteor.methods({
         event.createdAt = Date.now();
         return Events.insert(event);
     },
+    event_update: function(e){
+        var event = Events.findOne({_id:e._id, 'owner.id':this.userId});
+        if(event){
+            return Events.update({_id: event:_id}, {$set: {description:setStringValue(e.description, 5000), updatedAt: Date.now()}});}
+        }    
+        throw new Meteor.Error(401, 'Error 401: Not allowed - You can not update this event');
+    },
     event_remove: function (eventId) {
         var event = Events.findOne({_id:eventId, 'owner.id':this.userId});
         if(event){
             if(isAdmin(this.userId) || event.owner.id == this.userId){
                 return Events.update({_id: eventId}, {$set: {removed:true, removedAt: Date.now()}});}
         }
-        throw new Meteor.Error(401, 'Error 401: Not allowed - You can not removed this event');
+        throw new Meteor.Error(401, 'Error 401: Not allowed - You can not remove this event');
     }
 });
 
