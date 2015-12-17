@@ -10,6 +10,7 @@ Meteor.startup(function () {
     }
 });
 
+// TODO: Make more agressive test
 // Options : trusted data (from Meteor, third libraries... ) | user : untrusted data (from front)
 Accounts.onCreateUser(function(options, user) {
     if(options.email=='entraide.community.developer@gmail.com'){
