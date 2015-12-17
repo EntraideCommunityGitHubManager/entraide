@@ -13,7 +13,7 @@ angular.module('entraide').controller('EventCreateCtrl', function ($rootScope, $
     };
 
     $scope.close=function(){
-        $rootScope.$broadcast('event-create');
+        $rootScope.$broadcast('anim-sidebar-toggle');
     };
 
 });
