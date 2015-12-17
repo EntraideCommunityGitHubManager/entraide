@@ -33,8 +33,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                     controller: 'HeaderCtrl'
                 },
                 'notification-view': {
-                    templateUrl: 'client/app/notification/notification.ng.html',
-                    controller: 'NotificationCtrl'
+                    template: '<anim-toaster />'
                 },
                 'side-left-view': {
                     templateUrl: 'client/app/side/left/side-left.ng.html',
@@ -159,7 +158,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
             abstract: true,
             template: '<ui-view/>',
             views: {
-                'notification-view@app': {},
                 'side-left-profile-view@app.main': {
                     templateUrl: 'client/app/profile/profile-edit.ng.html',
                     controller: 'ProfileEditCtrl'
