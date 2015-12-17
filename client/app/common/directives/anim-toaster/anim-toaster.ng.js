@@ -5,7 +5,7 @@ angular.module('entraide').directive('animToaster', function(AnimToasterNotifica
         replace: true,
         templateUrl: 'client/app/common/directives/anim-toaster/anim-toaster.ng.html',
         controller: function($scope){
-           $scope.notifService = AnimToasterNotificationService;
+           $scope.service = AnimToasterNotificationService;
         },
         link: function (scope, element) {
             scope.$on("$destroy", function () {});
