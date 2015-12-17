@@ -19,10 +19,10 @@ angular.module("entraide").factory("NotificationService", function(){
             this.handleChange('success', msg);
         },
         addWarningMessage: function(msg){
-            this.warningQueue.push('warning', msg);
+            this.handleChange('warning', msg);
         },
         addErrorMessage: function(msg){
-            this.errorQueue.push('error', msg);
+            this.handleChange('error', msg);
         }
     };
 	
