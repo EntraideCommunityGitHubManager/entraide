@@ -1,8 +1,8 @@
 angular.module("entraide").factory("NotificationService", function(){
 
     var notificationService = {
-		delay: 3000,
-		delayRemove: 1500,
+	delay: 3000,
+	delayRemove: 1500,
         infoQueue: [],
         successQueue: [],
         warningQueue: [],
@@ -26,7 +26,7 @@ angular.module("entraide").factory("NotificationService", function(){
         }
     };
 	
-	function handleChange(type, message){
+    	function handleChange(type, message){
 		var queue = notificationService[type+'Queue'];
 		
 		if(queue.length==0){
