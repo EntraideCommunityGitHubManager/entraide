@@ -1,0 +1,15 @@
+.anim-toaster-info{
+  color: blue;
+}
+
+.anim-toaster-success{
+  color: green;
+}
+
+.anim-toaster-warning{
+  color: orange;
+}
+
+.anim-toaster-error{
+  color: red;
+}
