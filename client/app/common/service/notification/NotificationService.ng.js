@@ -1,4 +1,4 @@
-angular.module("entraide").factory("NotificationService", function(){
+angular.module("entraide").factory("AnimNotificationService", function(){
 
     var notificationService = {
 	delay: 3000,
