@@ -13,16 +13,16 @@ angular.module("entraide").factory("NotificationService", function(){
         errorMessage: null,
         
         addInfoMessage: function(msg){
-            this.handleChange('info', msg);
+            handleChange('info', msg);
         },
         addSuccessMessage: function(msg){
-            this.handleChange('success', msg);
+            handleChange('success', msg);
         },
         addWarningMessage: function(msg){
-            this.handleChange('warning', msg);
+            handleChange('warning', msg);
         },
         addErrorMessage: function(msg){
-            this.handleChange('error', msg);
+            handleChange('error', msg);
         }
     };
 	
