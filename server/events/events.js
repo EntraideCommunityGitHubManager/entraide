@@ -21,9 +21,18 @@ Meteor.publish("search-events", function(options){
     return Events.find({$and: arrOptions}, options.sortLimitOptions);
 });
 
+Events.allow({
+    update: function (userId, event, fields, modifier) {
+        console.log('Events.allow called');
+        return true;
+    }
+});
+
+
 
 Events.deny({
     update: function (userId, event, fields, modifier) {
+        console.log('Events.deny called');
         return !isAdmin(userId);
     }
 });
@@ -40,9 +49,10 @@ Meteor.methods({
         return Events.insert(event);
     },
     event_update: function(e){
+        console.log('event_update called')
         var event = Events.findOne({_id:e._id, 'owner.id':this.userId});
         if(event){
-            return Events.update({_id: event:_id}, {$set: {description:setStringValue(e.description, 5000), updatedAt: Date.now()}});}
+            return Events.update({_id: event._id}, {$set: {description:setStringValue(e.description, 5000), updatedAt: Date.now()}});
         }    
         throw new Meteor.Error(401, 'Error 401: Not allowed - You can not update this event');
     },

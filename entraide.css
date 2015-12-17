@@ -23,6 +23,7 @@ body{
 
 .st-content{
     margin-top: 51px;
+    overflow-y: hidden;
 }
 
   .st-content-inner{
@@ -31,7 +32,6 @@ body{
 } 
 
 /* Connection Banner style */
-
 #connection-lost-banner + .navbar-fixed-top,
 #connection-try-reconnect + .navbar-fixed-top {
     top: 41px;
@@ -48,6 +48,11 @@ body{
 
 .notification-view {
     border: 1px black dashed;
+    z-index: 1;
+    height: 25px;
+    width: 100%;
+    position: absolute;
+    top: -5px;
 }
 
 .menu-toggler-profile {
@@ -91,7 +96,6 @@ body{
 .content-view {
     height: 100%;
     width: 100%;
-    margin-top: 5px;
 }
 
 .footer-view {

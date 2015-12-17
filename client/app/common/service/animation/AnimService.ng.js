@@ -1,4 +1,4 @@
-angular.module("entraide").factory("AnimService", function($rootScope, $state){
+angular.module("entraide").factory("AnimService", function($rootScope){
 
     var animService = {
         routingConfig : {includes:[],excludes:[]},

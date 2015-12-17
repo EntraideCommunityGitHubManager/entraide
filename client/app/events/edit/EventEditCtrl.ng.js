@@ -1,4 +1,4 @@
-angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $scope, $meteor, $stateParams, $state, CollectionService, AnimService, NotificationService) {
+angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $scope, $meteor, $stateParams, $state, CollectionService, AnimService, AnimToasterNotificationService) {
 
     console.log('EventEditCtrl');
 
@@ -9,9 +9,9 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
 
     $scope.update = function(event) {
         $scope.error=null;
-        $meteor.call('event_update', event).then(function(){
+        $meteor.call('event_update', event.getRawObject()).then(function(){
             $rootScope.$broadcast('anim-sidebar-toggle');
-            NotificationService.addSuccessMessage("Enregistré avec succès !");
+            AnimToasterNotificationService.addSuccessMessage("Enregistré avec succès !");
             console.log('event updated');
         },function(err){$scope.error=err;});
     };
