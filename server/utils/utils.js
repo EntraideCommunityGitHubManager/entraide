@@ -19,6 +19,10 @@ String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-checkRange(min, max, val){
-  return isNaN(parseInt(val)) && parseInt(val) >= min && parseInt(val) <= parseInt(max) ? val : 0;
+checkRange = function(min, max, val){
+  return isInt(val) && parseInt(val) >= min && parseInt(val) <= parseInt(max) ? parseInt(val) : 0;
+};
+
+isInt = function(val){
+    return !isNaN(parseInt(val));
 }
