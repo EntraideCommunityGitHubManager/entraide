@@ -98,6 +98,7 @@ ProfileSkills.allow({
        return isAdmin(userId) || skill.owner.id === userId;
     },
     update: function (userId, profileSkill, fields, modifier) {
+        profileSkill.level = checkRange(0,5, profileSkill.level);
         return isAdmin(userId) || skill.owner.id === userId;
     },
     remove: function (userId, profileSkill) {
@@ -107,8 +108,7 @@ ProfileSkills.allow({
 
 ProfileSkills.deny({
     update: function (userId, skill, fields, modifier) {
-        var category = Categories.find({code:skill.category.code})[0];
-        return skill.owner.id !== userId || _.difference(fields, ['level']).length > 0 || !category;
+        return isAdmin(userId) ? false : skill.owner.id !== userId || _.difference(fields, ['level']).length > 0;
     }
 });
 
