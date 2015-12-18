@@ -91,21 +91,21 @@ EventSkills.deny({
 
 
 Meteor.methods({
-    eventskill_create: function(skill){
+    event_skill_create: function(skill){
         var eventSkill  = {owner:{id:this.userId}, createdAt: Date.now(), removed:false};
         eventSkill.event = {id:Events.findOne({_id:skill.event.id,'owner.id':this.userId})._id};
         eventSkill.category = {code:Categories.findOne({code: skill.category.code}).code};
         eventSkill.level = checkRange(0,5,skill.level);
         return EventSkills.insert(eventSkill);
     },
-    eventskill_update: function(skill){
+    event_skill_update: function(skill){
         var eventSkill = EventSkills.findOne({_id:skill._id, 'owner.id':this.userId});
         if(eventSkill){
             return EventSkills.update({_id: skill._id}, {$set: {level:checkRange(0,5,skill.level), updatedAt: Date.now()}});
         }    
         throw new Meteor.Error(401, 'Error 401: Not allowed - You can not update this event skill');
     },
-    eventskill_remove: function (skillId) {
+    event_skill_remove: function (skillId) {
         var eventSkill = EventSkills.findOne({_id:skillId, 'owner.id':this.userId});
         if(eventSkill){
             return EventSkills.remove(skillId);
