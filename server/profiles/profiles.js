@@ -114,21 +114,21 @@ ProfileSkills.deny({
 
 
 Meteor.methods({
-    profileskill_create: function(skill){
+    profile_skill_create: function(skill){
         var profileSkill  = {owner:{id:this.userId}, createdAt: Date.now(), removed:false};
         profileSkill.profile = {id:Profiles.findOne({'owner.id':this.userId})._id};
         profileSkill.category = {code:Categories.findOne({code: skill.category.code}).code};
         profileSkill.level = checkRange(0,5,skill.level);
         return ProfileSkills.insert(profileSkill);
     },
-    profileskill_update: function(skill){
+    profile_skill_update: function(skill){
         var profileSkill = ProfileSkills.findOne({_id:skill._id, 'owner.id':this.userId});
         if(profileSkill){
             return ProfileSkills.update({_id: skill._id}, {$set: {level:checkRange(0,5,skill.level), updatedAt: Date.now()}});
         }    
         throw new Meteor.Error(401, 'Error 401: Not allowed - You can not update this profile skill');
     },
-    profileskill_remove: function (skillId) {
+    profile_skill_remove: function (skillId) {
         var profileSkill = ProfileSkills.findOne({_id:skillId, 'owner.id':this.userId});
         if(profileSkill){
             return ProfileSkills.remove(skillId);
