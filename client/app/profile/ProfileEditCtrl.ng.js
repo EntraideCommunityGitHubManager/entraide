@@ -1,4 +1,4 @@
-angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SecurityService, SessionService, MapService) {
+angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SecurityService, SessionService, MapService, AnimToasterNotificationService) {
 
     console.log('ProfileEditCtrl');
 
@@ -19,7 +19,9 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     /*********************/
     $scope.saveProfile = function(){
         $scope.error = null;
-        $meteor.call('save_profile', $scope.profile.getRawObject()).then(function(){console.log('Saved');},function(err){$scope.error=err;});
+        $meteor.call('save_profile', $scope.profile.getRawObject()).then(function(){
+            AnimToasterNotificationService.addSuccessMessage("Profile enregistré avec succès !");
+        },function(err){ $scope.error=err;});
     };
 
 
@@ -73,9 +75,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     };
 
     $scope.camera = function(){
-        $meteor.getPicture().then(function(data){
-            setPicture(data);
-        });
+        $meteor.getPicture().then(function(data){setPicture(data);});
     };
 
     $scope.setFavorite = function(img){
@@ -101,7 +101,26 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     /*********************/
     /*      Skills       */
     /*********************/
-
+    $scope.addSkill = function(skill) {
+        $scope.error=null;
+        $meteor.call('profile_skill_create', skill).then(function(){
+            AnimToasterNotificationService.addSuccessMessage("Skill ajouté avec succès !");
+        },function(err){$scope.error=err;});
+    };
+    
+    $scope.updateSkill = function(skill) {
+        $scope.error=null;
+        $meteor.call('profile_skill_update', skill.getRawObject()).then(function(){
+            AnimToasterNotificationService.addSuccessMessage("Skill enregistré avec succès !");
+        },function(err){$scope.error=err;});
+    };
+    
+    $scope.removeSkill = function(skill) {
+        $scope.error=null;
+        $meteor.call('profile_skill_remove', skill._id).then(function(){
+            AnimToasterNotificationService.addSuccessMessage("Skill supprimé avec succès !");
+        },function(err){$scope.error=err;});
+    };
 
     /*********************/
     /*      Config       */
@@ -127,6 +146,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         if($scope.security.newPassword== $scope.security.newPasswordDiff){
             SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
                 $scope.error =null;
+                AnimToasterNotificationService.addSuccessMessage("Mot de passe modifié avec succès !");
             }, function(err){$scope.error=err;});
         } else {
             $scope.error={reason:'Les 2 nouveaux mots de passe ne correspondent pas.'};
