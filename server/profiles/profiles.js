@@ -91,7 +91,7 @@ ProfileSkills = new Mongo.Collection("profile_skills");
 Meteor.publish("profile-skills", function(options){
     if(options && options.collectionOptions && options.collectionOptions.profile && options.collectionOptions.profile.id){
         options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:1};
-        var arrOptions = [{'owner.id': this.userId }];
+        var arrOptions = [{'owner.id': this.userId}];
         arrOptions.push(options.collectionOptions);
         return ProfileSkills.find({$and: arrOptions}, options.sortLimitOptions);
     } else {
