@@ -63,7 +63,6 @@ Meteor.methods({
 
 
 
-
 EventSkills = new Mongo.Collection("event_skills");
 
 Meteor.publish("event-skills", function(options){
