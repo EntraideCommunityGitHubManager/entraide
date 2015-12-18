@@ -4,29 +4,24 @@ Meteor.methods({
     save_profile: function(p){
         var profile = Profiles.findOne({'owner.id': this.userId});
         if(profile){
-            profile.updatedAt = Date.now()
-        } else {
-            profile = {
-                owner:{id:this.userId},
-                createdAt: Date.now()
-            };
-        }
-        profile.userName = setStringValue(p.userName, 100);
-        profile.firstName = setStringValue(p.firstName, 100);
-        profile.lastName = setStringValue(p.lastName, 100);
-        profile.active = p.active ? true : false;
-        if(profile._id){
-            Profiles.update({_id: profile._id}, {
-                $set: {
+            fillInfo();
+            Profiles.update({_id: profile._id}, {$set: {
                     userName: profile.userName,
                     firstName: profile.firstName,
                     lastName: profile.lastName,
                     active: profile.active,
                     updatedAt: Date.now()
-                }
-            });
+                }});
         } else {
+            profile = {owner:{id:this.userId}, createdAt: Date.now()};
+            fillInfo();
             Profiles.insert(profile);
+        }
+        function fillInfo(){
+            profile.userName = setStringValue(p.userName, 100);
+            profile.firstName = setStringValue(p.firstName, 100);
+            profile.lastName = setStringValue(p.lastName, 100);
+            profile.active = p.active ? true : false;            
         }
     }
 });
