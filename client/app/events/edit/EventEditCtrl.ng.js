@@ -4,6 +4,9 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
 
     if($stateParams.event && $stateParams.event._id) {
         $scope.event = $meteor.object(Events, $stateParams.event._id, false);
+        CollectionService.subscribe('event_skills', options).then(function(eventSkills){
+            $scope.eventSkills = eventSkills;
+        });
         AnimService.stopTransition();
     }
 
@@ -21,6 +24,27 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
         $meteor.call('event_remove', event._id).then(function(){
             $rootScope.$broadcast('anim-sidebar-toggle');
             console.log('event removed');
+        },function(err){$scope.error=err;});
+    };
+    
+    $scope.addSkill = function(skill) {
+        $scope.error=null;
+        $meteor.call('event_skill_create', skill).then(function(){
+            AnimToasterNotificationService.addSuccessMessage("Skill enregistré avec succès !");
+        },function(err){$scope.error=err;});
+    };
+    
+    $scope.updateSkill = function(skill) {
+        $scope.error=null;
+        $meteor.call('event_skill_update', skill.getRawObject()).then(function(){
+            AnimToasterNotificationService.addSuccessMessage("Skill enregistré avec succès !");
+        },function(err){$scope.error=err;});
+    };
+    
+    $scope.removeSkill = function(skill) {
+        $scope.error=null;
+        $meteor.call('event_skill_remove', skill._id).then(function(){
+            AnimToasterNotificationService.addSuccessMessage("Skill supprimé avec succès !");
         },function(err){$scope.error=err;});
     };
 
