@@ -93,25 +93,6 @@ Meteor.publish('my-profile-images', function() {
 
 ProfileSkills = new Mongo.Collection("profile_skills");
 
-ProfileSkills.allow({
-    insert: function (userId, profileSkill) {
-       return isAdmin(userId) || skill.owner.id === userId;
-    },
-    update: function (userId, profileSkill, fields, modifier) {
-        profileSkill.level = checkRange(0,5, profileSkill.level);
-        return isAdmin(userId) || skill.owner.id === userId;
-    },
-    remove: function (userId, profileSkill) {
-        return isAdmin(userId) || skill.owner.id === userId;
-    }
-});
-
-ProfileSkills.deny({
-    update: function (userId, skill, fields, modifier) {
-        return isAdmin(userId) ? false : skill.owner.id !== userId || _.difference(fields, ['level']).length > 0;
-    }
-});
-
 Meteor.publish("profile-skills", function(options){
     if(options && options.collectionOptions && options.collectionOptions.profile && options.collectionOptions.profile.id){
         options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:1};
@@ -123,3 +104,41 @@ Meteor.publish("profile-skills", function(options){
         return;
     }
 });
+
+ProfileSkills.deny({
+    insert: function (userId, profileSkill) {
+       return !isAdmin(userId);
+    },
+    update: function (userId, profileSkill, fields, modifier) {
+        return !isAdmin(userId);
+    },
+    remove: function (userId, profileSkill) {
+        return !isAdmin(userId);
+    }
+});
+
+
+Meteor.methods({
+    profileskill_create: function(skill){
+        var profileSkill  = {owner:{id:this.userId}, createdAt: Date.now(), removed:false};
+        profileSkill.profile = {id:Profiles.findOne({'owner.id':this.userId})._id};
+        profileSkill.category = {code:Categories.findOne({code: skill.category.code}).code};
+        profileSkill.level = checkRange(0,5,skill.level);
+        return ProfileSkills.insert(profileSkill);
+    },
+    profileskill_update: function(skill){
+        var profileSkill = ProfileSkills.findOne({_id:skill._id, 'owner.id':this.userId});
+        if(profileSkill){
+            return ProfileSkills.update({_id: skill._id}, {$set: {level:checkRange(0,5,skill.level), updatedAt: Date.now()}});
+        }    
+        throw new Meteor.Error(401, 'Error 401: Not allowed - You can not update this profile skill');
+    },
+    profileskill_remove: function (skillId) {
+        var profileSkill = ProfileSkills.findOne({_id:skillId, 'owner.id':this.userId});
+        if(profileSkill){
+            return ProfileSkills.remove(skillId);
+        }
+        throw new Meteor.Error(401, 'Error 401: Not allowed - You can not remove this profile skill');
+    }
+});
+
