@@ -21,18 +21,14 @@ Meteor.publish("search-events", function(options){
     return Events.find({$and: arrOptions}, options.sortLimitOptions);
 });
 
-Events.allow({
-    update: function (userId, event, fields, modifier) {
-        console.log('Events.allow called');
-        return true;
-    }
-});
-
-
-
 Events.deny({
+    insert: function (userId, event) {
+        return !isAdmin(userId);
+    },
     update: function (userId, event, fields, modifier) {
-        console.log('Events.deny called');
+        return !isAdmin(userId);
+    },
+    remove: function (userId, event) {
         return !isAdmin(userId);
     }
 });
@@ -45,7 +41,6 @@ Meteor.methods({
         event.name = setStringValue(e.name, 100);
         event.description = setStringValue(e.description, 5000);
         event.startDate = setDateValue(e.startDate);
-        event.createdAt = Date.now();
         return Events.insert(event);
     },
     event_update: function(e){
@@ -69,30 +64,7 @@ Meteor.methods({
 
 
 
-
-
-
 EventSkills = new Mongo.Collection("event_skills");
-
-EventSkills.allow({
-    insert: function (userId, eventSkill) {
-       return isAdmin(userId) || skill.owner.id === userId;
-    },
-    update: function (userId, eventSkill, fields, modifier) {
-        return isAdmin(userId) || skill.owner.id === userId;
-    },
-    remove: function (userId, eventSkill) {
-        return isAdmin(userId) || skill.owner.id === userId;
-    }
-});
-
-EventSkills.deny({
-    update: function (userId, skill, fields, modifier) {
-        var category = Categories.find({code:skill.category.code})[0];
-        var event = Events.find({_id:skill.event.id})[0];
-        return skill.owner.id !== userId || _.difference(fields, ['level']).length > 0 || !category || !event;
-    }
-});
 
 Meteor.publish("event-skills", function(options){
     if(options && options.collectionOptions && options.collectionOptions.event && options.collectionOptions.event.id){
@@ -106,3 +78,39 @@ Meteor.publish("event-skills", function(options){
     }
 });
 
+EventSkills.deny({
+    insert: function (userId, eventSkill) {
+       return !isAdmin(userId);
+    },
+    update: function (userId, eventSkill, fields, modifier) {
+        return !isAdmin(userId);
+    },
+    remove: function (userId, eventSkill) {
+        return !isAdmin(userId);
+    }
+});
+
+
+Meteor.methods({
+    eventskill_create: function(skill){
+        var eventSkill  = {owner:{id:this.userId}, createdAt: Date.now(), removed:false};
+        eventSkill.category = Categories.findOne({code: skill.category.code});
+        eventSkill.level = checkRange(0,5,skill.level);
+        return EventSkills.insert(eventSkill);
+    },
+    eventskill_update: function(skill){
+        var eventSkill = EventSkills.findOne({_id:skill._id, 'owner.id':this.userId});
+        if(eventSkill){
+            return EventSkills.update({_id: skill._id}, {$set: {level:checkRange(0,5,skill.level), updatedAt: Date.now()}});
+        }    
+        throw new Meteor.Error(401, 'Error 401: Not allowed - You can not update this event skill');
+    },
+    eventskill_remove: function (skillId) {
+        var eventSkill = EventSkills.findOne({_id:skillId, 'owner.id':this.userId});
+        if(eventSkill){
+            if(isAdmin(this.userId) || eventSkill.owner.id == this.userId){
+                return EventSkills.remove(skillId);
+        }
+        throw new Meteor.Error(401, 'Error 401: Not allowed - You can not remove this event skill');
+    }
+});
