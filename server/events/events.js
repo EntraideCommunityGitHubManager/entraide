@@ -93,7 +93,8 @@ EventSkills.deny({
 Meteor.methods({
     eventskill_create: function(skill){
         var eventSkill  = {owner:{id:this.userId}, createdAt: Date.now(), removed:false};
-        eventSkill.category = Categories.findOne({code: skill.category.code});
+        eventSkill.event = {id:Events.findOne({_id:skill.event.id,'owner.id':this.userId})._id};
+        eventSkill.category = {code:Categories.findOne({code: skill.category.code}).code};
         eventSkill.level = checkRange(0,5,skill.level);
         return EventSkills.insert(eventSkill);
     },
