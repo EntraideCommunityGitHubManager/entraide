@@ -1,4 +1,4 @@
-angular.module('entraide').directive('animClick', function(){
+angular.module('entraide').directive('animClick', function($timeout){
 
     return {
         restrict: 'AEC',
@@ -36,10 +36,10 @@ angular.module('entraide').directive('animClick', function(){
             var cbutton = element[0].querySelector('.cbutton');
             scope.clickHandler = function(){
                 classie.add( cbutton, 'cbutton-click' );
-                setTimeout(function(){
+                $timeout(function(){
                     onEndAnimation( classie.has( cbutton, 'cbutton-complex' ) ? cbutton.querySelector( '.cbutton__helper' ) : cbutton, function() {
                         classie.remove( cbutton, 'cbutton-click' );
-                        scope.$apply(function(){scope.animClickCallback();})
+                        scope.animClickCallback();
                     });
                 },300);
             };
