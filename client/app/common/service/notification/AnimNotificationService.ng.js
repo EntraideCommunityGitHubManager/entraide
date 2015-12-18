@@ -29,26 +29,34 @@ angular.module("entraide").factory("AnimToasterNotificationService", function(){
     function handleChange(type, message){
         var queue = notificationService[type+'Queue'];
         if(queue.length==0){
+            console.log('init message ' + type + ' : ' + message);
             notificationService[type+'Message'] = message;
         }
         queue.push(message);
 
         setTimeout(function(){
+            console.log('shift queue ' + type + ' : ' + message);
             queue.shift();
-            var message = queue[0];
+            var msg = queue[0];
+            console.log('set in memory msg : ' + msg);
             notificationService[type+'Message'] = null;
+            console.log('set notificationService.'+type + 'Message : null');
             setTimeout(function(){
-                _updateMessage(type, queue, message);
+                _updateMessage(type, queue, msg);
             }, notificationService.delay);
         });
     }
     
     function _updateMessage(type, queue, message){
         return (function (type, queue, message) {
+            console.log('Closure(_updateMessage) ' + type);
             notificationService[type+'Message'] = message;
+            console.log('set notificationService.'+type + 'Message : ' +message);
             if(message && queue.length==0){
+            	console.log('notificationService.'+type + 'Queue : []');
                 setTimeout(function(){
                     notificationService[type+'Message'] = null;
+                    console.log('set notificationService.'+type + 'Message : null');
                 }, notificationService.delayRemove);
             }
         })(type, queue, message);
