@@ -108,8 +108,7 @@ Meteor.methods({
     eventskill_remove: function (skillId) {
         var eventSkill = EventSkills.findOne({_id:skillId, 'owner.id':this.userId});
         if(eventSkill){
-            if(isAdmin(this.userId) || eventSkill.owner.id == this.userId){
-                return EventSkills.remove(skillId);
+            return EventSkills.remove(skillId);
         }
         throw new Meteor.Error(401, 'Error 401: Not allowed - You can not remove this event skill');
     }
