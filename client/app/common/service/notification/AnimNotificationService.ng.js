@@ -49,7 +49,7 @@ angular.module("entraide").factory("AnimToasterNotificationService", function(){
     
     function _updateMessage(type, queue, message){
         return (function (type, queue, message) {
-            console.log('Closure(_updateMessage) ' + type);
+            console.log('Closure: _updateMessage(' + type + ','+JSON.stringify(queue)+','+message+')');
             notificationService[type+'Message'] = message;
             console.log('set notificationService.'+type + 'Message : ' +message);
             if(message && queue.length==0){
