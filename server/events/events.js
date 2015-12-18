@@ -68,7 +68,7 @@ EventSkills = new Mongo.Collection("event_skills");
 Meteor.publish("event-skills", function(options){
     if(options && options.collectionOptions && options.collectionOptions.event && options.collectionOptions.event.id){
         options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:1};
-        var arrOptions = [{'owner.id': this.userId, removed: false}];
+        var arrOptions = [{'owner.id': this.userId}];
         arrOptions.push(options.collectionOptions);
         return EventSkills.find({$and: arrOptions}, options.sortLimitOptions);
     } else {
