@@ -14,7 +14,7 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
         $scope.error=null;
         $meteor.call('event_update', event.getRawObject()).then(function(){
             $rootScope.$broadcast('anim-sidebar-toggle');
-            AnimToasterNotificationService.addSuccessMessage("Enregistré avec succès !");
+            AnimToasterNotificationService.addSuccessMessage("L'évenement a été enregistré avec succès !");
             console.log('event updated');
         },function(err){$scope.error=err;});
     };
@@ -23,14 +23,14 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
         $scope.error=null;
         $meteor.call('event_remove', event._id).then(function(){
             $rootScope.$broadcast('anim-sidebar-toggle');
-            console.log('event removed');
+            AnimToasterNotificationService.addSuccessMessage("L'évenement a été supprimé avec succès !");
         },function(err){$scope.error=err;});
     };
     
     $scope.addSkill = function(skill) {
         $scope.error=null;
         $meteor.call('event_skill_create', skill).then(function(){
-            AnimToasterNotificationService.addSuccessMessage("Skill enregistré avec succès !");
+            AnimToasterNotificationService.addSuccessMessage("Skill ajouté avec succès !");
         },function(err){$scope.error=err;});
     };
     
