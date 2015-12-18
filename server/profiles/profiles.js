@@ -6,12 +6,12 @@ Meteor.methods({
         if(profile){
             fillInfo();
             Profiles.update({_id: profile._id}, {$set: {
-                    userName: profile.userName,
-                    firstName: profile.firstName,
-                    lastName: profile.lastName,
-                    active: profile.active,
-                    updatedAt: Date.now()
-                }});
+                userName: profile.userName,
+                firstName: profile.firstName,
+                lastName: profile.lastName,
+                active: profile.active,
+                updatedAt: Date.now()
+            }});
         } else {
             profile = {owner:{id:this.userId}, createdAt: Date.now()};
             fillInfo();
