@@ -15,7 +15,6 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
         $meteor.call('event_update', event.getRawObject()).then(function(){
             $rootScope.$broadcast('anim-sidebar-toggle');
             AnimToasterNotificationService.addSuccessMessage("L'évenement a été enregistré avec succès !");
-            console.log('event updated');
         },function(err){$scope.error=err;});
     };
 
