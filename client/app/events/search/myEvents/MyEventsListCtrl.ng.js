@@ -14,8 +14,9 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
     }
 
     $scope.eventClicked = function(marker, eventName, event){
+        MapService.animate(marker, 'bounce');
         $state.go("app.main.events.search.myEvents.edit", {"event" : event});
-        $rootScope.$broadcast('event-edit', event);
+        $rootScope.$broadcast('event-edit');
     };
 
     $scope.$on('map-click', function(e, originalEventArgs) {

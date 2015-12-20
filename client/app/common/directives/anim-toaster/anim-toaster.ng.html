@@ -1,6 +1,6 @@
-<div>
-  <label class="anim-toaster-info ui-anim-fade" ng-if="service.infoMessage">{{service.infoMessage}}</label>
-  <label class="anim-toaster-success ui-anim-fade" ng-if="service.successMessage">{{service.successMessage}}</label>
-  <label class="anim-toaster-warning ui-anim-fade" ng-if="service.warningMessage">{{service.warningMessage}}</label>
-  <label class="anim-toaster-error ui-anim-fade" ng-if="service.errorMessage">{{service.errorMessage}}</label>
+<div class="anim-toaster-container">
+    <div class="anim-toaster anim-toaster-info ui-anim-fade" ng-repeat="msg in service.infoQueue track by $index">{{msg}}</div>
+    <div class="anim-toaster anim-toaster-success ui-anim-fade" ng-repeat="msg in service.successQueue track by $index">{{msg}}</div>
+    <div class="anim-toaster anim-toaster-warning ui-anim-fade" ng-repeat="msg in service.warningQueue track by $index">{{msg}}</div>
+    <div class="anim-toaster anim-toaster-error ui-anim-fade" ng-repeat="msg in service.errorQueue track by $index">{{msg}}</div>
 </div>

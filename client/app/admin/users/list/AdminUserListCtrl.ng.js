@@ -1,4 +1,4 @@
-angular.module('entraide').controller('AdminUserListCtrl', function ($scope, $meteor, CollectionService) {
+angular.module('entraide').controller('AdminUserListCtrl', function ($scope, $meteor, CollectionService, AnimToasterNotificationService) {
 
     $scope.loading = true;
     var options = {'_id': { $ne: this.userId }};
@@ -8,7 +8,11 @@ angular.module('entraide').controller('AdminUserListCtrl', function ($scope, $me
     });
 
     $scope.remove = function(user){
-        $meteor.call('delete_user', user._id).then(function(){},function(error){alert(error);});
+        $meteor.call('delete_user', user._id).then(function(){
+            AnimToasterNotificationService.addSuccessMessage("The user has been successfully deleted.");
+        },function(error){
+            AnimToasterNotificationService.addErrorMessage("Error : " + error.reason);
+        });
     };
 
     $scope.getProfile = function(user){

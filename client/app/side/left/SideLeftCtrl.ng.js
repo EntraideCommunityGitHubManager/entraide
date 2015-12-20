@@ -33,7 +33,7 @@ angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $sco
     };
 
     $scope.isSearchActive = function(){
-        return !($state.is('app') || $state.is('app.main'));
+        return !($state.is('app') || $state.is('app.main') || $state.current.name.indexOf('app.main.error')>-1) ;
     };
 
     $scope.isView = function(view){

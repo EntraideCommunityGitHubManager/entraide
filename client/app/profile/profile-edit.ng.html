@@ -64,7 +64,6 @@
         </div>
 
         <div ng-show="imgSrc" class="ng-crop-container">
-            <h4>Adjust your image and save it !</h4><br/>
             <img-crop image="imgSrc" result-image="myCroppedImage" area-type="square"></img-crop>
         </div>
 
@@ -111,13 +110,13 @@
 			<div class="form-group">
 				<label for="newPassword" class="control-label col-xs-2"></label>
 				<div class="col-xs-10">
-					<input type="text" class="form-control" id="newPassword" placeholder="Nouveau mot de passe" ng-model="security.newPassword">
+					<input type="password" class="form-control" id="newPassword" placeholder="Nouveau mot de passe" ng-model="security.newPassword">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="newPasswordDiff" class="control-label col-xs-2"></label>
 				<div class="col-xs-10">
-					<input type="text" class="form-control" id="newPasswordDiff" placeholder="Nouveau mot de passe" ng-model="security.newPasswordDiff">
+					<input type="password" class="form-control" id="newPasswordDiff" placeholder="Nouveau mot de passe" ng-model="security.newPasswordDiff">
 				</div>
 			</div>
 			<div class="form-group">

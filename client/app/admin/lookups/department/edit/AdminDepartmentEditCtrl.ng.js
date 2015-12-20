@@ -1,4 +1,4 @@
-angular.module('entraide').controller('AdminDepartmentEditCtrl', function ($scope, $meteor, $stateParams, $state, CollectionService) {
+angular.module('entraide').controller('AdminDepartmentEditCtrl', function ($scope, $meteor, $stateParams, $state, CollectionService, AnimToasterNotificationService) {
 
     CollectionService.subscribe('all-departments').then(function(departments){
         $scope.departments = departments;
@@ -6,11 +6,21 @@ angular.module('entraide').controller('AdminDepartmentEditCtrl', function ($scop
     });
 
     $scope.update = function(department){
-        department.save().then(function(){$scope.back();}, function(error){alert(error);});
+        department.save().then(function(){
+            AnimToasterNotificationService.addSuccessMessage("The department has been successfully updated.");
+            $scope.back();
+        },function(error){
+            AnimToasterNotificationService.addErrorMessage("Error : " + error.reason);
+        });
     };
 
     $scope.remove = function(department){
-        $scope.departments.remove(department).then(function(){$scope.back();},function(err){alert(err);});
+        $scope.departments.remove(department).then(function(){
+            AnimToasterNotificationService.addSuccessMessage("The department has been successfully deleted.");
+            $scope.back();
+        },function(error){
+            AnimToasterNotificationService.addErrorMessage("Error : " + error.reason);
+        });
     };
 
     $scope.back = function(){

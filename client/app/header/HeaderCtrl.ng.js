@@ -1,4 +1,4 @@
-angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope, SecurityService, SessionService,  $meteor, $state, AnimService, CollectionService) {
+angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope, SecurityService, SessionService,  $meteor, $state, AnimService, CollectionService, MapService) {
 
     console.log("header-view Ctrl");
 
@@ -42,6 +42,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         $scope.security = {oldPassword:null, newPassword:null};
         $scope.error = null;
         $scope.profileImage = null;
+        MapService.resetCurrentMapStyle();
     };
     
     var logUser = function(){
@@ -50,17 +51,20 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         setTimeout(function(){
             SecurityService.loginWithPassword($scope.user.email, $scope.user.password).then(function () {
                 SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
-                loadProfileImage();
+                loadProfileData();
                 $state.go('app.main.events.search.myEvents');
             },function(err){$scope.error=err;});
             AnimService.stopTransition(2000); // not needed if we make a redirection
         }, 1000);
     };
     
-    var loadProfileImage = function(){
+    var loadProfileData = function(){
         var options = {collectionOptions:{'favorite': true}};
         CollectionService.subscribe('my-profile-images', options).then(function(images){
             SessionService.setUserProfileImage(images[0]);
+        });
+        CollectionService.subscribe('my-profile').then(function(profiles){
+            if(profiles[0]){MapService.setCurrentMapStyle(profiles[0].mapStyle);}
         });
     };
     
@@ -69,7 +73,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
 
     init();
-    loadProfileImage();
+    loadProfileData();
 
 });
 

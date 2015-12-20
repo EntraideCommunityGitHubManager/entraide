@@ -1,4 +1,4 @@
-angular.module('entraide').controller('AdminCategoryEditCtrl', function ($scope, $meteor, $stateParams, $state, CollectionService) {
+angular.module('entraide').controller('AdminCategoryEditCtrl', function ($scope, $meteor, $stateParams, $state, CollectionService, AnimToasterNotificationService) {
 
     CollectionService.subscribe('all-categories').then(function(categories){
         $scope.categories=categories;
@@ -6,11 +6,21 @@ angular.module('entraide').controller('AdminCategoryEditCtrl', function ($scope,
     });
 
     $scope.update = function(category){
-        category.save().then(function(){$scope.back();}, function(error){alert(error);});
+        category.save().then(function(){
+            AnimToasterNotificationService.addSuccessMessage("The category has been successfully updated.");
+            $scope.back();
+        },function(error){
+            AnimToasterNotificationService.addErrorMessage("Error : " + error.reason);
+        });
     };
 
     $scope.remove = function(category){
-        $scope.categories.remove(category).then(function(){$scope.back();},function(err){alert(err);});
+        $scope.categories.remove(category).then(function(){
+            AnimToasterNotificationService.addSuccessMessage("The category has been successfully changed.");
+            $scope.back();
+        },function(error){
+            AnimToasterNotificationService.addErrorMessage("Error : " + error.reason);
+        });
     };
 
     $scope.back = function(){

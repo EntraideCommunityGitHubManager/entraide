@@ -1,4 +1,4 @@
-angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, CollectionService, SecurityService, SessionService, MapService, AnimToasterNotificationService) {
+angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $scope, $meteor, $timeout, CollectionService, SecurityService, SessionService, MapService, AnimToasterNotificationService) {
 
     console.log('ProfileEditCtrl');
 
@@ -21,7 +21,9 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         $scope.error = null;
         $meteor.call('save_profile', $scope.profile.getRawObject()).then(function(){
             AnimToasterNotificationService.addSuccessMessage("Profile enregistré avec succès !");
-        },function(err){ $scope.error=err;});
+        },function(err){
+            AnimToasterNotificationService.addErrorMessage(err.reason);
+        });
     };
 
 
@@ -56,18 +58,23 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
             }
             $scope.images.save(fsFile).then(function (image) {
                 setPicture(undefined);
-            }, function(error){console.log(error);});
+            }, function(err){
+                AnimToasterNotificationService.addErrorMessage(err.reason);
+            });
         }
     };
 
     $scope.remove = function(img){
         var favorite = img.favorite;
-        setTimeout(function(){
+        setTimeout(function(){ // Fix for anim-sidebar click
             $scope.images.remove(img).then(function(){
                 if(favorite && $scope.images.length>0){
                     $scope.images[0].update({$set: {'favorite': true}});
+                    $timeout(function(){
+                        SessionService.setUserProfileImage($scope.images[0]);
+                    },100);
                     SessionService.setUserProfileImage($scope.images[0]);
-                } else {
+                } else if ($scope.images.length==0) {
                     SessionService.resetImage();
                 }
             });
@@ -105,21 +112,21 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         $scope.error=null;
         $meteor.call('profile_skill_create', skill).then(function(){
             AnimToasterNotificationService.addSuccessMessage("Skill ajouté avec succès !");
-        },function(err){$scope.error=err;});
+        },function(err){AnimToasterNotificationService.addErrorMessage(err.reason);});
     };
     
     $scope.updateSkill = function(skill) {
         $scope.error=null;
         $meteor.call('profile_skill_update', skill.getRawObject()).then(function(){
             AnimToasterNotificationService.addSuccessMessage("Skill enregistré avec succès !");
-        },function(err){$scope.error=err;});
+        },function(err){AnimToasterNotificationService.addErrorMessage(err.reason);});
     };
     
     $scope.removeSkill = function(skill) {
         $scope.error=null;
         $meteor.call('profile_skill_remove', skill._id).then(function(){
             AnimToasterNotificationService.addSuccessMessage("Skill supprimé avec succès !");
-        },function(err){$scope.error=err;});
+        },function(err){AnimToasterNotificationService.addErrorMessage(err.reason);});
     };
 
     /*********************/
@@ -135,7 +142,10 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
 
     $scope.mapStyles = MapService.getMapStyles().mapStyles;
     $scope.setMapStyle = function(mapStyle){
-        MapService.setCurrentMapStyle(mapStyle);
+        $meteor.call('save_profile_config', mapStyle).then(function(){
+            MapService.setCurrentMapStyle(mapStyle);
+            AnimToasterNotificationService.addSuccessMessage("Vos préférences ont été enregistré avec succès !");
+        },function(err){AnimToasterNotificationService.addErrorMessage(err.reason);});
     };
 
     /*********************/
@@ -147,7 +157,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
             SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
                 $scope.error =null;
                 AnimToasterNotificationService.addSuccessMessage("Mot de passe modifié avec succès !");
-            }, function(err){$scope.error=err;});
+            }, function(err){AnimToasterNotificationService.addWarningMessage(err.reason);});
         } else {
             $scope.error={reason:'Les 2 nouveaux mots de passe ne correspondent pas.'};
         }

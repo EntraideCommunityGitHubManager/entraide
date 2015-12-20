@@ -75,4 +75,8 @@ https://www.discovermeteor.com/blog/allow-deny-challenge-results/
 http://fr.discovermeteor.com/chapters/allow-and-deny/
 https://github.com/aldeed/meteor-collection2
 https://www.discovermeteor.com/blog/meteor-methods-client-side-operations/
+http://liuliu.me/eyes/javascript-face-detection-explained/
+http://jaysalvat.com/
+http://trackingjs.com/
+https://davidwalsh.name/face-detection-jquery
 </pre></code>

@@ -27,7 +27,7 @@ angular.module("entraide").factory("MapService", function($rootScope){
     var mapOptions = {
         styles: maps.entraideStyle2,
         streetViewControl: false,
-        draggable: false,
+        draggable: true,
         minZoom: 10,
         mapTypeControlOptions: {
             mapTypeIds: ['roadmap']
@@ -49,14 +49,10 @@ angular.module("entraide").factory("MapService", function($rootScope){
             }
         },
         marker: {
-            options: { draggable: true },
+            options: { draggable: true, animation: 2 },
             events: {
                 dragend: function (marker) {
-                    /*if (!$scope.event.location)
-                     $scope.event.location = {};
 
-                     $scope.event.location.latitude = marker.getPosition().lat();
-                     $scope.event.location.longitude = marker.getPosition().lng();*/
                 }
             }
         },
@@ -87,6 +83,18 @@ angular.module("entraide").factory("MapService", function($rootScope){
         setCurrentMapStyle : function(mapStyle){
             this.currentMapStyle=mapStyle;
             mapOptions.styles = maps[mapStyle];
+        },
+        resetCurrentMapStyle : function(){
+            this.currentMapStyle='entraideStyle2';
+            mapOptions.styles = maps[this.currentMapStyle];
+        },
+        animate : function(marker, type){
+            var animationType = google.maps.Animation.BOUNCE;
+            if(type=='drop'){
+                animationType = google.maps.Animation.DROP;
+            }
+            marker.setAnimation(animationType);
+            setTimeout(function(){marker.setAnimation(null);},2000)
         }
 
     };

@@ -23,6 +23,13 @@ Meteor.methods({
             profile.lastName = setStringValue(p.lastName, 100);
             profile.active = p.active ? true : false;            
         }
+    },
+    save_profile_config: function(mapStyle){
+        var profile = Profiles.findOne({'owner.id': this.userId});
+        Profiles.update({_id: profile._id}, {$set: {
+            mapStyle: mapStyle,
+            updatedAt: Date.now()
+        }});
     }
 });
 

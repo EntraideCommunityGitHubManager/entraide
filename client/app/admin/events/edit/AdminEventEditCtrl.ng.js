@@ -7,10 +7,10 @@ angular.module('entraide').controller('AdminEventEditCtrl', function ($scope, $m
 
     $scope.update = function(event){
         event.save().then(function(){
-            AnimToasterNotificationService.addSuccessMessage("The event has been succcesfully changed.");
+            AnimToasterNotificationService.addSuccessMessage("The event has been successfully updated.");
             $scope.back();
         },function(error){
-            AnimToasterNotificationService.addErrorMessage("Error : " error.reason);
+            AnimToasterNotificationService.addErrorMessage("Error : " + error.reason);
         });
     };
 
@@ -19,7 +19,7 @@ angular.module('entraide').controller('AdminEventEditCtrl', function ($scope, $m
             AnimToasterNotificationService.addSuccessMessage("The event has been succcesfully deleted.");
             $scope.back();
         },function(error){
-            AnimToasterNotificationService.addErrorMessage("Error : " error.reason);
+            AnimToasterNotificationService.addErrorMessage("Error : " + error.reason);
         });
     };
 

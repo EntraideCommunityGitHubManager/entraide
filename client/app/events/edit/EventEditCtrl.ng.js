@@ -4,7 +4,7 @@ angular.module('entraide').controller('EventEditCtrl', function ($rootScope, $sc
 
     if($stateParams.event && $stateParams.event._id) {
         $scope.event = $meteor.object(Events, $stateParams.event._id, false);
-        CollectionService.subscribe('event_skills', options).then(function(eventSkills){
+        CollectionService.subscribe('event_skills', {'event.id':$stateParams.event._id}).then(function(eventSkills){
             $scope.eventSkills = eventSkills;
         });
         AnimService.stopTransition();

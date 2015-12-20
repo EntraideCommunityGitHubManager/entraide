@@ -47,7 +47,7 @@ body{
 }
 
 .notification-view {
-    border: 1px black dashed;
+    /*border: 1px black dashed;*/
     z-index: 1;
     height: 25px;
     width: 100%;
@@ -200,7 +200,7 @@ body{
 }
 
 .ng-crop-container {
-    height: 350px;
+    height: 190px;
     overflow: hidden;
 }
  
@@ -403,11 +403,16 @@ body{
     -webkit-justify-content: center;
     justify-content: center;
     margin-bottom: 10px;
+    height: 51px;
 }
 
 .form-profile{
     margin: 15px;
     position: absolute;
+    width: 265px;
+    background: rgba(70, 154, 140, 0.25);
+    border-radius: 15px;
+    padding: 15px;
 }
 
 .form-control {

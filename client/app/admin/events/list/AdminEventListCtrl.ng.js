@@ -1,4 +1,4 @@
-angular.module('entraide').controller('AdminEventListCtrl', function ($scope, $meteor, CollectionService) {
+angular.module('entraide').controller('AdminEventListCtrl', function ($scope, $meteor, CollectionService, AnimToasterNotificationService) {
 
     CollectionService.subscribe('all-events').then(function(events) {
         $scope.events = events;
@@ -6,9 +6,9 @@ angular.module('entraide').controller('AdminEventListCtrl', function ($scope, $m
 
     $scope.remove = function(event){
         $scope.events.remove(event).then(function(){
-            AnimToasterNotificationService.addSuccessMessage("The event has been succcesfully removed.");
+            AnimToasterNotificationService.addSuccessMessage("The event has been successfully removed.");
         },function(error){
-            AnimToasterNotificationService.addErrorMessage("Error : " error.reason);
+            AnimToasterNotificationService.addErrorMessage("Error : "+ error.reason);
         });
     };
 

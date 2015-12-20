@@ -1,7 +1,7 @@
 <li class="dropdown">
     <a class="dropdown-toggle hidden-xs dropdown-toggle-profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-show="isConnected">
         <img class="profile-image-header-default ui-anim-fade" ng-if="isConnected && !profileImage" src="{{profileImageDefault}}"/>
-        <img class="profile-image-header ui-anim-fade" ng-if="profileImage" src="{{profileImage.url()}}" />
+        <img class="profile-image-header ui-anim-fade" ng-if="profileImage" src="{{profileImage.url()}}" title="{{$root.currentUser.username.capitalize()}}" />
     </a>
     <ul class="dropdown-menu hidden-xs dropdown-menu-profile" ng-if="isConnected">
         <li ng-show="edit"><a ng-click="edit()">Edit</a></li>
