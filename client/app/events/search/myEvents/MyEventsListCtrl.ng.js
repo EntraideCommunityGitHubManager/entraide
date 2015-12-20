@@ -30,5 +30,9 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
         $rootScope.$broadcast('event-create', $scope.event);
     });
 
+    $scope.$on('marker-mouseover', function(){
+       console.log(arguments);
+    });
+
 });
 

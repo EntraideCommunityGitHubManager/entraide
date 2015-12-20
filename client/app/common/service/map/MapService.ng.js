@@ -51,14 +51,16 @@ angular.module("entraide").factory("MapService", function($rootScope){
         marker: {
             options: { draggable: true, animation: 2 },
             events: {
-                dragend: function (marker) {
-
+                mouseover: function (marker) {
+                    $rootScope.$broadcast('marker-mouseover', marker);
+                },
+                mouseout: function (marker) {
+                    $rootScope.$broadcast('marker-mouseout', marker);
                 }
             }
         },
         options: mapOptions
     };
-
 
     var mapService = {
         currentMapStyle: 'entraideStyle2',
