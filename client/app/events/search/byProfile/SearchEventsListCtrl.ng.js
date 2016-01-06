@@ -4,7 +4,7 @@ angular.module('entraide').controller('SearchEventsListCtrl', function ($rootSco
     var options = {collectionOptions:{'department.code': department.code}, backend:true};
 
     CollectionService.subscribe('search-events', options).then(function(events) {
-        angular.forEach(events, function(event){event.icon = getIcon(); event.show=false});
+        angular.forEach(events, function(event){event.icon = getIcon();});
         $scope.events = events;
         $scope.map = MapService.getMap(department.location);
         AnimService.stopTransition();
@@ -23,14 +23,11 @@ angular.module('entraide').controller('SearchEventsListCtrl', function ($rootSco
     };
 
     $scope.$on('marker-mouseover', function(e, marker){
-        //marker.model.show=true;
         console.log('mouseover');
         console.log(arguments);
     });
 
-
-    $scope.$on('marker-mouseover', function(e, marker){
-        //marker.model.show=true;
+    $scope.$on('marker-mouseout', function(e, marker){
         console.log('mouseout');
         console.log(arguments);
     });

@@ -2,9 +2,8 @@
     <div id="content">
         <div class="angular-google-map-container">
             <ui-gmap-google-map center="event.location || map.center" events="map.events" zoom="map.zoom" options="map.options">
-                <ui-gmap-markers models="events" coords="'location'" events="map.marker.events" click="eventClicked" fit="false" idkey="'_id'" icon="'icon'"></ui-gmap-markers>
+                <ui-gmap-markers models="events" events="map.marker.events" coords="'location'" click="eventClicked" fit="false" idkey="'_id'" icon="'icon'"></ui-gmap-markers>
             </ui-gmap-google-map>
         </div>
     </div>
-
 </div>
