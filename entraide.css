@@ -29,6 +29,9 @@ body{
   .st-content-inner{
     height: 100%;
     width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 80px;
 } 
 
 /* Connection Banner style */
