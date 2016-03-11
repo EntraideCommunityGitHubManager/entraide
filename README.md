@@ -79,4 +79,9 @@ http://liuliu.me/eyes/javascript-face-detection-explained/
 http://jaysalvat.com/
 http://trackingjs.com/
 https://davidwalsh.name/face-detection-jquery
+
+https://tunnello.com/
+https://www.proxfree.com/youtube-proxy.php
+http://korben.info/play-site-de-torrents-quon-ne-bloquer.html
+
 </pre></code>
