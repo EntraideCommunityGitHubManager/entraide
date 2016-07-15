@@ -80,3 +80,9 @@ http://jaysalvat.com/
 http://trackingjs.com/
 https://davidwalsh.name/face-detection-jquery
 </pre></code>
+
+
+
+
+https://c8.staticflickr.com/3/2923/14149104647_d37c0f6769_b.jpg
+http://farm6.static.flickr.com/5484/10399340665_26e586f819.jpg
