@@ -79,4 +79,5 @@ http://liuliu.me/eyes/javascript-face-detection-explained/
 http://jaysalvat.com/
 http://trackingjs.com/
 https://davidwalsh.name/face-detection-jquery
+http://janmatuschek.de/LatitudeLongitudeBoundingCoordinates
 </pre></code>
