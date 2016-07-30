@@ -33,14 +33,14 @@ angular.module("entraide").factory("MapService", function($rootScope){
             mapTypeIds: ['roadmap']
         },
         zoomControlOptions: {
-            position: 12
+            position: 3
         },
         panControl: false
     };
 
     var map = {
         center: {
-            "latitude":46.08085173686787,"longitude":6.3995361328125
+            latitude:46.08085173686787, longitude:6.3995361328125
         },
         zoom: 8,
         events: {
@@ -65,7 +65,7 @@ angular.module("entraide").factory("MapService", function($rootScope){
     var mapService = {
         currentMapStyle: 'entraideStyle2',
         getMap : function(location){
-            map.center = location ? location : map.center;
+            map.center = location ? {latitude:location.latitude, longitude:location.longitude} : map.center;
             return map;
         },
         getCoord : function(originalEventArgs) {

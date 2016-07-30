@@ -18,7 +18,15 @@ Meteor.startup(function () {
       
       Categories.insert({code: 'music-elec', ancestors:['music'], parent:'music', name:'Instrument électronique'});
       Categories.insert({code: 'music-elec-synt', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Instrument électronique'});
+      Categories.insert({code: 'music-elec-drum', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Drum machine'});
+      Categories.insert({code: 'music-elec-dj', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Dj'});
       Categories.insert({code: 'music-elec-othr', ancestors:['music', 'music-elec'], parent:'music-elec', name:'Autres'});
+
+      Categories.insert({code: 'music-drum', ancestors:['music'], parent:'music', name:'Instrument à peau'});
+      Categories.insert({code: 'music-drum-btry', ancestors:['music', 'music-drum'], parent:'music-drum', name:'Batteries'});
+      Categories.insert({code: 'music-drum-tom', ancestors:['music', 'music-drum'], parent:'music-drum', name:'Toms'});
+      Categories.insert({code: 'music-drum-othr', ancestors:['music', 'music-drum'], parent:'music-drum', name:'Autres'});
+
       
       Categories.insert({code: 'music-strg', ancestors:['music'], parent:'music', name:'Instrument à corde'});
       Categories.insert({code: 'music-strg-guit', ancestors:['music', 'music-strg'], parent:'music-strg', name:'Guitares'});

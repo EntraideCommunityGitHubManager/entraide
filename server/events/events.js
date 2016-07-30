@@ -40,6 +40,7 @@ Meteor.methods({
         event.location = {longitude:setFloatValue(e.location.longitude), latitude:setFloatValue(e.location.latitude)};
         event.name = setStringValue(e.name, 100);
         event.description = setStringValue(e.description, 5000);
+        event.icon = e.icon;
         event.startDate = setDateValue(e.startDate);
         return Events.insert(event);
     },

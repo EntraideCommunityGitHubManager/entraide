@@ -29,7 +29,7 @@
         <div class="form-group">
             <label for="categories" class="col-sm-2 control-label">Categories</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="categories" placeholder="Categories" ng-model="event.categories">
+                <select class="form-control" id="categories" ng-options="cat as cat.name for cat in categories track by cat._id" ng-model="selectedCategory"></select>
             </div>
         </div>
         <div class="form-group">
