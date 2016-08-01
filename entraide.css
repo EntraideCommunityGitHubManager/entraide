@@ -10,6 +10,7 @@ body{
     width: 100%;
     color: white;
     font-size: 137%;
+    background: black;
 }
 
 .app-view{
@@ -21,18 +22,28 @@ body{
     margin-bottom: 40px;
 }
 
+
+/* Debugging */
 .st-content{
-    margin-top: 51px;
-    overflow-y: hidden;
+    /*overflow-y: hidden !important;*/
+}
+.st-menu{
+    /*width: 50% !important;*/
+}
+.st-menu h2 {
+    margin: 0;
+    padding: 14px;
+    color: rgba(0,0,0,0.4);
+    text-shadow: 0 0 1px rgba(0,0,0,0.1);
+    font-weight: 300;
+    font-size: 1.5em;
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.25);
 }
 
-  .st-content-inner{
-    height: 100%;
-    width: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-bottom: 80px;
-} 
+
+
 
 /* Connection Banner style */
 #connection-lost-banner + .navbar-fixed-top,
@@ -140,28 +151,29 @@ body{
     height: 100%;
     width: 100%;
 }
+
 .angular-google-map-container {
     position: absolute;
-    top: 0;
+    top: 25px;
+    right: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    bottom: 29px;
+    bottom: 14px;
 }
-
 
 .map-bubble-container {
     position: absolute;
-    left: 50%;
+    left: calc(50% - 252px);
+    right: calc(50% - 252px);
     color: #fff;
     background: rgba(0,0,0,0.5);
     padding: 42px;
-    width: auto;
-    height: auto;
     border-radius: 50%;
-    margin: 20px 0 0 -242px;
     text-align: center;
     overflow: hidden;
+    top: calc(50% - 252px);
+    bottom: calc(50% - 252px);
+    height: 504px;
+    width: 504px;
 }
 
 .map-bubble-container h1 {
@@ -298,20 +310,26 @@ body{
 }
 
 .side-left-profile{
-    /*background-color: rgba(28, 136, 136, 0.91);*/
+    /*background-color: rgba(28, 136, 136, 0.91);
     background-color: rgba(15, 29, 26, 0.91);
+    background: rgba(160, 160, 160, 0.35);
+    background: rgba(4, 100, 167, 0.25);*/
+    background: rgba(38, 44, 47, 0.25);
     height: 100%;
 }
 
 .side-left-search{
-    background-color: rgba(23, 63, 123, 0.78);
+    /*background-color: rgba(42, 106, 150, 0.81);*/
+    background: rgba(4, 100, 167, 0.25);
     height: 100%;
 }
 
 .side-left-event{
-    background-color: rgba(83, 54, 119, 0.85);
+    /*background-color: rgba(42, 106, 150, 0.81);*/
+    background: rgba(4, 100, 167, 0.25);
     height: 100%;
 }
+
 
 
 
@@ -360,18 +378,6 @@ body{
 .dropdown-toggle-profile{
     background-color: #222222 !important;
     width: 65px;
-}
-
-.st-menu h2 {
-    margin: 0;
-    padding: 14px;
-    color: rgba(0,0,0,0.4);
-    text-shadow: 0 0 1px rgba(0,0,0,0.1);
-    font-weight: 300;
-    font-size: 1.5em;
-    text-align: center;
-    color: white;
-    background: rgba(0, 0, 0, 0.71);
 }
 
 .map-style-edit-container{

@@ -9,22 +9,12 @@ html,
 body,
 .st-container,
 .st-pusher,
-.st-content {
-	height: 100%;
-}
-
-.st-content {
-	overflow-y: scroll;
-/*	background: #f3efe0;*/
-}
-
 .st-content,
-.st-content-inner {
-	position: relative;
+  .st-content-inner{
+	height: 100%;
 }
 
 .st-container {
-	height: 100%;
 	position: relative;
 	overflow: hidden;
 }
@@ -93,6 +83,22 @@ body,
 }
 
 /* content style */
+
+.st-content {
+	overflow-y: scroll;
+}
+
+.st-content,
+.st-content-inner {
+	position: relative;
+}
+
+  .st-content-inner{
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+} 
+
 
 .st-menu ul {
 	margin: 0;

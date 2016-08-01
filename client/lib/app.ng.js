@@ -48,7 +48,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                     controller: 'MapCtrl'
                 },
                 'background-view': {
-                    template: '<div anim-background source-video="video/beach.mp4" source-image="img/beach.jpg"></div>'
+                    template: '<div anim-background video-id="beach" source-video="video/beach.mp4" source-image="img/beach.jpg"></div>'
                 },
                 'footer-view@app': {
                     templateUrl: 'client/app/footer/footer.ng.html',
@@ -93,6 +93,9 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'content-view@app': {
                     templateUrl: 'client/app/events/search/byProfile/search-events-list.ng.html',
                     controller: 'SearchEventsListCtrl'
+                },
+                'background-view@app': {
+                    template: ''
                 }
             }
         })
@@ -114,6 +117,9 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'content-view@app': {
                     templateUrl: 'client/app/events/search/myEvents/my-events-list.ng.html',
                     controller: 'MyEventsListCtrl'
+                },
+                'background-view@app': {
+                    template: ''
                 }
             },
             resolve: {

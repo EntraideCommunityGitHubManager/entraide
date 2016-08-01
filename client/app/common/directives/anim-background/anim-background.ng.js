@@ -1,10 +1,11 @@
-angular.module('entraide').directive('animBackground', function(){
+angular.module('entraide').directive('animBackground', function(AnimBackgroundService){
 
     return {
         restrict: 'AEC',
         scope: {
             startEvent: '@',
             stopEvent : '@',
+            videoId: '@',
             sourceVideo : '@',
             sourceImage : '@'
         },
@@ -20,19 +21,28 @@ angular.module('entraide').directive('animBackground', function(){
             return function link(scope, element) {
                 scope.isTouch = Modernizr.touch;
                 if (!scope.isTouch) {
-                    scope.bigImage = $('.big-image');
-                    scope.bigImage = $(element.find('img')[0]);
-                    scope.BV = new $.BigVideo({forceAutoplay:scope.isTouch});
+                  /*
+                  /!*scope.bigImage = $('.big-image');
+                    scope.bigImage = $(element.find('img')[0]);*!/
+                    scope.BV = AnimBackgroundService.getBackgroundVideo(scope.videoId, scope.sourceVideo, scope.isTouch);
                     scope.BV.init();
-                    scope.BV.getPlayer().addEvent('loadeddata', function() {scope.bigImage.transit({'opacity':0},500);});
-                    scope.bigImage.css('position','relative').imagesLoaded(adjustImagePositioning);
-                    $(window).on('resize', adjustImagePositioning);
+                    /!*scope.BV.getPlayer().addEvent('loadeddata', function() {scope.bigImage.transit({'opacity':0},500);});
+                    scope.bigImage.css('position','relative').imagesLoaded(adjustImagePositioning);*!/
+                    //$(window).on('resize', adjustImagePositioning);
                     scope.BV.show(scope.sourceVideo,{ambient:true});
+                    */
+                    AnimBackgroundService.playVideo(scope.videoId, scope.sourceVideo, scope.isTouch);
                 }
 
                 scope.$on(scope.startEvent, function(){});
                 scope.$on(scope.stopEvent, function(){});
-                scope.$on("$destroy", function () {});
+                scope.$on("$destroy", function () {
+                    /*$('#big-video-control-container').remove();*/
+                    /*$('#big-video-wrap').css('display','none');*/
+                    //$(window).off('resize', adjustImagePositioning);
+                    /*$('#big-video-wrap').css('display', 'none');*/
+                    AnimBackgroundService.stopVideo(scope.videoId);
+                });
 
                 function adjustImagePositioning() {
                     scope.bigImage.each(function(){
