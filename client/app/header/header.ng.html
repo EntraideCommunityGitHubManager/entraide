@@ -1,3 +1,22 @@
+<div class="st-header">
+    <div class="st-header-burger">
+        <button type="button" class="st-navbar-toggle" ng-click="edit()">
+            <span class="st-navbar-icon-bar"></span>
+            <span class="st-navbar-icon-bar"></span>
+            <span class="st-navbar-icon-bar"></span>
+        </button>
+    </div>
+    <div class="st-header-logo">
+        <a class="st-header-logo-link" ng-href="#/main">
+            <img class="st-header-logo-img" src="img/helpy-logo-black.png"/>
+            <span class="st-header-logo-title">Helpy</span>
+        </a>
+    </div>
+    <div class="st-header-login">
+        <li anim-login model="user" title-create="Create" title-login="Login" login-callback="login()" create-callback="create()" edit-callback="edit()" logout-callback="logout()" error="error" is-connected="isConnected()" anim-login-toggle-event="animLoginToggleEvent" profile-image="sessionService.userProfile.image" profile-image-default="img/profile.png"></li>
+    </div>
+</div>
+<!--
 <header>
     <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
         <div class="container">
@@ -40,3 +59,4 @@
         </div>
     </nav>
 </header>
+-->
