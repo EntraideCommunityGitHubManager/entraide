@@ -1,4 +1,4 @@
-angular.module("entraide").factory("AnimBackgroundService", function(){
+angular.module("entraide").factory("AnimBackgroundService", function($log){
 
     var animBackgroundService = {
         videos: [],
@@ -22,7 +22,11 @@ angular.module("entraide").factory("AnimBackgroundService", function(){
         stopVideo : function(videoId){
             var service = this;
             var videoInstance = service.getBackgroundVideo(videoId);
-            videoInstance.bigVideo.hide();
+            if(videoInstance){
+                videoInstance.bigVideo.hide();
+            } else {
+                $log.warning('Video to hide not found : ' + videoId);
+            }
         }
 
     };
