@@ -7,7 +7,7 @@ angular.module("entraide").factory("AnimBackgroundService", function($log){
             var videoInstance = null;
             videoInstance = _.findWhere(service.videos, {videoId:videoId});
             if(!videoInstance){
-                bigVideo = new $.BigVideo({videoId:videoId, forceAutoplay:forceAutoplay});
+                bigVideo = new $.BigVideo({videoId:videoId, sourceVideo:sourceVideo, forceAutoplay:forceAutoplay});
                 bigVideo.init();
                 videoInstance = {videoId:videoId, sourceVideo:sourceVideo, bigVideo:bigVideo};
                 service.videos.push(videoInstance);

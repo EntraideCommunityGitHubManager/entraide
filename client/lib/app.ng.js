@@ -71,6 +71,9 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                  'side-left-profile-view@app.main': {
                      templateUrl: 'client/app/profile/profile-edit.ng.html',
                      controller: 'ProfileEditCtrl'
+                 },
+                 'background-view@app': {
+                     template: ''
                  }
              }
         })
@@ -93,9 +96,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'content-view@app': {
                     templateUrl: 'client/app/events/search/byProfile/search-events-list.ng.html',
                     controller: 'SearchEventsListCtrl'
-                },
-                'background-view@app': {
-                    template: ''
                 }
             }
         })
@@ -117,9 +117,6 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'content-view@app': {
                     templateUrl: 'client/app/events/search/myEvents/my-events-list.ng.html',
                     controller: 'MyEventsListCtrl'
-                },
-                'background-view@app': {
-                    template: ''
                 }
             },
             resolve: {

@@ -443,6 +443,10 @@ body{
     cursor: inherit;
 }
 
+.admin-container{
+    margin-top: 65px;
+}
+
 .error-message{
     color: #EA6464;
 }

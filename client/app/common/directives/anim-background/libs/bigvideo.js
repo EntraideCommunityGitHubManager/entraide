@@ -227,13 +227,15 @@
 				});
 
 				player.on('loadedmetadata', function(data) {
-					if (document.getElementById('big-video-vid-'+options.videoId+'_flash_api')) {
-						// use flash callback to get mediaAspect ratio
-						mediaAspect = document.getElementById('big-video-vid-'+options.videoId+'_flash_api').vjs_getProperty('videoWidth')/document.getElementById('big-video-vid-'+options.videoId+'_flash_api').vjs_getProperty('videoHeight');
-					} else {
-						// use html5 player to get mediaAspect
-						mediaAspect = $('#big-video-vid-'+options.videoId+'_html5_api').prop('videoWidth')/$('#big-video-vid-'+options.videoId+'_html5_api').prop('videoHeight');
-					}
+					angular.forEach($("video"), function(elt){
+						if(elt.src.indexOf(options.sourceVideo)>-1){
+							if(elt.id.indexOf('_flash_api')>-1){
+								mediaAspect = elt.vjs_getProperty('videoWidth')/elt.vjs_getProperty('videoHeight');
+							} else {
+								mediaAspect = elt.videoWidth/elt.videoHeight;
+							}
+						}
+					});
 					updateSize();
 					var dur = Math.round(player.duration());
 					var durMinutes = Math.floor(dur/60);

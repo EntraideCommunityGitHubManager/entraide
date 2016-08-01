@@ -85,7 +85,7 @@ body,
 /* content style */
 
 .st-content {
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .st-content,
