@@ -5,12 +5,24 @@ html {
 
 body{
     margin-bottom: 1px;
-    background-color: white;
     height:100%;
     width: 100%;
     color: white;
     font-size: 137%;
-    background: black;
+    background: #4882AA;
+}
+
+a{
+    color: white;
+}
+
+h2{
+    color: white;
+}
+
+.hlp-bcol{
+    /*background-color: #49819C;*/
+    background-color: #2E9C9C;
 }
 
 .app-view{
@@ -103,6 +115,12 @@ body{
     cursor: pointer;
 }
 
+.header-view{
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
 .side-left-view {
 
 }
@@ -113,11 +131,10 @@ body{
 }
 
 .footer-view {
-    background-color: #101010;
-    position: fixed;
-    bottom: 0px;
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    z-index: 999999;
+    z-index: 0;
 }
 
 
@@ -170,8 +187,8 @@ body{
     border-radius: 50%;
     text-align: center;
     overflow: hidden;
-    top: calc(50% - 252px);
-    bottom: calc(50% - 252px);
+    top: calc(50% - 262px);
+    bottom: calc(50% - 262px);
     height: 504px;
     width: 504px;
 }
@@ -367,7 +384,6 @@ body{
 }
 
 .ui-sign-in-button{
-    top: 15px;
     width: 100px;
 }
 
@@ -451,19 +467,15 @@ body{
     color: #EA6464;
 }
 
-.header-view{
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-}
-
-
 .st-header{
     height: 50px;
-    background-color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    -moz-box-shadow: 1px 1px 5px 2px #545454;
+    -webkit-box-shadow: 1px 1px 5px 2px #545454;
+    -o-box-shadow: 1px 1px 5px 2px #545454;
+    box-shadow: 1px 1px 5px 2px #545454;
 }
 
 .st-header-burger{
@@ -484,6 +496,7 @@ body{
     max-height: 50px;
     overflow: hidden;
     text-align: center;
+    color: white;
     /*background: #a7a8e6;*/
 }
 .st-header-logo-link:hover .st-header-logo-img{
@@ -566,4 +579,29 @@ body{
     height: 2px;
     border-radius: 1px;
     margin-bottom: 4px;
+}
+
+.st-footer{
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -moz-box-shadow: 1px 1px 5px 2px #545454;
+    -webkit-box-shadow: 1px 1px 5px 2px #545454;
+    -o-box-shadow: 1px 1px 5px 2px #545454;
+    box-shadow: 1px 1px 5px 2px #545454;
+}
+.st-footer-about{
+    flex: 0 1 100px;
+}
+.st-footer-contact{
+    flex: 0 1 100px;
+}
+
+.st-left-menu-footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 35px;
+    background: rgba(0, 0, 0, 0.25);
 }

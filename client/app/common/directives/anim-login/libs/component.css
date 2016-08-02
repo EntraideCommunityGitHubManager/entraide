@@ -20,6 +20,10 @@
 
 .morph-content {
 	pointer-events: none;
+	-moz-box-shadow: -4px 6px 9px 0px #232323;
+	-webkit-box-shadow: -4px 6px 9px 0px #232323;
+	-o-box-shadow: -4px 6px 9px 0px #232323;
+	box-shadow: -4px 6px 9px 0px #232323;
 }
 
 .morph-button.open .morph-content {
@@ -168,7 +172,7 @@
 .morph-button-modal-2 .morph-content,
 .morph-button-modal-3 > button,
 .morph-button-modal-3 .morph-content {
-	background-color: #222222;
+	background-color: #25414F;
 	color: #9d9d9d;
 }
 
