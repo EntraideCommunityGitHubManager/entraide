@@ -12,7 +12,7 @@ angular.module('entraide').directive('selectMap', function(){
                 hoverOpacity: 0.5,
                 hoverColor: "#EC0000",
                 backgroundColor: "transparent",
-                color: "#49819C",
+                color: "#2E9C9C",
                 borderColor: "black",
                 selectedColor: "rgb(53, 80, 84)",
                 enableZoom: false,
