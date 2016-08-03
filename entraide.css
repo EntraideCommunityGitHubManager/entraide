@@ -597,10 +597,10 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    -moz-box-shadow: 1px 1px 5px 2px #545454;
-    -webkit-box-shadow: 1px 1px 5px 2px #545454;
-    -o-box-shadow: 1px 1px 5px 2px #545454;
-    box-shadow: 1px 1px 5px 2px #545454;
+    -moz-box-shadow: 7px -4px 7px 0px #545454
+    -webkit-box-shadow: 7px -4px 7px 0px #545454
+    -o-box-shadow: 7px -4px 7px 0px #545454
+    box-shadow: 7px -4px 7px 0px #545454
 }
 .st-footer-about{
     flex: 0 1 100px;
