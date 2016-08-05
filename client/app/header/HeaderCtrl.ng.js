@@ -4,6 +4,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.isAdmin = SecurityService.isAdmin ;
     $scope.isConnected = SecurityService.isConnected;
+    $scope.isHome = function(){return $state.current.name == 'app.main';};
     $scope.sessionService = SessionService;
 
     $scope.login = function(){
