@@ -1,4 +1,6 @@
-angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, $scope, $meteor, $state, CollectionService, MapService, SessionService, AnimService) {
+angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, $scope, $meteor, $state, CollectionService, MapService, SessionService, AnimService, SecurityService) {
+
+    $scope.isConnected = SecurityService.isConnected;
 
     CollectionService.subscribe('my-events').then(function(events) {
         $scope.events = events;
@@ -22,6 +24,10 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
         });
         $rootScope.$broadcast('event-create', $scope.event);
     });
+
+    $scope.goTo = function(state){
+        $state.go(state);
+    };
 
     $scope.$on('marker-mouseover', function(e, marker){
         console.log('mouseover');

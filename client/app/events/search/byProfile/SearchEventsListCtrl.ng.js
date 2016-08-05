@@ -1,7 +1,9 @@
-angular.module('entraide').controller('SearchEventsListCtrl', function ($rootScope, $scope, $meteor, $state, SessionService, CollectionService, MapService, AnimService) {
+angular.module('entraide').controller('SearchEventsListCtrl', function ($rootScope, $scope, $meteor, $state, SecurityService, SessionService, CollectionService, MapService, AnimService) {
 
     var department = SessionService.getUserProfile().department;
     var options = {collectionOptions:{'department.code': department.code}, backend:true};
+
+    $scope.isConnected = SecurityService.isConnected;
 
     CollectionService.subscribe('search-events', options).then(function(events) {
         angular.forEach(events, function(event){event.icon = event.icon ? event.icon : getIcon();});
@@ -20,6 +22,10 @@ angular.module('entraide').controller('SearchEventsListCtrl', function ($rootSco
         MapService.animate(marker, 'bounce');
         $state.go("app.main.events.search.byProfile.detail", {"event" : event});
         $rootScope.$broadcast('event-detail', event);
+    };
+
+    $scope.goTo = function(state){
+        $state.go(state);
     };
 
     $scope.$on('marker-mouseover', function(e, marker){

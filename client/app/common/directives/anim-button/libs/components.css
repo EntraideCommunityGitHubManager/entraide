@@ -30,6 +30,7 @@
     overflow: hidden;
     height: 40px;
     min-width: 50px;
+
 }
 .anim-button:focus {
 	outline: none;

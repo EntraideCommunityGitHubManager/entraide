@@ -33,9 +33,11 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         }, function(){$state.go('app.main.error');});
     };
 
+    $scope.$on('logout', $scope.logout);
+
     $scope.search = function(){
         $rootScope.$broadcast('event-search');
-    }
+    };
 
     $scope.edit = function(){
         $rootScope.$broadcast('profile-edit');

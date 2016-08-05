@@ -130,6 +130,28 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     };
 
     /*********************/
+    /*    Security       */
+    /*********************/
+    $scope.security = {};
+    $scope.changePassword = function(){
+        if($scope.security.newPassword== $scope.security.newPasswordDiff){
+            SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
+                $scope.error =null;
+                AnimToasterNotificationService.addSuccessMessage("Mot de passe modifié avec succès !");
+            }, function(err){AnimToasterNotificationService.addWarningMessage(err.reason);});
+        } else {
+            $scope.error={reason:'Les 2 nouveaux mots de passe ne correspondent pas.'};
+        }
+   };
+
+    /*********************/
+    /*    Sign out       */
+    /*********************/
+    $scope.profileLogout = function(){
+        $rootScope.$broadcast('logout');
+    };
+
+    /*********************/
     /*      Config       */
     /*********************/
     $scope.isSelected = function(mapStyle){
@@ -148,21 +170,6 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
         },function(err){AnimToasterNotificationService.addErrorMessage(err.reason);});
     };
 
-    /*********************/
-    /*    Security       */
-    /*********************/
-    $scope.security = {};
-    $scope.changePassword = function(){
-        if($scope.security.newPassword== $scope.security.newPasswordDiff){
-            SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
-                $scope.error =null;
-                AnimToasterNotificationService.addSuccessMessage("Mot de passe modifié avec succès !");
-            }, function(err){AnimToasterNotificationService.addWarningMessage(err.reason);});
-        } else {
-            $scope.error={reason:'Les 2 nouveaux mots de passe ne correspondent pas.'};
-        }
-
-   };
 
 });
 

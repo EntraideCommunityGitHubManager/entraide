@@ -1,8 +1,9 @@
-angular.module('entraide').controller('SearchEventFilterCtrl', function ($rootScope, $scope, $meteor, $state, SessionService, CollectionService, SearchEventService) {
+angular.module('entraide').controller('SearchEventFilterCtrl', function ($rootScope, $scope, $meteor, $state, SessionService, CollectionService, SecurityService) {
 
     console.log('SearchEventFilterCtrl');
     
     $scope.categories = [];
+    $scope.isConnected = SecurityService.isConnected;
     
     CollectionService.subscribe('all-categories').then(function(categories){
         $scope.categories = categories;
@@ -10,6 +11,10 @@ angular.module('entraide').controller('SearchEventFilterCtrl', function ($rootSc
 
     $scope.search = function(){
         alert('search');
+    };
+
+    $scope.goTo = function(state){
+        $state.go(state);
     };
     
     $scope.getCategoryClass=function(cat){

@@ -1,12 +1,5 @@
 <div>
     <h2 class="icon icon-lab">Profile Edit</h2>
-    <div class="profile-box">
-        <anim-button anim-button-icon="fa-user" anim-button-callback="setProfileState('info')" anim-button-type="sacnite"></anim-button>
-        <anim-button anim-button-icon="fa-camera-retro" anim-button-callback="setProfileState('camera')" anim-button-type="sacnite"></anim-button>
-        <anim-button anim-button-icon="fa-tachometer" anim-button-callback="setProfileState('skills')" anim-button-type="sacnite"></anim-button>
-        <anim-button anim-button-icon="fa-sliders" anim-button-callback="setProfileState('config')" anim-button-type="sacnite"></anim-button>
-	    <anim-button anim-button-icon="fa-unlock-alt" anim-button-callback="setProfileState('security')" anim-button-type="sacnite"></anim-button>
-    </div>
 
     <div ng-if="profileState=='info'" class='form-profile ui-anim-fade'>
         <form class="form-horizontal">
@@ -132,5 +125,14 @@
 		</form>
     </div>
 
-	<div class="st-left-menu-footer"></div>
+	<div class="st-left-menu-footer">
+		<div class="profile-box">
+			<anim-button anim-button-icon="fa-user" anim-button-callback="setProfileState('info')" anim-button-type="sacnite"></anim-button>
+			<anim-button anim-button-icon="fa-camera-retro" anim-button-callback="setProfileState('camera')" anim-button-type="sacnite"></anim-button>
+			<anim-button anim-button-icon="fa-tachometer" anim-button-callback="setProfileState('skills')" anim-button-type="sacnite"></anim-button>
+			<anim-button anim-button-icon="fa-unlock-alt" anim-button-callback="setProfileState('security')" anim-button-type="sacnite"></anim-button>
+			<anim-button anim-button-icon="fa-sign-out" anim-button-callback="profileLogout()" anim-button-type="sacnite"></anim-button>
+			<anim-button anim-button-icon="fa-sliders" anim-button-callback="setProfileState('config')" anim-button-type="sacnite"></anim-button>
+		</div>
+	</div>
 </div>

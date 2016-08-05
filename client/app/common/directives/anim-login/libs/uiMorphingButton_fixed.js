@@ -134,6 +134,7 @@
 			if( self.expanded ) {
 				classie.removeClass( self.contentEl, 'no-transition' );
 				classie.removeClass( self.el, 'open' );
+
 			}
 			else {
 				setTimeout( function() { 
