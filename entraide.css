@@ -128,7 +128,7 @@ h2{
 .header-view{
     position: absolute;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
 }
 
 .side-left-view {
@@ -268,17 +268,15 @@ h2{
 
 .profile-image-header-default {
     border-radius: 50%;
-    width: 36px;
-    margin: 7px;
-    top: 0px;
+    height: 42px;
+    top: 4px;
     position: absolute;
 }
 
 .profile-image-header {
     border-radius: 50%;
-    width: 42px;
-    margin: 4px;
-    top: 0px;
+    height: 45px;
+    top: 2px;
     position: absolute;
 }
 
@@ -392,10 +390,6 @@ h2{
 
 .list-profile{
     width:50px;
-}
-
-.ui-sign-in-button{
-    width: 100px;
 }
 
 .dropdown-menu-profile{
@@ -539,7 +533,6 @@ h2{
     max-height: 50px;
     max-width: 60px;
     overflow: hidden;
-    /*background: #e6a3c3;*/
 }
 
 #nav-toggle span {
@@ -597,10 +590,10 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    -moz-box-shadow: 7px -4px 7px 0px #545454
-    -webkit-box-shadow: 7px -4px 7px 0px #545454
-    -o-box-shadow: 7px -4px 7px 0px #545454
-    box-shadow: 7px -4px 7px 0px #545454
+    -moz-box-shadow: 7px -4px 7px 0px #545454;
+    -webkit-box-shadow: 7px -4px 7px 0px #545454;
+    -o-box-shadow: 7px -4px 7px 0px #545454;
+    box-shadow: 7px -4px 7px 0px #545454;
 }
 .st-footer-about{
     flex: 0 1 100px;

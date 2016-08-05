@@ -1,29 +1,12 @@
-<li class="dropdown">
-    <a class="dropdown-toggle hidden-xs dropdown-toggle-profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-show="isConnected">
-        <img class="profile-image-header-default ui-anim-fade" ng-if="isConnected && !profileImage" src="{{profileImageDefault}}"/>
-        <img class="profile-image-header ui-anim-fade" ng-if="profileImage" src="{{profileImage.url()}}" title="{{$root.currentUser.username.capitalize()}}" />
+<div>
+    <a ng-show="isConnected">
+        <img class="profile-image-header-default ui-anim-fade" ng-if="isConnected && !profileImage" src="{{profileImageDefault}}" ng-click="edit()" title="{{$root.currentUser.username.capitalize()}}"/>
+        <img class="profile-image-header ui-anim-fade" ng-if="profileImage" src="{{profileImage.url()}}" ng-click="edit()" title="{{$root.currentUser.username.capitalize()}}"/>
     </a>
-    <ul class="dropdown-menu hidden-xs dropdown-menu-profile" ng-if="isConnected">
-        <li ng-show="edit"><a ng-click="edit()">Edit</a></li>
-        <li ng-show="edit" role="separator" class="divider"></li>
-        <li ng-show="logout"><a ng-click="logout()">Logout</a></li>
-    </ul>
-
-    <a class="dropdown-toggle visible-xs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-show="isConnected">
-        <span ng-show="isConnected">{{$root.currentUser.username.capitalize()}}</span>
-        <span ng-show="!isConnected">Profile</span>
-        <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu visible-xs" ng-if="isConnected">
-        <li ng-show="edit"><a ng-click="edit()">Edit</a></li>
-        <li ng-show="edit" role="separator" class="divider"></li>
-        <li ng-show="logout"><a ng-click="logout()">Logout</a></li>
-    </ul>
-
     <div class="mockup-content" ng-show="!isConnected">
         <div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed ui-sign-in-button">
             <button type="button">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-click="initState()"><i class="fa fa-sign-in"> Sign in</i></a>
+                <a ng-click="initState()"><i class="fa fa-sign-in"> Connexion</i></a>
             </button>
             <div class="morph-content">
                 <div class="content-style-form content-style-form-1">
@@ -40,6 +23,5 @@
             </div>
         </div>
     </div>
-</li>
-
+</div>
 

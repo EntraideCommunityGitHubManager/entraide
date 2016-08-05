@@ -8,9 +8,7 @@
 
 .morph-button > button {
 	position: relative;
-	padding: 0 1em;
 	border: none;
-	background-color: #e85657;
 	color: #f9f6e5;
 }
 
@@ -107,7 +105,7 @@
 
 .morph-button-overlay .morph-content {
 	overflow: hidden;
-	background: #e85657;
+	background: #54e8d6;
 }
 
 .morph-button-overlay.open .morph-content {
@@ -139,7 +137,7 @@
 }
 
 .morph-button-modal.active::before {
-	z-index: 1800;
+	z-index: 10;
 }
 
 .morph-button-modal .morph-content {
@@ -165,15 +163,18 @@
 
 .morph-button-modal-1 > button,
 .morph-button-modal-1 .morph-content {
-	background-color: #553445;
+	background-color: #25414F;
 }
 
-.morph-button-modal-2 > button,
 .morph-button-modal-2 .morph-content,
-.morph-button-modal-3 > button,
 .morph-button-modal-3 .morph-content {
 	background-color: #25414F;
 	color: #9d9d9d;
+}
+
+.morph-button-modal-2 > button,
+.morph-button-modal-3 > button{
+	background-color: transparent;
 }
 
 .morph-button-modal-4 {
@@ -281,7 +282,7 @@
 
 .morph-button-inflow-1 .morph-content .morph-clone {
 	color: #f9f6e5;
-	background: #e85657;
+	background: #25414F;
 }
 
 .morph-button-inflow-2 {
@@ -342,7 +343,7 @@
 }
 
 .morph-button-sidebar .morph-content {
-	background: #e85657;
+	background: #25414F;
 }
 
 .morph-button-sidebar.open .morph-content {
@@ -411,7 +412,7 @@
 	left: 0;
 	margin: 0;
 	height: 100%;
-	background: #e85657;
+	background: #25414F;
 	overflow: auto;
 }
 
