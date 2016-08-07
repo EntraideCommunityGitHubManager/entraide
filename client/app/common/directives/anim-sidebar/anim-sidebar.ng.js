@@ -1,4 +1,4 @@
-angular.module('entraide').directive('animSidebar', function(UtilsService, AnimSidebarService){
+angular.module('entraide').directive('animSidebar', function(UtilsService, AnimSidebarService, $rootScope){
 
     return {
         restrict: 'AEC',
@@ -23,6 +23,7 @@ angular.module('entraide').directive('animSidebar', function(UtilsService, AnimS
                     console.log('animSideBar click outside close');
                     resetMenu();
                     AnimSidebarService.open = false;
+                    $rootScope.$broadcast('anim-side-bar-close');
                 }
             });
 

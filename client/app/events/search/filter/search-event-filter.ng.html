@@ -2,8 +2,10 @@
     <h2 class="icon icon-lab">Rechercher</h2>
 </div>
 <div class="st-left-menu-content">
-    <div ng-repeat="cat in categories">
-        <div class="{{getCategoryClass(cat)}}">{{cat.name}}</div>
+    <div class="event-filter-content">
+        <div ng-repeat="cat in categories">
+            <div class="{{getCategoryClass(cat)}}">{{cat.name}}</div>
+        </div>
     </div>
 </div>
 <div class="st-left-menu-footer">

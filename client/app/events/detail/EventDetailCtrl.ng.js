@@ -5,6 +5,10 @@ angular.module('entraide').controller('EventDetailCtrl', function ($rootScope, $
         AnimService.stopTransition();
     }
 
+    $scope.offerHelp = function(event){
+        alert('Not implemented');
+    };
+
     $scope.close=function(){
         $rootScope.$broadcast('event-detail');
     };

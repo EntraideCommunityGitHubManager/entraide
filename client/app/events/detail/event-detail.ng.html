@@ -1,18 +1,27 @@
-<div>
-    <h2 class="icon icon-lab">Event detail</h2>
-    <a ng-click="close()">Close</a>
-    <div class="row">
-        <div class="col-md-12">
-            <div>
-                <h5>Name <span class="label">{{event.name}}</span></h5>
-            </div>
-            <div>
-                <h5>Description <span class="label">{{event.description}}</span></h5>
-            </div>
-            <div>
-                <h5>Categories <span ng-repeat="s in skills" class="label">{{s}}</span></h5>
-            </div>
-        </div>
-    </div>
-    <div class="st-left-menu-footer"></div>
+<div class="st-left-menu-header">
+    <h2>Demande d'aide</h2>
 </div>
+<div class="st-left-menu-content">
+    <div class='form-event ui-anim-fade'>
+        <div class="form-title">
+            Cette personne a besoin d'aide !
+        </div>
+        <div class="form-group">
+            <label>Titre</label>
+            <span>{{event.name}}</span>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+        </div>
+        <div class="form-group">
+            <span>{{event.description}}</span>
+        </div>
+        <div class="form-action">
+            <anim-button-material anim-button-material-right-icon="fa-times" anim-button-material-callback="close()" anim-button-material-text="Fermer"></anim-button-material>
+            <anim-button-material anim-button-material-right-icon="fa-question-circle" anim-button-material-callback="offerHelp(event)" anim-button-material-text="Aider"></anim-button-material>
+        </div>
+        <div class="error-message ui-anim-fade" ng-show="error">{{error.reason}}</div>
+    </div>
+</div>
+<div class="st-left-menu-footer"></div>
+

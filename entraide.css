@@ -721,12 +721,33 @@ h2{
     margin-bottom: 8px;
 }
 
+.form-profile{
+    position: absolute;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    font-weight: 500;
+}
 .form-profile .form-group label{
     width: 70px;
 }
-
 .form-profile .form-group input{
     width: 180px;
+}
+.form-event{
+    margin-left: 21px;
+}
+.form-event .form-group label{
+    width: 70px;
+}
+.form-event .form-group input{
+    width: 180px;
+}
+.form-event .form-group .form-textarea{
+    width: 253px;
+}
+.form-event .form-action{
+    width: 253px;
 }
 
 .form-title{
@@ -736,15 +757,6 @@ h2{
     padding-bottom: 12px;
     margin-bottom: 25px;
 }
-
-.form-profile{
-    position: absolute;
-    padding: 15px;
-    width: 100%;
-    height: 100%;
-    font-weight: 500;
-}
-
 .form-action{
     display: -webkit-box;
     display: -moz-box;
@@ -777,6 +789,9 @@ h2{
 }
 
 
+.event-filter-content{
+    margin : 21px;
+}
 
 
 

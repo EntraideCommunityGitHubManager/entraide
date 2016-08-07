@@ -1,4 +1,4 @@
-angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $scope, $state, SecurityService, AnimSidebarService) {
+angular.module('entraide').controller('SideLeftCtrl', function ($rootScope, $scope, $state, SecurityService, AnimSidebarService, MapService) {
 
     console.log("side-left-view Ctrl");
     

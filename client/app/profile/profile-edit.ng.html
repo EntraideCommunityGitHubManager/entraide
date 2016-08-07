@@ -1,117 +1,116 @@
-<div>
-	<div class="st-left-menu-header">
-		<h2>Mon Compte</h2>
+<div class="st-left-menu-header">
+	<h2>Mon Compte</h2>
+</div>
+
+<div class="st-left-menu-content">
+	<div ng-if="profileState=='info'" class='form-profile ui-anim-fade'>
+		<div class="form-title">
+			Modifiez votre profil
+		</div>
+		<div class="form-group">
+			<label>Email</label>
+			<span>{{profile.email}}</span>
+		</div>
+		<div class="form-group">
+			<label for="username">Pseudo</label>
+			<input type="text" class="form-input" id="userName" placeholder="Pseudo" ng-model="profile.userName">
+		</div>
+		<div class="form-group">
+			<label for="firstName">Prénom</label>
+			<input type="text" class="form-input" id="firstName" placeholder="Prénom" ng-model="profile.firstName">
+		</div>
+		<div class="form-group">
+			<label for="lastName">Nom</label>
+			<input type="text" class="form-input" id="lastName" placeholder="Nom" ng-model="profile.lastName">
+		</div>
+		<div class="form-action">
+			<anim-button-material anim-button-material-right-icon="fa-floppy-o" anim-button-material-callback="saveProfile()" anim-button-material-text="Sauver"></anim-button-material>
+		</div>
+		<div class="error-message" ng-show="error">{{error.reason}}</div>
 	</div>
 
-	<div class="st-left-menu-content">
-		<div ng-if="profileState=='info'" class='form-profile ui-anim-fade'>
-			<div class="form-title">
-				Modifiez votre profil
-			</div>
-			<div class="form-group">
-				<label>Email</label>
-				<span>{{profile.email}}</span>
-			</div>
-			<div class="form-group">
-				<label for="username">Pseudo</label>
-				<input type="text" class="form-input" id="userName" placeholder="Pseudo" ng-model="profile.userName">
-			</div>
-			<div class="form-group">
-				<label for="firstName">Prénom</label>
-				<input type="text" class="form-input" id="firstName" placeholder="Prénom" ng-model="profile.firstName">
-			</div>
-			<div class="form-group">
-				<label for="lastName">Nom</label>
-				<input type="text" class="form-input" id="lastName" placeholder="Nom" ng-model="profile.lastName">
-			</div>
-			<div class="form-action">
-				<anim-button-material anim-button-material-right-icon="fa-floppy-o" anim-button-material-callback="saveProfile()" anim-button-material-text="Sauver"></anim-button-material>
-			</div>
-			<div class="error-message" ng-show="error">{{error.reason}}</div>
+	<div ng-show="profileState=='camera'" class='form-profile ui-anim-fade'>
+		<div class="form-title">
+			Modifiez vos photos
+		</div>
+		<div ng-show="addable() && !imgSrc" ngf-drop ngf-select ngf-change="addImages($files)" ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box" ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'" ngf-drop-available="dropAvailable">
+			<div class="drop-box-title">Vos photos ici</div>
+			<div><span>Cliquez</span> <strong ng-show="dropAvailable"> OU </strong> <span ng-show="dropAvailable">Déposez</span></div>
 		</div>
 
-		<div ng-show="profileState=='camera'" class='form-profile ui-anim-fade'>
-			<div class="form-title">
-				Modifiez vos photos
-			</div>
-			<div ng-show="addable() && !imgSrc" ngf-drop ngf-select ngf-change="addImages($files)" ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box" ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'" ngf-drop-available="dropAvailable">
-				<div class="drop-box-title">Vos photos ici</div>
-				<div><span>Cliquez</span> <strong ng-show="dropAvailable"> OU </strong> <span ng-show="dropAvailable">Déposez</span></div>
-			</div>
-
-			<div ng-show="imgSrc" class="ng-crop-container">
-				<img-crop image="imgSrc" result-image="myCroppedImage" area-type="square"></img-crop>
-			</div>
-
-			<div class="icon-action-container" ng-show="addable()">
-				<span class="icon-action"><i class="fa fa-camera" ng-click="camera()" ng-show="!imgSrc"></i></span>
-				<span class="icon-action"><i class="fa fa-floppy-o" ng-click="saveCroppedImage()" ng-show="imgSrc"></i></span>
-			</div>
-
-			<div>
-        <span ng-repeat="image in images">
-            <div>
-				<img class="profile-image" src="{{ image.url()}}"/>
-				<i class="fa fa-remove" ng-click="remove(image)"></i>
-				<i class="fa fa-heart-o" ng-show="!image.favorite" ng-click="setFavorite(image)"></i>
-				<i class="fa fa-heart" ng-show="image.favorite"></i>
-				<!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
-			</div>
-        </span>
-			</div>
+		<div ng-show="imgSrc" class="ng-crop-container">
+			<img-crop image="imgSrc" result-image="myCroppedImage" area-type="square"></img-crop>
 		</div>
 
-		<div ng-if="profileState=='skills'" class='form-profile ui-anim-fade'>
-			<div class="form-title">
-				Modifiez votre savoir faire
-			</div>
-			<div>Hello skills !</div>
+		<div class="icon-action-container" ng-show="addable()">
+			<span class="icon-action"><i class="fa fa-camera" ng-click="camera()" ng-show="!imgSrc"></i></span>
+			<span class="icon-action"><i class="fa fa-floppy-o" ng-click="saveCroppedImage()" ng-show="imgSrc"></i></span>
 		</div>
 
-		<div ng-if="profileState=='config'" class='form-profile ui-anim-fade'>
-			<div class="form-title">
-				Modifiez vos préférences
-			</div>
-			<div class="map-style-edit-container">
-				<div ng-repeat="mapStyle in mapStyles" >
-					<div class="map-style-edit"  anim-click anim-click-callback="setMapStyle(mapStyle)" anim-click-type="novak" anim-click-icon="{{getAnimClickIcon(mapStyle)}}">
-						<span class="map-style-edit-label{{isSelected(mapStyle)}}">{{mapStyle}}</span>
-					</div>
+		<div>
+	<span ng-repeat="image in images">
+		<div>
+			<img class="profile-image" src="{{ image.url()}}"/>
+			<i class="fa fa-remove" ng-click="remove(image)"></i>
+			<i class="fa fa-heart-o" ng-show="!image.favorite" ng-click="setFavorite(image)"></i>
+			<i class="fa fa-heart" ng-show="image.favorite"></i>
+			<!--<img class="profile-image" ng-src="{{ image.url({store: 'thumbnail'})}}"/><br/>-->
+		</div>
+	</span>
+		</div>
+	</div>
+
+	<div ng-if="profileState=='skills'" class='form-profile ui-anim-fade'>
+		<div class="form-title">
+			Modifiez votre savoir faire
+		</div>
+		<div>Hello skills !</div>
+	</div>
+
+	<div ng-if="profileState=='config'" class='form-profile ui-anim-fade'>
+		<div class="form-title">
+			Modifiez vos préférences
+		</div>
+		<div class="map-style-edit-container">
+			<div ng-repeat="mapStyle in mapStyles" >
+				<div class="map-style-edit"  anim-click anim-click-callback="setMapStyle(mapStyle)" anim-click-type="novak" anim-click-icon="{{getAnimClickIcon(mapStyle)}}">
+					<span class="map-style-edit-label{{isSelected(mapStyle)}}">{{mapStyle}}</span>
 				</div>
 			</div>
 		</div>
-
-		<div ng-if="profileState=='security'" class='form-profile ui-anim-fade'>
-			<div class="form-title">
-				Modifiez votre mot de passe
-			</div>
-			<div class="form-group">
-				<label for="oldPassword">Ancien</label>
-				<input type="text" id="oldPassword" placeholder="Ancien" ng-model="security.oldPassword">
-			</div>
-			<div class="form-group">
-				<label for="newPassword">Nouveau</label>
-				<input type="text" id="newPassword" placeholder="Nouveau" ng-model="security.newPassword">
-			</div>
-			<div class="form-group">
-				<label for="newPasswordDiff">Confirmation</label>
-				<input type="text" id="newPasswordDiff" placeholder="Confirmation" ng-model="security.newPasswordDiff">
-			</div>
-			<div class="form-action">
-				<anim-button-material anim-button-material-left-icon="fa-floppy-o" anim-button-material-callback="changePassword()" anim-button-material-text="Sauver" anim-button-material-disabled="!security.oldPassword || !security.newPassword || !security.newPasswordDiff"></anim-button-material>
-			</div>
-			<div class="error-message" ng-show="error">{{error.reason}}</div>
-		</div>
 	</div>
 
-	<div class="st-left-menu-footer">
-		<div class="profile-box">
-			<anim-button anim-button-icon="fa-user" anim-button-callback="setProfileState('info')" anim-button-type="ujarak"></anim-button>
-			<anim-button anim-button-icon="fa-camera-retro" anim-button-callback="setProfileState('camera')" anim-button-type="ujarak"></anim-button>
-			<anim-button anim-button-icon="fa-tachometer" anim-button-callback="setProfileState('skills')" anim-button-type="ujarak"></anim-button>
-			<anim-button anim-button-icon="fa-unlock-alt" anim-button-callback="setProfileState('security')" anim-button-type="ujarak"></anim-button>
-			<anim-button anim-button-icon="fa-sign-out" anim-button-callback="profileLogout()" anim-button-type="ujarak"></anim-button>
-			<anim-button anim-button-icon="fa-sliders" anim-button-callback="setProfileState('config')" anim-button-type="ujarak"></anim-button>
+	<div ng-if="profileState=='security'" class='form-profile ui-anim-fade'>
+		<div class="form-title">
+			Modifiez votre mot de passe
 		</div>
+		<div class="form-group">
+			<label for="oldPassword">Ancien</label>
+			<input type="text" id="oldPassword" placeholder="Ancien" ng-model="security.oldPassword">
+		</div>
+		<div class="form-group">
+			<label for="newPassword">Nouveau</label>
+			<input type="text" id="newPassword" placeholder="Nouveau" ng-model="security.newPassword">
+		</div>
+		<div class="form-group">
+			<label for="newPasswordDiff">Confirmation</label>
+			<input type="text" id="newPasswordDiff" placeholder="Confirmation" ng-model="security.newPasswordDiff">
+		</div>
+		<div class="form-action">
+			<anim-button-material anim-button-material-left-icon="fa-floppy-o" anim-button-material-callback="changePassword()" anim-button-material-text="Sauver" anim-button-material-disabled="!security.oldPassword || !security.newPassword || !security.newPasswordDiff"></anim-button-material>
+		</div>
+		<div class="error-message" ng-show="error">{{error.reason}}</div>
 	</div>
 </div>
+
+<div class="st-left-menu-footer">
+	<div class="profile-box">
+		<anim-button anim-button-icon="fa-user" anim-button-callback="setProfileState('info')" anim-button-type="ujarak"></anim-button>
+		<anim-button anim-button-icon="fa-camera-retro" anim-button-callback="setProfileState('camera')" anim-button-type="ujarak"></anim-button>
+		<anim-button anim-button-icon="fa-tachometer" anim-button-callback="setProfileState('skills')" anim-button-type="ujarak"></anim-button>
+		<anim-button anim-button-icon="fa-unlock-alt" anim-button-callback="setProfileState('security')" anim-button-type="ujarak"></anim-button>
+		<anim-button anim-button-icon="fa-sign-out" anim-button-callback="profileLogout()" anim-button-type="ujarak"></anim-button>
+		<anim-button anim-button-icon="fa-sliders" anim-button-callback="setProfileState('config')" anim-button-type="ujarak"></anim-button>
+	</div>
+</div>
+

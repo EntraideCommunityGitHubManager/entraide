@@ -1,4 +1,4 @@
-angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, $scope, $meteor, $state, CollectionService, MapService, SessionService, AnimService, SecurityService) {
+angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, $scope, $meteor, $state, CollectionService, MapService, SessionService, AnimService, SecurityService, uiGmapGoogleMapApi) {
 
     $scope.isConnected = SecurityService.isConnected;
 
@@ -10,11 +10,12 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
 
     $scope.eventClicked = function(marker, eventName, event){
         MapService.animate(marker, 'bounce');
-        $state.go("app.main.events.search.myEvents.edit", {"event" : event});
+        $state.go("app.main.events.search.myEvents.edit", {event:event});
         $rootScope.$broadcast('event-edit');
     };
 
     $scope.$on('map-click', function(e, originalEventArgs) {
+        setTimeout(function(){MapService.addMarker(MapService.getCoord(originalEventArgs))},300);
         $state.go("app.main.events.search.myEvents.create", {
             "event": {
                 location: MapService.getCoord(originalEventArgs),
@@ -22,7 +23,7 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
                 owner: SessionService.getOwner()
             }
         });
-        $rootScope.$broadcast('event-create', $scope.event);
+        $rootScope.$broadcast('event-create');
     });
 
     $scope.goTo = function(state){

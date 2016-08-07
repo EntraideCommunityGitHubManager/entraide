@@ -1,22 +1,27 @@
-<div>
-    <h2 class="icon icon-lab">Event edit</h2>
-    <div class="row">
-        <div class="col-sm-12">
-            <form>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name" ng-model="event.name" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" id="description" placeholder="Description" ng-model="event.description" rows="4"></textarea>
-                </div>
-                <button type="submit" class="btn btn-default" ng-click="update(event)" ng-disabled="!hasChanged()">Update</button>
-                <button type="submit" class="btn btn-default" ng-click="remove(event)" >Delete</button>
-                <button class="btn btn-default" ng-click="close()" >Close</button>
-            </form>
-            <div class="error-message ui-anim-fade" ng-show="error">{{error.reason}}</div>
-        </div>
-    </div>
-    <div class="st-left-menu-footer"></div>
+<div class="st-left-menu-header">
+    <h2>Demande d'aide</h2>
 </div>
+<div class="st-left-menu-content">
+    <div class='form-event ui-anim-fade'>
+        <div class="form-title">
+            Modifiez votre demande d'aide
+        </div>
+        <div class="form-group">
+            <label>Titre</label>
+            <input type="text" class="form-input" id="name" placeholder="Nom" ng-model="event.name" disabled>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+        </div>
+        <div class="form-group">
+            <textarea class="form-textarea" id="description" placeholder="Description" ng-model="event.description" rows="16"></textarea>
+        </div>
+        <div class="form-action">
+            <anim-button-material anim-button-material-right-icon="fa-trash" anim-button-material-callback="remove(event)" anim-button-material-text="Supprimer"></anim-button-material>
+            <anim-button-material anim-button-material-right-icon="fa-floppy-o" anim-button-material-callback="update(event)" anim-button-material-text="Sauver"></anim-button-material>
+        </div>
+        <div class="error-message ui-anim-fade" ng-show="error">{{error.reason}}</div>
+    </div>
+</div>
+<div class="st-left-menu-footer"></div>
+

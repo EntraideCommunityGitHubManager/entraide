@@ -1,44 +1,30 @@
-<div>
-    <h2 class="icon icon-lab">Event create</h2>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">Name</label>
-            <div class="col-sm-10"><input type="text" class="form-control" id="name" placeholder="Name" ng-model="event.name"></div>
-        </div>
-        <div class="form-group">
-            <label for="description" class="col-sm-2 control-label">Description</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" id="description" placeholder="Description" ng-model="event.description" rows="4"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="location" class="col-sm-2 control-label">Location</label>
-            <div class="col-sm-10" id="location">
-                <div class="form-inline">
-                    <input type="text" class="form-control" id="longitude" placeholder="Longitude" ng-model="event.location.longitude" ng-disabled>
-                    <input type="text" class="form-control" id="latitude" placeholder="Latitude" ng-model="event.location.latitude" ng-disabled>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="department" class="col-sm-2 control-label">Department</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="department" placeholder="Department" ng-model="event.department.code">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="categories" class="col-sm-2 control-label">Categories</label>
-            <div class="col-sm-10">
-                <select class="form-control" id="categories" ng-options="cat as cat.name for cat in categories track by cat._id" ng-model="selectedCategory"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default" ng-click="create(event)">Create</button>
-                <button class="btn btn-default" ng-click="close()" >Close</button>
-            </div>
-        </div>
-    </form>
-    <div class="error-message ui-anim-fade" ng-show="error">{{error.reason}}</div>
-    <div class="st-left-menu-footer"></div>
+<div class="st-left-menu-header">
+    <h2>Demande d'aide</h2>
 </div>
+<div class="st-left-menu-content">
+    <div class='form-event ui-anim-fade'>
+        <div class="form-title">
+            Créez votre demande d'aide
+        </div>
+        <div class="form-group">
+            <label>Titre</label>
+            <input type="text" class="form-input" id="name" placeholder="Nom" ng-model="event.name">
+        </div>
+        <div class="form-group">
+            <label>Categorie</label>
+            <select id="categories" ng-options="cat as cat.name for cat in categories track by cat._id" ng-model="selectedCategory"></select>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+        </div>
+        <div class="form-group">
+            <textarea class="form-textarea" id="description" placeholder="Description" ng-model="event.description" rows="16"></textarea>
+        </div>
+        <div class="form-action">
+            <anim-button-material anim-button-material-right-icon="fa-times" anim-button-material-callback="close()" anim-button-material-text="Annuler"></anim-button-material>
+            <anim-button-material anim-button-material-right-icon="fa-floppy-o" anim-button-material-callback="create(event)" anim-button-material-text="Créer"></anim-button-material>
+        </div>
+        <div class="error-message ui-anim-fade" ng-show="error">{{error.reason}}</div>
+    </div>
+</div>
+<div class="st-left-menu-footer"></div>
