@@ -1,4 +1,50 @@
-/* CSS declarations go here */
+*:focus {
+    outline: none;
+}
+
+/* Light */
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 300;
+    src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url("font/roboto/RobotoCondensed-Light.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: italic;
+    font-weight: 300;
+    src: local('Roboto Condensed Light Italic'), local('RobotoCondensed-LightItalic'), url("font/roboto/RobotoCondensed-LightItalic.ttf") format('truetype');
+}
+
+/* Normal */
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url("font/roboto/RobotoCondensed-Regular.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: italic;
+    font-weight: 400;
+    src: local('Roboto Condensed Italic'), local('RobotoCondensed-Italic'), url("font/roboto/RobotoCondensed-Italic.ttf") format('truetype');
+}
+
+/* Bold */
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Condensed Bold'), local('RobotoCondensed-Bold'), url("font/roboto/RobotoCondensed-Bold.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: italic;
+    font-weight: 700;
+    src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url("font/roboto/RobotoCondensed-BoldItalic.ttf") format('truetype');
+}
+
+
 html {
     overflow: hidden;
 }
@@ -8,12 +54,14 @@ body{
     height:100%;
     width: 100%;
     color: white;
-    font-size: 137%;
+    font-size: 16px;
     font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
- /*   background: rgba(20, 162, 162, 0.6);*/
+    /*background: rgba(20, 162, 162, 0.6);*/
     /*background: rgba(158, 143, 68, 0.75);*/
     /*background: #2E9C9C;*/
 }
+
+
 
 a{
     color: white;
@@ -33,17 +81,16 @@ h2{
     width: 100%;
 }
 
-/* Anim-Tansition css override */
-.pageload-overlay {
-    height: calc(100% - 85px) !important;
-}
-.pageload-overlay svg {
-    top: 50px !important;
-}
-
 .login{
     margin-bottom: 40px;
 }
+
+.btn {
+    color: #fff;
+    background-color: #257D7D;
+    border-color: #548984;
+}
+
 
 
 /* Debugging */
@@ -53,9 +100,16 @@ h2{
 .st-menu{
     /*width: 50% !important;*/
 }
+
+
+
+
+
+
+
 .st-menu h2 {
     margin: 0;
-    padding: 14px;
+    padding: 12px;
     color: rgba(0,0,0,0.4);
     text-shadow: 0 0 1px rgba(0,0,0,0.1);
     font-weight: 300;
@@ -63,6 +117,7 @@ h2{
     text-align: center;
     color: white;
     background: rgba(0, 0, 0, 0.25);
+    height: 100%;
 }
 
 
@@ -219,7 +274,7 @@ h2{
 
 .drop-box {
     background: #F8F8F8;
-    border: 2px dashed rgba(214, 111, 222, 0.52);
+    border: 2px dashed rgba(34, 107, 119, 0.52);
     height: 70px;
     text-align: center;
     padding-top: 10px;
@@ -227,14 +282,23 @@ h2{
     font-size: x-small;
     margin-top: 10px;
     margin: 38px;
+    font-size: 12px;
+    ursor: pointer;
 }
  
 .drop-box.dragover {
-    border: 5px dashed blue;
+    border: 2px dashed rgba(34, 107, 119, 1);
 }
  
 .drop-box.dragover-err {
-    border: 5px dashed red;
+    border: 2px dashed red;
+}
+
+.drop-box-title{
+    padding-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: italic;
 }
  
 .uploaded-image {
@@ -345,6 +409,7 @@ h2{
     /*background: rgba(38, 44, 47, 0.25);*/
     background: rgba(38, 44, 47, 0.6);
     height: 100%;
+    font-size: 14px;
 }
 
 .side-left-search{
@@ -426,43 +491,6 @@ h2{
     color: #139787;
 }
 
-.profile-box {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-justify-content: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    /*height: 51px;*/
-    height: 30px;
-}
-
-.form-profile{
-    position: absolute;
-    /*background: rgba(70, 154, 140, 0.25);*/
-    padding: 15px;
-    width: 100%;
-    height: calc(100% - 93px);
-    font-family: Roboto Condensed;
-    font-weight: 500;
-}
-
-.form-control {
-    height: 24px;
-}
-
-.form-control-static {
-    min-height: 24px;
-    padding-top: 3px;
-}
-
-/* Fix alignment issue of label on extra small devices in Bootstrap 3.2 */
-.form-horizontal .control-label{
-    padding-top: 3px;
-}
 
 .button-change-password:hover .fa {
     color: inherit;
@@ -546,7 +574,7 @@ h2{
     font-family: sans-serif;
     font-size: 24px;
     font-weight: 900;
-    vertical-align: -4px;
+    vertical-align: 12px;
 }
 .st-header-menu{
     -webkit-box-flex: 1;
@@ -659,6 +687,17 @@ h2{
     text-align: center;
 }
 
+.st-left-menu-header{
+    height: 50px;
+}
+
+.st-left-menu-content{
+    height: calc(100% - 92px);
+    overflow-y: auto;
+    width: 100%;
+    position: absolute;
+}
+
 .st-left-menu-footer{
     width: 100%;
     position: absolute;
@@ -686,61 +725,58 @@ h2{
 
 
 
-/**
- * Include Roboto Condensed font in your project
- *
- * Download Roboto Condensed ttf files from Google Fonts and place it in the same directory of this CSS file
- * You can then use this font in your project by setting
- * font-face: "Roboto Condensed", Helvetica, Arial, sans-serif;
- *
- * @author Mattia Migliorini (deshack)
- * @license MIT
- */
-
-/* Light */
-@font-face {
-    font-family: "Roboto Condensed";
-    font-style: normal;
-    font-weight: 300;
-    src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url("font/roboto/RobotoCondensed-Light.ttf") format('truetype');
-}
-@font-face {
-    font-family: "Roboto Condensed";
-    font-style: italic;
-    font-weight: 300;
-    src: local('Roboto Condensed Light Italic'), local('RobotoCondensed-LightItalic'), url("font/roboto/RobotoCondensed-LightItalic.ttf") format('truetype');
+.form-group label, .form-group input{
+    display: inline-block;
+    vertical-align: baseline;
+    margin-bottom: 8px;
 }
 
-/* Normal */
-@font-face {
-    font-family: "Roboto Condensed";
-    font-style: normal;
-    font-weight: 400;
-    src: local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url("font/roboto/RobotoCondensed-Regular.ttf") format('truetype');
-}
-@font-face {
-    font-family: "Roboto Condensed";
-    font-style: italic;
-    font-weight: 400;
-    src: local('Roboto Condensed Italic'), local('RobotoCondensed-Italic'), url("font/roboto/RobotoCondensed-Italic.ttf") format('truetype');
+.form-profile .form-group label{
+    width: 70px;
 }
 
-/* Bold */
-@font-face {
-    font-family: "Roboto Condensed";
-    font-style: normal;
-    font-weight: 700;
-    src: local('Roboto Condensed Bold'), local('RobotoCondensed-Bold'), url("font/roboto/RobotoCondensed-Bold.ttf") format('truetype');
-}
-@font-face {
-    font-family: "Roboto Condensed";
-    font-style: italic;
-    font-weight: 700;
-    src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url("font/roboto/RobotoCondensed-BoldItalic.ttf") format('truetype');
+.form-profile .form-group input{
+    width: 180px;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #257D7D;
-    border-color: #548984;
+.form-title{
+    margin: 12px;
+    text-align: center;
+    border-bottom: 1px solid white;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+}
+
+.form-profile{
+    position: absolute;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    font-weight: 500;
+}
+
+.profile-box {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+
+
+
+
+
+/* Anim-Tansition css override */
+.pageload-overlay {
+    height: calc(100% - 85px) !important;
+}
+.pageload-overlay svg {
+    top: 50px !important;
 }

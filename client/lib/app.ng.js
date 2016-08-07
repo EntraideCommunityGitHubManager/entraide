@@ -63,7 +63,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
             url: '/events',
             abstract: true,
             template: '<ui-view/>',
-             views: {
+            views: {
                  'side-left-search-view@app.main': {
                     templateUrl: 'client/app/events/search/filter/search-event-filter.ng.html',
                     controller: 'SearchEventFilterCtrl'
