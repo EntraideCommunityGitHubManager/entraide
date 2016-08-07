@@ -135,9 +135,13 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     $scope.security = {};
     $scope.changePassword = function(){
         if($scope.security.newPassword== $scope.security.newPasswordDiff){
+            $scope.error=null;
             SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
                 $scope.error =null;
                 AnimToasterNotificationService.addSuccessMessage("Mot de passe modifié avec succès !");
+                $scope.security.oldPassword=null;
+                $scope.security.newPassword=null;
+                $scope.security.newPasswordDiff=null;
             }, function(err){AnimToasterNotificationService.addWarningMessage(err.reason);});
         } else {
             $scope.error={reason:'Les 2 nouveaux mots de passe ne correspondent pas.'};

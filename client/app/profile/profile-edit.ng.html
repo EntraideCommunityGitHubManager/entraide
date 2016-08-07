@@ -25,7 +25,7 @@
 				<input type="text" class="form-input" id="lastName" placeholder="Nom" ng-model="profile.lastName">
 			</div>
 			<div class="form-action">
-				<button ng-click="saveProfile()"><i class="fa fa-floppy-o"> Sauver</i></button>
+				<anim-button-material anim-button-material-right-icon="fa-floppy-o" anim-button-material-callback="saveProfile()" anim-button-material-text="Sauver"></anim-button-material>
 			</div>
 			<div class="error-message" ng-show="error">{{error.reason}}</div>
 		</div>
@@ -97,8 +97,8 @@
 				<label for="newPasswordDiff">Confirmation</label>
 				<input type="text" id="newPasswordDiff" placeholder="Confirmation" ng-model="security.newPasswordDiff">
 			</div>
-			<div class="form-group">
-				<button class="btn btn-primary button-change-password" ng-click="changePassword()" ng-disabled="!security.newPassword || !security.newPassword || !security.newPasswordDiff"><i class="fa fa-floppy-o"></i></button>
+			<div class="form-action">
+				<anim-button-material anim-button-material-left-icon="fa-floppy-o" anim-button-material-callback="changePassword()" anim-button-material-text="Sauver" anim-button-material-disabled="!security.oldPassword || !security.newPassword || !security.newPasswordDiff"></anim-button-material>
 			</div>
 			<div class="error-message" ng-show="error">{{error.reason}}</div>
 		</div>

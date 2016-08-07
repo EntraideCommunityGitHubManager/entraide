@@ -1,0 +1,8 @@
+<div class="anim-button-material raised clickable">
+    <div class="anim-button-material-disabled" ng-show="animButtonMaterialDisabled"><i class="fa fa-ban"></i></div>
+    <input type="checkbox" class="toggle" ng-click="clickHandler($event)" ng-disabled="animButtonMaterialDisabled"/>
+    <div class="anim"></div>
+    <span ng-if="animButtonMaterialLeftIcon"><i class="fa {{animButtonMaterialLeftIcon}} left-icon"></i>{{animButtonMaterialText}}</span>
+    <span ng-if="animButtonMaterialRightIcon">{{animButtonMaterialText}}<i class="fa {{animButtonMaterialRightIcon}} right-icon"></i></span>
+    <span ng-if="!animButtonMaterialLeftIcon && !animButtonMaterialRightIcon">{{animButtonMaterialText}}</span>
+</div>
