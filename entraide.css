@@ -9,6 +9,7 @@ body{
     width: 100%;
     color: white;
     font-size: 137%;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
  /*   background: rgba(20, 162, 162, 0.6);*/
     /*background: rgba(158, 143, 68, 0.75);*/
     /*background: #2E9C9C;*/
@@ -271,6 +272,7 @@ h2{
     height: 42px;
     top: 4px;
     position: absolute;
+    right: 11px;
 }
 
 .profile-image-header {
@@ -278,6 +280,7 @@ h2{
     height: 45px;
     top: 2px;
     position: absolute;
+    right: 11px;
 }
 
 .profile-image-header:hover, .profile-image-header-default:hover {
@@ -438,12 +441,13 @@ h2{
 }
 
 .form-profile{
-    margin: 15px;
     position: absolute;
-    width: 265px;
-    background: rgba(70, 154, 140, 0.25);
-    border-radius: 15px;
+    /*background: rgba(70, 154, 140, 0.25);*/
     padding: 15px;
+    width: 100%;
+    height: calc(100% - 93px);
+    font-family: Roboto Condensed;
+    font-weight: 500;
 }
 
 .form-control {
@@ -667,8 +671,76 @@ h2{
     margin: 0 1px 0px 1px !important;
     height: 40px !important;
     min-width: 58px !important;
+    font-size: 18px;
+    background: rgba(15, 107, 98, 0.68);
+}
+
+.anim-button-border-thin{
+    border: 1px solid rgba(255, 255, 255, 0.28);
 }
 
 .fa-sign-in{
     font-size: 26px;
+}
+
+
+
+
+/**
+ * Include Roboto Condensed font in your project
+ *
+ * Download Roboto Condensed ttf files from Google Fonts and place it in the same directory of this CSS file
+ * You can then use this font in your project by setting
+ * font-face: "Roboto Condensed", Helvetica, Arial, sans-serif;
+ *
+ * @author Mattia Migliorini (deshack)
+ * @license MIT
+ */
+
+/* Light */
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 300;
+    src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url("font/roboto/RobotoCondensed-Light.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: italic;
+    font-weight: 300;
+    src: local('Roboto Condensed Light Italic'), local('RobotoCondensed-LightItalic'), url("font/roboto/RobotoCondensed-LightItalic.ttf") format('truetype');
+}
+
+/* Normal */
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url("font/roboto/RobotoCondensed-Regular.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: italic;
+    font-weight: 400;
+    src: local('Roboto Condensed Italic'), local('RobotoCondensed-Italic'), url("font/roboto/RobotoCondensed-Italic.ttf") format('truetype');
+}
+
+/* Bold */
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Condensed Bold'), local('RobotoCondensed-Bold'), url("font/roboto/RobotoCondensed-Bold.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: italic;
+    font-weight: 700;
+    src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url("font/roboto/RobotoCondensed-BoldItalic.ttf") format('truetype');
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #257D7D;
+    border-color: #548984;
 }
