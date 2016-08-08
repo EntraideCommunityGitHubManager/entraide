@@ -82,7 +82,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     };
 
     $scope.camera = function(){
-        $meteor.getPicture().then(function(data){setPicture(data);});
+        MeteorCamera.getPicture().then(function(data){setPicture(data);});
     };
 
     $scope.setFavorite = function(img){
