@@ -79,4 +79,8 @@ http://liuliu.me/eyes/javascript-face-detection-explained/
 http://jaysalvat.com/
 http://trackingjs.com/
 https://davidwalsh.name/face-detection-jquery
+
+
+https://www.youtube.com/watch?v=2r-FfDTnXlM
+
 </pre></code>
