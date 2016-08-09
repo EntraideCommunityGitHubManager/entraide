@@ -15,7 +15,6 @@ angular.module('entraide').controller('MyEventsListCtrl', function ($rootScope, 
     };
 
     $scope.$on('map-click', function(e, originalEventArgs) {
-        setTimeout(function(){MapService.addMarker(MapService.getCoord(originalEventArgs))},300);
         $state.go("app.main.events.search.myEvents.create", {
             "event": {
                 location: MapService.getCoord(originalEventArgs),
