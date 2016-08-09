@@ -82,7 +82,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
     };
 
     $scope.camera = function(){
-        MeteorCamera.getPicture({}, function(error, data){setPicture(data);});
+        $meteor.getPicture().then(function(data){setPicture(data);});
     };
 
     $scope.setFavorite = function(img){
@@ -139,7 +139,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
             SecurityService.changePassword($scope.security.oldPassword, $scope.security.newPassword).then(function () {
                 $scope.error =null;
                 AnimToasterNotificationService.addSuccessMessage("Mot de passe modifié avec succès !");
-                $scope.security.oldPassword=null;
+                $scope.oldPassworddPassword=null;
                 $scope.security.newPassword=null;
                 $scope.security.newPasswordDiff=null;
             }, function(err){AnimToasterNotificationService.addWarningMessage(err.reason);});

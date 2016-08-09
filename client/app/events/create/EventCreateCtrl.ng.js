@@ -1,10 +1,8 @@
 angular.module('entraide').controller('EventCreateCtrl', function ($rootScope, $scope, $meteor, $state, $stateParams, $timeout, CollectionService, AnimService, MapService, AnimToasterNotificationService) {
 
     $scope.event = $stateParams.event;
-
     $scope.selectedCategory = null;
-    
-    setTimeout(function(){MapService.addMarker(event.location)},300);
+    MapService.addMarker($scope.event.location);
     
     CollectionService.subscribe('my-events').then(function(events){ 
         $scope.events = events;
