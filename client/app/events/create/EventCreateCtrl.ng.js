@@ -4,6 +4,8 @@ angular.module('entraide').controller('EventCreateCtrl', function ($rootScope, $
 
     $scope.selectedCategory = null;
     
+    setTimeout(function(){MapService.addMarker(event.location)},300);
+    
     CollectionService.subscribe('my-events').then(function(events){ 
         $scope.events = events;
         AnimService.stopTransition();
