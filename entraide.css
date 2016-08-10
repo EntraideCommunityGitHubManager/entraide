@@ -794,6 +794,12 @@ h2{
 }
 
 
+textarea{
+    font-size: 1em;
+    font-family: "Open Sans";
+    font-weight: 300;
+}
+
 
 
 /* Anim-Tansition css override */
