@@ -81,4 +81,4 @@ http://trackingjs.com/
 https://davidwalsh.name/face-detection-jquery
 http://janmatuschek.de/LatitudeLongitudeBoundingCoordinates
 http://info.meteor.com/blog/angular-meteor-1.3
-http://callmenick.com/</pre></code>
+http://callmenick.com/https://davidwalsh.name/css-flip</pre></code>
