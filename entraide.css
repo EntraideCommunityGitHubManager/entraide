@@ -72,8 +72,8 @@ h2{
 }
 
 .hlp-bcol{
-    /*background-color: #49819C;*/
-    background-color: #2E9C9C;
+    background-color: #49819C;
+    /*background-color: #2E9C9C;*/
 }
 
 .app-view{
@@ -99,6 +99,7 @@ h2{
 }
 .st-menu{
     /*width: 50% !important;*/
+    width: 500px !important;
 }
 
 
@@ -413,7 +414,9 @@ h2{
 
 .side-left-search{
     /*background-color: rgba(42, 106, 150, 0.81);*/
-    background: rgba(4, 100, 167, 0.25);
+    /*background: rgba(4, 100, 167, 0.25);*/
+    /*background-color: rgb(157, 185, 214);*/
+    background-color: rgba(27, 64, 103, 0.92);
     height: 100%;
 }
 
@@ -679,6 +682,10 @@ h2{
 
 .st-left-menu-header{
     height: 50px;
+    -moz-box-shadow: -1px 2px 5px 0px rgba(26, 47, 86, 0.71);
+    -webkit-box-shadow: -1px 2px 5px 0px rgba(26, 47, 86, 0.71);
+    -o-box-shadow: -1px 2px 5px 0px rgba(26, 47, 86, 0.71);
+    box-shadow: -1px 2px 5px 0px rgba(26, 47, 86, 0.71);
 }
 
 .st-left-menu-content{
@@ -694,6 +701,10 @@ h2{
     bottom: 0;
     height: 40px;
     background: rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: -1px 2px 5px 0px rgba(26, 47, 86, 0.71);
+    -webkit-box-shadow: -1px 2px 5px 0px rgba(26, 47, 86, 0.71);
+    -o-box-shadow: -1px 2px 5px 0px rgba(26, 47, 86, 0.71);
+    box-shadow: -1px -2px 5px 0px rgba(26, 47, 86, 0.71);
 }
 
 .anim-button{
@@ -791,6 +802,10 @@ h2{
 
 .event-filter-content{
     margin : 21px;
+}
+
+.event-filter-content input{
+    width: 200px;
 }
 
 

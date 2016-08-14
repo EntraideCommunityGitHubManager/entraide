@@ -31,6 +31,7 @@
 	-webkit-box-shadow: -4px 6px 9px 0px #232323;
 	-o-box-shadow: -4px 6px 9px 0px #232323;
 	box-shadow: -4px 6px 9px 0px #232323;
+	font-family: sans-serif;
 }
 
 .morph-button.open .morph-content {

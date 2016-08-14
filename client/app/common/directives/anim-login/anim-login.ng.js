@@ -67,7 +67,7 @@ angular.module('entraide').directive('animLogin', function(){
             scope.uIMorphingButton = new UIMorphingButton($('.morph-button')[0], {
                 closeEl : '.icon-close',
                 onBeforeOpen : function() {noScroll();},
-                onAfterOpen  : function() {canScroll();},
+                onAfterOpen  : function() {canScroll(); element.find('#email')[0].focus()},
                 onBeforeClose: function() {noScroll();},
                 onAfterClose : function() {canScroll();}
             });
