@@ -30,14 +30,12 @@ angular.module('entraide').directive('categoryFilter', function() {
                 var result = [];
                 var ancestors = [];
                 var termFound = false;
-                var isRoot = false;
                 angular.forEach($scope.model.categories, function(cat){
                     termFound = cat.name.toLowerCase().indexOf(filterTerm)> -1;
-                    isRoot = !(cat.code.indexOf('-')> -1);
-                    if(termFound && isRoot){
+                    if(termFound && cat.root){
                         ancestors.push(cat.code);
                     }
-                    if(termFound || (!isRoot && _.contains(ancestors, cat.code.substring(0, cat.code.indexOf("-"))))){
+                    if(termFound || (!cat.root && _.contains(ancestors, cat.code.substring(0, cat.code.indexOf("-"))))){
                         result.push(cat);
                     }
                 });
