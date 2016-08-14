@@ -31,7 +31,7 @@ angular.module('entraide').directive('categoryFilter', function() {
                 var ancestors = [];
                 var termFound = false;
                 angular.forEach($scope.model.categories, function(cat){
-                    termFound = cat.name.toLowerCase().indexOf(filterTerm)> -1;
+                    termFound = cat.name.toLowerCase().indexOf(filterTerm.toLowerCase())> -1;
                     if(termFound && cat.root){
                         ancestors.push(cat.code);
                     }
