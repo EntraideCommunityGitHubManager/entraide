@@ -2,9 +2,7 @@ angular.module('entraide').controller('SearchEventFilterCtrl', function ($rootSc
 
     console.log('SearchEventFilterCtrl');
     
-    $scope.categoryFilterModel = {
-        categories: []
-    };
+    $scope.categoryFilterModel = {categories: []};
     $scope.isConnected = SecurityService.isConnected;
     
     CollectionService.subscribe('all-categories').then(function(categories){
@@ -18,11 +16,6 @@ angular.module('entraide').controller('SearchEventFilterCtrl', function ($rootSc
     $scope.goTo = function(state){
         $state.go(state);
     };
-    
-    $scope.getCategoryClass=function(cat){
-        var level = cat.code.split("-").length;
-        return cat.code + "-" +level;
-    }
 
 });
 
