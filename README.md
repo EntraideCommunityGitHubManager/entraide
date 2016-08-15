@@ -83,5 +83,5 @@ http://janmatuschek.de/LatitudeLongitudeBoundingCoordinates
 http://info.meteor.com/blog/angular-meteor-1.3
 http://callmenick.com/
 https://davidwalsh.name/css-flip
-http://jsfiddle.net/7tb4g/317/
+http://jsfiddle.net/7tb4g/341/
 </pre></code>
