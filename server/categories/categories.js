@@ -107,6 +107,7 @@ Meteor.startup(function () {
 		Categories.insert({code: 'beau', ancestors:[], root:true, level:0, name:'Soins, Beauté & Mode'});
 		Categories.insert({code: 'beau-hair', ancestors:['beau'], name:'Coiffure'});
 		Categories.insert({code: 'beau-make', ancestors:['beau'], name:'Maquillage'});
+		Categories.insert({code: 'beau-rlok', ancestors:['beau'], name:'Relooking'});
 		Categories.insert({code: 'beau-masg', ancestors:['beau'], name:'Massage'});
 		Categories.insert({code: 'beau-cout', ancestors:['beau'], name:'Couture'});
 		Categories.insert({code: 'beau-rpsg', ancestors:['beau'], name:'Repassage'});
