@@ -106,8 +106,7 @@ angular.module('entraide').directive('categoryFilter', function() {
                 if(cat.root){
                     return {
                         'background-image': "url('category/" + cat.code + "/" + cat.code + ".png')",
-                        'flex-basis': '375px',
-                        'margin-top' : cat.level > 0 ? '60px' : '2px'
+                        'flex-basis': '375px'
                     };
                 } else {
                     return $scope.getCategoryIconStyle(cat);

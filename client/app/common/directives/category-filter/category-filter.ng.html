@@ -16,6 +16,5 @@
     <div class="animate-repeat {{cat.root ? 'category-card-root' : 'category-card'}}"
          ng-repeat="cat in model.categoriesDisplayed | orderBy: 'order' track by cat.code"
          ng-click="addCategory(cat)"
-         ng-hide="cat.root && cat.level==0"
          ng-style="getStyle(cat)"></div>
 </div>
