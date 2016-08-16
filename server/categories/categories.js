@@ -76,8 +76,8 @@ Meteor.startup(function () {
 		Categories.insert({code: 'learn-cook-othr', ancestors:['learn', 'learn-cook'], name:'Autres'});
 
 
-		// Bricolage & Travaux & Jardins
-		Categories.insert({code: 'brico', ancestors:[], root:true, level:0, name:'Bricolage & Travaux & Jardins'});
+		// Bricolage, Travaux & Jardins
+		Categories.insert({code: 'brico', ancestors:[], root:true, level:0, name:'Bricolage, Travaux & Jardins'});
 		Categories.insert({code: 'brico-home', ancestors:['brico'], root:true, level:1, name:'Maison'});
 		Categories.insert({code: 'brico-home-deco', ancestors:['brico', 'brico-home'], name:'Aménagement & décoration'});
 		Categories.insert({code: 'brico-home-elec', ancestors:['brico', 'brico-home'], name:'Electricité'});
@@ -102,11 +102,13 @@ Meteor.startup(function () {
 		Categories.insert({code: 'meca-othr', ancestors:['meca'], name:'Autres'});
 
 
-		// Soins & Beauté
-		Categories.insert({code: 'beau', ancestors:[], root:true, level:0, name:'Soins & Beauté'});
+		// Soins, Beauté & Mode
+		Categories.insert({code: 'beau', ancestors:[], root:true, level:0, name:'Soins, Beauté & Mode'});
 		Categories.insert({code: 'beau-hair', ancestors:['beau'], name:'Coiffure'});
 		Categories.insert({code: 'beau-make', ancestors:['beau'], name:'Maquillage'});
 		Categories.insert({code: 'beau-masg', ancestors:['beau'], name:'Massage'});
+		Categories.insert({code: 'beau-cout', ancestors:['beau'], name:'Couture'});
+		Categories.insert({code: 'beau-rpsg', ancestors:['beau'], name:'Repassage'});
 		Categories.insert({code: 'beau-othr', ancestors:['beau'], name:'Autres'});
 
 	}
