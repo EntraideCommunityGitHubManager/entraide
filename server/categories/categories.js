@@ -18,7 +18,7 @@ Meteor.startup(function () {
 		Categories.insert({code: 'beau-othr', ancestors:['beau'], name:'Soins, Beauté & Mode - Autres', order:99});
 
 		// Cours de Musique
-		Categories.insert({code: 'learn-music', ancestors:[], root:true, level:0, name:'Cours de Musique', order:101});
+		Categories.insert({code: 'learn-music', ancestors:[], root:true, level:0, name:'Cours de Musique', terms:'cours musique apprentissage apprendre progresser progres progrès progression découvrir decouvrir', order:101});
 		Categories.insert({code: 'learn-music-drum-btry', ancestors:['learn-music'], name:'Batteries', order:102});
 		Categories.insert({code: 'learn-music-elec-kbrd', ancestors:['learn-music'], name:'Claviers numérique', order:103});
 		Categories.insert({code: 'learn-music-elec-djng', ancestors:['learn-music'], name:'Dj', order:104});
@@ -35,7 +35,7 @@ Meteor.startup(function () {
 		Categories.insert({code: 'learn-music-othr', ancestors:['learn-music'], name:'Cours de Musique - Autres', order:199});
 
 		// Education
-		Categories.insert({code: 'learn-educ', ancestors:[], root:true, level:0, name:'Matières Scolaire', order:200});
+		Categories.insert({code: 'learn-educ', ancestors:[], root:true, level:0, name:'Education', terms:'cours eduction éducation soutien matiéres matieres apprentissage apprendre scolaire progresser progres progrès progression découvrir decouvrir', order:200});
 		Categories.insert({code: 'learn-educ-mktg', ancestors:['learn-educ'], name:'Commerce', order:201});
 		Categories.insert({code: 'learn-educ-econ', ancestors:['learn-educ'], name:'Economie', order:202});
 		Categories.insert({code: 'learn-educ-geog', ancestors:['learn-educ'], name:'Géographie', order:203});
@@ -47,7 +47,7 @@ Meteor.startup(function () {
 		Categories.insert({code: 'learn-educ-othr', ancestors:['learn-educ'], name:'Cours Scolaire - Autres', order:299});
 
 		// Cours de Cuisine
-		Categories.insert({code: 'learn-cook', ancestors:[], root:true, level:0, name:'Cuisine', order:300});
+		Categories.insert({code: 'learn-cook', ancestors:[], root:true, level:0, name:'Cours de Cuisine', terms:'cours cuisine apprentissage apprendre progresser progres progrès progression découvrir decouvrir', order:300});
 		Categories.insert({code: 'learn-cook-ambo', ancestors:['learn-cook'], name:'Amuse Bouche', order:301});
 		Categories.insert({code: 'learn-cook-strt', ancestors:['learn-cook'], name:'Entrées', order:302});
 		Categories.insert({code: 'learn-cook-prcp', ancestors:['learn-cook'], name:'Plats', order:303});
@@ -57,7 +57,7 @@ Meteor.startup(function () {
 		Categories.insert({code: 'learn-cook-othr', ancestors:['learn-cook'], name:'Cours de Cuisine - Autres', order:399});
 
 		// Cours de Sport
-		Categories.insert({code: 'learn-sport', ancestors:[], root:true, level:0, name:'Sport', order:400});
+		Categories.insert({code: 'learn-sport', ancestors:[], root:true, level:0, name:'Sport', terms:'cours sport apprentissage apprendre progresser progres progrès progression découvrir decouvrir', order:400});
 		Categories.insert({code: 'learn-sport-badm', ancestors:['learn-sport'], name:'Badminton', order:401});
 		Categories.insert({code: 'learn-sport-bskt', ancestors:['learn-sport'], name:'Basket', order:402});
 		Categories.insert({code: 'learn-sport-bmx', ancestors:['learn-sport'], name:'Bmx', order:403});
@@ -90,7 +90,7 @@ Meteor.startup(function () {
 
 
 		// Bricolage, Travaux & Jardins
-		Categories.insert({code: 'brico', ancestors:[], root:true, level:0, name:'Bricolage, Maison, Travaux & Jardins', order:500});
+		Categories.insert({code: 'brico', ancestors:[], root:true, level:0, name:'Bricolage, Maison, Travaux & Jardins', terms:'bricolage maison travaux jardins apprentissage apprendre progresser progres progrès progression découvrir decouvrir',  order:500});
 		Categories.insert({code: 'brico-home-deco', ancestors:['brico'], name:'Maison - Aménagement & décoration', order:502});
 		Categories.insert({code: 'brico-home-elec', ancestors:['brico'], name:'Electricité', order:503});
 		Categories.insert({code: 'brico-home-msry', ancestors:['brico'], name:'Maçonnerie', order:504});
@@ -101,7 +101,7 @@ Meteor.startup(function () {
 
 
 		// Mécanique & Réparations
-		Categories.insert({code: 'meca', ancestors:[], root:true, level:0, name:'Mécanique & Réparations', order:600});
+		Categories.insert({code: 'meca', ancestors:[], root:true, level:0, name:'Mécanique & Réparations', terms:'cours mecanique mécanique réparation reparation apprentissage apprendre progresser progres progrès progression découvrir decouvrir', order:600});
 		Categories.insert({code: 'meca-trck', ancestors:['meca'], name:'Camion & Poids lourd', order:601});
 		Categories.insert({code: 'meca-cars', ancestors:['meca'], name:'Voiture', order:602});
 		Categories.insert({code: 'meca-moto', ancestors:['meca'], name:'Moto', order:603});

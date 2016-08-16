@@ -28,7 +28,8 @@ angular.module('entraide').directive('categoryFilter', function() {
                     var ancestors = [];
                     var termFound = false;
                     angular.forEach($scope.model.categories, function(cat){
-                        termFound = cat.name.toLowerCase().indexOf(filterTerm.toLowerCase())> -1;
+                        var str = cat.terms ? cat.terms : cat.name;
+                        termFound = str.toLowerCase().indexOf(filterTerm.toLowerCase())> -1;
                         if(termFound){
                             if(cat.root){
                                 pushDistinct(ancestors, {code: cat.code, termRootFound: true});
@@ -105,8 +106,7 @@ angular.module('entraide').directive('categoryFilter', function() {
             $scope.getStyle = function(cat){
                 if(cat.root){
                     return {
-                        'background-image': "url('category/" + cat.code + "/" + cat.code + ".png')",
-                        'flex-basis': '375px'
+                        'background-image': "url('category/" + cat.code + "/" + cat.code + ".png')"
                     };
                 } else {
                     return $scope.getCategoryIconStyle(cat);
