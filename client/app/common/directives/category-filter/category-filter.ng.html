@@ -2,7 +2,7 @@
     <input type="text" ng-model="model.searchTerm" placeholder="Rechercher dans la description">
     <button ng-click="search(searchTerm)"></button>
 </div>
-<div class="category-selector-row animate-repeat" ng-repeat="cat in model.categoriesSelected | orderBy: 'code' track by cat.code">
+<div class="category-selector-row animate-repeat" ng-repeat="cat in model.categoriesSelected | orderBy: 'name' track by cat.code">
     <div class="category-icon-selected" ng-style="getCategoryIconStyle(cat)"></div>
     <div>{{cat.name}}</div>
     <div anim-star callback="setRating" callback-arguments="cat" current-rating="getRating(cat)">rating</div>
@@ -13,8 +13,9 @@
     <input type="text" ng-change="filterCategories(model.filterTerm)" ng-model="model.filterTerm" placeholder="Filtrer les catégories">
 </div>
 <div class="category-card-container">
-    <div class="animate-repeat category-card category-{{cat.code}}"
-         ng-repeat="cat in model.categoriesDisplayed | orderBy: 'code' track by cat.code"
+    <div class="animate-repeat {{cat.root ? 'category-card-root' : 'category-card'}}"
+         ng-repeat="cat in model.categoriesDisplayed | orderBy: 'order' track by cat.code"
          ng-click="addCategory(cat)"
+         ng-hide="cat.root && cat.level==0"
          ng-style="getStyle(cat)"></div>
 </div>

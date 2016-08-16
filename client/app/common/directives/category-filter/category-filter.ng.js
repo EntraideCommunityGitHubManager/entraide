@@ -97,16 +97,17 @@ angular.module('entraide').directive('categoryFilter', function() {
             }
 
             $scope.getCategoryIconStyle = function(cat){
-                return {'background-image': "url('category/" + cat.code + "/" + cat.code + ".png')"};
+                return {
+                    'background-image': "url('category/" + cat.code + "/" + cat.code + ".png')"
+                };
             };
 
             $scope.getStyle = function(cat){
                 if(cat.root){
                     return {
                         'background-image': "url('category/" + cat.code + "/" + cat.code + ".png')",
-                        'background-color': 'rgb(185, 105, 83)',
-                        'flex-basis': cat.level > 0 ? '321px' : '50px',
-                        'border-bottom': '2px solid rgb(228, 107, 36)'
+                        'flex-basis': '375px',
+                        'margin-top' : cat.level > 0 ? '60px' : '2px'
                     };
                 } else {
                     return $scope.getCategoryIconStyle(cat);
@@ -123,8 +124,10 @@ angular.module('entraide').directive('categoryFilter', function() {
             };
 
             $scope.addCategory = function(cat){
-                var index = indexOf($scope.model.categoriesDisplayed, cat, 'code');
-                $scope.model.categoriesSelected.push($scope.model.categoriesDisplayed.splice(index,1)[0]);
+                if(!cat.root){
+                    var index = indexOf($scope.model.categoriesDisplayed, cat, 'code');
+                    $scope.model.categoriesSelected.push($scope.model.categoriesDisplayed.splice(index,1)[0]);
+                }
             };
 
             $scope.removeCategory = function(cat){
