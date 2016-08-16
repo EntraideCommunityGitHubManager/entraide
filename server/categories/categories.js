@@ -64,6 +64,7 @@ Meteor.startup(function () {
 		Categories.insert({code: 'learn-sport-canoe', ancestors:['learn', 'learn-sport'], name:'Canoe Kayak'});
 		Categories.insert({code: 'learn-sport-dron', ancestors:['learn', 'learn-sport'], name:'Drones'});
 		Categories.insert({code: 'learn-sport-vgme', ancestors:['learn', 'learn-sport'], name:'Jeux Vidéos'});
+		Categories.insert({code: 'learn-sport-card', ancestors:['learn', 'learn-sport'], name:'Jeux de cartes'});
 		Categories.insert({code: 'learn-sport-othr', ancestors:['learn', 'learn-sport'], name:'Autres'});
 		// Cuisine
 		Categories.insert({code: 'learn-cook', ancestors:['learn'], root:true, level:1, name:'Cuisine'});
