@@ -8,7 +8,7 @@ Meteor.startup(function () {
 	if(Categories.find({}).count()<=0){
 
 		// Soins, Beauté & Mode
-		Categories.insert({code: 'beau', ancestors:[], root:true, level:0, name:'Soins, Beauté & Mode', order:0, terms:'cours apprentissage apprendre initiation initier progresser progres progression decouvrir'});
+		Categories.insert({code: 'beau', ancestors:[], root:true, level:0, name:'Soins, Beauté & Mode', order:0, terms:'soins beaute mode cours apprentissage apprendre initiation initier progresser progres progression decouvrir'});
 		Categories.insert({code: 'beau-hair', ancestors:['beau'], name:'Coiffure', order:1, terms: 'coiffure coiffeur couper cheveux'});
 		Categories.insert({code: 'beau-cout', ancestors:['beau'], name:'Couture', order:2, terms: 'couture coudre'});
 		Categories.insert({code: 'beau-make', ancestors:['beau'], name:'Maquillage', order:3, terms: 'maquillage maquiller make up make-up'});
