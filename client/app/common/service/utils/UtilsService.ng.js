@@ -75,6 +75,24 @@ angular.module("entraide").factory("UtilsService", function(){
                 }
                 return ret;
             }
+        },
+        matchTerms: function(words, terms){
+            var service = this;
+            var wordsArray = [];
+            angular.forEach(words.replace(new RegExp("'", 'g'), " ").replace(new RegExp('"', 'g'), " ").split(" "), function(s){
+                if(s.trim()!=''){
+                    wordsArray.push(s);
+                }
+            });
+            var termFound = false;
+            for(var i=0; i<wordsArray.length; i++){
+                var word = wordsArray[i];
+                if(terms.indexOf(service.handleAccent(word.toLowerCase()))> -1){
+                    termFound = true;
+                    break;
+                }
+            }
+            return termFound;
         }
     };
 
