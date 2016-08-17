@@ -40,7 +40,7 @@ Meteor.startup(function () {
 		Categories.insert({code: 'learn-educ-econ', ancestors:['learn-educ'], name:'Economie', order:202});
 		Categories.insert({code: 'learn-educ-geog', ancestors:['learn-educ'], name:'Géographie', order:203});
 		Categories.insert({code: 'learn-educ-hist', ancestors:['learn-educ'], name:'Histoire', order:204});
-		Categories.insert({code: 'learn-educ-comp', ancestors:['learn-educ'], name:'Informatique', order:205, terms: 'informatique programmation programmer language java javascript html coder algorithme '});
+		Categories.insert({code: 'learn-educ-comp', ancestors:['learn-educ'], name:'Informatique', order:205, terms: 'informatique ordinateur tablette utiliser configurer site web application logiciels programmation programmer language java javascript html coder algorithme '});
 		Categories.insert({code: 'learn-educ-lang', ancestors:['learn-educ'], name:'Langues', order:206, terms: 'langues parler etranger etrangere anglais espagnol chinois japonais russe arabe portuguais'});
 		Categories.insert({code: 'learn-educ-math', ancestors:['learn-educ'], name:'Mathématiques', order:207});
 		Categories.insert({code: 'learn-educ-scie', ancestors:['learn-educ'], name:'Sciences', order:208, terms: 'science physique naturelle'});
