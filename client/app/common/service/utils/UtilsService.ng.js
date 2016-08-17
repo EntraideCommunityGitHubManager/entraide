@@ -78,18 +78,23 @@ angular.module("entraide").factory("UtilsService", function(){
         },
         matchTerms: function(words, terms, min){
             var service = this;
-            min = min ? min : 3;
+            min = min ? min : 2;
+            var arr = words.replace(new RegExp("'", 'g'), " ").replace(new RegExp('"', 'g'), " ").split(" ");
             var wordsArray = [];
-            angular.forEach(words.replace(new RegExp("'", 'g'), " ").replace(new RegExp('"', 'g'), " ").split(" "), function(s){
+            angular.forEach(arr, function(s){
                 var c = s.trim();
-                if(c!='' && c.length>min){
-                    wordsArray.push(s);
+                if(c!=''){
+                    if(arr.length<2){
+                        wordsArray.push(s);
+                    } else if(c.length>min) {
+                        wordsArray.push(s);
+                    }
                 }
             });
             var termFound = false;
             for(var i=0; i<wordsArray.length; i++){
                 var word = wordsArray[i];
-                if(terms.indexOf(service.handleAccent(word.toLowerCase()))> -1){
+                if(terms.toLowerCase().indexOf(service.handleAccent(word.toLowerCase()))> -1){
                     termFound = true;
                     break;
                 }
