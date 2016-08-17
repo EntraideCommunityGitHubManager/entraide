@@ -28,6 +28,53 @@ angular.module("entraide").factory("UtilsService", function(){
                 el = el.parentNode||false;
             }
             return found;
+        },
+        handleAccent: function(s){
+            var accent_map = {
+                'Á':'a',
+                'á':'a',
+                'À':'a',
+                'à':'a',
+                'Ç':'c',
+                'ç':'c',
+                'É':'e',
+                'é':'e',
+                'È':'e',
+                'è':'e',
+                'Ê':'e',
+                'Ë':'e',
+                'ë':'e',
+                'Í':'i',
+                'í':'i',
+                'Î':'i',
+                'î':'i',
+                'Ï':'i',
+                'ï':'i',
+                'Ó':'o',
+                'ó':'o',
+                'Ò':'o',
+                'ò':'o',
+                'Ô':'o',
+                'ô':'o',
+                'Ö':'o',
+                'ö':'o',
+                'ø':'o',
+                'Ú':'u',
+                'ú':'u',
+                'Ù':'u',
+                'ù':'u',
+                'Û':'u',
+                'û':'u',
+                'Ü':'u',
+                'ü':'u'
+            };
+            if (s){
+                var ret = '';
+                for (var i=0; i<s.length; i++) {
+                    ret += accent_map[s.charAt(i)] || s.charAt(i);
+                }
+                return ret;
+            }
         }
     };
 
