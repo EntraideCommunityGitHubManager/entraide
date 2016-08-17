@@ -90,18 +90,18 @@ Meteor.startup(function () {
 
 
 		// Bricolage, Travaux & Jardins
-		Categories.insert({code: 'brico', ancestors:[], root:true, level:0, order:500, name:'Bricolage, Maison, Travaux & Jardins', terms:'bricolage maison travaux jardins apprentissage apprendre initiation initier progresser progres progression decouvrir exterieur interieur'});
+		Categories.insert({code: 'brico', ancestors:[], root:true, level:0, order:500, name:'Bricolage, Maison, Travaux & Jardins', terms:'bricolage bricoler reparer reparation maison travaux jardins apprentissage apprendre initiation initier progresser progres progression decouvrir exterieur interieur'});
 		Categories.insert({code: 'brico-home-deco', ancestors:['brico'], name:'Maison - Aménagement & décoration', order:502});
-		Categories.insert({code: 'brico-home-elec', ancestors:['brico'], name:'Electricité', order:503});
-		Categories.insert({code: 'brico-home-msry', ancestors:['brico'], name:'Maçonnerie', order:504});
-		Categories.insert({code: 'brico-home-pait', ancestors:['brico'], name:'Peinture', order:505});
-		Categories.insert({code: 'brico-grdn-deco', ancestors:['brico'], name:'Jardin - Aménagement & décoration', order:551, terms: 'jardin amenagment decoration decorer tondre pelouse couper '});
+		Categories.insert({code: 'brico-home-elec', ancestors:['brico'], name:'Electricité', order:503, terms: 'electricite electrique fil'});
+		Categories.insert({code: 'brico-home-msry', ancestors:['brico'], name:'Maçonnerie', order:504, terms: 'maconnerie casser monter mur enduit'});
+		Categories.insert({code: 'brico-home-pait', ancestors:['brico'], name:'Peinture', order:505, terms: 'peindre peinture rafraichir'});
+		Categories.insert({code: 'brico-grdn-deco', ancestors:['brico'], name:'Jardin - Aménagement & décoration', order:551, terms: 'jardin amenagment decoration decorer tondre pelouse couper'});
 		Categories.insert({code: 'brico-grdn-vega', ancestors:['brico'], name:'Potager', order:552});
 		Categories.insert({code: 'brico-othr', ancestors:['brico'], name:'Bricolage & Travaux - Autres', order: 599});
 
 
 		// Mécanique & Réparations
-		Categories.insert({code: 'meca', ancestors:[], root:true, level:0, name:'Mécanique & Réparations', terms:'cours mecanique reparation apprentissage initiation initier apprendre progresser progres progression decouvrir', order:600});
+		Categories.insert({code: 'meca', ancestors:[], root:true, level:0, name:'Mécanique & Réparations', terms:'cours mecanique reparer reparation apprentissage initiation initier apprendre progresser progres progression decouvrir', order:600});
 		Categories.insert({code: 'meca-trck', ancestors:['meca'], name:'Camion & Poids lourd', order:601});
 		Categories.insert({code: 'meca-cars', ancestors:['meca'], name:'Voiture', order:602});
 		Categories.insert({code: 'meca-moto', ancestors:['meca'], name:'Moto', order:603});
