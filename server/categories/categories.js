@@ -18,7 +18,7 @@ Meteor.startup(function () {
 		Categories.insert({code: 'beau-othr', ancestors:['beau'], name:'Soins, Beauté & Mode - Autres', order:99});
 
 		// Cours de Musique
-		Categories.insert({code: 'learn-music', ancestors:[], root:true, level:0, name:'Cours de Musique', order:101, terms:'cours musique apprentissage solfege jouer initiation initier apprendre progresser progres progression decouvrir'});
+		Categories.insert({code: 'learn-music', ancestors:[], root:true, level:0, name:'Cours de Musique', order:101, terms:'cours musique apprentissage accords rythme solfege jouer initiation initier apprendre progresser progres progression decouvrir'});
 		Categories.insert({code: 'learn-music-drum-btry', ancestors:['learn-music'], name:'Batteries', order:102});
 		Categories.insert({code: 'learn-music-elec-kbrd', ancestors:['learn-music'], name:'Claviers numérique', order:103});
 		Categories.insert({code: 'learn-music-elec-djng', ancestors:['learn-music'], name:'Dj', order:104, terms: 'dj djing disque caler mixer'});
@@ -47,7 +47,7 @@ Meteor.startup(function () {
 		Categories.insert({code: 'learn-educ-othr', ancestors:['learn-educ'], name:'Cours Scolaire - Autres', order:299});
 
 		// Cours de Cuisine
-		Categories.insert({code: 'learn-cook', ancestors:[], root:true, level:0, name:'Cours de Cuisine', order:300, terms:'cours cuisiner apprentissage apprendre initiation initier progresser progres progression decouvrir'});
+		Categories.insert({code: 'learn-cook', ancestors:[], root:true, level:0, name:'Cours de Cuisine', order:300, terms:'cours cuisiner gastronomie bistronomie apprentissage apprendre initiation initier progresser progres progression decouvrir'});
 		Categories.insert({code: 'learn-cook-ambo', ancestors:['learn-cook'], name:'Amuse Bouche', order:301});
 		Categories.insert({code: 'learn-cook-strt', ancestors:['learn-cook'], name:'Entrées', order:302});
 		Categories.insert({code: 'learn-cook-prcp', ancestors:['learn-cook'], name:'Plats', order:303});
@@ -101,13 +101,13 @@ Meteor.startup(function () {
 
 
 		// Mécanique & Réparations
-		Categories.insert({code: 'meca', ancestors:[], root:true, level:0, name:'Mécanique & Réparations', terms:'cours mecanique reparer reparation apprentissage initiation initier apprendre progresser progres progression decouvrir', order:600});
+		Categories.insert({code: 'meca', ancestors:[], root:true, level:0, name:'Mécanique & Réparations', terms:'cours mecanique reparer reparation customisation customiser apprentissage initiation initier apprendre progresser progres progression decouvrir', order:600});
 		Categories.insert({code: 'meca-trck', ancestors:['meca'], name:'Camion & Poids lourd', order:601});
 		Categories.insert({code: 'meca-cars', ancestors:['meca'], name:'Voiture', order:602});
 		Categories.insert({code: 'meca-moto', ancestors:['meca'], name:'Moto', order:603});
-		Categories.insert({code: 'meca-scoo', ancestors:['meca'], name:'Scooter & Vespa', order:604});
-		Categories.insert({code: 'meca-bike', ancestors:['meca'], name:'Vélo', order:605});
-		Categories.insert({code: 'meca-pait', ancestors:['meca'], name:'Peinture', order:606});
+		Categories.insert({code: 'meca-scoo', ancestors:['meca'], name:'Scooter', order:604, terms: 'scooter vespa mobylette ciao'});
+		Categories.insert({code: 'meca-bike', ancestors:['meca'], name:'Vélo', order:605, terms: 'velo cruiser beach low rider vtt course'});
+		Categories.insert({code: 'meca-pait', ancestors:['meca'], name:'Peinture', order:606, terms: 'peinture peindre carrosserie'});
 		Categories.insert({code: 'meca-othr', ancestors:['meca'], name:'Mécanique & Réparations - Autres', order:699});
 
 
