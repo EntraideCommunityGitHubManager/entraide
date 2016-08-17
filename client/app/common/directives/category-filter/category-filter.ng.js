@@ -28,8 +28,7 @@ angular.module('entraide').directive('categoryFilter', function(UtilsService) {
                     var ancestors = [];
                     var termFound = false;
                     angular.forEach($scope.model.categories, function(cat){
-                        var str = cat.terms ? cat.terms : UtilsService.handleAccent(cat.name);
-                        termFound = str.indexOf(UtilsService.handleAccent(filterTerm.toLowerCase()))> -1;
+                        termFound = UtilsService.matchTerms(filterTerm.toLowerCase(), cat.terms ? cat.terms : UtilsService.handleAccent(cat.name));
                         if(termFound){
                             if(cat.root){
                                 pushDistinct(ancestors, {code: cat.code, termRootFound: true});
