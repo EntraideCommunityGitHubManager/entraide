@@ -18,36 +18,36 @@ Meteor.startup(function () {
 		Categories.insert({code: 'beau-othr', ancestors:['beau'], name:'Soins, Beauté & Mode - Autres', order:99});
 
 		// Cours de Musique
-		Categories.insert({code: 'learn-music', ancestors:[], root:true, level:0, name:'Cours de Musique', order:101, terms:'cours musique apprentissage initiation initier apprendre progresser progres progression decouvrir'});
+		Categories.insert({code: 'learn-music', ancestors:[], root:true, level:0, name:'Cours de Musique', order:101, terms:'cours musique apprentissage jouer initiation initier apprendre progresser progres progression decouvrir'});
 		Categories.insert({code: 'learn-music-drum-btry', ancestors:['learn-music'], name:'Batteries', order:102});
 		Categories.insert({code: 'learn-music-elec-kbrd', ancestors:['learn-music'], name:'Claviers numérique', order:103});
-		Categories.insert({code: 'learn-music-elec-djng', ancestors:['learn-music'], name:'Dj', order:104});
-		Categories.insert({code: 'learn-music-elec-drum', ancestors:['learn-music'], name:'Drum machine', order:105});
+		Categories.insert({code: 'learn-music-elec-djng', ancestors:['learn-music'], name:'Dj', order:104, terms: 'dj djing disque caler mixer'});
+		Categories.insert({code: 'learn-music-elec-drum', ancestors:['learn-music'], name:'Drum machine', order:105, terms: 'drum machine sequencer sequenceur programmer'});
 		Categories.insert({code: 'learn-music-wind-flut', ancestors:['learn-music'], name:'Flûtes', order:106});
 		Categories.insert({code: 'learn-music-strg-guit', ancestors:['learn-music'], name:'Guitares', order:107});
 		Categories.insert({code: 'learn-music-drum-perc', ancestors:['learn-music'], name:'Percussions', order:108});
 		Categories.insert({code: 'learn-music-elec-keys', ancestors:['learn-music'], name:'Piano', order:109});
 		Categories.insert({code: 'learn-music-wind-saxo', ancestors:['learn-music'], name:'Saxophones', order:110});
-		Categories.insert({code: 'learn-music-elec-sqcr', ancestors:['learn-music'], name:'Séquenceurs', order:111});
-		Categories.insert({code: 'learn-music-elec-stdo', ancestors:['learn-music'], name:'Studio', order:112});
-		Categories.insert({code: 'learn-music-elec-synt', ancestors:['learn-music'], name:'Synthétiseurs', order:113});
+		Categories.insert({code: 'learn-music-elec-sqcr', ancestors:['learn-music'], name:'Séquenceurs', order:111, terms: 'drum machine sequencer sequenceur programmer'});
+		Categories.insert({code: 'learn-music-elec-stdo', ancestors:['learn-music'], name:'Studio', order:112, terms: 'studio configurer brancher'});
+		Categories.insert({code: 'learn-music-elec-synt', ancestors:['learn-music'], name:'Synthétiseurs', order:113, terms: 'synthetiseur programmer'});
 		Categories.insert({code: 'learn-music-strg-viln', ancestors:['learn-music'], name:'Violons', order:114});
 		Categories.insert({code: 'learn-music-othr', ancestors:['learn-music'], name:'Cours de Musique - Autres', order:199});
 
 		// Education
 		Categories.insert({code: 'learn-educ', ancestors:[], root:true, level:0, name:'Education', order:200, terms:'cours education enseigner soutien matieres initiation initier apprentissage apprendre scolaire progresser progres progression decouvrir'});
-		Categories.insert({code: 'learn-educ-mktg', ancestors:['learn-educ'], name:'Commerce', order:201});
+		Categories.insert({code: 'learn-educ-mktg', ancestors:['learn-educ'], name:'Commerce', order:201, terms: 'commerce marketing'});
 		Categories.insert({code: 'learn-educ-econ', ancestors:['learn-educ'], name:'Economie', order:202});
 		Categories.insert({code: 'learn-educ-geog', ancestors:['learn-educ'], name:'Géographie', order:203});
 		Categories.insert({code: 'learn-educ-hist', ancestors:['learn-educ'], name:'Histoire', order:204});
-		Categories.insert({code: 'learn-educ-comp', ancestors:['learn-educ'], name:'Informatique', order:205});
-		Categories.insert({code: 'learn-educ-lang', ancestors:['learn-educ'], name:'Langues', order:206});
+		Categories.insert({code: 'learn-educ-comp', ancestors:['learn-educ'], name:'Informatique', order:205, terms: 'informatique programmation programmer language java javascript html coder algorithme '});
+		Categories.insert({code: 'learn-educ-lang', ancestors:['learn-educ'], name:'Langues', order:206, terms: 'langues parler etranger etrangere anglais espagnol chinois japonais russe arabe portuguais'});
 		Categories.insert({code: 'learn-educ-math', ancestors:['learn-educ'], name:'Mathématiques', order:207});
-		Categories.insert({code: 'learn-educ-scie', ancestors:['learn-educ'], name:'Sciences', order:208});
+		Categories.insert({code: 'learn-educ-scie', ancestors:['learn-educ'], name:'Sciences', order:208, terms: 'science physique naturelle'});
 		Categories.insert({code: 'learn-educ-othr', ancestors:['learn-educ'], name:'Cours Scolaire - Autres', order:299});
 
 		// Cours de Cuisine
-		Categories.insert({code: 'learn-cook', ancestors:[], root:true, level:0, name:'Cours de Cuisine', order:300, terms:'cours cuisine apprentissage apprendre initiation initier progresser progres progression decouvrir'});
+		Categories.insert({code: 'learn-cook', ancestors:[], root:true, level:0, name:'Cours de Cuisine', order:300, terms:'cours cuisiner apprentissage apprendre initiation initier progresser progres progression decouvrir'});
 		Categories.insert({code: 'learn-cook-ambo', ancestors:['learn-cook'], name:'Amuse Bouche', order:301});
 		Categories.insert({code: 'learn-cook-strt', ancestors:['learn-cook'], name:'Entrées', order:302});
 		Categories.insert({code: 'learn-cook-prcp', ancestors:['learn-cook'], name:'Plats', order:303});
