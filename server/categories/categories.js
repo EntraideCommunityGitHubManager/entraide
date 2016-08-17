@@ -18,7 +18,7 @@ Meteor.startup(function () {
 		Categories.insert({code: 'beau-othr', ancestors:['beau'], name:'Soins, Beauté & Mode - Autres', order:99});
 
 		// Cours de Musique
-		Categories.insert({code: 'learn-music', ancestors:[], root:true, level:0, name:'Cours de Musique', order:101, terms:'cours musique apprentissage jouer initiation initier apprendre progresser progres progression decouvrir'});
+		Categories.insert({code: 'learn-music', ancestors:[], root:true, level:0, name:'Cours de Musique', order:101, terms:'cours musique apprentissage solfege jouer initiation initier apprendre progresser progres progression decouvrir'});
 		Categories.insert({code: 'learn-music-drum-btry', ancestors:['learn-music'], name:'Batteries', order:102});
 		Categories.insert({code: 'learn-music-elec-kbrd', ancestors:['learn-music'], name:'Claviers numérique', order:103});
 		Categories.insert({code: 'learn-music-elec-djng', ancestors:['learn-music'], name:'Dj', order:104, terms: 'dj djing disque caler mixer'});
