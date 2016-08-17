@@ -1,4 +1,4 @@
-angular.module('entraide').directive('categoryFilter', function() {
+angular.module('entraide').directive('categoryFilter', function(UtilsService) {
     return {
         restrict: 'EAC',
         templateUrl: 'client/app/common/directives/category-filter/category-filter.ng.html',
@@ -28,8 +28,8 @@ angular.module('entraide').directive('categoryFilter', function() {
                     var ancestors = [];
                     var termFound = false;
                     angular.forEach($scope.model.categories, function(cat){
-                        var str = cat.terms ? cat.terms : cat.name;
-                        termFound = str.toLowerCase().indexOf(filterTerm.toLowerCase())> -1;
+                        var str = cat.terms ? cat.terms : UtilsService.handleAccent(cat.name);
+                        termFound = str.indexOf(UtilsService.handleAccent(filterTerm.toLowerCase()))> -1;
                         if(termFound){
                             if(cat.root){
                                 pushDistinct(ancestors, {code: cat.code, termRootFound: true});
