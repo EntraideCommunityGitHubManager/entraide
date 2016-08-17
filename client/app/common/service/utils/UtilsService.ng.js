@@ -76,11 +76,13 @@ angular.module("entraide").factory("UtilsService", function(){
                 return ret;
             }
         },
-        matchTerms: function(words, terms){
+        matchTerms: function(words, terms, min){
             var service = this;
+            min = min ? min : 3;
             var wordsArray = [];
             angular.forEach(words.replace(new RegExp("'", 'g'), " ").replace(new RegExp('"', 'g'), " ").split(" "), function(s){
-                if(s.trim()!=''){
+                var c = s.trim();
+                if(c!='' && c.length>min){
                     wordsArray.push(s);
                 }
             });
