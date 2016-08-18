@@ -13,8 +13,19 @@ angular.module('entraide').directive('categoryFilter', function(UtilsService) {
             $scope.model.searchTerm = $scope.model.searchTerm ? $scope.model.searchTerm : "";
             $scope.model.filterTerm = $scope.model.filterTerm ? $scope.model.filterTerm : "";
 
+            $scope.structCats = [];
+
             $scope.$watchCollection('model.categories', function(){
                 console.log('binding categories collection');
+                var currentCat = {cat: null, termsRootFound:[], subs:[]};
+                angular.forEach($scope.model.categories, function(cat, i){
+                    if(cat.root){
+                        currentCat = {cat: cat, termsRootFound:[], subs:[]}
+                        $scope.structCats.push(currentCat);
+                    } else {
+                        currentCat.subs.push(cat);
+                    }
+                });
                 $scope.filterCategories($scope.model.filterTerm);
             });
 
@@ -25,44 +36,38 @@ angular.module('entraide').directive('categoryFilter', function(UtilsService) {
             $scope.filterCategories = function(filterTerm){
                 if(filterTerm){
                     var result = [];
-                    var ancestors = [];
-                    var termFound = false;
-                    angular.forEach($scope.model.categories, function(cat){
-                        termFound = UtilsService.matchTerms(filterTerm.toLowerCase(), cat.terms ? cat.terms : UtilsService.handleAccent(cat.name));
-                        if(termFound){
-                            if(cat.root){
-                                pushDistinct(ancestors, {code: cat.code, termRootFound: true});
-                                if(cat.level>0){
-                                    if(cat.ancestors.length>1){
-                                        angular.forEach(cat.ancestors.slice(1), function(c){
-                                            pushDistinct(ancestors, {code: c, termRootFound: true});
-                                        });
-                                        pushDistinct(result, _.findWhere($scope.model.categories, {code: cat.ancestors[0]}))
-                                    } else {
-                                        pushDistinct(result, _.findWhere($scope.model.categories, {code: cat.ancestors[0]}));
-                                    }
+                    angular.forEach($scope.structCats, function(cs){
+                        cs.termsRootFound = UtilsService.matchTerms(filterTerm.toLowerCase(), cs.cat.terms ? cs.cat.terms : UtilsService.handleAccent(cs.cat.name));
+                        var subcats = [];
+                        angular.forEach(cs.subs, function(subcat){
+                            if(UtilsService.matchTerms(filterTerm.toLowerCase(), subcat.terms ? subcat.terms : UtilsService.handleAccent(subcat.name)).length>0){
+                                subcats.push(subcat);
+                            }
+                        });
+                        var words = UtilsService.wordsArray(filterTerm.toLowerCase());
+                        if(words.length>1){
+                            if(subcats.length>0){
+                                if(cs.termsRootFound.length>1){
+                                    result.push(cs.cat);
+                                    result = result.concat(cs.subs);
+                                } else {
+                                    result.push(cs.cat);
+                                    result = result.concat(subcats);
                                 }
-                            } else {
-                                angular.forEach(cat.ancestors, function(c){
-                                    pushDistinct(ancestors, {code: c, termRootFound: false});
-                                });
-                                result.push(cat);
+
+                            } else if(cs.termsRootFound.length>1){
+                                result.push(cs.cat);
+                                result = result.concat(cs.subs);
                             }
-                        } else if(!cat.root){
-                            var ancestorFound = hasAncestor(cat, ancestors);
-                            if(ancestorFound && ancestorFound.termRootFound){
-                                result.push(cat);
-                            }
-                        } else if(cat.root && cat.level>0){
-                            var ancestorFound = hasAncestor(cat, ancestors);
-                            if(ancestorFound && ancestorFound.termRootFound){
-                                pushDistinct(ancestors, {code: cat.code, termRootFound: true});
-                                result.push(cat);
+                        } else if(words.length===1){
+                            if(subcats.length>0){
+                                result.push(cs.cat);
+                                result = result.concat(subcats);
+                            } else if(cs.termsRootFound.length>0){
+                                result.push(cs.cat);
+                                result = result.concat(cs.subs);
                             }
                         }
-                        angular.forEach(ancestors, function(a){
-                            pushDistinct(result, _.findWhere($scope.model.categories, {code: a.code}));
-                        });
                     });
                     $scope.model.categoriesDisplayed = difference(result, $scope.model.categoriesSelected);
                 } else {

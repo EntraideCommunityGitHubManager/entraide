@@ -76,10 +76,22 @@ angular.module("entraide").factory("UtilsService", function(){
                 return ret;
             }
         },
-        matchTerms: function(words, terms, min){
+        matchTerms: function(sentence, terms, min){
             var service = this;
+            var wordsArray = service.wordsArray(sentence, min);
+            var termsFound = [];
+            var termFound = false;
+            for(var i=0; i<wordsArray.length; i++){
+                var word = wordsArray[i];
+                if(terms.toLowerCase().indexOf(service.handleAccent(word.toLowerCase()))> -1){
+                    termsFound.push(word.toLowerCase());
+                }
+            }
+            return termsFound;
+        },
+        wordsArray: function(sentence, min){
             min = min ? min : 2;
-            var arr = words.replace(new RegExp("'", 'g'), " ").replace(new RegExp('"', 'g'), " ").split(" ");
+            var arr = sentence.replace(new RegExp("'", 'g'), " ").replace(new RegExp('"', 'g'), " ").split(" ");
             var wordsArray = [];
             angular.forEach(arr, function(s){
                 var c = s.trim();
@@ -91,15 +103,7 @@ angular.module("entraide").factory("UtilsService", function(){
                     }
                 }
             });
-            var termFound = false;
-            for(var i=0; i<wordsArray.length; i++){
-                var word = wordsArray[i];
-                if(terms.toLowerCase().indexOf(service.handleAccent(word.toLowerCase()))> -1){
-                    termFound = true;
-                    break;
-                }
-            }
-            return termFound;
+            return wordsArray;
         }
     };
 
