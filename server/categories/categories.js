@@ -1,7 +1,7 @@
 Categories = new Mongo.Collection("categories");
 
 Meteor.publish("all-categories", function(){
-   return Categories.find({});
+   return Categories.find({}, {sort: {order:1}});
 });
 
 Meteor.startup(function () {
