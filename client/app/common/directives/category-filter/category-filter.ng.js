@@ -103,14 +103,14 @@ angular.module('entraide').directive('categoryFilter', function(UtilsService) {
 
             $scope.getCategoryIconStyle = function(cat){
                 return {
-                    'background-image': "url('category/" + cat.code + "/" + cat.code + ".png')"
+                    'background-image': "url('category/" + cat.code + ".png')"
                 };
             };
 
             $scope.getStyle = function(cat){
                 if(cat.root){
                     return {
-                        'background-image': "url('category/" + cat.code + "/" + cat.code + ".png')"
+                        'background-image': "url('category/" + cat.code + ".png')"
                     };
                 } else {
                     return $scope.getCategoryIconStyle(cat);
