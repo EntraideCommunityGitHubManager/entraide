@@ -2,7 +2,7 @@
     <input type="text" ng-model="model.searchTerm" placeholder="Rechercher dans la description">
     <button ng-click="search(searchTerm)"></button>
 </div>
-<div class="category-selector-row animate-repeat" ng-repeat="cat in model.categoriesSelected track by cat.code">
+<div class="category-selector-row animate-repeat" ng-repeat="cat in model.categoriesSelected | orderBy: 'order' track by cat.code">
     <div class="category-icon-selected" ng-style="getCategoryIconStyle(cat)"></div>
     <div>{{cat.name}}</div>
     <div anim-star callback="setRating" callback-arguments="cat" current-rating="getRating(cat)">rating</div>
