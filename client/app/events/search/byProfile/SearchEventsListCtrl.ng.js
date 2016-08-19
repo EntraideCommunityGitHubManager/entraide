@@ -6,17 +6,10 @@ angular.module('entraide').controller('SearchEventsListCtrl', function ($rootSco
     $scope.isConnected = SecurityService.isConnected;
 
     CollectionService.subscribe('search-events', options).then(function(events) {
-        angular.forEach(events, function(event){event.icon = event.icon ? event.icon : getIcon();});
         $scope.events = events;
         $scope.map = MapService.getMap(department.location);
         AnimService.stopTransition();
     });
-
-    $scope.i=1;
-    function getIcon(){
-        $scope.i = $scope.i+1;
-        return  $scope.i % 2 ? 'category/e-marker-pastel-blue.png' : 'category/e-marker-pink.png';
-    }
 
     $scope.eventClicked = function(marker, eventName, event) {
         MapService.animate(marker, 'bounce');
