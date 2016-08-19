@@ -79,20 +79,10 @@ angular.module('entraide').directive('categoryFilter', function(UtilsService) {
                 return _.filter(arr1, function(cat){ return !_.findWhere(arr2, {'code':cat.code}); });
             }
 
-            $scope.getCategoryIconStyle = function(cat){
+            $scope.getStyle = function(cat){
                 return {
                     'background-image': "url('category/" + cat.code + ".png')"
                 };
-            };
-
-            $scope.getStyle = function(cat){
-                if(cat.root){
-                    return {
-                        'background-image': "url('category/" + cat.code + ".png')"
-                    };
-                } else {
-                    return $scope.getCategoryIconStyle(cat);
-                }
             };
 
             $scope.setRating = function(rating, cat){
