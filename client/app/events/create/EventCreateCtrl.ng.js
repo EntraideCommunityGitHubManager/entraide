@@ -21,7 +21,12 @@ angular.module('entraide').controller('EventCreateCtrl', function ($rootScope, $
     });
 
     $scope.create = function(event){
-        $meteor.call('event_create', event).then(function(eventId){
+        $scope.error = null;
+        if($scope.categoryFilter.categoriesSelected.length<=0){
+            $scope.error ="Vous devez sélectionner au moins une catégorie.";
+            return;
+        }
+        $meteor.call('event_create', event, $scope.categoryFilter.categoriesSelected[0].code).then(function(eventId){
             var skills = [];
             angular.forEach($scope.categoryFilter.categoriesSelected, function(cat){
                 skills.push({eventId:eventId, categoryCode:cat.code, level: $scope.categoryFilter.categoriesSelectedRating[cat.code]});
