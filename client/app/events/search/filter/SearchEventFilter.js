@@ -9,8 +9,8 @@ angular.module('entraide').controller('SearchEventFilterCtrl', function ($rootSc
         $scope.searchEventService.searchEventFilter.categories = categories;
     }, function(err){console.log(err);});
 
-    $scope.search = function(){
-        alert('search');
+    $scope.search = function(param){
+        alert('search on ' + param + ' not implemented');
     };
 
     $scope.goTo = function(state){
