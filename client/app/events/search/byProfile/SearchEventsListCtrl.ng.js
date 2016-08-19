@@ -1,14 +1,18 @@
-angular.module('entraide').controller('SearchEventsListCtrl', function ($rootScope, $scope, $meteor, $state, SecurityService, SessionService, CollectionService, MapService, AnimService) {
-
-    var department = SessionService.getUserProfile().department;
-    var options = {collectionOptions:{'department.code': department.code}, backend:true};
+angular.module('entraide').controller('SearchEventsListCtrl', function ($rootScope, $scope, $meteor, $state, SecurityService, SessionService, SearchEventService, MapService, AnimService) {
 
     $scope.isConnected = SecurityService.isConnected;
-
-    CollectionService.subscribe('search-events', options).then(function(events) {
+    var department = SessionService.getUserProfile().department;
+    
+    SearchEventService.searchEvents().then(function(){
         $scope.events = events;
         $scope.map = MapService.getMap(department.location);
         AnimService.stopTransition();
+    });
+        
+    $scope.$on('search-events-event', function(filter){
+        SearchEventService.searchEvents(filter).then(function(){
+            $scope.events = events;
+        });
     });
 
     $scope.eventClicked = function(marker, eventName, event) {
