@@ -1,8 +1,5 @@
 angular.module("entraide").factory("SearchEventService", function($rootScope, CollectionService, SessionService, $q){
 
-    var department = SessionService.getUserProfile().department;
-    var options = {collectionOptions:{'department.code': department.code}, skillsOptions:[], backend:true};
-
     var searchEventService = {
         searchEventFilter: { 
             searchTerm: "", 
@@ -14,7 +11,8 @@ angular.module("entraide").factory("SearchEventService", function($rootScope, Co
         },
         searchEvents: function(){
             var service = this;
-            options.skillsOptions = [];
+            var department = SessionService.getUserProfile().department;
+            var options = {collectionOptions:{'department.code': department.code}, skillsOptions:[], backend:true};
             angular.forEach(service.categoriesSelected, function(cat, i){
                 options.skillsOptions.push({code:cat.code, level: service.categoriesSelectedRating[i]});
             });
