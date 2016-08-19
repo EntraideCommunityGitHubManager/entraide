@@ -21,18 +21,18 @@ Meteor.publish("search-events", function(options){
     eventsOptions.push(options.collectionOptions);
 	
     var skillsOptions = [{'owner.id': { $ne: this.userId }, removed:false}];
-	var categoryCodes = [];
-    _.forEach(options.skillsOptions, function(skillOption){
-		categoryCodes.push(skillOption.code);
-	});
-	skillsOptions.push({ 'categoryCode': { $in: categoryCodes}});
+    var categoryCodes = [];
+     _.forEach(options.skillsOptions, function(skillOption){
+    	categoryCodes.push(skillOption.code);
+    });
+    skillsOptions.push({ 'categoryCode': { $in: categoryCodes}});
     var eventSkills = EventSkills.find({$and: skillsOptions}});
 	
-	var eventsId = [];
-	_.forEach(eventSkills, function(eventSkill){
-		eventsId.push(eventSkill.eventId);
-	});
-	eventsOptions.push({ '_id': { $in: eventsId}});
+    var eventsId = [];
+    _.forEach(eventSkills, function(eventSkill){
+    	eventsId.push(eventSkill.eventId);
+    });
+    eventsOptions.push({ '_id': { $in: eventsId}});
 
     return Events.find({$and: eventsOptions}, options.sortLimitOptions);
 });
@@ -74,7 +74,7 @@ Meteor.methods({
         var event = Events.findOne({_id:eventId, 'owner.id':this.userId});
         if(event){
             if(isAdmin(this.userId) || event.owner.id == this.userId){
-				EventSkills.update({'eventId': eventId}, {$set: {removed:true, removedAt: Date.now()}});
+		EventSkills.update({'eventId': eventId}, {$set: {removed:true, removedAt: Date.now()}});
                 return Events.update({_id: eventId}, {$set: {removed:true, removedAt: Date.now()}});}
         }
         throw new Meteor.Error(401, 'Error 401: Not allowed - You can not remove this event');
