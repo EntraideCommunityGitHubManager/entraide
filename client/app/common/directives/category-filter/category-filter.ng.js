@@ -104,6 +104,7 @@ angular.module('entraide').directive('categoryFilter', function(UtilsService) {
             $scope.removeCategory = function(cat){
                 var index = indexOf($scope.model.categoriesSelected, cat, 'code');
                 $scope.model.categoriesDisplayed.push($scope.model.categoriesSelected.splice(index,1)[0]);
+                delete $scope.model.categoriesSelectedRating[cat.code];
                 $scope.filterCategories($scope.model.filterTerm);
             };
 
