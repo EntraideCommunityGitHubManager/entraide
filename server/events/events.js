@@ -1,4 +1,5 @@
 Events = new Mongo.Collection("events");
+EventSkills = new Mongo.Collection("event_skills");
 
 Meteor.publish("all-events", function(){
     if(isAdmin(this.userId)){
@@ -16,24 +17,28 @@ Meteor.publish("my-events", function(){
 Meteor.publish("search-events", function(options){
     options.collectionOptions = options.collectionOptions ? options.collectionOptions : {'department.code' : "74"};
     options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:100};
-	
-    var eventsOptions = [{'owner.id': { $ne: this.userId }, removed:false}];
-    eventsOptions.push(options.collectionOptions);
-	
-    var skillsOptions = [{'owner.id': { $ne: this.userId }, removed:false}];
-    var categoryCodes = [];
-     _.forEach(options.skillsOptions, function(skillOption){
-    	categoryCodes.push(skillOption.code);
-    });
-    skillsOptions.push({ 'categoryCode': { $in: categoryCodes}});
-    var eventSkills = EventSkills.find({$and: skillsOptions}});
-	
-    var eventsId = [];
-    _.forEach(eventSkills, function(eventSkill){
-    	eventsId.push(eventSkill.eventId);
-    });
-    eventsOptions.push({ '_id': { $in: eventsId}});
 
+    var eventsOptions = [{'owner.id': { $ne: this.userId }, removed:false}, options.collectionOptions];
+
+    /* Skills - Categories filter on ids */
+    var skillsOptions = [];
+    var categoryCodes = [];
+    if(options.skillsOptions.length>0){
+        for(var i=0; i<options.skillsOptions.length;i++){
+            categoryCodes.push(options.skillsOptions[i].code);
+        }
+        skillsOptions.push({ 'categoryCode': { $in: categoryCodes}});
+        var eventSkills = EventSkills.find({$and: skillsOptions}).fetch();
+        if(eventSkills.length>0){
+            var eventsId = [];
+            for(var i=0; i<eventSkills.length;i++){
+                eventsId.push(eventSkills[i].eventId);
+            }
+            eventsOptions.push({ '_id': { $in: eventsId}});
+        } else {
+            return [];
+        }
+    }
     return Events.find({$and: eventsOptions}, options.sortLimitOptions);
 });
 
@@ -74,7 +79,7 @@ Meteor.methods({
         var event = Events.findOne({_id:eventId, 'owner.id':this.userId});
         if(event){
             if(isAdmin(this.userId) || event.owner.id == this.userId){
-		EventSkills.update({'eventId': eventId}, {$set: {removed:true, removedAt: Date.now()}});
+		        EventSkills.update({'eventId': eventId}, {$set: {removed:true, removedAt: Date.now()}});
                 return Events.update({_id: eventId}, {$set: {removed:true, removedAt: Date.now()}});}
         }
         throw new Meteor.Error(401, 'Error 401: Not allowed - You can not remove this event');
@@ -83,7 +88,7 @@ Meteor.methods({
 
 
 
-EventSkills = new Mongo.Collection("event_skills");
+
 
 Meteor.publish("event-skills", function(options){
     if(options && options.collectionOptions && options.collectionOptions.event && options.collectionOptions.event.id){
@@ -111,17 +116,26 @@ EventSkills.deny({
 
 
 Meteor.methods({
-    event_skill_create: function(skills){
+    event_skill_create: function(eventId, skills){
     	var ids = [];
     	var userId = this.userId;
-    	_.forEach(skills, function(skill){
-    	    var eventSkill  = {owner:{id:userId}, createdAt: Date.now(), removed:false};
-            eventSkill.eventId = {id:Events.findOne({_id:skill.event.id,'owner.id':userId})._id};
-            eventSkill.categoryCode = {code:Categories.findOne({code: skill.category.code}).code};
-            eventSkill.level = checkRange(0,5,skill.level);
-            ids.push(EventSkills.insert(eventSkill));
-    	});
-       	return ids;
+        console.log(eventId);
+        console.log(skills);
+        var event = Events.findOne({_id:eventId, 'owner.id':userId});
+        if(event){
+            for(var i=0; i < skills.length ; i++){
+                var skill = skills[i];
+                var eventSkill = {};
+                eventSkill.eventId = event._id;
+                eventSkill.categoryCode = Categories.findOne({code: skill.categoryCode}).code;
+                eventSkill.level = checkRange(0,5,skill.level);
+                eventSkill.owner = {id:userId};
+                ids.push(EventSkills.insert(eventSkill));
+            }
+            return ids;
+        } else {
+            throw new Meteor.Error(401, 'Error 401: Not allowed - You can not create event skills on event you dont own');
+        }
     },
     event_skill_update: function(skill){
         var eventSkill = EventSkills.findOne({_id:skill._id, 'owner.id':this.userId});

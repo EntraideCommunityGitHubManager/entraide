@@ -3,14 +3,14 @@ angular.module('entraide').controller('SearchEventsListCtrl', function ($rootSco
     $scope.isConnected = SecurityService.isConnected;
     var department = SessionService.getUserProfile().department;
     
-    SearchEventService.searchEvents().then(function(){
+    SearchEventService.searchEvents().then(function(events){
         $scope.events = events;
         $scope.map = MapService.getMap(department.location);
         AnimService.stopTransition();
     });
         
     $scope.$on('search-events-event', function(filter){
-        SearchEventService.searchEvents(filter).then(function(){
+        SearchEventService.searchEvents(filter).then(function(events){
             $scope.events = events;
         });
     });

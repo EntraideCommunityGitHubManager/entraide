@@ -21,11 +21,11 @@
             <textarea class="form-textarea" id="description" placeholder="Description" ng-model="event.description" rows="16"></textarea>
         </div>
         <div category-filter model="categoryFilter"></div>
+        <div class="error-message ui-anim-fade" ng-show="error">{{error.reason}}</div>
         <div class="form-action">
             <anim-button-material anim-button-material-right-icon="fa-times" anim-button-material-callback="close()" anim-button-material-text="Annuler"></anim-button-material>
             <anim-button-material anim-button-material-right-icon="fa-floppy-o" anim-button-material-callback="create(event)" anim-button-material-text="Créer"></anim-button-material>
         </div>
-        <div class="error-message ui-anim-fade" ng-show="error">{{error.reason}}</div>
     </div>
 </div>
 <div class="st-left-menu-footer"></div>

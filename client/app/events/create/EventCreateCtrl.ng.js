@@ -23,15 +23,15 @@ angular.module('entraide').controller('EventCreateCtrl', function ($rootScope, $
     $scope.create = function(event){
         $scope.error = null;
         if($scope.categoryFilter.categoriesSelected.length<=0){
-            $scope.error ="Vous devez sélectionner au moins une catégorie.";
+            $scope.error ={reason:"Vous devez sélectionner au moins une catégorie."};
             return;
         }
-        $meteor.call('event_create', event, $scope.categoryFilter.categoriesSelected[0].code).then(function(eventId){
+        $meteor.call('event_create', event, $scope.categoryFilter.categoriesSelected[0].ancestors[0]).then(function(eventId){
             var skills = [];
             angular.forEach($scope.categoryFilter.categoriesSelected, function(cat){
                 skills.push({eventId:eventId, categoryCode:cat.code, level: $scope.categoryFilter.categoriesSelectedRating[cat.code]});
             });
-            $meteor.call('event_skill_create', skills).then(function(skillsId){
+            $meteor.call('event_skill_create', eventId, skills).then(function(){
                 MapService.removeAddedMarker();
                 AnimToasterNotificationService.addSuccessMessage("L'évenement a été ajouté avec succès !");
                 $state.go("app.main.events.search.myEvents.edit", {"event" : {_id: eventId}});
