@@ -34,14 +34,16 @@ Events.deny({
 });
 
 Meteor.methods({
-    event_create: function(e){
+    event_create: function(e, categoryCode){
         var event  = {owner:{id:this.userId}, createdAt: Date.now(), removed:false};
-        event.department = Departments.findOne({code: e.department.code});;
+        event.department = Departments.findOne({code: e.department.code});
         event.location = {longitude:setFloatValue(e.location.longitude), latitude:setFloatValue(e.location.latitude)};
         event.name = setStringValue(e.name, 100);
         event.description = setStringValue(e.description, 5000);
-        event.icon = e.icon;
+        var category = Categories.findOne({code: categoryCode});
+        event.icon = category ? 'category/'+category.code+'-marker.png' : 'category/e-marker-pastel-blue.png';
         event.startDate = setDateValue(e.startDate);
+        event.endDate = setDateValue(e.endDate);
         return Events.insert(event);
     },
     event_update: function(e){
