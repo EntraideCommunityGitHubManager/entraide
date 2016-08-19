@@ -3,6 +3,10 @@
 </div>
 <div class="st-left-menu-content">
     <div class="event-filter-content">
+        <div class="category-input-search">
+            <input type="text" ng-model="searchEventService.searchEventFilter.searchTerm" placeholder="Rechercher un terme dans la description">
+            <button ng-click="search(searchEventService.searchEventFilter.searchTerm)"></button>
+        </div>
         <div category-filter model="searchEventService.searchEventFilter"></div>
     </div>
 </div>
