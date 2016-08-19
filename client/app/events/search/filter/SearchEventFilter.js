@@ -10,7 +10,7 @@ angular.module('entraide').controller('SearchEventFilterCtrl', function ($rootSc
     }, function(err){console.log(err);});
 
     $scope.search = function(param){
-        alert('search on ' + param + ' not implemented');
+        $rootScope.$broadcast('search-events-event', param);
     };
 
     $scope.goTo = function(state){
