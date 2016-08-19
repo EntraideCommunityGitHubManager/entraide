@@ -16,9 +16,25 @@ Meteor.publish("my-events", function(){
 Meteor.publish("search-events", function(options){
     options.collectionOptions = options.collectionOptions ? options.collectionOptions : {'department.code' : "74"};
     options.sortLimitOptions = options.sortLimitOptions ? options.sortLimitOptions : {sort: {name:1}, limit:100};
-    var arrOptions = [{'owner.id': { $ne: this.userId }, removed:false}];
-    arrOptions.push(options.collectionOptions);
-    return Events.find({$and: arrOptions}, options.sortLimitOptions);
+	
+    var eventsOptions = [{'owner.id': { $ne: this.userId }, removed:false}];
+    eventsOptions.push(options.collectionOptions);
+	
+    var skillsOptions = [{'owner.id': { $ne: this.userId }, removed:false}];
+	var categoryCodes = [];
+    _.forEach(options.skillsOptions, function(skillOption){
+		categoryCodes.push(skillOption.code);
+	});
+	skillsOptions.push({ 'categoryCode': { $in: categoryCodes}});
+    var eventSkills = EventSkills.find({$and: skillsOptions}});
+	
+	var eventsId = [];
+	_.forEach(eventSkills, function(eventSkill){
+		eventsId.push(eventSkill.eventId);
+	});
+	eventsOptions.push({ '_id': { $in: eventsId}});
+
+    return Events.find({$and: eventsOptions}, options.sortLimitOptions);
 });
 
 Events.deny({
@@ -58,6 +74,7 @@ Meteor.methods({
         var event = Events.findOne({_id:eventId, 'owner.id':this.userId});
         if(event){
             if(isAdmin(this.userId) || event.owner.id == this.userId){
+				EventSkills.update({'eventId': eventId}, {$set: {removed:true, removedAt: Date.now()}});
                 return Events.update({_id: eventId}, {$set: {removed:true, removedAt: Date.now()}});}
         }
         throw new Meteor.Error(401, 'Error 401: Not allowed - You can not remove this event');
@@ -96,8 +113,8 @@ EventSkills.deny({
 Meteor.methods({
     event_skill_create: function(skill){
         var eventSkill  = {owner:{id:this.userId}, createdAt: Date.now(), removed:false};
-        eventSkill.event = {id:Events.findOne({_id:skill.event.id,'owner.id':this.userId})._id};
-        eventSkill.category = {code:Categories.findOne({code: skill.category.code}).code};
+        eventSkill.eventId = {id:Events.findOne({_id:skill.event.id,'owner.id':this.userId})._id};
+        eventSkill.categoryCode = {code:Categories.findOne({code: skill.category.code}).code};
         eventSkill.level = checkRange(0,5,skill.level);
         return EventSkills.insert(eventSkill);
     },
