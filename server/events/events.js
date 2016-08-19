@@ -111,12 +111,17 @@ EventSkills.deny({
 
 
 Meteor.methods({
-    event_skill_create: function(skill){
-        var eventSkill  = {owner:{id:this.userId}, createdAt: Date.now(), removed:false};
-        eventSkill.eventId = {id:Events.findOne({_id:skill.event.id,'owner.id':this.userId})._id};
-        eventSkill.categoryCode = {code:Categories.findOne({code: skill.category.code}).code};
-        eventSkill.level = checkRange(0,5,skill.level);
-        return EventSkills.insert(eventSkill);
+    event_skill_create: function(skills){
+    	var ids = [];
+    	var userId = this.userId;
+    	_.forEach(skills, function(skill){
+    	    var eventSkill  = {owner:{id:userId}, createdAt: Date.now(), removed:false};
+            eventSkill.eventId = {id:Events.findOne({_id:skill.event.id,'owner.id':userId})._id};
+            eventSkill.categoryCode = {code:Categories.findOne({code: skill.category.code}).code};
+            eventSkill.level = checkRange(0,5,skill.level);
+            ids.push(EventSkills.insert(eventSkill));
+    	});
+       	return ids;
     },
     event_skill_update: function(skill){
         var eventSkill = EventSkills.findOne({_id:skill._id, 'owner.id':this.userId});
