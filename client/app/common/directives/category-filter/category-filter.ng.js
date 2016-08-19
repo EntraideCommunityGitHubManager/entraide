@@ -54,7 +54,6 @@ angular.module('entraide').directive('categoryFilter', function(UtilsService) {
                                     result.push(cs.cat);
                                     result = result.concat(subcats);
                                 }
-
                             } else if(cs.termsRootFound.length>1){
                                 result.push(cs.cat);
                                 result = result.concat(cs.subs);
@@ -78,27 +77,6 @@ angular.module('entraide').directive('categoryFilter', function(UtilsService) {
 
             function difference(arr1, arr2){
                 return _.filter(arr1, function(cat){ return !_.findWhere(arr2, {'code':cat.code}); });
-            }
-
-            function hasAncestor(cat, ancestors){
-                return _.findWhere(ancestors, {code: cat.ancestors[cat.ancestors.length-1]});
-            }
-
-            function pushDistinct(arr, param){
-                if(angular.isArray(param)){
-                    angular.forEach(param, function(obj){
-                        pushDistinctObj(arr, obj);
-                    });
-                } else {
-                    pushDistinctObj(arr, param);
-                }
-            }
-
-            function pushDistinctObj(arr, c){
-                var found = _.findWhere(arr, {code:c.code}) != undefined;
-                if(!found){
-                    arr.push(c);
-                }
             }
 
             $scope.getCategoryIconStyle = function(cat){
