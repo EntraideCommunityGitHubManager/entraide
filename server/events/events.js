@@ -68,7 +68,6 @@ Meteor.methods({
         return Events.insert(event);
     },
     event_update: function(e){
-        console.log('event_update called');
         var event = Events.findOne({_id:e._id, 'owner.id':this.userId});
         if(event){
             return Events.update({_id: event._id}, {$set: {description:setStringValue(e.description, 5000), updatedAt: Date.now()}});
@@ -119,8 +118,6 @@ Meteor.methods({
     event_skill_create: function(eventId, skills){
     	var ids = [];
     	var userId = this.userId;
-        console.log(eventId);
-        console.log(skills);
         var event = Events.findOne({_id:eventId, 'owner.id':userId});
         if(event){
             for(var i=0; i < skills.length ; i++){

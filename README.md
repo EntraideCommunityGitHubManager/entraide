@@ -24,7 +24,6 @@ The files are loaded in an alphabetical order within a folder.
 AngularJS           (1.4.6)     ---> meteor add angular
 Angular Animate     (1.4.6)     ---> meteor add angular:angular-animate
 Angular UI Router   (0.2.15)    ---> meteor add angularui:angular-ui-router
-Twitter Bootstrap   (3.3.5)     ---> meteor add twbs:bootstrap
 Font Awesome        (4.4.0)     ---> meteor add fortawesome:fontawesome
 Connection Banner   (0.4.3)     ---> meteor add natestrauser:connection-banner      
                                     (Toast message to show and prevent lost connection with the server)
@@ -84,5 +83,4 @@ http://info.meteor.com/blog/angular-meteor-1.3
 http://callmenick.com/
 https://davidwalsh.name/css-flip
 http://jsfiddle.net/7tb4g/341/
-http://www.20min.ch/ro/multimedia/videostory/story/Le-singe-lanceur-de-caca-14387579
 </pre></code>

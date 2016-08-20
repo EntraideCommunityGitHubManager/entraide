@@ -7,6 +7,7 @@ angular.module('entraide').directive('animClick', function($timeout){
         scope: {
             animClickIcon: '@',
             animClickType: '@',
+            animClickDelay: '=',
             animClickCallback: '&'
         },
         templateUrl: 'client/app/common/directives/anim-click/anim-click.ng.html',
@@ -15,6 +16,7 @@ angular.module('entraide').directive('animClick', function($timeout){
         },
         link: function (scope, element) {
             scope.animClickIcon = scope.animClickIcon ? scope.animClickIcon : 'fa-circle-o-notch';
+            scope.animClickDelay = scope.animClickDelay ? parseInt(scope.animClickDelay) : 300;
             var support = { animations : Modernizr.cssanimations };
             var animEndEventNames = { 'WebkitAnimation' : 'webkitAnimationEnd', 'OAnimation' : 'oAnimationEnd', 'msAnimation' : 'MSAnimationEnd', 'animation' : 'animationend' };
             var animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ];
@@ -41,7 +43,7 @@ angular.module('entraide').directive('animClick', function($timeout){
                         classie.remove( cbutton, 'cbutton-click' );
                         scope.animClickCallback();
                     });
-                },300);
+                },scope.animClickDelay);
             };
 
             scope.$on("$destroy", function () {});
