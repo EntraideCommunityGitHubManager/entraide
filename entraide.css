@@ -400,6 +400,9 @@ h2{
 .table-lookups{
     height: 300px;
     margin-bottom: 50px;
+    overflow-y: scroll;
+    justify-content: center;
+    display: flex;
 }
 
 .side-left-profile{
@@ -411,6 +414,8 @@ h2{
     background: rgba(38, 44, 47, 0.6);
     height: 100%;
     font-size: 14px;
+    width:300px !important;
+    position: absolute;
 }
 
 .side-left-search{
@@ -501,7 +506,12 @@ h2{
 }
 
 .admin-container{
-    margin-top: 65px;
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    overflow-y: auto;
+    height: calc(100% - 91px);
+    width: 100%;
 }
 
 .error-message{
@@ -837,6 +847,14 @@ textarea{
 
 .event-filter-content .search-button i:hover{
     color: inherit !important;
+}
+
+.event-filter-content input{
+    border: none;
+    border-bottom: 1px solid #757575;
+    background-color: #274A6D;
+    text-align: center;
+    color: white;
 }
 
 
