@@ -10,7 +10,7 @@ Meteor.startup(function () {
 		// Soins, Beauté & Mode
 		Categories.insert({code: 'beau', ancestors:[], root:true, level:0, name:'Soins, Beauté & Mode', order:0, terms:'cours apprentissage apprendre initiation initier progresser progres progression decouvrir'});
 		Categories.insert({code: 'beau-hair', ancestors:['beau'], name:'Coiffure', order:1, terms: 'soins beaute mode coiffure coiffeur coiffer couper cheveux'});
-		Categories.insert({code: 'beau-cout', ancestors:['beau'], name:'Couture', order:2, terms: 'soins beaute mode couture coudre'});
+		Categories.insert({code: 'beau-cout', ancestors:['beau'], name:'Couture', order:2, terms: 'soins beaute mode couture coudre ourlets'});
 		Categories.insert({code: 'beau-make', ancestors:['beau'], name:'Maquillage', order:3, terms: 'soins beaute mode maquillage maquiller make up make-up'});
 		Categories.insert({code: 'beau-masg', ancestors:['beau'], name:'Massage', order:4, terms: 'soins beaute mode massage masser masseur masseuse'});
 		Categories.insert({code: 'beau-rlok', ancestors:['beau'], name:'Relooking', order:5, terms: 'soins beaute mode look relook relooking style relooker changer'});
@@ -75,18 +75,21 @@ Meteor.startup(function () {
 		Categories.insert({code: 'learn-sport-card', ancestors:['learn-sport'], name:'Jeux de cartes', order:415, terms: 'sport jeux cartes poker belote tarot crapette bataille'});
 		Categories.insert({code: 'learn-sport-vgme', ancestors:['learn-sport'], name:'Jeux Vidéos', order:416, terms:'sport jeux videos electroniques'});
 		Categories.insert({code: 'learn-sport-kite', ancestors:['learn-sport'], name:'Kite Surf', order:417, terms:'sport kite surfing'});
-		Categories.insert({code: 'learn-sport-pati', ancestors:['learn-sport'], name:'Patinage', order:418, terms:'sport patinage patiner roller artistique patins glace'});
-		Categories.insert({code: 'learn-sport-skig', ancestors:['learn-sport'], name:'Ski', order:419, terms:'sport ski'});
-		Categories.insert({code: 'learn-sport-snow', ancestors:['learn-sport'], name:'Snowboard', order:420, terms:'sport snowboarding'});
-		Categories.insert({code: 'learn-sport-fght', ancestors:['learn-sport'], name:'Sport de combat', order:421, terms:'sport combat judo karate boxe kick boxing taekwondo aikido muay thai lutte kung-fu krav maga jujitsu'});
-		Categories.insert({code: 'learn-sport-indr', ancestors:['learn-sport'], name:'Sport en salle', order:422, terms:'sport en salle'});
-		Categories.insert({code: 'learn-sport-surf', ancestors:['learn-sport'], name:'Surf', order:423, terms:'sport surf'});
-		Categories.insert({code: 'learn-sport-tnis', ancestors:['learn-sport'], name:'Tennis', order:424, terms:'sport tennis'});
-		Categories.insert({code: 'learn-sport-tirs', ancestors:['learn-sport'], name:'Tirs', order:425, terms:'sport tirs arc arbalette carabine'});
-		Categories.insert({code: 'learn-sport-bike', ancestors:['learn-sport'], name:'Vélos de course', order:426, terms:'sport velos course'});
-		Categories.insert({code: 'learn-sport-vtt',  ancestors:['learn-sport'], name:'Vélos tout terrain (vtt)', order:427, terms:'sport velo tout terrain vtt'});
-		Categories.insert({code: 'learn-sport-vbal', ancestors:['learn-sport'], name:'Voley Ball', order:428, terms:'sport volley ball beach'});
-		Categories.insert({code: 'learn-sport-wsrf', ancestors:['learn-sport'], name:'Planche à voile', order:429, terms:'sport planche voile windsurf'});
+		Categories.insert({code: 'learn-sport-padl', ancestors:['learn-sport'], name:'Paddle', order:418, terms:'sport paddle'});
+		Categories.insert({code: 'learn-sport-pati', ancestors:['learn-sport'], name:'Patinage', order:419, terms:'sport patinage patiner artistique patins glace'});
+		Categories.insert({code: 'learn-sport-rolr', ancestors:['learn-sport'], name:'Roller', order:420, terms:'sport patiner roller artistique patins quad'});
+		Categories.insert({code: 'learn-sport-skat', ancestors:['learn-sport'], name:'Skate', order:421, terms:'sport skate board skating'});
+		Categories.insert({code: 'learn-sport-skig', ancestors:['learn-sport'], name:'Ski', order:422, terms:'sport ski'});
+		Categories.insert({code: 'learn-sport-snow', ancestors:['learn-sport'], name:'Snowboard', order:423, terms:'sport snowboarding'});
+		Categories.insert({code: 'learn-sport-fght', ancestors:['learn-sport'], name:'Sport de combat', order:424, terms:'sport combat judo karate boxe kick boxing taekwondo aikido muay thai lutte kung-fu krav maga jujitsu'});
+		Categories.insert({code: 'learn-sport-indr', ancestors:['learn-sport'], name:'Sport en salle', order:425, terms:'sport en salle'});
+		Categories.insert({code: 'learn-sport-surf', ancestors:['learn-sport'], name:'Surf', order:426, terms:'sport surf'});
+		Categories.insert({code: 'learn-sport-tnis', ancestors:['learn-sport'], name:'Tennis', order:427, terms:'sport tennis'});
+		Categories.insert({code: 'learn-sport-tirs', ancestors:['learn-sport'], name:'Tirs', order:428, terms:'sport tirs arc arbalette carabine'});
+		Categories.insert({code: 'learn-sport-bike', ancestors:['learn-sport'], name:'Vélos de course', order:429, terms:'sport velos course'});
+		Categories.insert({code: 'learn-sport-vtt',  ancestors:['learn-sport'], name:'Vélos tout terrain (vtt)', order:430, terms:'sport velo tout terrain vtt'});
+		Categories.insert({code: 'learn-sport-vbal', ancestors:['learn-sport'], name:'Voley Ball', order:431, terms:'sport volley ball beach'});
+		Categories.insert({code: 'learn-sport-wsrf', ancestors:['learn-sport'], name:'Planche à voile', order:432, terms:'sport planche voile windsurf'});
 		Categories.insert({code: 'learn-sport-othr', ancestors:['learn-sport'], name:'Sport - Autres', order:499});
 
 

@@ -72,7 +72,8 @@ h2{
 }
 
 .hlp-bcol{
-    background-color: #49819C;
+    /*background-color: #49819C;*/
+    background-color: rgba(27, 64, 103, 0.92);
     /*background-color: #2E9C9C;*/
 }
 
