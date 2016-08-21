@@ -866,3 +866,16 @@ textarea{
 .pageload-overlay svg {
     top: 50px !important;
 }
+
+.email{
+    width:180px;
+    vertical-align: -3px;
+}
+
+
+.ellipsis{
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    display:inline-block;
+}

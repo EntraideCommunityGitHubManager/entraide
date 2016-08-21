@@ -9,6 +9,7 @@ angular.module('entraide').controller('ProfileEditCtrl', function ($rootScope, $
 
     CollectionService.subscribe('my-profile').then(function(profiles){
         $scope.profile = $meteor.object(Profiles, profiles[0] ? profiles[0]._id : null, false) ;
+        $scope.profile.email = Meteor.user().emails[0].address;
         CollectionService.subscribe('my-profile-images').then(function(images){
             $scope.images = images;
         });
