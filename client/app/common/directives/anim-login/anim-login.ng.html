@@ -13,7 +13,7 @@
                     <span class="icon-close"><i class="fa fa-times"></i></span>
                     <h2>{{titleLogin}}</h2>
                     <form>
-                        <p><label>Email</label><input type="text" ng-model="model.email" id="email"></p>
+                        <p><label>Email</label><input type="text" ng-model="model.email" id="email" autocomplete="off"></p>
                         <p><label>Password</label><input type="password" ng-model="model.password" id="password"></p>
                         <p><button ng-click="login()" class="sign-in-button">{{titleLogin}}</button></p>
                         <p><button ng-click="create()" class="sign-in-button">{{titleCreate}}</button></p>
