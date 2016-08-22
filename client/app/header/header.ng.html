@@ -1,6 +1,6 @@
 <div class="st-header hlp-bcol">
     <div class="st-header-burger">
-        <button type="button" class="st-navbar-toggle" ng-click="search()" >
+        <button type="button" class="st-navbar-toggle ui-anim-fade" ng-click="search()" ng-show="!isHome()">
             <span class="st-navbar-icon-bar"></span>
             <span class="st-navbar-icon-bar"></span>
             <span class="st-navbar-icon-bar"></span>
@@ -13,7 +13,7 @@
         </a>
     </div>
     <div class="st-header-login">
-        <div anim-login model="user" title-create="Create" title-login="Login" login-callback="login()" create-callback="create()" edit-callback="edit()" logout-callback="logout()" error="error" is-connected="isConnected()" anim-login-toggle-event="animLoginToggleEvent" profile-image="sessionService.userProfile.image" profile-image-default="img/profile.png"></div>
+        <div anim-login model="user" title-create="Inscription" title-login="Connexion" login-callback="login()" create-callback="create()" edit-callback="edit()" logout-callback="logout()" error="error" is-connected="isConnected()" anim-login-toggle-event="animLoginToggleEvent" profile-image="sessionService.userProfile.image" profile-image-default="img/profile.png"></div>
     </div>
 </div>
 <!--

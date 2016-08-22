@@ -34,6 +34,16 @@
 	font-family: sans-serif;
 }
 
+
+.morph-content input:-webkit-autofill,
+.morph-content input:-webkit-autofill:hover,
+.morph-content input:-webkit-autofill:focus
+.morph-content input:-webkit-autofill{
+	-webkit-text-fill-color: #ebd3bd;
+	-webkit-box-shadow: 0 0 0px 1000px #25414F inset;
+	transition: background-color 5000s ease-in-out 0s;
+}
+
 .morph-button.open .morph-content {
 	pointer-events: auto;
 }
@@ -495,4 +505,40 @@
 	.morph-button-sidebar.open .morph-content {
 		height: 100% !important;
 	}
+}
+
+.error-message-login{
+	text-align: center;
+	margin-top: 25px;
+	color: #DE6565;
+}
+
+
+
+.flip-container {
+	perspective: 1000px;
+	transform-style: preserve-3d;
+}
+.flip-container, .front, .back {
+	width: 340px;
+	height: 460px;
+}
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+.front, .back {
+	backface-visibility: hidden;
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.front {
+	z-index: 2;
+}
+.back{
+	display: none;
 }

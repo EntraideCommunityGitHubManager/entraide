@@ -15,11 +15,25 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
     };
 
     $scope.create = function(){
-        $scope.error = null;
-        SecurityService.createUser({ username:getUserName($scope.user.email), email:$scope.user.email, password: $scope.user.password}).then(function () {
-            $meteor.call('init_user_profile', SessionService.getUserProfile().department.code).then(function(){console.log('init_user_profile success');},function(err){$scope.error=err;});
-            logUser();
-        },function(err){$scope.error=err;});
+        $scope.error = {reason:''};
+        if(!$scope.user.password || !$scope.user.confirmPassword){
+            $scope.error={reason:'Mots de passe recquis.'};
+        } else if($scope.user.password != $scope.user.confirmPassword){
+            $scope.error={reason:'Les 2 mots de passe ne correspondent pas.'};
+        } else {
+            SecurityService.createUser({ username:getUserName($scope.user.email), email:$scope.user.email, password: $scope.user.password}).then(function () {
+                $meteor.call('init_user_profile', SessionService.getUserProfile().department.code).then(function(){console.log('init_user_profile success');},function(err){$scope.error=err;});
+                logUser();
+            },function(err){
+                if(err.reason.toLowerCase().indexOf('username already exists')>-1){
+                    $scope.error.reason = "Ce nom est déjà pris : ("
+                } else if(err.message.toLowerCase().indexOf('email already exists')>-1){
+                    $scope.error.reason = "Cet email est déjà pris : ("
+                } else {
+                    $scope.error=err;
+                }
+            });
+        }
     };
 
     $scope.logout = function(){
@@ -59,7 +73,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
             SecurityService.loginWithPassword($scope.user.email, $scope.user.password).then(function () {
                 SessionService.setUserProfile($rootScope.currentUser, $rootScope.currentUser.department);
                 loadProfileData();
-                $state.go('app.main.events.search.myEvents');
+                $state.go('app.main.events.search.byProfile');
             },function(err){$scope.error=err;});
             AnimService.stopTransition(2000); // not needed if we make a redirection
         }, 1000);

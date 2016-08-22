@@ -19,6 +19,10 @@ angular.module('entraide').directive('animLogin', function(){
         },
         templateUrl: 'client/app/common/directives/anim-login/anim-login.ng.html',
         controller: function($scope){
+            $scope.frontClass = {transform: 'rotateY(0deg)'};
+            $scope.backClass  = {transform: 'rotateY(-180deg)'};
+            $scope.frontVisible = true;
+
             $scope.login = function(){
                 $scope.loginCallback();
             };
@@ -37,7 +41,19 @@ angular.module('entraide').directive('animLogin', function(){
             $scope.initState = function(){
                 $scope.uIMorphingButton.expanded = false;
                 $scope.uIMorphingButton.isAnimating = false;
-            }
+            };
+            $scope.swap = function(){
+                $scope.error = {reason:''};
+                $scope.frontVisible = !$scope.frontVisible;
+                if($scope.frontVisible){
+                    $scope.frontClass = {transform: 'rotateY(0deg)'};
+                    $scope.backClass  = {transform: 'rotateY(-180deg)'};
+                } else {
+                    $scope.frontClass = {transform: 'rotateY(180deg)'};
+                    $scope.backClass  = {transform: 'rotateY(0deg)'};
+                }
+
+            };
         },
         link: function (scope, element) {
 
@@ -66,10 +82,29 @@ angular.module('entraide').directive('animLogin', function(){
 
             scope.uIMorphingButton = new UIMorphingButton($('.morph-button')[0], {
                 closeEl : '.icon-close',
-                onBeforeOpen : function() {noScroll();},
-                onAfterOpen  : function() {canScroll(); element.find('#email')[0].focus()},
-                onBeforeClose: function() {noScroll();},
-                onAfterClose : function() {canScroll();}
+                onBeforeOpen : function() {
+                    noScroll();
+                    scope.frontClass = {transform: 'rotateY(0deg)'};
+                    scope.backClass  = {transform: 'rotateY(-180deg)'};
+                    scope.frontVisible = true;
+                },
+                onAfterOpen  : function() {
+                    canScroll();
+                    element.find('#email')[0].focus();
+                    element.find('.back').css('display','block');
+                },
+                onBeforeClose: function() {
+                    noScroll();
+                    element.find('.back').css('display','none');
+                },
+                onAfterClose : function() {
+                    canScroll();
+                    scope.error = {reason:''};
+                    scope.frontClass = {transform: 'rotateY(0deg)'};
+                    scope.backClass  = {transform: 'rotateY(-180deg)'};
+                    scope.frontVisible = true;
+                    element.find('.back').css('display','none');
+                }
             });
 
             $(".navbar-collapse a:not('.dropdown-toggle')").click(function(){
