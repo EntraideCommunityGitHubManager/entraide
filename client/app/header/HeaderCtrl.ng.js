@@ -21,7 +21,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
         } else if($scope.user.password != $scope.user.confirmPassword){
             $scope.error={reason:'Les 2 mots de passe ne correspondent pas.'};
         } else {
-            SecurityService.createUser({ username:getUserName($scope.user.email), email:$scope.user.email, password: $scope.user.password}).then(function () {
+            SecurityService.createUser({ username:getUserName($scope.user.email.toLowerCase()), email:$scope.user.email.toLowerCase(), password: $scope.user.password}).then(function () {
                 $meteor.call('init_user_profile', SessionService.getUserProfile().department.code).then(function(){console.log('init_user_profile success');},function(err){$scope.error=err;});
                 logUser();
             },function(err){
