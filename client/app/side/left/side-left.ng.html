@@ -1,11 +1,3 @@
-<!--<div>
-    <div class="menu-toggler-profile ui-anim-fade" ng-click="toggleSidebar(true, 'profile')" ng-if="isProfileActive()">
-        <a><i class="fa fa-user"></i></a>
-    </div>
-    <div class="menu-toggler-search ui-anim-fade" ng-click="toggleSidebar(true, 'search')" ng-if="isSearchActive()">
-        <a><i class="fa fa-eye"></i></a>
-    </div>
-</div>-->
 <div ui-view="side-left-profile-view" ng-if="isView('profile')" class="side-left-profile"></div>
 <div ui-view="side-left-search-view" ng-if="isView('search')" class="side-left-search"></div>
 <div ui-view="side-left-event-view" ng-if="isView('event')" class="side-left-event"></div>
