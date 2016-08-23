@@ -27,7 +27,12 @@ angular.module('entraide').directive('animLogin', function(){
                 $scope.loginCallback();
             };
             $scope.create = function(){
-                $scope.createCallback();
+                var regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+                if(regex.test($scope.model.email){
+                    $scope.createCallback();
+                } else {
+                    $scope.error = {reason:'Veuillez renseigner un email valide'};
+                }
             };
             $scope.edit = function(){
                 $scope.editCallback();
