@@ -16,24 +16,18 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.create = function(){
         $scope.error = {reason:''};
-        if(!$scope.user.password || !$scope.user.confirmPassword){
-            $scope.error={reason:'Mots de passe recquis.'};
-        } else if($scope.user.password != $scope.user.confirmPassword){
-            $scope.error={reason:'Les 2 mots de passe ne correspondent pas.'};
-        } else {
-            SecurityService.createUser({ username:getUserName($scope.user.email.toLowerCase()), email:$scope.user.email.toLowerCase(), password: $scope.user.password}).then(function () {
-                $meteor.call('init_user_profile', SessionService.getUserProfile().department.code).then(function(){console.log('init_user_profile success');},function(err){$scope.error=err;});
-                logUser();
-            },function(err){
-                if(err.reason.toLowerCase().indexOf('username already exists')>-1){
-                    $scope.error.reason = "Ce nom est déjà pris : ("
-                } else if(err.message.toLowerCase().indexOf('email already exists')>-1){
-                    $scope.error.reason = "Cet email est déjà pris : ("
-                } else {
-                    $scope.error=err;
-                }
-            });
-        }
+        SecurityService.createUser({ username:getUserName($scope.user.email.toLowerCase()), email:$scope.user.email.toLowerCase(), password: $scope.user.password}).then(function () {
+            $meteor.call('init_user_profile', SessionService.getUserProfile().department.code).then(function(){console.log('init_user_profile success');},function(err){$scope.error=err;});
+            logUser();
+        },function(err){
+            if(err.reason.toLowerCase().indexOf('username already exists')>-1){
+                $scope.error.reason = "Ce nom est déjà pris : ("
+            } else if(err.message.toLowerCase().indexOf('email already exists')>-1){
+                $scope.error.reason = "Cet email est déjà pris : ("
+            } else {
+                $scope.error=err;
+            }
+        });
     };
 
     $scope.logout = function(){
