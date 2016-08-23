@@ -29,7 +29,13 @@ angular.module('entraide').directive('animLogin', function(){
             $scope.create = function(){
                 var regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
                 if(regex.test($scope.model.email){
-                    $scope.createCallback();
+                    if(!$scope.model.password || !$scope.model.confirmPassword){
+                        $scope.error={reason:'Mots de passe recquis.'};
+                    } else if($scope.model.password !== $scope.model.confirmPassword){
+                        $scope.error={reason:'Les 2 mots de passe ne correspondent pas.'};
+                    } else {
+                        $scope.createCallback();
+                    }
                 } else {
                     $scope.error = {reason:'Veuillez renseigner un email valide'};
                 }
