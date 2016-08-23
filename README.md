@@ -83,4 +83,11 @@ http://info.meteor.com/blog/angular-meteor-1.3
 http://callmenick.com/
 https://davidwalsh.name/css-flip
 http://jsfiddle.net/7tb4g/341/
+
+External Service login with oAuth
+https://themeteorchef.com/recipes/roll-your-own-authentication/#tmc-setting-up-oauth-services
+http://www.angular-meteor.com/api/1.2.2/auth
+http://stackoverflow.com/questions/19359465/retrieve-accounts-github-accesstoken
+https://github.com/timhaines/test-accounts/blob/master/test-accounts.js
+
 </pre></code>
