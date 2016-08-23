@@ -164,6 +164,10 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
                 'side-left-profile-view@app.main': {
                     templateUrl: 'client/app/profile/profile-edit.ng.html',
                     controller: 'ProfileEditCtrl'
+                },
+                'side-left-event-view@app.main': {
+                    template: '<ul>	<li><a ng-href="#/main/events/search/byProfile">Search</a></li><li><a ng-href="#/main/events/search/myEvents">My events</a></li><li><a ng-href="#/main/admin/events/all">All events</a></li><li><a ng-href="#/main/admin/lookups/all">All lookups</a></li><li><a ng-href="#/main/admin/users/all">All users</a></li></ul>',
+                    controller: function(){ }
                 }
             },
             resolve: {
