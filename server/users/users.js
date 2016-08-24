@@ -40,6 +40,9 @@ Accounts.onCreateUser(function(options, user) {
 Meteor.users.deny({
   update: function (userId, doc, fields, modifier) {
     return !isAdmin(this.userId);
+  },
+  remove: function (userId, doc) {
+    return !isAdmin(this.userId);
   }
 });
 
@@ -89,6 +92,7 @@ Meteor.methods({
     },
     delete_user: function (userId) {
         if(isAdmin(this.userId) && userId != this.userId){
+            EventSkills.remove({'owner.id':userId});
             Events.remove({'owner.id':userId});
             return Meteor.users.remove(userId);
         }
