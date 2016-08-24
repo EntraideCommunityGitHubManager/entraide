@@ -44,7 +44,6 @@
     src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url("font/roboto/RobotoCondensed-BoldItalic.ttf") format('truetype');
 }
 
-
 html {
     overflow: hidden;
 }
@@ -433,36 +432,52 @@ h2{
 }
 
 
-
+.content-view.ng-hide .admin-container{
+    transition:0.5s linear all;
+    opacity:0;
+}
+.content-view.ng-show .admin-container{
+    transition:0.5s linear all;
+    opacity:1;
+}
+.content-view .admin-container{
+    transition:0.5s linear all;
+    opacity:1;
+}
+.content-view.ng-enter .admin-container{
+    opacity:0;
+}
+.content-view.ng-leave.ng-leave-active .admin-container{
+    opacity:0;
+}
+.content-view.ng-enter.ng-enter-active .admin-container{
+    opacity:1;
+}
 
 
 .ui-anim-fade.ng-hide {
     transition:0.5s linear all;
     opacity:0;
 }
-
 .ui-anim-fade.ng-show {
     transition:0.5s linear all;
     opacity:1;
 }
-
-
 .ui-anim-fade {
     transition:0.5s linear all;
     opacity:1;
 }
-
 .ui-anim-fade.ng-enter {
     opacity:0;
 }
-
 .ui-anim-fade.ng-leave.ng-leave-active {
     opacity:0;
 }
-
 .ui-anim-fade.ng-enter.ng-enter-active {
     opacity:1;
 }
+
+
 
 .list-profile{
     width:50px;
@@ -510,9 +525,33 @@ h2{
     top: 50px;
     bottom: 0;
     overflow-y: auto;
-    height: calc(100% - 91px);
+    height: calc(100% - 100px);
+    width: 100%;
+    margin-bottom: 50px;
+    overflow-y: scroll;
+    justify-content: center;
+    display: flex;
+    padding-top: 20px;
+}
+
+.title-list{
+    text-align: center;
+    font-size: 24px;
+    margin: 15px;
+}
+
+.admin-container table{
     width: 100%;
 }
+
+.admin-container table th{
+    text-align: left;
+}
+
+.admin-container .table-container{
+    width: 70%;
+}
+
 
 .error-message{
     color: #EA6464;
@@ -879,3 +918,48 @@ textarea{
     text-overflow:ellipsis;
     display:inline-block;
 }
+
+
+
+
+
+
+
+
+/*.content-view.ng-enter .admin-container, .content-view.ng-leave .admin-container{
+    position: absolute;
+    left: 0;
+    right: 0;
+    -webkit-transition:all .5s ease-in-out;
+    -moz-transition:all .5s ease-in-out;
+    -o-transition:all .5s ease-in-out;
+    transition:all .5s ease-in-out;
+}
+
+.content-view.ng-enter .admin-container{
+    opacity: 0;
+    -webkit-transform:scale3d(0.5, 0.5, 0.5);
+    -moz-transform:scale3d(0.5, 0.5, 0.5);
+    transform:scale3d(0.5, 0.5, 0.5);
+}
+
+.content-view.ng-enter-active .admin-container{
+    opacity: 1;
+    -webkit-transform:scale3d(1, 1, 1);
+    -moz-transform:scale3d(1, 1, 1);
+    transform:scale3d(1, 1, 1);
+}
+
+.content-view.ng-leave .admin-container{
+    opacity: 1;
+    -webkit-transform:translate3d(0, 0, 0);
+    -moz-transform:translate3d(0, 0, 0);
+    transform:translate3d(0, 0, 0);
+}
+
+.content-view.ng-leave-active .admin-container{
+    opacity: 0;
+    -webkit-transform:translate3d(100px, 0, 0);
+    -moz-transform:translate3d(100px, 0, 0);
+    transform:translate3d(100px, 0, 0);
+}*/

@@ -95,9 +95,11 @@ angular.module('entraide').directive('animLogin', function(){
                 closeEl : '.icon-close',
                 onBeforeOpen : function() {
                     noScroll();
-                    scope.frontClass = {transform: 'rotateY(0deg)'};
-                    scope.backClass  = {transform: 'rotateY(-180deg)'};
-                    scope.frontVisible = true;
+                    $timeout(function(){
+                        scope.frontClass = {transform: 'rotateY(0deg)'};
+                        scope.backClass  = {transform: 'rotateY(-180deg)'};
+                        scope.frontVisible = true;
+                    });
                 },
                 onAfterOpen  : function() {
                     canScroll();
@@ -110,10 +112,12 @@ angular.module('entraide').directive('animLogin', function(){
                 },
                 onAfterClose : function() {
                     canScroll();
-                    scope.error = {reason:''};
-                    scope.frontClass = {transform: 'rotateY(0deg)'};
-                    scope.backClass  = {transform: 'rotateY(-180deg)'};
-                    scope.frontVisible = true;
+                    $timeout(function(){
+                        scope.error = {reason:''};
+                        scope.frontClass = {transform: 'rotateY(0deg)'};
+                        scope.backClass  = {transform: 'rotateY(-180deg)'};
+                        scope.frontVisible = true;
+                    });
                     element.find('.back').css('display','none');
                 }
             });
