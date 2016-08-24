@@ -5,12 +5,16 @@ angular.module('entraide').factory('ChainPromiseFactory', [function () {
     //    chain = chain.then(ChainPromiseFactory.chain(UserService.addRole, [user.id, role.id], successCallback, errorCallback));
     //});
     return {
-        chain: function(method, params, callbackSuccess, callbackError) {
+        chain: function(method, params, callbackSuccess, callbackError, csc, cec) {
             return function() {
-                return method.apply(this, params).then(function(){
-                    callbackSuccess();
+                return method.apply(this, params).then(function(params){
+                    if(!(angular.isDefined(csc) && csc != null && csc == false)){
+                        callbackSuccess(params);
+                    }
                 }, function(err){
-                    callbackError(err);
+                    if(!(angular.isDefined(csc) && cec != null && cec == false)){
+                        callbackError(err);
+                    }
                 });
             };
         }
