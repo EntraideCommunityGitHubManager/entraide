@@ -19,7 +19,7 @@ angular.module('entraide').directive('animSidebar', function(UtilsService, AnimS
             var preventClasses = $scope.preventClasses.split(",");
             preventClasses.push('st-menu');
             document.addEventListener('click', function( ev ) {
-                if( AnimSidebarService.open && !UtilsService.hasThisParent( ev.target, preventClasses) ) {
+                if( AnimSidebarService.open && !UtilsService.navigatorUtils.hasThisParent( ev.target, preventClasses) ) {
                     console.log('animSideBar click outside close');
                     resetMenu();
                     AnimSidebarService.open = false;
@@ -29,7 +29,7 @@ angular.module('entraide').directive('animSidebar', function(UtilsService, AnimS
 
             var animSideBarListener = $scope.$on('anim-sidebar-toggle', function(event) {
                 event.preventDefault();
-                var eventType = UtilsService.isMobile() ? 'touchstart' : 'click';
+                var eventType = UtilsService.navigatorUtils.isMobile() ? 'touchstart' : 'click';
                 if(AnimSidebarService.open){
                     resetMenu();
                     AnimSidebarService.open = false;
