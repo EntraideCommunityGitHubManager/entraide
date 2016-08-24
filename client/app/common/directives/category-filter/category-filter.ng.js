@@ -6,6 +6,7 @@ angular.module('entraide').directive('categoryFilter', function(UtilsService) {
             model: '='
         },
         controller: function($scope){
+            var strUtils = UtilsService.stringUtils;
             $scope.model = $scope.model ? $scope.model : {};
             $scope.model.categoriesDisplayed = $scope.model.categoriesDisplayed ? $scope.model.categoriesDisplayed : [];
             $scope.model.categoriesSelected = $scope.model.categoriesSelected ? $scope.model.categoriesSelected : [];
@@ -37,14 +38,14 @@ angular.module('entraide').directive('categoryFilter', function(UtilsService) {
                 if(filterTerm){
                     var result = [];
                     angular.forEach($scope.structCats, function(cs){
-                        cs.termsRootFound = UtilsService.matchTerms(filterTerm.toLowerCase(), cs.cat.terms ? cs.cat.terms : UtilsService.handleAccent(cs.cat.name));
+                        cs.termsRootFound = strUtils.matchTerms(filterTerm.toLowerCase(), cs.cat.terms ? cs.cat.terms : strUtils.handleAccent(cs.cat.name));
                         var subcats = [];
                         angular.forEach(cs.subs, function(subcat){
-                            if(UtilsService.matchTerms(filterTerm.toLowerCase(), subcat.terms ? subcat.terms : UtilsService.handleAccent(subcat.name)).length>0){
+                            if(strUtils.matchTerms(filterTerm.toLowerCase(), subcat.terms ? subcat.terms : strUtils.handleAccent(subcat.name)).length>0){
                                 subcats.push(subcat);
                             }
                         });
-                        var words = UtilsService.wordsArray(filterTerm.toLowerCase());
+                        var words = strUtils.wordsArray(filterTerm.toLowerCase());
                         if(words.length>1){
                             if(subcats.length>0){
                                 if(cs.termsRootFound.length>1){
