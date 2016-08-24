@@ -78,7 +78,7 @@ Meteor.methods({
         var event = Events.findOne({_id:eventId, 'owner.id':this.userId});
         if(event){
             if(isAdmin(this.userId) || event.owner.id == this.userId){
-		        EventSkills.update({'eventId': eventId}, {$set: {removed:true, removedAt: Date.now()}});
+		EventSkills.update({'eventId': eventId}, {$set: {removed:true, removedAt: Date.now()}});
                 return Events.update({_id: eventId}, {$set: {removed:true, removedAt: Date.now()}});}
         }
         throw new Meteor.Error(401, 'Error 401: Not allowed - You can not remove this event');
