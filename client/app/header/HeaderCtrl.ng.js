@@ -79,7 +79,9 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
             SessionService.setUserProfileImage(images[0]);
         });
         CollectionService.subscribe('my-profile').then(function(profiles){
-            if(profiles[0]){MapService.setCurrentMapStyle(profiles[0].mapStyle);}
+            if(profiles[0]){
+                MapService.setCurrentMapStyle(profiles[0].mapStyle);
+            }
         });
     };
     

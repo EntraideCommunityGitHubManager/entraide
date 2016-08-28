@@ -3,9 +3,10 @@ angular.module("entraide").factory("AnimService", function($rootScope){
     var animService = {
         routingConfig : {includes:[],excludes:[]},
         transitionConfig: {
-            type: 'parallelogram',
+            animTransitionType: 'wave',
+            animTransitionSpinner: 'circles',
             delay: 1000,
-            transitionning: false,
+            transitioning: false,
             transition: null
         },
         getTransitionConfig: function(){
@@ -17,8 +18,14 @@ angular.module("entraide").factory("AnimService", function($rootScope){
         setRoutingConfig: function(routingConfig){
             this.routingConfig = routingConfig;
         },
-        isTransitionning: function(){
-            return this.transitionConfig.transitionning;
+        setTransitionConfigType : function(type){
+            this.transitionConfig.animTransitionType = type;
+        },
+        setTransitionConfigSpinner : function(spinner){
+            this.transitionConfig.animTransitionSpinner = spinner;
+        },
+        isTransitioning: function(){
+            return this.transitionConfig.transitioning;
         },
         isNotCurrent: function(transition){
             return !angular.equals(transition, this.transitionConfig.transition);
@@ -28,23 +35,23 @@ angular.module("entraide").factory("AnimService", function($rootScope){
             var service = this;
             service.transitionConfig.transition = transition;
             service.transitionConfig.type = type ? type : service.transitionConfig.type;
-            service.transitionConfig.transitionning = true;
+            service.transitionConfig.transitioning = true;
             $rootScope.$broadcast('anim-transition-start');
             setTimeout(function(){
-                console.log('AnimService.transitionConfig.transitionning : false');
-                service.transitionConfig.transitionning = false;
+                console.log('AnimService.transitionConfig.transitioning : false');
+                service.transitionConfig.transitioning = false;
             }, service.transitionConfig.delay);
 
         },
         stopTransition : function(delay) {
             console.log('AnimService.stopTransition called');
         	this.transitionConfig.transition = null;
-        	this.transitionConfig.transitionning = false;
+        	this.transitionConfig.transitioning = false;
             setTimeout(function(){
                 $rootScope.$broadcast('anim-transition-stop');
             }, delay ? delay : 1500);
         },
-        isTransitionnable : function(t, params) {
+        isTransitionable : function(t, params) {
             var result = false;
             var config = this.getRoutingConfig();
 

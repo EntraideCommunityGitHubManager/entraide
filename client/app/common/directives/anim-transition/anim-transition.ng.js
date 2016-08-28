@@ -7,6 +7,7 @@ angular.module('entraide').directive('animTransition', function($rootScope, Anim
             startEvent: '@',
             stopEvent : '@',
             animTransitionType: '@',
+            animTransitionSpinner: '@',
             animTransitionRoutingConfig: '='
         },
         templateUrl: 'client/app/common/directives/anim-transition/anim-transition.ng.html',
@@ -16,11 +17,11 @@ angular.module('entraide').directive('animTransition', function($rootScope, Anim
 
                 var transition = {toState: toState, fromState: fromState};
 
-                if(AnimService.isTransitionnable(transition, toParams)){
+                if(AnimService.isTransitionable(transition, toParams)){
                     if(AnimService.isNotCurrent(transition)){
                         AnimService.startTransition(transition);
                     }
-                    if(AnimService.isTransitionning()){
+                    if(AnimService.isTransitioning()){
                         event.preventDefault();
                         setTimeout(function(){
                             $state.go(transition.toState.name, toParams);
@@ -111,7 +112,22 @@ angular.module('entraide').directive('animTransition', function($rootScope, Anim
             attrs.startEvent = attrs.startEvent && attrs.startEvent.length>0 ? attrs.startEvent : "anim-transition-start";
             attrs.stopEvent  = attrs.stopEvent && attrs.stopEvent.length>0 ? attrs.stopEvent : "anim-transition-stop";
 
-            attrs.animTransitionType = attrs.animTransitionType && attrs.animTransitionType.length>0 ? attrs.animTransitionType : 'parallelogram';
+            if(attrs.animTransitionType && attrs.animTransitionType.length>0){
+                attrs.animTransitionType = attrs.animTransitionType;
+            } else if(AnimService.getTransitionConfig() && AnimService.getTransitionConfig().animTransitionType) {
+                attrs.animTransitionType = AnimService.getTransitionConfig().animTransitionType;
+            } else {
+                attrs.animTransitionType = 'parallelogram';
+            }
+
+            if(attrs.animTransitionSpinner && attrs.animTransitionSpinner.length>0){
+                attrs.animTransitionSpinner = attrs.animTransitionSpinner;
+            } else if(AnimService.getTransitionConfig() && AnimService.getTransitionConfig().animTransitionSpinner) {
+                attrs.animTransitionSpinner = AnimService.getTransitionConfig().animTransitionSpinner;
+            } else {
+                attrs.animTransitionSpinner = 'round';
+            }
+
             var animation = config[attrs.animTransitionType] ? config[attrs.animTransitionType] : config['parallelogram'];
             
             var div = element[0].querySelector('.pageload-overlay');
