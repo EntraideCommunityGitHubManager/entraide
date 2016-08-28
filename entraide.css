@@ -74,6 +74,8 @@ h2{
     /*background-color: #2E9C9C;*/
     background-color: #49819C;
     /*background-color: rgba(27, 64, 103, 0.92);*/
+    /*background-color: rgba(24, 162, 193, 0.66);*/
+    /*background-color: #61BFD6;*/
 }
 
 .app-view{
@@ -101,7 +103,6 @@ h2{
     /*width: 50% !important;*/
     width: 450px !important;
 }
-
 
 
 
@@ -240,7 +241,7 @@ h2{
     top: 25px;
     right: 0;
     left: 0;
-    bottom: 18px;
+    bottom: 20px;
 }
 
 .map-bubble-container {
@@ -525,13 +526,13 @@ h2{
     top: 50px;
     bottom: 0;
     overflow-y: auto;
-    height: calc(100% - 100px);
+    height: calc(100% - 91px);
     width: 100%;
     margin-bottom: 50px;
     overflow-y: scroll;
     justify-content: center;
     display: flex;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 .title-list{
@@ -900,11 +901,16 @@ textarea{
 
 /* Anim-Tansition css override */
 .pageload-overlay {
-    height: calc(100% - 85px) !important;
+    height: calc(100% - 90px) !important;
 }
 .pageload-overlay svg {
     top: 50px !important;
 }
+/* Anim-SideBar css override */
+.st-content-inner{
+    overflow-y: hidden !important;
+}
+
 
 .email{
     width:180px;

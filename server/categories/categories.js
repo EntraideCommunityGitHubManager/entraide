@@ -105,8 +105,8 @@ Meteor.startup(function () {
 		Categories.insert({code: 'brico-home-pait', ancestors:['brico'], name:'Peinture', order:509, terms: 'bricolage maison travaux peindre peinture rafraichir repeindre'});
 		Categories.insert({code: 'brico-home-esun', ancestors:['brico'], name:'Panneaux Solaire', order:510, terms: 'bricolage maison travaux panneaux solaire photovoltaique photo voltaique -voltaique poser installer'});
 		Categories.insert({code: 'brico-home-plmb', ancestors:['brico'], name:'Plomberie', order:511, terms: 'bricolage maison travaux tuyaux pomberie plombiere bouchee'});
-		Categories.insert({code: 'brico-grdn-deco', ancestors:['brico'], name:'Jardin - Aménagement & décoration', order:551, terms: 'bricolage jardins travaux amenagment decoration decorer tondre pelouse couper'});
-		Categories.insert({code: 'brico-grdn-vega', ancestors:['brico'], name:'Potager', order:552, terms: 'bricolage jardins travaux potager legumes fruits tomates salades oignons basilic plantes'});
+		Categories.insert({code: 'brico-grdn-deco', ancestors:['brico'], name:'Jardin - Aménagement & décoration', order:551, terms: 'bricolage jardins jardinage jardiner travaux amenagment decoration decorer tondre pelouse couper'});
+		Categories.insert({code: 'brico-grdn-vega', ancestors:['brico'], name:'Potager', order:552, terms: 'bricolage jardins jardinage jardiner travaux potager legumes fruits tomates salades oignons basilic plantes'});
 		Categories.insert({code: 'brico-othr', ancestors:['brico'], name:'Bricolage & Travaux - Autres', order: 599, terms: 'bricolage maison travaux jardins autres'});
 
 
