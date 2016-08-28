@@ -903,9 +903,9 @@ textarea{
 .pageload-overlay {
     height: calc(100% - 90px) !important;
 }
-.pageload-overlay svg {
+/*.pageload-overlay svg {
     top: 50px !important;
-}
+}*/
 /* Anim-SideBar css override */
 .st-content-inner{
     overflow-y: hidden !important;

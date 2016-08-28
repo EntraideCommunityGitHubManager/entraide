@@ -1,4 +1,4 @@
-angular.module('entraide').directive('animTransition', function($rootScope, AnimService, $state){
+angular.module('entraide').directive('animTransition', function($rootScope, AnimService, $state, $timeout){
     
     return {
         restrict: 'AEC',
@@ -31,10 +31,18 @@ angular.module('entraide').directive('animTransition', function($rootScope, Anim
             });
             
             $scope.$on($scope.startEvent, function(){
-                $scope.svgLoader ? $scope.svgLoader.show() : null;
+                if($scope.svgLoader){
+                    $scope.svgLoader.show();
+                    $scope.started = true;
+                }
             });
             $scope.$on($scope.stopEvent, function(){
-                $scope.svgLoader ? $scope.svgLoader.hide() : null;
+                if($scope.svgLoader){
+                    $scope.started = false;
+                    $timeout(function(){
+                        $scope.svgLoader.hide();
+                    }, 1000);
+                }
             });
         },
         compile: function(element, attrs) {

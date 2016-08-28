@@ -1,4 +1,4 @@
-angular.module('entraide').directive('animLogin', function(){
+angular.module('entraide').directive('animLogin', function($timeout){
 
     return {
         restrict: 'AEC',
