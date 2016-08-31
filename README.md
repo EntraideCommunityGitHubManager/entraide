@@ -83,6 +83,7 @@ http://info.meteor.com/blog/angular-meteor-1.3
 http://callmenick.com/
 https://davidwalsh.name/css-flip
 http://jsfiddle.net/7tb4g/341/
+http://codepen.io/Marnoto/pen/xboPmG/
 
 External Service login with oAuth
 https://themeteorchef.com/recipes/roll-your-own-authentication/#tmc-setting-up-oauth-services
