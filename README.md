@@ -93,4 +93,16 @@ https://github.com/timhaines/test-accounts/blob/master/test-accounts.js
 https://codepen.io/anon/pen/wWLbgb
 
 https://haveibeenpwned.com/
+
+https://www.lestendances.fr/table-a-manger-achat-vente-c-89.html?p=2&nb=64
+http://www.meuble-house.fr/table-de-repas-chene-massif-240cm-licht.html
+http://www.meuble-house.fr/table-de-repas-chene-massif-220cm-licht.html#product-infos-tab-satisfaction
+http://www.cosy-tendance.com/table-rectangulaire/739-table-bois-tendance-104-2009075-cm-3700898587412.html
+https://www.alittlemarket.com/meubles-et-rangements/fr_table_de_salle_a_manger_acier_et_bois_vieilli_-8037433.html
+https://www.alittlemarket.com/meubles-et-rangements/fr_meuble_industriel_table_de_salle_a_manger_en_pin_massif_8_cm_2_rallonges_-18654907.html
+http://www.meuble-house.fr/table-tronc-d-arbre-et-pieds-en-verre-amazone.html
+http://www.shopping-meubles.fr/tables/1169-table-de-sejour-design-bio-glass-plateau-frene-massif-pieds-verre.html
+https://fr.pinterest.com/explore/tables-basses-920914587880/
+http://www.archiproducts.com/en/1429/tables-and-chairs-tables.html
+
 </pre></code>
