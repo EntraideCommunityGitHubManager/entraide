@@ -105,4 +105,10 @@ http://www.shopping-meubles.fr/tables/1169-table-de-sejour-design-bio-glass-plat
 https://fr.pinterest.com/explore/tables-basses-920914587880/
 http://www.archiproducts.com/en/1429/tables-and-chairs-tables.html
 
+
+http://www.boredpanda.com/creative-diy-lamp-chandelier-lighting-ideas/
+http://www.eclectical-engineering.com/projects/featured-projects/project-2-cloud-lamp/
+http://stemplusd.com/blog/industrial-design/interactive-cloud-lamp-creates-lightning-thunder-show/
+http://www.instructables.com/id/How-to-make-a-Lightning-Cloud/
+
 </pre></code>
