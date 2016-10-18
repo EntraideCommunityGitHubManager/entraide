@@ -297,7 +297,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
             url: '/required',
             views: {
                 'content-view@app': {
-                    template: '<div>You must be signed in to access this functionality</div>',
+                    template: '<div class="msg-error-center">You must be signed in to access this functionality</div>',
                     controller: function(AnimService){AnimService.stopTransition(1);}
                 }
             }
@@ -306,7 +306,7 @@ angular.module('entraide').config(['$urlRouterProvider', '$stateProvider', funct
             url: '/unauthorized',
             views: {
                 'content-view@app': {
-                    template: '<div>You must be authorized in order to access this functionality</div>',
+                    template: '<div class="msg-error-center">You must be authorized in order to access this functionality</div>',
                     controller: function(AnimService){AnimService.stopTransition(1);}
                 }
             }

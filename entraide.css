@@ -926,6 +926,14 @@ textarea{
 }
 
 
+.msg-error-center{
+    top: 50%;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #EFB6B6;
+}
+
 
 
 

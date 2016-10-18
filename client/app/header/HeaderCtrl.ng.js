@@ -4,7 +4,7 @@ angular.module('entraide').controller('HeaderCtrl', function ($scope, $rootScope
 
     $scope.isAdmin = SecurityService.isAdmin ;
     $scope.isConnected = SecurityService.isConnected;
-    $scope.isHome = function(){return $state.current.name == 'app.main';};
+    $scope.isBurgerVisible = function(){return $state.current.name == 'app.main' || $state.current.name.indexOf('app.main.error')>-1;};
     $scope.sessionService = SessionService;
 
     $scope.login = function(){
